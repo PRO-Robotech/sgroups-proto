@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+//import "common/ip_transport.proto";
+import "common/resource.proto";
+//import "protoc-gen-openapiv2/options/annotations.proto";
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+
+
+// Namespace: represents tenant resource
+message Namespace {
+  // Metadata: namespace metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = { required: true }];
+  // Spec: namespace specification
+  common.Spec spec = 2 [(buf.validate.field) = { required: true }];
+}
+
+// NamespaceList: list of namespaces
+message NamespaceList {
+  // namespaces: list of namespaces
+  repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+}

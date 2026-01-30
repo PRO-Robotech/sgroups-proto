@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+//import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "sgroups/v1/domains.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "SGroups API";
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru";
+    description: "Documentation";
+  }
+  schemes: [HTTP];
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+// SgroupsAPI: Security Groups API service
+service SgroupsAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
+      description: "Security Groups API service"
+  };
+
+  // NameSpaceUpsert: Create or update tenant namespace(es)
+  rpc NameSpaceUpsert(NamespaceList) returns (NamespaceList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "NameSpaceUpsert: Create or update tenant namespace(es)"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespace/upsert"
+      body: "*"
+    };
+  };
+}

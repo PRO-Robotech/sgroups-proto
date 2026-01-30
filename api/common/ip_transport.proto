@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
+
+//Networks: represents network types
+message Networks {
+  //NetIP: represents IP-Network type (L3)
+  message NetIP {
+    //Transport: represents net transport (L4)
+    enum Transport {
+      // TCP
+      TCP = 0;
+      // UDP
+      UDP = 1;
+    }
+    //PortRange: port [from - to] range
+    message PortRange {
+      //range left bound
+      uint32 from = 1;
+      //range right bound
+      uint32 to = 2;
+    }
+    //CIDR: IP range
+    string cidr = 1;
+  }
+}
+
+// IP Anddress family
+enum IpAddrFamily {
+  // undefined ip version
+  IPV_UNDEF = 0;
+  // IPv4
+  IPV4 = 1;
+  // IPv6
+  IPV6 = 2;
+}
+
+// IP/ICMP protocol
+message ICMP {
+  // IP address family
+  IpAddrFamily ipv = 1;
+  // ICMP message types
+  repeated uint32 types = 2;
+}
+
+// Ingress / Egress traffic dir
+enum Traffic {
+  // undefined traffic direction
+  DIR_UNDEF = 0;
+  // Ingress
+  INGRESS = 1;
+  // Egress
+  EGRESS = 2;
+}

@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";

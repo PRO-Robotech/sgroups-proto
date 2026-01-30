@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SGroups API",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "SgroupsAPI",
+      "description": "Security Groups API service"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/namespace/upsert": {
+      "post": {
+        "summary": "NameSpaceUpsert: Create or update tenant namespace(es)",
+        "description": "NameSpaceUpsert: Create or update tenant namespace(es)",
+        "operationId": "SgroupsAPI_NameSpaceUpsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceList"
+            }
+          }
+        ],
+        "tags": [
+          "SgroupsAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonMetadata": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Use this for update requests; for create requests, leave it empty.",
+          "title": "UID: unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Annotations: resource annotations"
+        },
+        "creationTimestamp": {
+          "type": "string",
+          "title": "CreationTimestamp: resource creation timestamp",
+          "readOnly": true
+        },
+        "revisionVersion": {
+          "type": "string",
+          "title": "RevisionVersion: resource revision version",
+          "readOnly": true
+        }
+      },
+      "title": "Metadata: common resource metadata"
+    },
+    "commonSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: common resource specification"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Namespace": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: namespace metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/commonSpec",
+          "title": "Spec: namespace specification"
+        }
+      },
+      "title": "Namespace: represents tenant resource"
+    },
+    "v1NamespaceList": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Namespace"
+          },
+          "title": "namespaces: list of namespaces"
+        }
+      },
+      "title": "NamespaceList: list of namespaces"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentation",
+    "url": "https://h-bf.prorobotech.ru"
+  }
+}

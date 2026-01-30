@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package common;
+
+import "buf/validate/validate.proto";
+import "google/api/field_behavior.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
+
+// Metadata: common resource metadata
+message Metadata {
+  // UID: unique identifier
+  string uid = 1 [
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "Use this for update requests; for create requests, leave it empty."
+    }
+  ];
+  // Name: resource name
+  string name = 2 [(buf.validate.field) = {
+    required: true
+    string: {
+      min_len: 1
+      max_len: 253
+      pattern: "^[a-z0-9][a-z0-9.-]{0,252}$"
+    }
+  }];
+  // Namespace: resource namespace
+  string namespace = 3 [
+    (google.api.field_behavior) = OPTIONAL,
+    (buf.validate.field) = {
+      ignore: IGNORE_IF_ZERO_VALUE
+      string: {
+        min_len: 1
+        max_len: 63
+        pattern: "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+      }
+    }
+  ];
+  // Labels: resource labels
+  map<string, string> labels = 4;
+  // Annotations: resource annotations
+  map<string, string> annotations = 5;
+  // CreationTimestamp: resource creation timestamp
+  string creation_timestamp = 6 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = { read_only: true }
+  ];
+  // RevisionVersion: resource revision version
+  string revision_version = 7 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = { read_only: true }
+  ];
+}
+
+// Spec: common resource specification
+message Spec {
+  // DisplayName: resource display name
+  string display_name = 1;
+  // Comment: resource comment
+  string comment = 2;
+  // Description: resource description
+  string description = 3;
+}
