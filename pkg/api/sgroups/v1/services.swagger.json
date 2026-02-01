@@ -1,0 +1,390 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SGroups API",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "SGroupsNamespaceAPI",
+      "description": "SGroups Namespace Resource API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/namespace/delete": {
+      "post": {
+        "summary": "Delete: Delete namespace(es)",
+        "description": "Delete: Delete namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespace/list": {
+      "post": {
+        "summary": "List: List namespace(es)",
+        "description": "List: List namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespace/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update namespace(es)",
+        "description": "Upsert: Create or update namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespace/watch": {
+      "post": {
+        "summary": "Watch: Watch namespace(es)",
+        "description": "Watch: Watch namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DeleteMetadataScope": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "title": "uid: unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "title": "name: resource name"
+        }
+      },
+      "title": "MetadataScope: namespace metadata for scoping"
+    },
+    "NamespaceReqDeleteNamespace": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/DeleteMetadataScope",
+          "title": "metadata: metadata for scoping"
+        }
+      },
+      "title": "Namespace: namespace to delete"
+    },
+    "NamespaceReqSelector": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/SelectorFieldSelector",
+          "title": "field_selector: field selector"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "label_selector: label selector"
+        }
+      },
+      "title": "Selector: resource selector"
+    },
+    "SelectorFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "name: resource name"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
+    },
+    "commonMetadata": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "title": "UID: unique identifier. Use this for update requests; for create requests, leave it empty"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Annotations: resource annotations"
+        },
+        "creationTimestamp": {
+          "type": "string",
+          "title": "CreationTimestamp: resource creation timestamp",
+          "readOnly": true
+        },
+        "revisionVersion": {
+          "type": "string",
+          "title": "RevisionVersion: resource revision version",
+          "readOnly": true
+        }
+      },
+      "title": "Metadata: common resource metadata"
+    },
+    "commonSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: common resource specification"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "sgroupsV1Namespace": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: namespace metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/commonSpec",
+          "title": "Spec: namespace specification"
+        }
+      },
+      "title": "Namespace: represents tenant resource"
+    },
+    "v1NamespaceList": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "namespaces: list of namespaces"
+        }
+      },
+      "title": "NamespaceList: list of namespaces"
+    },
+    "v1NamespaceReqDelete": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqDeleteNamespace"
+          },
+          "title": "namespaces: list of namespaces to delete"
+        }
+      },
+      "title": "Delete: request to delete namespaces"
+    },
+    "v1NamespaceReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqSelector"
+          },
+          "title": "selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list namespaces"
+    },
+    "v1NamespaceReqUpsert": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "namespaces: list of namespaces"
+        }
+      },
+      "title": "Upsert: request to upsert namespaces"
+    },
+    "v1NamespaceReqWatch": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqSelector"
+          },
+          "title": "selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch namespaces"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentation",
+    "url": "https://h-bf.prorobotech.ru"
+  }
+}

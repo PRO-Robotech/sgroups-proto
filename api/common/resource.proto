@@ -10,15 +10,11 @@ option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common
 
 // Metadata: common resource metadata
 message Metadata {
-  // UID: unique identifier
-  string uid = 1 [
-    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
-        description: "Use this for update requests; for create requests, leave it empty."
-    }
-  ];
+  // UID: unique identifier. Use this for update requests; for create requests, leave it empty
+  string uid = 1;
   // Name: resource name
   string name = 2 [(buf.validate.field) = {
-    required: true
+    ignore: IGNORE_IF_ZERO_VALUE
     string: {
       min_len: 1
       max_len: 253
@@ -53,12 +49,53 @@ message Metadata {
   ];
 }
 
+// MetadataScope: common resource metadata for scoping
+message MetadataScope {
+  // UID: unique identifier. Use this for update requests; for create requests, leave it empty
+  string uid = 1;
+  // Name: resource name
+  string name = 2;
+  // Namespace: resource namespace
+  string namespace = 3;
+}
+
 // Spec: common resource specification
 message Spec {
   // DisplayName: resource display name
-  string display_name = 1;
+  string display_name = 1 [(buf.validate.field) = {
+    string: {
+      min_len: 0
+      max_len: 64
+    }
+  }];
   // Comment: resource comment
   string comment = 2;
   // Description: resource description
   string description = 3;
+}
+
+// ResSelector: resource selector
+message ResSelector {
+    // FieldSelector: resource field selector
+    message FieldSelector {
+        // ResourceRef: reference to a resource
+        message ResourceRef {
+            // name: reference resource name
+            string name = 1;
+            // namespace: reference resource namespace
+            string namespace = 2;
+            // res_type: reference resource type
+            string res_type = 3;
+        }
+        // name: resource name
+        string name = 1;
+        // namespace: resource namespace
+        string namespace = 2;
+        // refs: resource references
+        repeated ResourceRef refs = 3;
+    }
+    // field_selector: field selector
+    FieldSelector field_selector = 1;
+    // label_selector: label selector
+    map<string, string> label_selector = 2;
 }

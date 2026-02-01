@@ -71,6 +71,6 @@ func (cc clientConstructor[T]) reg(f func(grpc.ClientConnInterface) T) {
 }
 
 func init() {
-	(clientConstructor[sgroupsv1.SgroupsAPIClient])(nil).
-		reg(sgroupsv1.NewSgroupsAPIClient)
+	(clientConstructor[sgroupsv1.SGroupsNamespaceAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsNamespaceAPIClient)
 }

@@ -3,3 +3,60 @@ syntax = "proto3";
 package sgroups.v1;
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+import "buf/validate/validate.proto";
+
+import "sgroups/v1/domains.proto";
+
+// NamespaceReq: namespace requests
+message NamespaceReq {
+    // Selector: resource selector
+    message Selector {
+        // FieldSelector: resource field selector
+        message FieldSelector {
+            // name: resource name
+            string name = 1;
+        }
+        // field_selector: field selector
+        FieldSelector field_selector = 1;
+        // label_selector: label selector
+        map<string, string> label_selector = 2;
+    }
+    // Upsert: request to upsert namespaces
+    message Upsert {
+        // namespaces: list of namespaces
+        repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+    }
+    // Delete: request to delete namespaces
+    message Delete {
+        // MetadataScope: namespace metadata for scoping
+        message MetadataScope {
+            // scoped: scope by uid or name
+            oneof scoped {
+                // uid: unique identifier
+                string uid = 1;
+                // name: resource name
+                string name = 2;
+            }
+        }
+        // Namespace: namespace to delete
+        message Namespace {
+            // metadata: metadata for scoping
+            MetadataScope metadata = 1 [(buf.validate.field) = { required: true }];
+        }
+        // namespaces: list of namespaces to delete
+        repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+    }
+
+    // List: request to list namespaces
+    message List {
+        // selectors: list of selectors
+        repeated Selector selectors = 1 [(buf.validate.field) = { required: true }];
+    }
+
+    // Watch: request to watch namespaces
+    message Watch {
+        // selectors: list of selectors
+        repeated Selector selectors = 1 [(buf.validate.field) = { required: true }];
+    }
+}

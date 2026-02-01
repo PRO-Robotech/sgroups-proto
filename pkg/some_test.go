@@ -10,7 +10,7 @@ import (
 )
 
 func TestSwaggerUtil(t *testing.T) {
-	var u SwaggerUtil[sgroupsv1.SgroupsAPIServer]
+	var u SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIServer]
 	s, e := u.GetSpec()
 	require.NoError(t, e)
 	require.NotNil(t, s)
@@ -18,7 +18,7 @@ func TestSwaggerUtil(t *testing.T) {
 
 func TestClosableClient(t *testing.T) {
 	var conn *grpc.ClientConn
-	var c ClosableClient[sgroupsv1.SgroupsAPIClient]
+	var c ClosableClient[sgroupsv1.SGroupsNamespaceAPIClient]
 	err := c.Init(conn)
 	require.NoError(t, err)
 	require.NotNil(t, c.C)

@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "sgroups/v1/domains.proto";
+import "sgroups/v1/queries.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "SGroups API";
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru";
+    description: "Documentation";
+  }
+  schemes: [HTTP];
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+
+// SGroupsNamespaceAPI: SGroups namespaces API
+service SGroupsNamespaceAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
+    description: "SGroups Namespace Resource API"
+  };
+
+  // Upsert: Create or update namespace(es)
+  rpc Upsert(NamespaceReq.Upsert) returns (NamespaceList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespace/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete namespace(es)
+  rpc Delete(NamespaceReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespace/delete"
+      body: "*"
+    };
+  }
+
+  // List: List namespace(es)
+  rpc List(NamespaceReq.List) returns (NamespaceList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespace/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch namespace(es)
+  rpc Watch(NamespaceReq.Watch) returns (NamespaceList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespace/watch"
+      body: "*"
+    };
+  }
+}

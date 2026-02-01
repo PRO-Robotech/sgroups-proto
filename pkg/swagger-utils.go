@@ -4,7 +4,6 @@ import (
 	"embed"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"reflect"
 
 	sgroupsv1 "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1"
@@ -47,7 +46,7 @@ func (u SwaggerUtil[T]) GetRaw() (json.RawMessage, error) {
 	ty := reflect.TypeOf((*T)(nil)).Elem()
 	p := swaggerPaths[ty]
 	err := whenFindSwagger(p, func(reader io.Reader) error {
-		data, e := ioutil.ReadAll(reader)
+		data, e := io.ReadAll(reader)
 		ret = data
 		return e
 	})
@@ -68,12 +67,12 @@ func whenFindSwagger(p string, f func(reader io.Reader) error) error {
 
 func init() {
 	const (
-		apiSGroups = "api/sgroups/v1/service.swagger.json"
+		apiSGroups = "api/sgroups/v1/services.swagger.json"
 	)
 
-	SwaggerUtil[sgroupsv1.SgroupsAPIServer]{}.
+	SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIServer]{}.
 		reg(apiSGroups)
 
-	SwaggerUtil[sgroupsv1.SgroupsAPIClient]{}.
+	SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIClient]{}.
 		reg(apiSGroups)
 }
