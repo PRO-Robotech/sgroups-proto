@@ -24,6 +24,8 @@ const _ = connect.IsAtLeastVersion1_13_0
 const (
 	// SGroupsNamespaceAPIName is the fully-qualified name of the SGroupsNamespaceAPI service.
 	SGroupsNamespaceAPIName = "sgroups.v1.SGroupsNamespaceAPI"
+	// SGroupsAddressGroupsAPIName is the fully-qualified name of the SGroupsAddressGroupsAPI service.
+	SGroupsAddressGroupsAPIName = "sgroups.v1.SGroupsAddressGroupsAPI"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -46,6 +48,18 @@ const (
 	// SGroupsNamespaceAPIWatchProcedure is the fully-qualified name of the SGroupsNamespaceAPI's Watch
 	// RPC.
 	SGroupsNamespaceAPIWatchProcedure = "/sgroups.v1.SGroupsNamespaceAPI/Watch"
+	// SGroupsAddressGroupsAPIUpsertProcedure is the fully-qualified name of the
+	// SGroupsAddressGroupsAPI's Upsert RPC.
+	SGroupsAddressGroupsAPIUpsertProcedure = "/sgroups.v1.SGroupsAddressGroupsAPI/Upsert"
+	// SGroupsAddressGroupsAPIDeleteProcedure is the fully-qualified name of the
+	// SGroupsAddressGroupsAPI's Delete RPC.
+	SGroupsAddressGroupsAPIDeleteProcedure = "/sgroups.v1.SGroupsAddressGroupsAPI/Delete"
+	// SGroupsAddressGroupsAPIListProcedure is the fully-qualified name of the SGroupsAddressGroupsAPI's
+	// List RPC.
+	SGroupsAddressGroupsAPIListProcedure = "/sgroups.v1.SGroupsAddressGroupsAPI/List"
+	// SGroupsAddressGroupsAPIWatchProcedure is the fully-qualified name of the
+	// SGroupsAddressGroupsAPI's Watch RPC.
+	SGroupsAddressGroupsAPIWatchProcedure = "/sgroups.v1.SGroupsAddressGroupsAPI/Watch"
 )
 
 // SGroupsNamespaceAPIClient is a client for the sgroups.v1.SGroupsNamespaceAPI service.
@@ -202,4 +216,161 @@ func (UnimplementedSGroupsNamespaceAPIHandler) List(context.Context, *connect.Re
 
 func (UnimplementedSGroupsNamespaceAPIHandler) Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch]) (*connect.Response[v1.NamespaceList], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNamespaceAPI.Watch is not implemented"))
+}
+
+// SGroupsAddressGroupsAPIClient is a client for the sgroups.v1.SGroupsAddressGroupsAPI service.
+type SGroupsAddressGroupsAPIClient interface {
+	// Upsert: Create or update address group(s)
+	Upsert(context.Context, *connect.Request[v1.AddressGroupReq_Upsert]) (*connect.Response[v1.AddressGroupList], error)
+	// Delete: Delete address group(s)
+	Delete(context.Context, *connect.Request[v1.AddressGroupReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List address group(s)
+	List(context.Context, *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error)
+	// Watch: Watch address group(s)
+	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error)
+}
+
+// NewSGroupsAddressGroupsAPIClient constructs a client for the sgroups.v1.SGroupsAddressGroupsAPI
+// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
+// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
+// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsAddressGroupsAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsAddressGroupsAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsAddressGroupsAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsAddressGroupsAPI").Methods()
+	return &sGroupsAddressGroupsAPIClient{
+		upsert: connect.NewClient[v1.AddressGroupReq_Upsert, v1.AddressGroupList](
+			httpClient,
+			baseURL+SGroupsAddressGroupsAPIUpsertProcedure,
+			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.AddressGroupReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsAddressGroupsAPIDeleteProcedure,
+			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.AddressGroupReq_List, v1.AddressGroupList](
+			httpClient,
+			baseURL+SGroupsAddressGroupsAPIListProcedure,
+			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.AddressGroupReq_Watch, v1.AddressGroupList](
+			httpClient,
+			baseURL+SGroupsAddressGroupsAPIWatchProcedure,
+			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsAddressGroupsAPIClient implements SGroupsAddressGroupsAPIClient.
+type sGroupsAddressGroupsAPIClient struct {
+	upsert *connect.Client[v1.AddressGroupReq_Upsert, v1.AddressGroupList]
+	delete *connect.Client[v1.AddressGroupReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.AddressGroupReq_List, v1.AddressGroupList]
+	watch  *connect.Client[v1.AddressGroupReq_Watch, v1.AddressGroupList]
+}
+
+// Upsert calls sgroups.v1.SGroupsAddressGroupsAPI.Upsert.
+func (c *sGroupsAddressGroupsAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.AddressGroupReq_Upsert]) (*connect.Response[v1.AddressGroupList], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsAddressGroupsAPI.Delete.
+func (c *sGroupsAddressGroupsAPIClient) Delete(ctx context.Context, req *connect.Request[v1.AddressGroupReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsAddressGroupsAPI.List.
+func (c *sGroupsAddressGroupsAPIClient) List(ctx context.Context, req *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsAddressGroupsAPI.Watch.
+func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, req *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error) {
+	return c.watch.CallUnary(ctx, req)
+}
+
+// SGroupsAddressGroupsAPIHandler is an implementation of the sgroups.v1.SGroupsAddressGroupsAPI
+// service.
+type SGroupsAddressGroupsAPIHandler interface {
+	// Upsert: Create or update address group(s)
+	Upsert(context.Context, *connect.Request[v1.AddressGroupReq_Upsert]) (*connect.Response[v1.AddressGroupList], error)
+	// Delete: Delete address group(s)
+	Delete(context.Context, *connect.Request[v1.AddressGroupReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List address group(s)
+	List(context.Context, *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error)
+	// Watch: Watch address group(s)
+	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error)
+}
+
+// NewSGroupsAddressGroupsAPIHandler builds an HTTP handler from the service implementation. It
+// returns the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsAddressGroupsAPIHandler(svc SGroupsAddressGroupsAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsAddressGroupsAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsAddressGroupsAPI").Methods()
+	sGroupsAddressGroupsAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsAddressGroupsAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsAddressGroupsAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsAddressGroupsAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsAddressGroupsAPIListHandler := connect.NewUnaryHandler(
+		SGroupsAddressGroupsAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsAddressGroupsAPIWatchHandler := connect.NewUnaryHandler(
+		SGroupsAddressGroupsAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsAddressGroupsAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsAddressGroupsAPIUpsertProcedure:
+			sGroupsAddressGroupsAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsAddressGroupsAPIDeleteProcedure:
+			sGroupsAddressGroupsAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsAddressGroupsAPIListProcedure:
+			sGroupsAddressGroupsAPIListHandler.ServeHTTP(w, r)
+		case SGroupsAddressGroupsAPIWatchProcedure:
+			sGroupsAddressGroupsAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsAddressGroupsAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsAddressGroupsAPIHandler struct{}
+
+func (UnimplementedSGroupsAddressGroupsAPIHandler) Upsert(context.Context, *connect.Request[v1.AddressGroupReq_Upsert]) (*connect.Response[v1.AddressGroupList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsAddressGroupsAPIHandler) Delete(context.Context, *connect.Request[v1.AddressGroupReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsAddressGroupsAPIHandler) List(context.Context, *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsAddressGroupsAPIHandler) Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.Watch is not implemented"))
 }

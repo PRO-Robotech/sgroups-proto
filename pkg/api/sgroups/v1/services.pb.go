@@ -28,7 +28,7 @@ var File_sgroups_v1_services_proto protoreflect.FileDescriptor
 const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\n" +
 	"\x19sgroups/v1/services.proto\x12\n" +
-	"sgroups.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x18sgroups/v1/domains.proto\x1a\x18sgroups/v1/queries.proto2\x82\x05\n" +
+	"sgroups.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x18sgroups/v1/domains.proto\x1a\x18sgroups/v1/queries.proto2\xfa\x04\n" +
 	"\x13SGroupsNamespaceAPI\x12\x9b\x01\n" +
 	"\x06Upsert\x12\x1f.sgroups.v1.NamespaceReq.Upsert\x1a\x19.sgroups.v1.NamespaceList\"U\x92A3\n" +
 	"\tNamespace\x1a&Upsert: Create or update namespace(es)\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/namespace/upsert\x12\x8e\x01\n" +
@@ -37,32 +37,54 @@ const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\x04List\x12\x1d.sgroups.v1.NamespaceReq.List\x1a\x19.sgroups.v1.NamespaceList\"E\x92A%\n" +
 	"\tNamespace\x1a\x18List: List namespace(es)\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/namespace/list\x12\x8c\x01\n" +
 	"\x05Watch\x12\x1e.sgroups.v1.NamespaceReq.Watch\x1a\x19.sgroups.v1.NamespaceList\"H\x92A'\n" +
-	"\tNamespace\x1a\x1aWatch: Watch namespace(es)\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/namespace/watch\x1a#\x92A \x12\x1eSGroups Namespace Resource APIB\xb0\x01\x92Ai\x12\x12\n" +
+	"\tNamespace\x1a\x1aWatch: Watch namespace(es)\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/namespace/watch\x1a\x1b\x92A\x18\x12\x16Namespace Resource API2\x93\x05\n" +
+	"\x17SGroupsAddressGroupsAPI\x12\xa0\x01\n" +
+	"\x06Upsert\x12\".sgroups.v1.AddressGroupReq.Upsert\x1a\x1c.sgroups.v1.AddressGroupList\"T\x92A9\n" +
+	"\fAddressGroup\x1a)Upsert: Create or update address group(s)\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ag/upsert\x12\x90\x01\n" +
+	"\x06Delete\x12\".sgroups.v1.AddressGroupReq.Delete\x1a\x16.google.protobuf.Empty\"J\x92A/\n" +
+	"\fAddressGroup\x1a\x1fDelete: Delete address group(s)\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ag/delete\x12\x8c\x01\n" +
+	"\x04List\x12 .sgroups.v1.AddressGroupReq.List\x1a\x1c.sgroups.v1.AddressGroupList\"D\x92A+\n" +
+	"\fAddressGroup\x1a\x1bList: List address group(s)\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/v1/ag/list\x12\x91\x01\n" +
+	"\x05Watch\x12!.sgroups.v1.AddressGroupReq.Watch\x1a\x1c.sgroups.v1.AddressGroupList\"G\x92A-\n" +
+	"\fAddressGroup\x1a\x1dWatch: Watch address group(s)\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ag/watch\x1a\x1f\x92A\x1c\x12\x1aAddressGroups Resource APIB\xb0\x01\x92Ai\x12\x12\n" +
 	"\vSGroups API2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
 	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
 
 var file_sgroups_v1_services_proto_goTypes = []any{
-	(*NamespaceReq_Upsert)(nil), // 0: sgroups.v1.NamespaceReq.Upsert
-	(*NamespaceReq_Delete)(nil), // 1: sgroups.v1.NamespaceReq.Delete
-	(*NamespaceReq_List)(nil),   // 2: sgroups.v1.NamespaceReq.List
-	(*NamespaceReq_Watch)(nil),  // 3: sgroups.v1.NamespaceReq.Watch
-	(*NamespaceList)(nil),       // 4: sgroups.v1.NamespaceList
-	(*emptypb.Empty)(nil),       // 5: google.protobuf.Empty
+	(*NamespaceReq_Upsert)(nil),    // 0: sgroups.v1.NamespaceReq.Upsert
+	(*NamespaceReq_Delete)(nil),    // 1: sgroups.v1.NamespaceReq.Delete
+	(*NamespaceReq_List)(nil),      // 2: sgroups.v1.NamespaceReq.List
+	(*NamespaceReq_Watch)(nil),     // 3: sgroups.v1.NamespaceReq.Watch
+	(*AddressGroupReq_Upsert)(nil), // 4: sgroups.v1.AddressGroupReq.Upsert
+	(*AddressGroupReq_Delete)(nil), // 5: sgroups.v1.AddressGroupReq.Delete
+	(*AddressGroupReq_List)(nil),   // 6: sgroups.v1.AddressGroupReq.List
+	(*AddressGroupReq_Watch)(nil),  // 7: sgroups.v1.AddressGroupReq.Watch
+	(*NamespaceList)(nil),          // 8: sgroups.v1.NamespaceList
+	(*emptypb.Empty)(nil),          // 9: google.protobuf.Empty
+	(*AddressGroupList)(nil),       // 10: sgroups.v1.AddressGroupList
 }
 var file_sgroups_v1_services_proto_depIdxs = []int32{
-	0, // 0: sgroups.v1.SGroupsNamespaceAPI.Upsert:input_type -> sgroups.v1.NamespaceReq.Upsert
-	1, // 1: sgroups.v1.SGroupsNamespaceAPI.Delete:input_type -> sgroups.v1.NamespaceReq.Delete
-	2, // 2: sgroups.v1.SGroupsNamespaceAPI.List:input_type -> sgroups.v1.NamespaceReq.List
-	3, // 3: sgroups.v1.SGroupsNamespaceAPI.Watch:input_type -> sgroups.v1.NamespaceReq.Watch
-	4, // 4: sgroups.v1.SGroupsNamespaceAPI.Upsert:output_type -> sgroups.v1.NamespaceList
-	5, // 5: sgroups.v1.SGroupsNamespaceAPI.Delete:output_type -> google.protobuf.Empty
-	4, // 6: sgroups.v1.SGroupsNamespaceAPI.List:output_type -> sgroups.v1.NamespaceList
-	4, // 7: sgroups.v1.SGroupsNamespaceAPI.Watch:output_type -> sgroups.v1.NamespaceList
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: sgroups.v1.SGroupsNamespaceAPI.Upsert:input_type -> sgroups.v1.NamespaceReq.Upsert
+	1,  // 1: sgroups.v1.SGroupsNamespaceAPI.Delete:input_type -> sgroups.v1.NamespaceReq.Delete
+	2,  // 2: sgroups.v1.SGroupsNamespaceAPI.List:input_type -> sgroups.v1.NamespaceReq.List
+	3,  // 3: sgroups.v1.SGroupsNamespaceAPI.Watch:input_type -> sgroups.v1.NamespaceReq.Watch
+	4,  // 4: sgroups.v1.SGroupsAddressGroupsAPI.Upsert:input_type -> sgroups.v1.AddressGroupReq.Upsert
+	5,  // 5: sgroups.v1.SGroupsAddressGroupsAPI.Delete:input_type -> sgroups.v1.AddressGroupReq.Delete
+	6,  // 6: sgroups.v1.SGroupsAddressGroupsAPI.List:input_type -> sgroups.v1.AddressGroupReq.List
+	7,  // 7: sgroups.v1.SGroupsAddressGroupsAPI.Watch:input_type -> sgroups.v1.AddressGroupReq.Watch
+	8,  // 8: sgroups.v1.SGroupsNamespaceAPI.Upsert:output_type -> sgroups.v1.NamespaceList
+	9,  // 9: sgroups.v1.SGroupsNamespaceAPI.Delete:output_type -> google.protobuf.Empty
+	8,  // 10: sgroups.v1.SGroupsNamespaceAPI.List:output_type -> sgroups.v1.NamespaceList
+	8,  // 11: sgroups.v1.SGroupsNamespaceAPI.Watch:output_type -> sgroups.v1.NamespaceList
+	10, // 12: sgroups.v1.SGroupsAddressGroupsAPI.Upsert:output_type -> sgroups.v1.AddressGroupList
+	9,  // 13: sgroups.v1.SGroupsAddressGroupsAPI.Delete:output_type -> google.protobuf.Empty
+	10, // 14: sgroups.v1.SGroupsAddressGroupsAPI.List:output_type -> sgroups.v1.AddressGroupList
+	10, // 15: sgroups.v1.SGroupsAddressGroupsAPI.Watch:output_type -> sgroups.v1.AddressGroupList
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_services_proto_init() }
@@ -80,7 +102,7 @@ func file_sgroups_v1_services_proto_init() {
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_sgroups_v1_services_proto_goTypes,
 		DependencyIndexes: file_sgroups_v1_services_proto_depIdxs,

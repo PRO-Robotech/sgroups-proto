@@ -24,6 +24,59 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Action: enumeration of possible actions
+type Action int32
+
+const (
+	// UNKNOWN: unknown action
+	Action_UNKNOWN Action = 0
+	// ALLOW: allow action
+	Action_ALLOW Action = 1
+	// DENY: deny action
+	Action_DENY Action = 2
+)
+
+// Enum value maps for Action.
+var (
+	Action_name = map[int32]string{
+		0: "UNKNOWN",
+		1: "ALLOW",
+		2: "DENY",
+	}
+	Action_value = map[string]int32{
+		"UNKNOWN": 0,
+		"ALLOW":   1,
+		"DENY":    2,
+	}
+)
+
+func (x Action) Enum() *Action {
+	p := new(Action)
+	*p = x
+	return p
+}
+
+func (x Action) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Action) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_resource_proto_enumTypes[0].Descriptor()
+}
+
+func (Action) Type() protoreflect.EnumType {
+	return &file_common_resource_proto_enumTypes[0]
+}
+
+func (x Action) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Action.Descriptor instead.
+func (Action) EnumDescriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{0}
+}
+
 // Metadata: common resource metadata
 type Metadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -188,76 +241,12 @@ func (x *MetadataScope) GetNamespace() string {
 	return ""
 }
 
-// Spec: common resource specification
-type Spec struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// DisplayName: resource display name
-	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	// Comment: resource comment
-	Comment string `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
-	// Description: resource description
-	Description   string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Spec) Reset() {
-	*x = Spec{}
-	mi := &file_common_resource_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Spec) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Spec) ProtoMessage() {}
-
-func (x *Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Spec.ProtoReflect.Descriptor instead.
-func (*Spec) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Spec) GetDisplayName() string {
-	if x != nil {
-		return x.DisplayName
-	}
-	return ""
-}
-
-func (x *Spec) GetComment() string {
-	if x != nil {
-		return x.Comment
-	}
-	return ""
-}
-
-func (x *Spec) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
 // ResSelector: resource selector
 type ResSelector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// field_selector: field selector
+	// FieldSelector: field selector
 	FieldSelector *ResSelector_FieldSelector `protobuf:"bytes,1,opt,name=field_selector,json=fieldSelector,proto3" json:"field_selector,omitempty"`
-	// label_selector: label selector
+	// LabelSelector: label selector
 	LabelSelector map[string]string `protobuf:"bytes,2,rep,name=label_selector,json=labelSelector,proto3" json:"label_selector,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -265,7 +254,7 @@ type ResSelector struct {
 
 func (x *ResSelector) Reset() {
 	*x = ResSelector{}
-	mi := &file_common_resource_proto_msgTypes[3]
+	mi := &file_common_resource_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -277,7 +266,7 @@ func (x *ResSelector) String() string {
 func (*ResSelector) ProtoMessage() {}
 
 func (x *ResSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[3]
+	mi := &file_common_resource_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +279,7 @@ func (x *ResSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResSelector.ProtoReflect.Descriptor instead.
 func (*ResSelector) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{3}
+	return file_common_resource_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResSelector) GetFieldSelector() *ResSelector_FieldSelector {
@@ -310,11 +299,11 @@ func (x *ResSelector) GetLabelSelector() map[string]string {
 // FieldSelector: resource field selector
 type ResSelector_FieldSelector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// name: resource name
+	// Name: resource name
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// namespace: resource namespace
+	// Namespace: resource namespace
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// refs: resource references
+	// Refs: resource references
 	Refs          []*ResSelector_FieldSelector_ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -322,7 +311,7 @@ type ResSelector_FieldSelector struct {
 
 func (x *ResSelector_FieldSelector) Reset() {
 	*x = ResSelector_FieldSelector{}
-	mi := &file_common_resource_proto_msgTypes[6]
+	mi := &file_common_resource_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -334,7 +323,7 @@ func (x *ResSelector_FieldSelector) String() string {
 func (*ResSelector_FieldSelector) ProtoMessage() {}
 
 func (x *ResSelector_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[6]
+	mi := &file_common_resource_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -347,7 +336,7 @@ func (x *ResSelector_FieldSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResSelector_FieldSelector.ProtoReflect.Descriptor instead.
 func (*ResSelector_FieldSelector) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{3, 0}
+	return file_common_resource_proto_rawDescGZIP(), []int{2, 0}
 }
 
 func (x *ResSelector_FieldSelector) GetName() string {
@@ -374,11 +363,11 @@ func (x *ResSelector_FieldSelector) GetRefs() []*ResSelector_FieldSelector_Resou
 // ResourceRef: reference to a resource
 type ResSelector_FieldSelector_ResourceRef struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// name: reference resource name
+	// Name: reference resource name
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// namespace: reference resource namespace
+	// Namespace: reference resource namespace
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// res_type: reference resource type
+	// ResType: reference resource type
 	ResType       string `protobuf:"bytes,3,opt,name=res_type,json=resType,proto3" json:"res_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -386,7 +375,7 @@ type ResSelector_FieldSelector_ResourceRef struct {
 
 func (x *ResSelector_FieldSelector_ResourceRef) Reset() {
 	*x = ResSelector_FieldSelector_ResourceRef{}
-	mi := &file_common_resource_proto_msgTypes[8]
+	mi := &file_common_resource_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -398,7 +387,7 @@ func (x *ResSelector_FieldSelector_ResourceRef) String() string {
 func (*ResSelector_FieldSelector_ResourceRef) ProtoMessage() {}
 
 func (x *ResSelector_FieldSelector_ResourceRef) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[8]
+	mi := &file_common_resource_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -411,7 +400,7 @@ func (x *ResSelector_FieldSelector_ResourceRef) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ResSelector_FieldSelector_ResourceRef.ProtoReflect.Descriptor instead.
 func (*ResSelector_FieldSelector_ResourceRef) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{3, 0, 0}
+	return file_common_resource_proto_rawDescGZIP(), []int{2, 0, 0}
 }
 
 func (x *ResSelector_FieldSelector_ResourceRef) GetName() string {
@@ -439,9 +428,9 @@ var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x97\x04\n" +
-	"\bMetadata\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\x12>\n" +
+	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xf2\x05\n" +
+	"\bMetadata\x12\xea\x01\n" +
+	"\x03uid\x18\x01 \x01(\tB\xd7\x01\x92A\xd3\x01*\x03uid2Uid of the resource. Use this for update requests; for create requests, leave it emptyJ&\"2438ac3c-37eb-4902-adef-ed16b4431030\"\x8a\x01E^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$\xa2\x02\x04uuidR\x03uid\x12>\n" +
 	"\x04name\x18\x02 \x01(\tB*\xbaH'\xd8\x01\x01r\"\x10\x01\x18\xfd\x012\x1b^[a-z0-9][a-z0-9.-]{0,252}$R\x04name\x12U\n" +
 	"\tnamespace\x18\x03 \x01(\tB7\xe0A\x01\xbaH1\xd8\x01\x01r,\x10\x01\x18?2&^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$R\tnamespace\x124\n" +
 	"\x06labels\x18\x04 \x03(\v2\x1c.common.Metadata.LabelsEntryR\x06labels\x12C\n" +
@@ -457,11 +446,7 @@ const file_common_resource_proto_rawDesc = "" +
 	"\rMetadataScope\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x03 \x01(\tR\tnamespace\"p\n" +
-	"\x04Spec\x12,\n" +
-	"\fdisplay_name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x00\x18@R\vdisplayName\x12\x18\n" +
-	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xcb\x03\n" +
+	"\tnamespace\x18\x03 \x01(\tR\tnamespace\"\xcb\x03\n" +
 	"\vResSelector\x12H\n" +
 	"\x0efield_selector\x18\x01 \x01(\v2!.common.ResSelector.FieldSelectorR\rfieldSelector\x12M\n" +
 	"\x0elabel_selector\x18\x02 \x03(\v2&.common.ResSelector.LabelSelectorEntryR\rlabelSelector\x1a\xe0\x01\n" +
@@ -475,7 +460,11 @@ const file_common_resource_proto_rawDesc = "" +
 	"\bres_type\x18\x03 \x01(\tR\aresType\x1a@\n" +
 	"\x12LabelSelectorEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01**\n" +
+	"\x06Action\x12\v\n" +
+	"\aUNKNOWN\x10\x00\x12\t\n" +
+	"\x05ALLOW\x10\x01\x12\b\n" +
+	"\x04DENY\x10\x02B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
 
 var (
 	file_common_resource_proto_rawDescOnce sync.Once
@@ -489,11 +478,12 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 	return file_common_resource_proto_rawDescData
 }
 
-var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_common_resource_proto_goTypes = []any{
-	(*Metadata)(nil),                  // 0: common.Metadata
-	(*MetadataScope)(nil),             // 1: common.MetadataScope
-	(*Spec)(nil),                      // 2: common.Spec
+	(Action)(0),                       // 0: common.Action
+	(*Metadata)(nil),                  // 1: common.Metadata
+	(*MetadataScope)(nil),             // 2: common.MetadataScope
 	(*ResSelector)(nil),               // 3: common.ResSelector
 	nil,                               // 4: common.Metadata.LabelsEntry
 	nil,                               // 5: common.Metadata.AnnotationsEntry
@@ -524,13 +514,14 @@ func file_common_resource_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_resource_proto_rawDesc), len(file_common_resource_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   9,
+			NumEnums:      1,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_common_resource_proto_goTypes,
 		DependencyIndexes: file_common_resource_proto_depIdxs,
+		EnumInfos:         file_common_resource_proto_enumTypes,
 		MessageInfos:      file_common_resource_proto_msgTypes,
 	}.Build()
 	File_common_resource_proto = out.File

@@ -2,61 +2,113 @@ syntax = "proto3";
 
 package sgroups.v1;
 
-option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
-
 import "buf/validate/validate.proto";
-
+import "common/resource.proto";
+import "google/api/field_behavior.proto";
 import "sgroups/v1/domains.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
 
 // NamespaceReq: namespace requests
 message NamespaceReq {
-    // Selector: resource selector
-    message Selector {
-        // FieldSelector: resource field selector
-        message FieldSelector {
-            // name: resource name
-            string name = 1;
-        }
-        // field_selector: field selector
-        FieldSelector field_selector = 1;
-        // label_selector: label selector
-        map<string, string> label_selector = 2;
+  // Selector: resource selector
+  message Selector {
+    // FieldSelector: resource field selector
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
     }
-    // Upsert: request to upsert namespaces
-    message Upsert {
-        // namespaces: list of namespaces
-        repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+    // FieldSelector: field selector
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector
+    map<string, string> label_selector = 2;
+  }
+  // Upsert: request to upsert namespaces
+  message Upsert {
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete namespaces
+  message Delete {
+    // MetadataScope: namespace metadata for scoping
+    message MetadataScope {
+      // Scoped: scope by uid or name
+      oneof scoped {
+        // Uid: unique identifier
+        string uid = 1;
+        // Name: resource name
+        string name = 2;
+      }
     }
-    // Delete: request to delete namespaces
-    message Delete {
-        // MetadataScope: namespace metadata for scoping
-        message MetadataScope {
-            // scoped: scope by uid or name
-            oneof scoped {
-                // uid: unique identifier
-                string uid = 1;
-                // name: resource name
-                string name = 2;
-            }
-        }
-        // Namespace: namespace to delete
-        message Namespace {
-            // metadata: metadata for scoping
-            MetadataScope metadata = 1 [(buf.validate.field) = { required: true }];
-        }
-        // namespaces: list of namespaces to delete
-        repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+    // Namespace: namespace to delete
+    message Namespace {
+      // Metadata: metadata for scoping
+      MetadataScope metadata = 1 [(buf.validate.field) = {required: true}];
     }
+    // Namespaces: list of namespaces to delete
+    repeated Namespace namespaces = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
 
-    // List: request to list namespaces
-    message List {
-        // selectors: list of selectors
-        repeated Selector selectors = 1 [(buf.validate.field) = { required: true }];
-    }
+  // List: request to list namespaces
+  message List {
+    // Selectors: list of selectors
+    repeated Selector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
 
-    // Watch: request to watch namespaces
-    message Watch {
-        // selectors: list of selectors
-        repeated Selector selectors = 1 [(buf.validate.field) = { required: true }];
+  // Watch: request to watch namespaces
+  message Watch {
+    // Selectors: list of selectors
+    repeated Selector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// AddressGroupReq: address group requests
+message AddressGroupReq {
+  // Upsert: request to upsert address groups
+  message Upsert {
+    // AddressGroups: list of address groups
+    repeated AddressGroup address_groups = 1 [
+      json_name = "addressGroups",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete address groups
+  message Delete {
+    // AddressGroup: address group to delete
+    message AddressGroup {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "has(this.uid) && this.uid != '' || (has(this.name) && this.name != '' && has(this.namespace) && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
     }
+    // AddressGroups: list of address groups to delete
+    repeated AddressGroup address_groups = 1 [
+      json_name = "addressGroups",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list address groups
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch address groups
+  message Watch {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
 }

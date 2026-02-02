@@ -17,9 +17,9 @@ message Networks {
     }
     //PortRange: port [from - to] range
     message PortRange {
-      //range left bound
+      // From: range left bound
       uint32 from = 1;
-      //range right bound
+      // To: range right bound
       uint32 to = 2;
     }
     //CIDR: IP range
@@ -27,7 +27,7 @@ message Networks {
   }
 }
 
-// IP Anddress family
+// IpAddrFamily: IP Address family
 enum IpAddrFamily {
   // undefined ip version
   IPV_UNDEF = 0;

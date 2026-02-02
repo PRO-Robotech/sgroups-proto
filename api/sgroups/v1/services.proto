@@ -2,35 +2,30 @@ syntax = "proto3";
 
 package sgroups.v1;
 
-option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
-
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-
 import "sgroups/v1/domains.proto";
 import "sgroups/v1/queries.proto";
 
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
-    title: "SGroups API";
-    version: "1.0";
-  };
-  external_docs: {
-    url: "https://h-bf.prorobotech.ru";
-    description: "Documentation";
+    title: "SGroups API"
+    version: "1.0"
   }
-  schemes: [HTTP];
-  consumes: "application/json";
-  produces: "application/json";
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru"
+    description: "Documentation"
+  }
+  schemes: [HTTP]
+  consumes: "application/json"
+  produces: "application/json"
 };
-
 
 // SGroupsNamespaceAPI: SGroups namespaces API
 service SGroupsNamespaceAPI {
-  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
-    description: "SGroups Namespace Resource API"
-  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Namespace Resource API"};
 
   // Upsert: Create or update namespace(es)
   rpc Upsert(NamespaceReq.Upsert) returns (NamespaceList) {
@@ -76,6 +71,59 @@ service SGroupsNamespaceAPI {
     };
     option (google.api.http) = {
       post: "/v1/namespace/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsAddressGroupsAPI: SGroups AddressGroups API
+service SGroupsAddressGroupsAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "AddressGroups Resource API"};
+
+  // Upsert: Create or update address group(s)
+  rpc Upsert(AddressGroupReq.Upsert) returns (AddressGroupList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/ag/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete address group(s)
+  rpc Delete(AddressGroupReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/ag/delete"
+      body: "*"
+    };
+  }
+
+  // List: List address group(s)
+  rpc List(AddressGroupReq.List) returns (AddressGroupList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/ag/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch address group(s)
+  rpc Watch(AddressGroupReq.Watch) returns (AddressGroupList) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/ag/watch"
       body: "*"
     };
   }

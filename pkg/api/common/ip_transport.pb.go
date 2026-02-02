@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// IP Anddress family
+// IpAddrFamily: IP Address family
 type IpAddrFamily int32
 
 const (
@@ -317,9 +317,9 @@ func (x *Networks_NetIP) GetCidr() string {
 // PortRange: port [from - to] range
 type Networks_NetIP_PortRange struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// range left bound
+	// From: range left bound
 	From uint32 `protobuf:"varint,1,opt,name=from,proto3" json:"from,omitempty"`
-	// range right bound
+	// To: range right bound
 	To            uint32 `protobuf:"varint,2,opt,name=to,proto3" json:"to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

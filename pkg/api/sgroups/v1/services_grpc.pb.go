@@ -246,3 +246,232 @@ var SGroupsNamespaceAPI_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "sgroups/v1/services.proto",
 }
+
+const (
+	SGroupsAddressGroupsAPI_Upsert_FullMethodName = "/sgroups.v1.SGroupsAddressGroupsAPI/Upsert"
+	SGroupsAddressGroupsAPI_Delete_FullMethodName = "/sgroups.v1.SGroupsAddressGroupsAPI/Delete"
+	SGroupsAddressGroupsAPI_List_FullMethodName   = "/sgroups.v1.SGroupsAddressGroupsAPI/List"
+	SGroupsAddressGroupsAPI_Watch_FullMethodName  = "/sgroups.v1.SGroupsAddressGroupsAPI/Watch"
+)
+
+// SGroupsAddressGroupsAPIClient is the client API for SGroupsAddressGroupsAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SGroupsAddressGroupsAPI: SGroups AddressGroups API
+type SGroupsAddressGroupsAPIClient interface {
+	// Upsert: Create or update address group(s)
+	Upsert(ctx context.Context, in *AddressGroupReq_Upsert, opts ...grpc.CallOption) (*AddressGroupList, error)
+	// Delete: Delete address group(s)
+	Delete(ctx context.Context, in *AddressGroupReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List address group(s)
+	List(ctx context.Context, in *AddressGroupReq_List, opts ...grpc.CallOption) (*AddressGroupList, error)
+	// Watch: Watch address group(s)
+	Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (*AddressGroupList, error)
+}
+
+type sGroupsAddressGroupsAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSGroupsAddressGroupsAPIClient(cc grpc.ClientConnInterface) SGroupsAddressGroupsAPIClient {
+	return &sGroupsAddressGroupsAPIClient{cc}
+}
+
+func (c *sGroupsAddressGroupsAPIClient) Upsert(ctx context.Context, in *AddressGroupReq_Upsert, opts ...grpc.CallOption) (*AddressGroupList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddressGroupList)
+	err := c.cc.Invoke(ctx, SGroupsAddressGroupsAPI_Upsert_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsAddressGroupsAPIClient) Delete(ctx context.Context, in *AddressGroupReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, SGroupsAddressGroupsAPI_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsAddressGroupsAPIClient) List(ctx context.Context, in *AddressGroupReq_List, opts ...grpc.CallOption) (*AddressGroupList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddressGroupList)
+	err := c.cc.Invoke(ctx, SGroupsAddressGroupsAPI_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (*AddressGroupList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddressGroupList)
+	err := c.cc.Invoke(ctx, SGroupsAddressGroupsAPI_Watch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SGroupsAddressGroupsAPIServer is the server API for SGroupsAddressGroupsAPI service.
+// All implementations must embed UnimplementedSGroupsAddressGroupsAPIServer
+// for forward compatibility.
+//
+// SGroupsAddressGroupsAPI: SGroups AddressGroups API
+type SGroupsAddressGroupsAPIServer interface {
+	// Upsert: Create or update address group(s)
+	Upsert(context.Context, *AddressGroupReq_Upsert) (*AddressGroupList, error)
+	// Delete: Delete address group(s)
+	Delete(context.Context, *AddressGroupReq_Delete) (*emptypb.Empty, error)
+	// List: List address group(s)
+	List(context.Context, *AddressGroupReq_List) (*AddressGroupList, error)
+	// Watch: Watch address group(s)
+	Watch(context.Context, *AddressGroupReq_Watch) (*AddressGroupList, error)
+	mustEmbedUnimplementedSGroupsAddressGroupsAPIServer()
+}
+
+// UnimplementedSGroupsAddressGroupsAPIServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSGroupsAddressGroupsAPIServer struct{}
+
+func (UnimplementedSGroupsAddressGroupsAPIServer) Upsert(context.Context, *AddressGroupReq_Upsert) (*AddressGroupList, error) {
+	return nil, status.Error(codes.Unimplemented, "method Upsert not implemented")
+}
+func (UnimplementedSGroupsAddressGroupsAPIServer) Delete(context.Context, *AddressGroupReq_Delete) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSGroupsAddressGroupsAPIServer) List(context.Context, *AddressGroupReq_List) (*AddressGroupList, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedSGroupsAddressGroupsAPIServer) Watch(context.Context, *AddressGroupReq_Watch) (*AddressGroupList, error) {
+	return nil, status.Error(codes.Unimplemented, "method Watch not implemented")
+}
+func (UnimplementedSGroupsAddressGroupsAPIServer) mustEmbedUnimplementedSGroupsAddressGroupsAPIServer() {
+}
+func (UnimplementedSGroupsAddressGroupsAPIServer) testEmbeddedByValue() {}
+
+// UnsafeSGroupsAddressGroupsAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SGroupsAddressGroupsAPIServer will
+// result in compilation errors.
+type UnsafeSGroupsAddressGroupsAPIServer interface {
+	mustEmbedUnimplementedSGroupsAddressGroupsAPIServer()
+}
+
+func RegisterSGroupsAddressGroupsAPIServer(s grpc.ServiceRegistrar, srv SGroupsAddressGroupsAPIServer) {
+	// If the following call panics, it indicates UnimplementedSGroupsAddressGroupsAPIServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SGroupsAddressGroupsAPI_ServiceDesc, srv)
+}
+
+func _SGroupsAddressGroupsAPI_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressGroupReq_Upsert)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsAddressGroupsAPIServer).Upsert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsAddressGroupsAPI_Upsert_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsAddressGroupsAPIServer).Upsert(ctx, req.(*AddressGroupReq_Upsert))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsAddressGroupsAPI_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressGroupReq_Delete)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsAddressGroupsAPIServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsAddressGroupsAPI_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsAddressGroupsAPIServer).Delete(ctx, req.(*AddressGroupReq_Delete))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsAddressGroupsAPI_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressGroupReq_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsAddressGroupsAPIServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsAddressGroupsAPI_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsAddressGroupsAPIServer).List(ctx, req.(*AddressGroupReq_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsAddressGroupsAPI_Watch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressGroupReq_Watch)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsAddressGroupsAPIServer).Watch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsAddressGroupsAPI_Watch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsAddressGroupsAPIServer).Watch(ctx, req.(*AddressGroupReq_Watch))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SGroupsAddressGroupsAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsAddressGroupsAPI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SGroupsAddressGroupsAPI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sgroups.v1.SGroupsAddressGroupsAPI",
+	HandlerType: (*SGroupsAddressGroupsAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Upsert",
+			Handler:    _SGroupsAddressGroupsAPI_Upsert_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _SGroupsAddressGroupsAPI_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _SGroupsAddressGroupsAPI_List_Handler,
+		},
+		{
+			MethodName: "Watch",
+			Handler:    _SGroupsAddressGroupsAPI_Watch_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "sgroups/v1/services.proto",
+}

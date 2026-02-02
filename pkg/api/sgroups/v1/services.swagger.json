@@ -7,7 +7,11 @@
   "tags": [
     {
       "name": "SGroupsNamespaceAPI",
-      "description": "SGroups Namespace Resource API"
+      "description": "Namespace Resource API"
+    },
+    {
+      "name": "SGroupsAddressGroupsAPI",
+      "description": "AddressGroups Resource API"
     }
   ],
   "schemes": [
@@ -20,6 +24,143 @@
     "application/json"
   ],
   "paths": {
+    "/v1/ag/delete": {
+      "post": {
+        "summary": "Delete: Delete address group(s)",
+        "description": "Delete: Delete address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/ag/list": {
+      "post": {
+        "summary": "List: List address group(s)",
+        "description": "List: List address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqList"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/ag/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update address group(s)",
+        "description": "Upsert: Create or update address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/ag/watch": {
+      "post": {
+        "summary": "Watch: Watch address group(s)",
+        "description": "Watch: Watch address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
     "/v1/namespace/delete": {
       "post": {
         "summary": "Delete: Delete namespace(es)",
@@ -159,16 +300,44 @@
     }
   },
   "definitions": {
-    "DeleteMetadataScope": {
+    "AddressGroupReqDeleteAddressGroup": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "AddressGroup: address group to delete"
+    },
+    "FieldSelectorResourceRef": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: reference resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: reference resource namespace"
+        },
+        "resType": {
+          "type": "string",
+          "title": "ResType: reference resource type"
+        }
+      },
+      "title": "ResourceRef: reference to a resource"
+    },
+    "NamespaceReqDeleteMetadataScope": {
       "type": "object",
       "properties": {
         "uid": {
           "type": "string",
-          "title": "uid: unique identifier"
+          "title": "Uid: unique identifier"
         },
         "name": {
           "type": "string",
-          "title": "name: resource name"
+          "title": "Name: resource name"
         }
       },
       "title": "MetadataScope: namespace metadata for scoping"
@@ -177,8 +346,8 @@
       "type": "object",
       "properties": {
         "metadata": {
-          "$ref": "#/definitions/DeleteMetadataScope",
-          "title": "metadata: metadata for scoping"
+          "$ref": "#/definitions/NamespaceReqDeleteMetadataScope",
+          "title": "Metadata: metadata for scoping"
         }
       },
       "title": "Namespace: namespace to delete"
@@ -187,35 +356,50 @@
       "type": "object",
       "properties": {
         "fieldSelector": {
-          "$ref": "#/definitions/SelectorFieldSelector",
-          "title": "field_selector: field selector"
+          "$ref": "#/definitions/NamespaceReqSelectorFieldSelector",
+          "title": "FieldSelector: field selector"
         },
         "labelSelector": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "title": "label_selector: label selector"
+          "title": "LabelSelector: label selector"
         }
       },
       "title": "Selector: resource selector"
     },
-    "SelectorFieldSelector": {
+    "NamespaceReqSelectorFieldSelector": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "title": "name: resource name"
+          "title": "Name: resource name"
         }
       },
       "title": "FieldSelector: resource field selector"
+    },
+    "commonAction": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "ALLOW",
+        "DENY"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: UNKNOWN: unknown action\n - ALLOW: ALLOW: allow action\n - DENY: DENY: deny action",
+      "title": "Action: enumeration of possible actions"
     },
     "commonMetadata": {
       "type": "object",
       "properties": {
         "uid": {
           "type": "string",
-          "title": "UID: unique identifier. Use this for update requests; for create requests, leave it empty"
+          "format": "uuid",
+          "example": "2438ac3c-37eb-4902-adef-ed16b4431030",
+          "description": "id of the resource. Use this for update requests; for create requests, leave it empty",
+          "title": "uid",
+          "pattern": "^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$"
         },
         "name": {
           "type": "string",
@@ -252,23 +436,62 @@
       },
       "title": "Metadata: common resource metadata"
     },
-    "commonSpec": {
+    "commonMetadataScope": {
       "type": "object",
       "properties": {
-        "displayName": {
+        "uid": {
           "type": "string",
-          "title": "DisplayName: resource display name"
+          "title": "UID: unique identifier. Use this for update requests; for create requests, leave it empty"
         },
-        "comment": {
+        "name": {
           "type": "string",
-          "title": "Comment: resource comment"
+          "title": "Name: resource name"
         },
-        "description": {
+        "namespace": {
           "type": "string",
-          "title": "Description: resource description"
+          "title": "Namespace: resource namespace"
         }
       },
-      "title": "Spec: common resource specification"
+      "title": "MetadataScope: common resource metadata for scoping"
+    },
+    "commonResSelector": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/commonResSelectorFieldSelector",
+          "title": "FieldSelector: field selector"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector"
+        }
+      },
+      "title": "ResSelector: resource selector"
+    },
+    "commonResSelectorFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/FieldSelectorResourceRef"
+          },
+          "title": "Refs: resource references"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
     },
     "protobufAny": {
       "type": "object",
@@ -298,6 +521,20 @@
         }
       }
     },
+    "sgroupsV1AddressGroup": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: address group metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1AddressGroupSpec",
+          "title": "Spec: address group specification"
+        }
+      },
+      "title": "AddressGroup: represents address group resource"
+    },
     "sgroupsV1Namespace": {
       "type": "object",
       "properties": {
@@ -306,11 +543,117 @@
           "title": "Metadata: namespace metadata"
         },
         "spec": {
-          "$ref": "#/definitions/commonSpec",
+          "$ref": "#/definitions/v1NamespaceSpec",
           "title": "Spec: namespace specification"
         }
       },
-      "title": "Namespace: represents tenant resource"
+      "title": "Namespace: represents namespace resource"
+    },
+    "v1AddressGroupList": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1AddressGroup"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "AddressGroupList: list of address groups"
+    },
+    "v1AddressGroupReqDelete": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AddressGroupReqDeleteAddressGroup"
+          },
+          "title": "AddressGroups: list of address groups to delete"
+        }
+      },
+      "title": "Delete: request to delete address groups",
+      "required": [
+        "addressGroups"
+      ]
+    },
+    "v1AddressGroupReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list address groups"
+    },
+    "v1AddressGroupReqUpsert": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1AddressGroup"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "Upsert: request to upsert address groups",
+      "required": [
+        "addressGroups"
+      ]
+    },
+    "v1AddressGroupReqWatch": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch address groups"
+    },
+    "v1AddressGroupSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "defaultAction": {
+          "$ref": "#/definitions/commonAction",
+          "title": "DefaultAction: default action for the address group"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "Logs: enable logging"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "Trace: enable flow logging"
+        }
+      },
+      "title": "Spec: resource specification"
     },
     "v1NamespaceList": {
       "type": "object",
@@ -321,7 +664,7 @@
             "type": "object",
             "$ref": "#/definitions/sgroupsV1Namespace"
           },
-          "title": "namespaces: list of namespaces"
+          "title": "Namespaces: list of namespaces"
         }
       },
       "title": "NamespaceList: list of namespaces"
@@ -335,10 +678,13 @@
             "type": "object",
             "$ref": "#/definitions/NamespaceReqDeleteNamespace"
           },
-          "title": "namespaces: list of namespaces to delete"
+          "title": "Namespaces: list of namespaces to delete"
         }
       },
-      "title": "Delete: request to delete namespaces"
+      "title": "Delete: request to delete namespaces",
+      "required": [
+        "namespaces"
+      ]
     },
     "v1NamespaceReqList": {
       "type": "object",
@@ -349,7 +695,7 @@
             "type": "object",
             "$ref": "#/definitions/NamespaceReqSelector"
           },
-          "title": "selectors: list of selectors"
+          "title": "Selectors: list of selectors"
         }
       },
       "title": "List: request to list namespaces"
@@ -363,10 +709,13 @@
             "type": "object",
             "$ref": "#/definitions/sgroupsV1Namespace"
           },
-          "title": "namespaces: list of namespaces"
+          "title": "Namespaces: list of namespaces"
         }
       },
-      "title": "Upsert: request to upsert namespaces"
+      "title": "Upsert: request to upsert namespaces",
+      "required": [
+        "namespaces"
+      ]
     },
     "v1NamespaceReqWatch": {
       "type": "object",
@@ -377,10 +726,28 @@
             "type": "object",
             "$ref": "#/definitions/NamespaceReqSelector"
           },
-          "title": "selectors: list of selectors"
+          "title": "Selectors: list of selectors"
         }
       },
       "title": "Watch: request to watch namespaces"
+    },
+    "v1NamespaceSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: resource specification"
     }
   },
   "externalDocs": {

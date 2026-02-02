@@ -25,5 +25,9 @@ jobs:
 
       - name: Run Linter
         run: make proto-lint
+      - name: Run Format Checker
+        run: make proto-format-check
+      - name: Run Validate Proto
+        run: make proto-validate
       - name: Run Tests
         run: make test

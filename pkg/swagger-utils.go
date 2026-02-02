@@ -70,9 +70,15 @@ func init() {
 		apiSGroups = "api/sgroups/v1/services.swagger.json"
 	)
 
-	SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIServer]{}.
-		reg(apiSGroups)
+	apis := [...]interface{ reg(string) }{
+		SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIClient]{},
 
-	SwaggerUtil[sgroupsv1.SGroupsNamespaceAPIClient]{}.
-		reg(apiSGroups)
+		SwaggerUtil[sgroupsv1.SGroupsAddressGroupsAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsAddressGroupsAPIClient]{},
+	}
+
+	for _, api := range apis {
+		api.reg(apiSGroups)
+	}
 }

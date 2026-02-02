@@ -2,25 +2,67 @@ syntax = "proto3";
 
 package sgroups.v1;
 
-//import "common/ip_transport.proto";
-import "common/resource.proto";
-//import "protoc-gen-openapiv2/options/annotations.proto";
 import "buf/validate/validate.proto";
+import "common/resource.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
 
-
-
-// Namespace: represents tenant resource
+// Namespace: represents namespace resource
 message Namespace {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+  }
   // Metadata: namespace metadata
-  common.Metadata metadata = 1 [(buf.validate.field) = { required: true }];
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
   // Spec: namespace specification
-  common.Spec spec = 2 [(buf.validate.field) = { required: true }];
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
 
 // NamespaceList: list of namespaces
 message NamespaceList {
-  // namespaces: list of namespaces
-  repeated Namespace namespaces = 1 [(buf.validate.field) = { required: true }];
+  // Namespaces: list of namespaces
+  repeated Namespace namespaces = 1;
+}
+
+// AddressGroup: represents address group resource
+message AddressGroup {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // DefaultAction: default action for the address group
+    common.Action default_action = 4 [(buf.validate.field) = {
+      enum: {
+        not_in: [0]
+      }
+    }];
+    // Logs: enable logging
+    bool logs = 5;
+    // Trace: enable flow logging
+    bool trace = 6;
+  }
+  // Metadata: address group metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: address group specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// AddressGroupList: list of address groups
+message AddressGroupList {
+  // AddressGroups: list of address groups
+  repeated AddressGroup address_groups = 1;
 }
