@@ -92,8 +92,8 @@ type Metadata struct {
 	Annotations map[string]string `protobuf:"bytes,5,rep,name=annotations,proto3" json:"annotations,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// CreationTimestamp: resource creation timestamp
 	CreationTimestamp string `protobuf:"bytes,6,opt,name=creation_timestamp,json=creationTimestamp,proto3" json:"creation_timestamp,omitempty"`
-	// RevisionVersion: resource revision version
-	RevisionVersion string `protobuf:"bytes,7,opt,name=revision_version,json=revisionVersion,proto3" json:"revision_version,omitempty"`
+	// ResourceVersion: resource revision version
+	ResourceVersion string `protobuf:"bytes,7,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -170,9 +170,9 @@ func (x *Metadata) GetCreationTimestamp() string {
 	return ""
 }
 
-func (x *Metadata) GetRevisionVersion() string {
+func (x *Metadata) GetResourceVersion() string {
 	if x != nil {
-		return x.RevisionVersion
+		return x.ResourceVersion
 	}
 	return ""
 }
@@ -436,7 +436,7 @@ const file_common_resource_proto_rawDesc = "" +
 	"\x06labels\x18\x04 \x03(\v2\x1c.common.Metadata.LabelsEntryR\x06labels\x12C\n" +
 	"\vannotations\x18\x05 \x03(\v2!.common.Metadata.AnnotationsEntryR\vannotations\x127\n" +
 	"\x12creation_timestamp\x18\x06 \x01(\tB\b\x92A\x02@\x01\xe0A\x03R\x11creationTimestamp\x123\n" +
-	"\x10revision_version\x18\a \x01(\tB\b\x92A\x02@\x01\xe0A\x03R\x0frevisionVersion\x1a9\n" +
+	"\x10resource_version\x18\a \x01(\tB\b\x92A\x02@\x01\xe0A\x03R\x0fresourceVersion\x1a9\n" +
 	"\vLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a>\n" +

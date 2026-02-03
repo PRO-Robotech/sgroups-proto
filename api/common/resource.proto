@@ -48,8 +48,8 @@ message Metadata {
     (google.api.field_behavior) = OUTPUT_ONLY,
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
   ];
-  // RevisionVersion: resource revision version
-  string revision_version = 7 [
+  // ResourceVersion: resource revision version
+  string resource_version = 7 [
     (google.api.field_behavior) = OUTPUT_ONLY,
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
   ];

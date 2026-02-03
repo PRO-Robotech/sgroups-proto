@@ -428,9 +428,9 @@
           "title": "CreationTimestamp: resource creation timestamp",
           "readOnly": true
         },
-        "revisionVersion": {
+        "resourceVersion": {
           "type": "string",
-          "title": "RevisionVersion: resource revision version",
+          "title": "ResourceVersion: resource revision version",
           "readOnly": true
         }
       },
