@@ -116,7 +116,7 @@ func local_request_SGroupsNamespaceAPI_List_0(ctx context.Context, marshaler run
 	return msg, metadata, err
 }
 
-func request_SGroupsNamespaceAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsNamespaceAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SGroupsNamespaceAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsNamespaceAPIClient, req *http.Request, pathParams map[string]string) (SGroupsNamespaceAPI_WatchClient, runtime.ServerMetadata, error) {
 	var (
 		protoReq NamespaceReq_Watch
 		metadata runtime.ServerMetadata
@@ -127,20 +127,16 @@ func request_SGroupsNamespaceAPI_Watch_0(ctx context.Context, marshaler runtime.
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.Watch(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_SGroupsNamespaceAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, server SGroupsNamespaceAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq NamespaceReq_Watch
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	stream, err := client.Watch(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
 	}
-	msg, err := server.Watch(ctx, &protoReq)
-	return msg, metadata, err
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
 }
 
 func request_SGroupsAddressGroupsAPI_Upsert_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsAddressGroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -224,7 +220,7 @@ func local_request_SGroupsAddressGroupsAPI_List_0(ctx context.Context, marshaler
 	return msg, metadata, err
 }
 
-func request_SGroupsAddressGroupsAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsAddressGroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SGroupsAddressGroupsAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsAddressGroupsAPIClient, req *http.Request, pathParams map[string]string) (SGroupsAddressGroupsAPI_WatchClient, runtime.ServerMetadata, error) {
 	var (
 		protoReq AddressGroupReq_Watch
 		metadata runtime.ServerMetadata
@@ -235,20 +231,16 @@ func request_SGroupsAddressGroupsAPI_Watch_0(ctx context.Context, marshaler runt
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.Watch(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_SGroupsAddressGroupsAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, server SGroupsAddressGroupsAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq AddressGroupReq_Watch
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	stream, err := client.Watch(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
 	}
-	msg, err := server.Watch(ctx, &protoReq)
-	return msg, metadata, err
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
 }
 
 // RegisterSGroupsNamespaceAPIHandlerServer registers the http handlers for service SGroupsNamespaceAPI to "mux".
@@ -317,25 +309,12 @@ func RegisterSGroupsNamespaceAPIHandlerServer(ctx context.Context, mux *runtime.
 		}
 		forward_SGroupsNamespaceAPI_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+
 	mux.Handle(http.MethodPost, pattern_SGroupsNamespaceAPI_Watch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNamespaceAPI/Watch", runtime.WithHTTPPathPattern("/v1/namespace/watch"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_SGroupsNamespaceAPI_Watch_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SGroupsNamespaceAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
 	})
 
 	return nil
@@ -407,25 +386,12 @@ func RegisterSGroupsAddressGroupsAPIHandlerServer(ctx context.Context, mux *runt
 		}
 		forward_SGroupsAddressGroupsAPI_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+
 	mux.Handle(http.MethodPost, pattern_SGroupsAddressGroupsAPI_Watch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsAddressGroupsAPI/Watch", runtime.WithHTTPPathPattern("/v1/ag/watch"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_SGroupsAddressGroupsAPI_Watch_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SGroupsAddressGroupsAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
 	})
 
 	return nil
@@ -533,7 +499,7 @@ func RegisterSGroupsNamespaceAPIHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_SGroupsNamespaceAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SGroupsNamespaceAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
@@ -549,7 +515,7 @@ var (
 	forward_SGroupsNamespaceAPI_Upsert_0 = runtime.ForwardResponseMessage
 	forward_SGroupsNamespaceAPI_Delete_0 = runtime.ForwardResponseMessage
 	forward_SGroupsNamespaceAPI_List_0   = runtime.ForwardResponseMessage
-	forward_SGroupsNamespaceAPI_Watch_0  = runtime.ForwardResponseMessage
+	forward_SGroupsNamespaceAPI_Watch_0  = runtime.ForwardResponseStream
 )
 
 // RegisterSGroupsAddressGroupsAPIHandlerFromEndpoint is same as RegisterSGroupsAddressGroupsAPIHandler but
@@ -654,7 +620,7 @@ func RegisterSGroupsAddressGroupsAPIHandlerClient(ctx context.Context, mux *runt
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_SGroupsAddressGroupsAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SGroupsAddressGroupsAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
@@ -670,5 +636,5 @@ var (
 	forward_SGroupsAddressGroupsAPI_Upsert_0 = runtime.ForwardResponseMessage
 	forward_SGroupsAddressGroupsAPI_Delete_0 = runtime.ForwardResponseMessage
 	forward_SGroupsAddressGroupsAPI_List_0   = runtime.ForwardResponseMessage
-	forward_SGroupsAddressGroupsAPI_Watch_0  = runtime.ForwardResponseMessage
+	forward_SGroupsAddressGroupsAPI_Watch_0  = runtime.ForwardResponseStream
 )

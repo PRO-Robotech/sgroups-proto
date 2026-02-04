@@ -39,7 +39,7 @@ type SGroupsNamespaceAPIClient interface {
 	// List: List namespace(es)
 	List(ctx context.Context, in *NamespaceReq_List, opts ...grpc.CallOption) (*NamespaceList, error)
 	// Watch: Watch namespace(es)
-	Watch(ctx context.Context, in *NamespaceReq_Watch, opts ...grpc.CallOption) (*NamespaceList, error)
+	Watch(ctx context.Context, in *NamespaceReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NamespaceResp_Watch], error)
 }
 
 type sGroupsNamespaceAPIClient struct {
@@ -80,15 +80,24 @@ func (c *sGroupsNamespaceAPIClient) List(ctx context.Context, in *NamespaceReq_L
 	return out, nil
 }
 
-func (c *sGroupsNamespaceAPIClient) Watch(ctx context.Context, in *NamespaceReq_Watch, opts ...grpc.CallOption) (*NamespaceList, error) {
+func (c *sGroupsNamespaceAPIClient) Watch(ctx context.Context, in *NamespaceReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NamespaceResp_Watch], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NamespaceList)
-	err := c.cc.Invoke(ctx, SGroupsNamespaceAPI_Watch_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsNamespaceAPI_ServiceDesc.Streams[0], SGroupsNamespaceAPI_Watch_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[NamespaceReq_Watch, NamespaceResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsNamespaceAPI_WatchClient = grpc.ServerStreamingClient[NamespaceResp_Watch]
 
 // SGroupsNamespaceAPIServer is the server API for SGroupsNamespaceAPI service.
 // All implementations must embed UnimplementedSGroupsNamespaceAPIServer
@@ -103,7 +112,7 @@ type SGroupsNamespaceAPIServer interface {
 	// List: List namespace(es)
 	List(context.Context, *NamespaceReq_List) (*NamespaceList, error)
 	// Watch: Watch namespace(es)
-	Watch(context.Context, *NamespaceReq_Watch) (*NamespaceList, error)
+	Watch(*NamespaceReq_Watch, grpc.ServerStreamingServer[NamespaceResp_Watch]) error
 	mustEmbedUnimplementedSGroupsNamespaceAPIServer()
 }
 
@@ -123,8 +132,8 @@ func (UnimplementedSGroupsNamespaceAPIServer) Delete(context.Context, *Namespace
 func (UnimplementedSGroupsNamespaceAPIServer) List(context.Context, *NamespaceReq_List) (*NamespaceList, error) {
 	return nil, status.Error(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedSGroupsNamespaceAPIServer) Watch(context.Context, *NamespaceReq_Watch) (*NamespaceList, error) {
-	return nil, status.Error(codes.Unimplemented, "method Watch not implemented")
+func (UnimplementedSGroupsNamespaceAPIServer) Watch(*NamespaceReq_Watch, grpc.ServerStreamingServer[NamespaceResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
 }
 func (UnimplementedSGroupsNamespaceAPIServer) mustEmbedUnimplementedSGroupsNamespaceAPIServer() {}
 func (UnimplementedSGroupsNamespaceAPIServer) testEmbeddedByValue()                             {}
@@ -201,23 +210,16 @@ func _SGroupsNamespaceAPI_List_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SGroupsNamespaceAPI_Watch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NamespaceReq_Watch)
-	if err := dec(in); err != nil {
-		return nil, err
+func _SGroupsNamespaceAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(NamespaceReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(SGroupsNamespaceAPIServer).Watch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SGroupsNamespaceAPI_Watch_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SGroupsNamespaceAPIServer).Watch(ctx, req.(*NamespaceReq_Watch))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(SGroupsNamespaceAPIServer).Watch(m, &grpc.GenericServerStream[NamespaceReq_Watch, NamespaceResp_Watch]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsNamespaceAPI_WatchServer = grpc.ServerStreamingServer[NamespaceResp_Watch]
 
 // SGroupsNamespaceAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsNamespaceAPI service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -238,12 +240,14 @@ var SGroupsNamespaceAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "List",
 			Handler:    _SGroupsNamespaceAPI_List_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "Watch",
-			Handler:    _SGroupsNamespaceAPI_Watch_Handler,
+			StreamName:    "Watch",
+			Handler:       _SGroupsNamespaceAPI_Watch_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "sgroups/v1/services.proto",
 }
 
@@ -267,7 +271,7 @@ type SGroupsAddressGroupsAPIClient interface {
 	// List: List address group(s)
 	List(ctx context.Context, in *AddressGroupReq_List, opts ...grpc.CallOption) (*AddressGroupList, error)
 	// Watch: Watch address group(s)
-	Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (*AddressGroupList, error)
+	Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AddressGroupResp_Watch], error)
 }
 
 type sGroupsAddressGroupsAPIClient struct {
@@ -308,15 +312,24 @@ func (c *sGroupsAddressGroupsAPIClient) List(ctx context.Context, in *AddressGro
 	return out, nil
 }
 
-func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (*AddressGroupList, error) {
+func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, in *AddressGroupReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AddressGroupResp_Watch], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddressGroupList)
-	err := c.cc.Invoke(ctx, SGroupsAddressGroupsAPI_Watch_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsAddressGroupsAPI_ServiceDesc.Streams[0], SGroupsAddressGroupsAPI_Watch_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[AddressGroupReq_Watch, AddressGroupResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsAddressGroupsAPI_WatchClient = grpc.ServerStreamingClient[AddressGroupResp_Watch]
 
 // SGroupsAddressGroupsAPIServer is the server API for SGroupsAddressGroupsAPI service.
 // All implementations must embed UnimplementedSGroupsAddressGroupsAPIServer
@@ -331,7 +344,7 @@ type SGroupsAddressGroupsAPIServer interface {
 	// List: List address group(s)
 	List(context.Context, *AddressGroupReq_List) (*AddressGroupList, error)
 	// Watch: Watch address group(s)
-	Watch(context.Context, *AddressGroupReq_Watch) (*AddressGroupList, error)
+	Watch(*AddressGroupReq_Watch, grpc.ServerStreamingServer[AddressGroupResp_Watch]) error
 	mustEmbedUnimplementedSGroupsAddressGroupsAPIServer()
 }
 
@@ -351,8 +364,8 @@ func (UnimplementedSGroupsAddressGroupsAPIServer) Delete(context.Context, *Addre
 func (UnimplementedSGroupsAddressGroupsAPIServer) List(context.Context, *AddressGroupReq_List) (*AddressGroupList, error) {
 	return nil, status.Error(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedSGroupsAddressGroupsAPIServer) Watch(context.Context, *AddressGroupReq_Watch) (*AddressGroupList, error) {
-	return nil, status.Error(codes.Unimplemented, "method Watch not implemented")
+func (UnimplementedSGroupsAddressGroupsAPIServer) Watch(*AddressGroupReq_Watch, grpc.ServerStreamingServer[AddressGroupResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
 }
 func (UnimplementedSGroupsAddressGroupsAPIServer) mustEmbedUnimplementedSGroupsAddressGroupsAPIServer() {
 }
@@ -430,23 +443,16 @@ func _SGroupsAddressGroupsAPI_List_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SGroupsAddressGroupsAPI_Watch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddressGroupReq_Watch)
-	if err := dec(in); err != nil {
-		return nil, err
+func _SGroupsAddressGroupsAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(AddressGroupReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(SGroupsAddressGroupsAPIServer).Watch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SGroupsAddressGroupsAPI_Watch_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SGroupsAddressGroupsAPIServer).Watch(ctx, req.(*AddressGroupReq_Watch))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(SGroupsAddressGroupsAPIServer).Watch(m, &grpc.GenericServerStream[AddressGroupReq_Watch, AddressGroupResp_Watch]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsAddressGroupsAPI_WatchServer = grpc.ServerStreamingServer[AddressGroupResp_Watch]
 
 // SGroupsAddressGroupsAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsAddressGroupsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -467,11 +473,13 @@ var SGroupsAddressGroupsAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "List",
 			Handler:    _SGroupsAddressGroupsAPI_List_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "Watch",
-			Handler:    _SGroupsAddressGroupsAPI_Watch_Handler,
+			StreamName:    "Watch",
+			Handler:       _SGroupsAddressGroupsAPI_Watch_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "sgroups/v1/services.proto",
 }

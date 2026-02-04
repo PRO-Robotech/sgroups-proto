@@ -134,9 +134,18 @@
         "operationId": "SGroupsAddressGroupsAPI_Watch",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/v1AddressGroupList"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AddressGroupRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1AddressGroupRespWatch"
             }
           },
           "default": {
@@ -271,9 +280,18 @@
         "operationId": "SGroupsNamespaceAPI_Watch",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/v1NamespaceList"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NamespaceRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NamespaceRespWatch"
             }
           },
           "default": {
@@ -425,6 +443,7 @@
         },
         "creationTimestamp": {
           "type": "string",
+          "format": "date-time",
           "title": "CreationTimestamp: resource creation timestamp",
           "readOnly": true
         },
@@ -492,6 +511,18 @@
         }
       },
       "title": "FieldSelector: resource field selector"
+    },
+    "commonWatchEventType": {
+      "type": "string",
+      "enum": [
+        "EVENT_UNKNOWN",
+        "ADDED",
+        "MODIFIED",
+        "DELETED"
+      ],
+      "default": "EVENT_UNKNOWN",
+      "description": "- EVENT_UNKNOWN: UNKNOWN: unknown event type\n - ADDED: ADDED: object was created\n - MODIFIED: MODIFIED: object was updated\n - DELETED: DELETED: object was deleted",
+      "title": "WatchEventType: type of watch event"
     },
     "protobufAny": {
       "type": "object",
@@ -625,6 +656,24 @@
       },
       "title": "Watch: request to watch address groups"
     },
+    "v1AddressGroupRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1AddressGroup"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "Watch: response for watch address groups"
+    },
     "v1AddressGroupSpec": {
       "type": "object",
       "properties": {
@@ -730,6 +779,24 @@
         }
       },
       "title": "Watch: request to watch namespaces"
+    },
+    "v1NamespaceRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "Namespaces: list of namespaces"
+        }
+      },
+      "title": "Watch: response for watch namespaces"
     },
     "v1NamespaceSpec": {
       "type": "object",

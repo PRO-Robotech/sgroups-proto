@@ -35,18 +35,21 @@ message NamespaceReq {
   message Delete {
     // MetadataScope: namespace metadata for scoping
     message MetadataScope {
-      // Scoped: scope by uid or name
-      oneof scoped {
-        // Uid: unique identifier
-        string uid = 1;
-        // Name: resource name
-        string name = 2;
-      }
+      // Uid: unique identifier
+      string uid = 1;
+      // Name: resource name
+      string name = 2;
     }
     // Namespace: namespace to delete
     message Namespace {
       // Metadata: metadata for scoping
-      MetadataScope metadata = 1 [(buf.validate.field) = {required: true}];
+      MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "has(this.uid) && this.uid != '' || (has(this.name) && this.name != '')"
+          message: "either uid must be set, or name must be set"
+        }
+      }];
     }
     // Namespaces: list of namespaces to delete
     repeated Namespace namespaces = 1 [
@@ -65,6 +68,17 @@ message NamespaceReq {
   message Watch {
     // Selectors: list of selectors
     repeated Selector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NamespaceResp: namespace responses
+message NamespaceResp {
+  // Watch: response for watch namespaces
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 2;
   }
 }
 
@@ -110,5 +124,16 @@ message AddressGroupReq {
   message Watch {
     // Selectors: list of selectors
     repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// AddressGroupResp: address group responses
+message AddressGroupResp {
+  // Watch: response for watch address groups
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // AddressGroups: list of address groups
+    repeated AddressGroup address_groups = 2;
   }
 }

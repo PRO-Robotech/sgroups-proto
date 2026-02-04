@@ -4,6 +4,7 @@ package common;
 
 import "buf/validate/validate.proto";
 import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
@@ -44,7 +45,7 @@ message Metadata {
   // Annotations: resource annotations
   map<string, string> annotations = 5;
   // CreationTimestamp: resource creation timestamp
-  string creation_timestamp = 6 [
+  google.protobuf.Timestamp creation_timestamp = 6 [
     (google.api.field_behavior) = OUTPUT_ONLY,
     (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
   ];
@@ -99,4 +100,16 @@ enum Action {
   ALLOW = 1;
   // DENY: deny action
   DENY = 2;
+}
+
+// WatchEventType: type of watch event
+enum WatchEventType {
+  // EVENT_UNKNOWN: unknown event type
+  EVENT_UNKNOWN = 0;
+  // ADDED: object was created
+  ADDED = 1;
+  // MODIFIED: object was updated
+  MODIFIED = 2;
+  // DELETED: object was deleted
+  DELETED = 3;
 }

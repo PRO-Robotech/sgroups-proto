@@ -12,6 +12,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -77,6 +78,63 @@ func (Action) EnumDescriptor() ([]byte, []int) {
 	return file_common_resource_proto_rawDescGZIP(), []int{0}
 }
 
+// WatchEventType: type of watch event
+type WatchEventType int32
+
+const (
+	// UNKNOWN: unknown event type
+	WatchEventType_EVENT_UNKNOWN WatchEventType = 0
+	// ADDED: object was created
+	WatchEventType_ADDED WatchEventType = 1
+	// MODIFIED: object was updated
+	WatchEventType_MODIFIED WatchEventType = 2
+	// DELETED: object was deleted
+	WatchEventType_DELETED WatchEventType = 3
+)
+
+// Enum value maps for WatchEventType.
+var (
+	WatchEventType_name = map[int32]string{
+		0: "EVENT_UNKNOWN",
+		1: "ADDED",
+		2: "MODIFIED",
+		3: "DELETED",
+	}
+	WatchEventType_value = map[string]int32{
+		"EVENT_UNKNOWN": 0,
+		"ADDED":         1,
+		"MODIFIED":      2,
+		"DELETED":       3,
+	}
+)
+
+func (x WatchEventType) Enum() *WatchEventType {
+	p := new(WatchEventType)
+	*p = x
+	return p
+}
+
+func (x WatchEventType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (WatchEventType) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_resource_proto_enumTypes[1].Descriptor()
+}
+
+func (WatchEventType) Type() protoreflect.EnumType {
+	return &file_common_resource_proto_enumTypes[1]
+}
+
+func (x WatchEventType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use WatchEventType.Descriptor instead.
+func (WatchEventType) EnumDescriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{1}
+}
+
 // Metadata: common resource metadata
 type Metadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -91,7 +149,7 @@ type Metadata struct {
 	// Annotations: resource annotations
 	Annotations map[string]string `protobuf:"bytes,5,rep,name=annotations,proto3" json:"annotations,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// CreationTimestamp: resource creation timestamp
-	CreationTimestamp string `protobuf:"bytes,6,opt,name=creation_timestamp,json=creationTimestamp,proto3" json:"creation_timestamp,omitempty"`
+	CreationTimestamp *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=creation_timestamp,json=creationTimestamp,proto3" json:"creation_timestamp,omitempty"`
 	// ResourceVersion: resource revision version
 	ResourceVersion string `protobuf:"bytes,7,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -163,11 +221,11 @@ func (x *Metadata) GetAnnotations() map[string]string {
 	return nil
 }
 
-func (x *Metadata) GetCreationTimestamp() string {
+func (x *Metadata) GetCreationTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreationTimestamp
 	}
-	return ""
+	return nil
 }
 
 func (x *Metadata) GetResourceVersion() string {
@@ -428,14 +486,14 @@ var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xf2\x05\n" +
+	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x8e\x06\n" +
 	"\bMetadata\x12\xea\x01\n" +
 	"\x03uid\x18\x01 \x01(\tB\xd7\x01\x92A\xd3\x01*\x03uid2Uid of the resource. Use this for update requests; for create requests, leave it emptyJ&\"2438ac3c-37eb-4902-adef-ed16b4431030\"\x8a\x01E^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$\xa2\x02\x04uuidR\x03uid\x12>\n" +
 	"\x04name\x18\x02 \x01(\tB*\xbaH'\xd8\x01\x01r\"\x10\x01\x18\xfd\x012\x1b^[a-z0-9][a-z0-9.-]{0,252}$R\x04name\x12U\n" +
 	"\tnamespace\x18\x03 \x01(\tB7\xe0A\x01\xbaH1\xd8\x01\x01r,\x10\x01\x18?2&^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$R\tnamespace\x124\n" +
 	"\x06labels\x18\x04 \x03(\v2\x1c.common.Metadata.LabelsEntryR\x06labels\x12C\n" +
-	"\vannotations\x18\x05 \x03(\v2!.common.Metadata.AnnotationsEntryR\vannotations\x127\n" +
-	"\x12creation_timestamp\x18\x06 \x01(\tB\b\x92A\x02@\x01\xe0A\x03R\x11creationTimestamp\x123\n" +
+	"\vannotations\x18\x05 \x03(\v2!.common.Metadata.AnnotationsEntryR\vannotations\x12S\n" +
+	"\x12creation_timestamp\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\b\x92A\x02@\x01\xe0A\x03R\x11creationTimestamp\x123\n" +
 	"\x10resource_version\x18\a \x01(\tB\b\x92A\x02@\x01\xe0A\x03R\x0fresourceVersion\x1a9\n" +
 	"\vLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
@@ -464,7 +522,12 @@ const file_common_resource_proto_rawDesc = "" +
 	"\x06Action\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\t\n" +
 	"\x05ALLOW\x10\x01\x12\b\n" +
-	"\x04DENY\x10\x02B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
+	"\x04DENY\x10\x02*I\n" +
+	"\x0eWatchEventType\x12\x11\n" +
+	"\rEVENT_UNKNOWN\x10\x00\x12\t\n" +
+	"\x05ADDED\x10\x01\x12\f\n" +
+	"\bMODIFIED\x10\x02\x12\v\n" +
+	"\aDELETED\x10\x03B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
 
 var (
 	file_common_resource_proto_rawDescOnce sync.Once
@@ -478,30 +541,33 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 	return file_common_resource_proto_rawDescData
 }
 
-var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_common_resource_proto_goTypes = []any{
 	(Action)(0),                       // 0: common.Action
-	(*Metadata)(nil),                  // 1: common.Metadata
-	(*MetadataScope)(nil),             // 2: common.MetadataScope
-	(*ResSelector)(nil),               // 3: common.ResSelector
-	nil,                               // 4: common.Metadata.LabelsEntry
-	nil,                               // 5: common.Metadata.AnnotationsEntry
-	(*ResSelector_FieldSelector)(nil), // 6: common.ResSelector.FieldSelector
-	nil,                               // 7: common.ResSelector.LabelSelectorEntry
-	(*ResSelector_FieldSelector_ResourceRef)(nil), // 8: common.ResSelector.FieldSelector.ResourceRef
+	(WatchEventType)(0),               // 1: common.WatchEventType
+	(*Metadata)(nil),                  // 2: common.Metadata
+	(*MetadataScope)(nil),             // 3: common.MetadataScope
+	(*ResSelector)(nil),               // 4: common.ResSelector
+	nil,                               // 5: common.Metadata.LabelsEntry
+	nil,                               // 6: common.Metadata.AnnotationsEntry
+	(*ResSelector_FieldSelector)(nil), // 7: common.ResSelector.FieldSelector
+	nil,                               // 8: common.ResSelector.LabelSelectorEntry
+	(*ResSelector_FieldSelector_ResourceRef)(nil), // 9: common.ResSelector.FieldSelector.ResourceRef
+	(*timestamppb.Timestamp)(nil),                 // 10: google.protobuf.Timestamp
 }
 var file_common_resource_proto_depIdxs = []int32{
-	4, // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
-	5, // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
-	6, // 2: common.ResSelector.field_selector:type_name -> common.ResSelector.FieldSelector
-	7, // 3: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
-	8, // 4: common.ResSelector.FieldSelector.refs:type_name -> common.ResSelector.FieldSelector.ResourceRef
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
+	6,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
+	10, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
+	7,  // 3: common.ResSelector.field_selector:type_name -> common.ResSelector.FieldSelector
+	8,  // 4: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
+	9,  // 5: common.ResSelector.FieldSelector.refs:type_name -> common.ResSelector.FieldSelector.ResourceRef
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_common_resource_proto_init() }
@@ -514,7 +580,7 @@ func file_common_resource_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_resource_proto_rawDesc), len(file_common_resource_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,

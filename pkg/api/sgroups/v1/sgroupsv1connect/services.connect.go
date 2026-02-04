@@ -71,7 +71,7 @@ type SGroupsNamespaceAPIClient interface {
 	// List: List namespace(es)
 	List(context.Context, *connect.Request[v1.NamespaceReq_List]) (*connect.Response[v1.NamespaceList], error)
 	// Watch: Watch namespace(es)
-	Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch]) (*connect.Response[v1.NamespaceList], error)
+	Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch]) (*connect.ServerStreamForClient[v1.NamespaceResp_Watch], error)
 }
 
 // NewSGroupsNamespaceAPIClient constructs a client for the sgroups.v1.SGroupsNamespaceAPI service.
@@ -103,7 +103,7 @@ func NewSGroupsNamespaceAPIClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(sGroupsNamespaceAPIMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
-		watch: connect.NewClient[v1.NamespaceReq_Watch, v1.NamespaceList](
+		watch: connect.NewClient[v1.NamespaceReq_Watch, v1.NamespaceResp_Watch](
 			httpClient,
 			baseURL+SGroupsNamespaceAPIWatchProcedure,
 			connect.WithSchema(sGroupsNamespaceAPIMethods.ByName("Watch")),
@@ -117,7 +117,7 @@ type sGroupsNamespaceAPIClient struct {
 	upsert *connect.Client[v1.NamespaceReq_Upsert, v1.NamespaceList]
 	delete *connect.Client[v1.NamespaceReq_Delete, emptypb.Empty]
 	list   *connect.Client[v1.NamespaceReq_List, v1.NamespaceList]
-	watch  *connect.Client[v1.NamespaceReq_Watch, v1.NamespaceList]
+	watch  *connect.Client[v1.NamespaceReq_Watch, v1.NamespaceResp_Watch]
 }
 
 // Upsert calls sgroups.v1.SGroupsNamespaceAPI.Upsert.
@@ -136,8 +136,8 @@ func (c *sGroupsNamespaceAPIClient) List(ctx context.Context, req *connect.Reque
 }
 
 // Watch calls sgroups.v1.SGroupsNamespaceAPI.Watch.
-func (c *sGroupsNamespaceAPIClient) Watch(ctx context.Context, req *connect.Request[v1.NamespaceReq_Watch]) (*connect.Response[v1.NamespaceList], error) {
-	return c.watch.CallUnary(ctx, req)
+func (c *sGroupsNamespaceAPIClient) Watch(ctx context.Context, req *connect.Request[v1.NamespaceReq_Watch]) (*connect.ServerStreamForClient[v1.NamespaceResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
 }
 
 // SGroupsNamespaceAPIHandler is an implementation of the sgroups.v1.SGroupsNamespaceAPI service.
@@ -149,7 +149,7 @@ type SGroupsNamespaceAPIHandler interface {
 	// List: List namespace(es)
 	List(context.Context, *connect.Request[v1.NamespaceReq_List]) (*connect.Response[v1.NamespaceList], error)
 	// Watch: Watch namespace(es)
-	Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch]) (*connect.Response[v1.NamespaceList], error)
+	Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch], *connect.ServerStream[v1.NamespaceResp_Watch]) error
 }
 
 // NewSGroupsNamespaceAPIHandler builds an HTTP handler from the service implementation. It returns
@@ -177,7 +177,7 @@ func NewSGroupsNamespaceAPIHandler(svc SGroupsNamespaceAPIHandler, opts ...conne
 		connect.WithSchema(sGroupsNamespaceAPIMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
-	sGroupsNamespaceAPIWatchHandler := connect.NewUnaryHandler(
+	sGroupsNamespaceAPIWatchHandler := connect.NewServerStreamHandler(
 		SGroupsNamespaceAPIWatchProcedure,
 		svc.Watch,
 		connect.WithSchema(sGroupsNamespaceAPIMethods.ByName("Watch")),
@@ -214,8 +214,8 @@ func (UnimplementedSGroupsNamespaceAPIHandler) List(context.Context, *connect.Re
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNamespaceAPI.List is not implemented"))
 }
 
-func (UnimplementedSGroupsNamespaceAPIHandler) Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch]) (*connect.Response[v1.NamespaceList], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNamespaceAPI.Watch is not implemented"))
+func (UnimplementedSGroupsNamespaceAPIHandler) Watch(context.Context, *connect.Request[v1.NamespaceReq_Watch], *connect.ServerStream[v1.NamespaceResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNamespaceAPI.Watch is not implemented"))
 }
 
 // SGroupsAddressGroupsAPIClient is a client for the sgroups.v1.SGroupsAddressGroupsAPI service.
@@ -227,7 +227,7 @@ type SGroupsAddressGroupsAPIClient interface {
 	// List: List address group(s)
 	List(context.Context, *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error)
 	// Watch: Watch address group(s)
-	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error)
+	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.ServerStreamForClient[v1.AddressGroupResp_Watch], error)
 }
 
 // NewSGroupsAddressGroupsAPIClient constructs a client for the sgroups.v1.SGroupsAddressGroupsAPI
@@ -259,7 +259,7 @@ func NewSGroupsAddressGroupsAPIClient(httpClient connect.HTTPClient, baseURL str
 			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
-		watch: connect.NewClient[v1.AddressGroupReq_Watch, v1.AddressGroupList](
+		watch: connect.NewClient[v1.AddressGroupReq_Watch, v1.AddressGroupResp_Watch](
 			httpClient,
 			baseURL+SGroupsAddressGroupsAPIWatchProcedure,
 			connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Watch")),
@@ -273,7 +273,7 @@ type sGroupsAddressGroupsAPIClient struct {
 	upsert *connect.Client[v1.AddressGroupReq_Upsert, v1.AddressGroupList]
 	delete *connect.Client[v1.AddressGroupReq_Delete, emptypb.Empty]
 	list   *connect.Client[v1.AddressGroupReq_List, v1.AddressGroupList]
-	watch  *connect.Client[v1.AddressGroupReq_Watch, v1.AddressGroupList]
+	watch  *connect.Client[v1.AddressGroupReq_Watch, v1.AddressGroupResp_Watch]
 }
 
 // Upsert calls sgroups.v1.SGroupsAddressGroupsAPI.Upsert.
@@ -292,8 +292,8 @@ func (c *sGroupsAddressGroupsAPIClient) List(ctx context.Context, req *connect.R
 }
 
 // Watch calls sgroups.v1.SGroupsAddressGroupsAPI.Watch.
-func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, req *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error) {
-	return c.watch.CallUnary(ctx, req)
+func (c *sGroupsAddressGroupsAPIClient) Watch(ctx context.Context, req *connect.Request[v1.AddressGroupReq_Watch]) (*connect.ServerStreamForClient[v1.AddressGroupResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
 }
 
 // SGroupsAddressGroupsAPIHandler is an implementation of the sgroups.v1.SGroupsAddressGroupsAPI
@@ -306,7 +306,7 @@ type SGroupsAddressGroupsAPIHandler interface {
 	// List: List address group(s)
 	List(context.Context, *connect.Request[v1.AddressGroupReq_List]) (*connect.Response[v1.AddressGroupList], error)
 	// Watch: Watch address group(s)
-	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error)
+	Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch], *connect.ServerStream[v1.AddressGroupResp_Watch]) error
 }
 
 // NewSGroupsAddressGroupsAPIHandler builds an HTTP handler from the service implementation. It
@@ -334,7 +334,7 @@ func NewSGroupsAddressGroupsAPIHandler(svc SGroupsAddressGroupsAPIHandler, opts 
 		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
-	sGroupsAddressGroupsAPIWatchHandler := connect.NewUnaryHandler(
+	sGroupsAddressGroupsAPIWatchHandler := connect.NewServerStreamHandler(
 		SGroupsAddressGroupsAPIWatchProcedure,
 		svc.Watch,
 		connect.WithSchema(sGroupsAddressGroupsAPIMethods.ByName("Watch")),
@@ -371,6 +371,6 @@ func (UnimplementedSGroupsAddressGroupsAPIHandler) List(context.Context, *connec
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.List is not implemented"))
 }
 
-func (UnimplementedSGroupsAddressGroupsAPIHandler) Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch]) (*connect.Response[v1.AddressGroupList], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.Watch is not implemented"))
+func (UnimplementedSGroupsAddressGroupsAPIHandler) Watch(context.Context, *connect.Request[v1.AddressGroupReq_Watch], *connect.ServerStream[v1.AddressGroupResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsAddressGroupsAPI.Watch is not implemented"))
 }

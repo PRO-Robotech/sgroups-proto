@@ -64,7 +64,7 @@ service SGroupsNamespaceAPI {
   }
 
   // Watch: Watch namespace(es)
-  rpc Watch(NamespaceReq.Watch) returns (NamespaceList) {
+  rpc Watch(NamespaceReq.Watch) returns (stream NamespaceResp.Watch) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Watch: Watch namespace(es)"
       tags: "Namespace"
@@ -117,7 +117,7 @@ service SGroupsAddressGroupsAPI {
   }
 
   // Watch: Watch address group(s)
-  rpc Watch(AddressGroupReq.Watch) returns (AddressGroupList) {
+  rpc Watch(AddressGroupReq.Watch) returns (stream AddressGroupResp.Watch) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Watch: Watch address group(s)"
       tags: "AddressGroup"
