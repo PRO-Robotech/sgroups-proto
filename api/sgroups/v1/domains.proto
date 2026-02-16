@@ -26,12 +26,6 @@ message Namespace {
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
 
-// NamespaceList: list of namespaces
-message NamespaceList {
-  // Namespaces: list of namespaces
-  repeated Namespace namespaces = 1;
-}
-
 // AddressGroup: represents address group resource
 message AddressGroup {
   // Spec: resource specification
@@ -59,10 +53,4 @@ message AddressGroup {
   common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
   // Spec: address group specification
   Spec spec = 2 [(buf.validate.field) = {required: true}];
-}
-
-// AddressGroupList: list of address groups
-message AddressGroupList {
-  // AddressGroups: list of address groups
-  repeated AddressGroup address_groups = 1;
 }

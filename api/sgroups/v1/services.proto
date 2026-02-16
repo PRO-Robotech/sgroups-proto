@@ -5,7 +5,6 @@ package sgroups.v1;
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "sgroups/v1/domains.proto";
 import "sgroups/v1/queries.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
@@ -28,7 +27,7 @@ service SGroupsNamespaceAPI {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Namespace Resource API"};
 
   // Upsert: Create or update namespace(es)
-  rpc Upsert(NamespaceReq.Upsert) returns (NamespaceList) {
+  rpc Upsert(NamespaceReq.Upsert) returns (NamespaceResp.Upsert) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Upsert: Create or update namespace(es)"
       tags: "Namespace"
@@ -52,7 +51,7 @@ service SGroupsNamespaceAPI {
   }
 
   // List: List namespace(es)
-  rpc List(NamespaceReq.List) returns (NamespaceList) {
+  rpc List(NamespaceReq.List) returns (NamespaceResp.List) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "List: List namespace(es)"
       tags: "Namespace"
@@ -81,7 +80,7 @@ service SGroupsAddressGroupsAPI {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "AddressGroups Resource API"};
 
   // Upsert: Create or update address group(s)
-  rpc Upsert(AddressGroupReq.Upsert) returns (AddressGroupList) {
+  rpc Upsert(AddressGroupReq.Upsert) returns (AddressGroupResp.Upsert) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Upsert: Create or update address group(s)"
       tags: "AddressGroup"
@@ -105,7 +104,7 @@ service SGroupsAddressGroupsAPI {
   }
 
   // List: List address group(s)
-  rpc List(AddressGroupReq.List) returns (AddressGroupList) {
+  rpc List(AddressGroupReq.List) returns (AddressGroupResp.List) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "List: List address group(s)"
       tags: "AddressGroup"

@@ -46,7 +46,7 @@ message NamespaceReq {
       MetadataScope metadata = 1 [(buf.validate.field) = {
         required: true
         cel: {
-          expression: "has(this.uid) && this.uid != '' || (has(this.name) && this.name != '')"
+          expression: "this.uid != '' || this.name != ''"
           message: "either uid must be set, or name must be set"
         }
       }];
@@ -66,13 +66,27 @@ message NamespaceReq {
 
   // Watch: request to watch namespaces
   message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
     // Selectors: list of selectors
-    repeated Selector selectors = 1 [(buf.validate.field) = {required: true}];
+    repeated Selector selectors = 2 [(buf.validate.field) = {required: true}];
   }
 }
 
 // NamespaceResp: namespace responses
 message NamespaceResp {
+  // Upsert: response for upsert namespaces
+  message Upsert {
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 1;
+  }
+  // List: response for list namespaces
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 2;
+  }
   // Watch: response for watch namespaces
   message Watch {
     // Type: watch event type
@@ -101,7 +115,7 @@ message AddressGroupReq {
       common.MetadataScope metadata = 1 [(buf.validate.field) = {
         required: true
         cel: {
-          expression: "has(this.uid) && this.uid != '' || (has(this.name) && this.name != '' && has(this.namespace) && this.namespace != '')"
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
           message: "either uid must be set, or both name and namespace must be set"
         }
       }];
@@ -122,13 +136,36 @@ message AddressGroupReq {
 
   // Watch: request to watch address groups
   message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
     // Selectors: list of selectors
-    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
   }
 }
 
 // AddressGroupResp: address group responses
 message AddressGroupResp {
+  // Upsert: response for upsert address groups
+  message Upsert {
+    // AddressGroups: list of address groups
+    repeated AddressGroup address_groups = 1;
+  }
+  // List: response for list address groups
+  message List {
+    // AddressGroupExt: extended address group information
+    message AddressGroupExt {
+      // Metadata: address group metadata
+      common.Metadata metadata = 1;
+      // Spec: address group specification
+      AddressGroup.Spec spec = 2;
+      // Refs: list of resource references in the address group
+      repeated common.ResourceRef refs = 3;
+    }
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // AddressGroups: list of address groups
+    repeated AddressGroupExt address_groups = 2;
+  }
   // Watch: response for watch address groups
   message Watch {
     // Type: watch event type

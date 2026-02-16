@@ -82,7 +82,7 @@ func (Action) EnumDescriptor() ([]byte, []int) {
 type WatchEventType int32
 
 const (
-	// UNKNOWN: unknown event type
+	// EVENT_UNKNOWN: unknown event type
 	WatchEventType_EVENT_UNKNOWN WatchEventType = 0
 	// ADDED: object was created
 	WatchEventType_ADDED WatchEventType = 1
@@ -299,11 +299,139 @@ func (x *MetadataScope) GetNamespace() string {
 	return ""
 }
 
-// ResSelector: resource selector
+// ResourceRef: reference to a resource
+type ResourceRef struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: reference resource name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: reference resource namespace
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// ResType: reference resource type
+	ResType       string `protobuf:"bytes,3,opt,name=res_type,json=resType,proto3" json:"res_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResourceRef) Reset() {
+	*x = ResourceRef{}
+	mi := &file_common_resource_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResourceRef) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResourceRef) ProtoMessage() {}
+
+func (x *ResourceRef) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResourceRef.ProtoReflect.Descriptor instead.
+func (*ResourceRef) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ResourceRef) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ResourceRef) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *ResourceRef) GetResType() string {
+	if x != nil {
+		return x.ResType
+	}
+	return ""
+}
+
+// FieldSelector: resource field selector
+type FieldSelector struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: resource name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: resource namespace
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// Refs: resource references
+	Refs          []*ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FieldSelector) Reset() {
+	*x = FieldSelector{}
+	mi := &file_common_resource_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldSelector) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldSelector) ProtoMessage() {}
+
+func (x *FieldSelector) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FieldSelector.ProtoReflect.Descriptor instead.
+func (*FieldSelector) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FieldSelector) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *FieldSelector) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *FieldSelector) GetRefs() []*ResourceRef {
+	if x != nil {
+		return x.Refs
+	}
+	return nil
+}
+
+// ResSelector: resource selector for list requests
 type ResSelector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// FieldSelector: field selector
-	FieldSelector *ResSelector_FieldSelector `protobuf:"bytes,1,opt,name=field_selector,json=fieldSelector,proto3" json:"field_selector,omitempty"`
+	FieldSelector *FieldSelector `protobuf:"bytes,1,opt,name=field_selector,json=fieldSelector,proto3" json:"field_selector,omitempty"`
 	// LabelSelector: label selector
 	LabelSelector map[string]string `protobuf:"bytes,2,rep,name=label_selector,json=labelSelector,proto3" json:"label_selector,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
@@ -312,7 +440,7 @@ type ResSelector struct {
 
 func (x *ResSelector) Reset() {
 	*x = ResSelector{}
-	mi := &file_common_resource_proto_msgTypes[2]
+	mi := &file_common_resource_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -324,7 +452,7 @@ func (x *ResSelector) String() string {
 func (*ResSelector) ProtoMessage() {}
 
 func (x *ResSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[2]
+	mi := &file_common_resource_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -337,10 +465,10 @@ func (x *ResSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResSelector.ProtoReflect.Descriptor instead.
 func (*ResSelector) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{2}
+	return file_common_resource_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ResSelector) GetFieldSelector() *ResSelector_FieldSelector {
+func (x *ResSelector) GetFieldSelector() *FieldSelector {
 	if x != nil {
 		return x.FieldSelector
 	}
@@ -354,142 +482,14 @@ func (x *ResSelector) GetLabelSelector() map[string]string {
 	return nil
 }
 
-// FieldSelector: resource field selector
-type ResSelector_FieldSelector struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Name: resource name
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Namespace: resource namespace
-	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// Refs: resource references
-	Refs          []*ResSelector_FieldSelector_ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResSelector_FieldSelector) Reset() {
-	*x = ResSelector_FieldSelector{}
-	mi := &file_common_resource_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResSelector_FieldSelector) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResSelector_FieldSelector) ProtoMessage() {}
-
-func (x *ResSelector_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResSelector_FieldSelector.ProtoReflect.Descriptor instead.
-func (*ResSelector_FieldSelector) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{2, 0}
-}
-
-func (x *ResSelector_FieldSelector) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *ResSelector_FieldSelector) GetNamespace() string {
-	if x != nil {
-		return x.Namespace
-	}
-	return ""
-}
-
-func (x *ResSelector_FieldSelector) GetRefs() []*ResSelector_FieldSelector_ResourceRef {
-	if x != nil {
-		return x.Refs
-	}
-	return nil
-}
-
-// ResourceRef: reference to a resource
-type ResSelector_FieldSelector_ResourceRef struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Name: reference resource name
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Namespace: reference resource namespace
-	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// ResType: reference resource type
-	ResType       string `protobuf:"bytes,3,opt,name=res_type,json=resType,proto3" json:"res_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResSelector_FieldSelector_ResourceRef) Reset() {
-	*x = ResSelector_FieldSelector_ResourceRef{}
-	mi := &file_common_resource_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResSelector_FieldSelector_ResourceRef) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResSelector_FieldSelector_ResourceRef) ProtoMessage() {}
-
-func (x *ResSelector_FieldSelector_ResourceRef) ProtoReflect() protoreflect.Message {
-	mi := &file_common_resource_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResSelector_FieldSelector_ResourceRef.ProtoReflect.Descriptor instead.
-func (*ResSelector_FieldSelector_ResourceRef) Descriptor() ([]byte, []int) {
-	return file_common_resource_proto_rawDescGZIP(), []int{2, 0, 0}
-}
-
-func (x *ResSelector_FieldSelector_ResourceRef) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *ResSelector_FieldSelector_ResourceRef) GetNamespace() string {
-	if x != nil {
-		return x.Namespace
-	}
-	return ""
-}
-
-func (x *ResSelector_FieldSelector_ResourceRef) GetResType() string {
-	if x != nil {
-		return x.ResType
-	}
-	return ""
-}
-
 var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x8e\x06\n" +
+	"\x15common/resource.proto\x12\x06common\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x98\x06\n" +
 	"\bMetadata\x12\xea\x01\n" +
-	"\x03uid\x18\x01 \x01(\tB\xd7\x01\x92A\xd3\x01*\x03uid2Uid of the resource. Use this for update requests; for create requests, leave it emptyJ&\"2438ac3c-37eb-4902-adef-ed16b4431030\"\x8a\x01E^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$\xa2\x02\x04uuidR\x03uid\x12>\n" +
-	"\x04name\x18\x02 \x01(\tB*\xbaH'\xd8\x01\x01r\"\x10\x01\x18\xfd\x012\x1b^[a-z0-9][a-z0-9.-]{0,252}$R\x04name\x12U\n" +
+	"\x03uid\x18\x01 \x01(\tB\xd7\x01\x92A\xd3\x01*\x03uid2Uid of the resource. Use this for update requests; for create requests, leave it emptyJ&\"2438ac3c-37eb-4902-adef-ed16b4431030\"\x8a\x01E^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$\xa2\x02\x04uuidR\x03uid\x12H\n" +
+	"\x04name\x18\x02 \x01(\tB4\xbaH1\xd8\x01\x01r,\x10\x01\x18?2&^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$R\x04name\x12U\n" +
 	"\tnamespace\x18\x03 \x01(\tB7\xe0A\x01\xbaH1\xd8\x01\x01r,\x10\x01\x18?2&^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$R\tnamespace\x124\n" +
 	"\x06labels\x18\x04 \x03(\v2\x1c.common.Metadata.LabelsEntryR\x06labels\x12C\n" +
 	"\vannotations\x18\x05 \x03(\v2!.common.Metadata.AnnotationsEntryR\vannotations\x12S\n" +
@@ -504,18 +504,18 @@ const file_common_resource_proto_rawDesc = "" +
 	"\rMetadataScope\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x03 \x01(\tR\tnamespace\"\xcb\x03\n" +
-	"\vResSelector\x12H\n" +
-	"\x0efield_selector\x18\x01 \x01(\v2!.common.ResSelector.FieldSelectorR\rfieldSelector\x12M\n" +
-	"\x0elabel_selector\x18\x02 \x03(\v2&.common.ResSelector.LabelSelectorEntryR\rlabelSelector\x1a\xe0\x01\n" +
-	"\rFieldSelector\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12A\n" +
-	"\x04refs\x18\x03 \x03(\v2-.common.ResSelector.FieldSelector.ResourceRefR\x04refs\x1aZ\n" +
+	"\tnamespace\x18\x03 \x01(\tR\tnamespace\"Z\n" +
 	"\vResourceRef\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
 	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12\x19\n" +
-	"\bres_type\x18\x03 \x01(\tR\aresType\x1a@\n" +
+	"\bres_type\x18\x03 \x01(\tR\aresType\"j\n" +
+	"\rFieldSelector\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12'\n" +
+	"\x04refs\x18\x03 \x03(\v2\x13.common.ResourceRefR\x04refs\"\xdc\x01\n" +
+	"\vResSelector\x12<\n" +
+	"\x0efield_selector\x18\x01 \x01(\v2\x15.common.FieldSelectorR\rfieldSelector\x12M\n" +
+	"\x0elabel_selector\x18\x02 \x03(\v2&.common.ResSelector.LabelSelectorEntryR\rlabelSelector\x1a@\n" +
 	"\x12LabelSelectorEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01**\n" +
@@ -544,25 +544,25 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_common_resource_proto_goTypes = []any{
-	(Action)(0),                       // 0: common.Action
-	(WatchEventType)(0),               // 1: common.WatchEventType
-	(*Metadata)(nil),                  // 2: common.Metadata
-	(*MetadataScope)(nil),             // 3: common.MetadataScope
-	(*ResSelector)(nil),               // 4: common.ResSelector
-	nil,                               // 5: common.Metadata.LabelsEntry
-	nil,                               // 6: common.Metadata.AnnotationsEntry
-	(*ResSelector_FieldSelector)(nil), // 7: common.ResSelector.FieldSelector
-	nil,                               // 8: common.ResSelector.LabelSelectorEntry
-	(*ResSelector_FieldSelector_ResourceRef)(nil), // 9: common.ResSelector.FieldSelector.ResourceRef
-	(*timestamppb.Timestamp)(nil),                 // 10: google.protobuf.Timestamp
+	(Action)(0),                   // 0: common.Action
+	(WatchEventType)(0),           // 1: common.WatchEventType
+	(*Metadata)(nil),              // 2: common.Metadata
+	(*MetadataScope)(nil),         // 3: common.MetadataScope
+	(*ResourceRef)(nil),           // 4: common.ResourceRef
+	(*FieldSelector)(nil),         // 5: common.FieldSelector
+	(*ResSelector)(nil),           // 6: common.ResSelector
+	nil,                           // 7: common.Metadata.LabelsEntry
+	nil,                           // 8: common.Metadata.AnnotationsEntry
+	nil,                           // 9: common.ResSelector.LabelSelectorEntry
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
 }
 var file_common_resource_proto_depIdxs = []int32{
-	5,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
-	6,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
+	7,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
+	8,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
 	10, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
-	7,  // 3: common.ResSelector.field_selector:type_name -> common.ResSelector.FieldSelector
-	8,  // 4: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
-	9,  // 5: common.ResSelector.FieldSelector.refs:type_name -> common.ResSelector.FieldSelector.ResourceRef
+	4,  // 3: common.FieldSelector.refs:type_name -> common.ResourceRef
+	5,  // 4: common.ResSelector.field_selector:type_name -> common.FieldSelector
+	9,  // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
 	6,  // [6:6] is the sub-list for method output_type
 	6,  // [6:6] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name

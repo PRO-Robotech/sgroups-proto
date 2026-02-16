@@ -78,52 +78,6 @@ func (x *Namespace) GetSpec() *Namespace_Spec {
 	return nil
 }
 
-// NamespaceList: list of namespaces
-type NamespaceList struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespaces: list of namespaces
-	Namespaces    []*Namespace `protobuf:"bytes,1,rep,name=namespaces,proto3" json:"namespaces,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NamespaceList) Reset() {
-	*x = NamespaceList{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NamespaceList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NamespaceList) ProtoMessage() {}
-
-func (x *NamespaceList) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NamespaceList.ProtoReflect.Descriptor instead.
-func (*NamespaceList) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *NamespaceList) GetNamespaces() []*Namespace {
-	if x != nil {
-		return x.Namespaces
-	}
-	return nil
-}
-
 // AddressGroup: represents address group resource
 type AddressGroup struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -137,7 +91,7 @@ type AddressGroup struct {
 
 func (x *AddressGroup) Reset() {
 	*x = AddressGroup{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -149,7 +103,7 @@ func (x *AddressGroup) String() string {
 func (*AddressGroup) ProtoMessage() {}
 
 func (x *AddressGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +116,7 @@ func (x *AddressGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressGroup.ProtoReflect.Descriptor instead.
 func (*AddressGroup) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AddressGroup) GetMetadata() *common.Metadata {
@@ -175,52 +129,6 @@ func (x *AddressGroup) GetMetadata() *common.Metadata {
 func (x *AddressGroup) GetSpec() *AddressGroup_Spec {
 	if x != nil {
 		return x.Spec
-	}
-	return nil
-}
-
-// AddressGroupList: list of address groups
-type AddressGroupList struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// AddressGroups: list of address groups
-	AddressGroups []*AddressGroup `protobuf:"bytes,1,rep,name=address_groups,json=addressGroups,proto3" json:"address_groups,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddressGroupList) Reset() {
-	*x = AddressGroupList{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddressGroupList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddressGroupList) ProtoMessage() {}
-
-func (x *AddressGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddressGroupList.ProtoReflect.Descriptor instead.
-func (*AddressGroupList) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *AddressGroupList) GetAddressGroups() []*AddressGroup {
-	if x != nil {
-		return x.AddressGroups
 	}
 	return nil
 }
@@ -240,7 +148,7 @@ type Namespace_Spec struct {
 
 func (x *Namespace_Spec) Reset() {
 	*x = Namespace_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -252,7 +160,7 @@ func (x *Namespace_Spec) String() string {
 func (*Namespace_Spec) ProtoMessage() {}
 
 func (x *Namespace_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -310,7 +218,7 @@ type AddressGroup_Spec struct {
 
 func (x *AddressGroup_Spec) Reset() {
 	*x = AddressGroup_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -322,7 +230,7 @@ func (x *AddressGroup_Spec) String() string {
 func (*AddressGroup_Spec) ProtoMessage() {}
 
 func (x *AddressGroup_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -335,7 +243,7 @@ func (x *AddressGroup_Spec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressGroup_Spec.ProtoReflect.Descriptor instead.
 func (*AddressGroup_Spec) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2, 0}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *AddressGroup_Spec) GetDisplayName() string {
@@ -392,11 +300,7 @@ const file_sgroups_v1_domains_proto_rawDesc = "" +
 	"\x04Spec\x12*\n" +
 	"\fdisplay_name\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18?R\vdisplayName\x12\x18\n" +
 	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"F\n" +
-	"\rNamespaceList\x125\n" +
-	"\n" +
-	"namespaces\x18\x01 \x03(\v2\x15.sgroups.v1.NamespaceR\n" +
-	"namespaces\"\xdb\x02\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xdb\x02\n" +
 	"\fAddressGroup\x124\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x129\n" +
 	"\x04spec\x18\x02 \x01(\v2\x1d.sgroups.v1.AddressGroup.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xd9\x01\n" +
@@ -406,9 +310,7 @@ const file_sgroups_v1_domains_proto_rawDesc = "" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12?\n" +
 	"\x0edefault_action\x18\x04 \x01(\x0e2\x0e.common.ActionB\b\xbaH\x05\x82\x01\x02 \x00R\rdefaultAction\x12\x12\n" +
 	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x14\n" +
-	"\x05trace\x18\x06 \x01(\bR\x05trace\"S\n" +
-	"\x10AddressGroupList\x12?\n" +
-	"\x0eaddress_groups\x18\x01 \x03(\v2\x18.sgroups.v1.AddressGroupR\raddressGroupsBDZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
+	"\x05trace\x18\x06 \x01(\bR\x05traceBDZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
 
 var (
 	file_sgroups_v1_domains_proto_rawDescOnce sync.Once
@@ -422,30 +324,26 @@ func file_sgroups_v1_domains_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_domains_proto_rawDescData
 }
 
-var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_sgroups_v1_domains_proto_goTypes = []any{
 	(*Namespace)(nil),         // 0: sgroups.v1.Namespace
-	(*NamespaceList)(nil),     // 1: sgroups.v1.NamespaceList
-	(*AddressGroup)(nil),      // 2: sgroups.v1.AddressGroup
-	(*AddressGroupList)(nil),  // 3: sgroups.v1.AddressGroupList
-	(*Namespace_Spec)(nil),    // 4: sgroups.v1.Namespace.Spec
-	(*AddressGroup_Spec)(nil), // 5: sgroups.v1.AddressGroup.Spec
-	(*common.Metadata)(nil),   // 6: common.Metadata
-	(common.Action)(0),        // 7: common.Action
+	(*AddressGroup)(nil),      // 1: sgroups.v1.AddressGroup
+	(*Namespace_Spec)(nil),    // 2: sgroups.v1.Namespace.Spec
+	(*AddressGroup_Spec)(nil), // 3: sgroups.v1.AddressGroup.Spec
+	(*common.Metadata)(nil),   // 4: common.Metadata
+	(common.Action)(0),        // 5: common.Action
 }
 var file_sgroups_v1_domains_proto_depIdxs = []int32{
-	6, // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
-	4, // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
-	0, // 2: sgroups.v1.NamespaceList.namespaces:type_name -> sgroups.v1.Namespace
-	6, // 3: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
-	5, // 4: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	2, // 5: sgroups.v1.AddressGroupList.address_groups:type_name -> sgroups.v1.AddressGroup
-	7, // 6: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	4, // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
+	2, // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
+	4, // 2: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
+	3, // 3: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	5, // 4: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_domains_proto_init() }
@@ -459,7 +357,7 @@ func file_sgroups_v1_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_domains_proto_rawDesc), len(file_sgroups_v1_domains_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

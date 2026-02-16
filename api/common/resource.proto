@@ -24,8 +24,8 @@ message Metadata {
     ignore: IGNORE_IF_ZERO_VALUE
     string: {
       min_len: 1
-      max_len: 253
-      pattern: "^[a-z0-9][a-z0-9.-]{0,252}$"
+      max_len: 63
+      pattern: "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
     }
   }];
   // Namespace: resource namespace
@@ -66,26 +66,28 @@ message MetadataScope {
   string namespace = 3;
 }
 
-// ResSelector: resource selector
+// ResourceRef: reference to a resource
+message ResourceRef {
+  // Name: reference resource name
+  string name = 1;
+  // Namespace: reference resource namespace
+  string namespace = 2;
+  // ResType: reference resource type
+  string res_type = 3;
+}
+
+// FieldSelector: resource field selector
+message FieldSelector {
+  // Name: resource name
+  string name = 1;
+  // Namespace: resource namespace
+  string namespace = 2;
+  // Refs: resource references
+  repeated ResourceRef refs = 3;
+}
+
+// ResSelector: resource selector for list requests
 message ResSelector {
-  // FieldSelector: resource field selector
-  message FieldSelector {
-    // ResourceRef: reference to a resource
-    message ResourceRef {
-      // Name: reference resource name
-      string name = 1;
-      // Namespace: reference resource namespace
-      string namespace = 2;
-      // ResType: reference resource type
-      string res_type = 3;
-    }
-    // Name: resource name
-    string name = 1;
-    // Namespace: resource namespace
-    string namespace = 2;
-    // Refs: resource references
-    repeated ResourceRef refs = 3;
-  }
   // FieldSelector: field selector
   FieldSelector field_selector = 1;
   // LabelSelector: label selector
