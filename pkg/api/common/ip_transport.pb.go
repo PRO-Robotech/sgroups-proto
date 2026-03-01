@@ -268,6 +268,61 @@ func (x *ICMP) GetTypes() []uint32 {
 	return nil
 }
 
+// IPs: represents list of IP addresses
+type IPs struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Ipv4: list of IPv4 addresses
+	Ipv4 []string `protobuf:"bytes,1,rep,name=ipv4,json=IPv4,proto3" json:"ipv4,omitempty"`
+	// Ipv6: list of IPv6 addresses
+	Ipv6          []string `protobuf:"bytes,2,rep,name=ipv6,json=IPv6,proto3" json:"ipv6,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IPs) Reset() {
+	*x = IPs{}
+	mi := &file_common_ip_transport_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IPs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IPs) ProtoMessage() {}
+
+func (x *IPs) ProtoReflect() protoreflect.Message {
+	mi := &file_common_ip_transport_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IPs.ProtoReflect.Descriptor instead.
+func (*IPs) Descriptor() ([]byte, []int) {
+	return file_common_ip_transport_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *IPs) GetIpv4() []string {
+	if x != nil {
+		return x.Ipv4
+	}
+	return nil
+}
+
+func (x *IPs) GetIpv6() []string {
+	if x != nil {
+		return x.Ipv6
+	}
+	return nil
+}
+
 // NetIP: represents IP-Network type (L3)
 type Networks_NetIP struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -279,7 +334,7 @@ type Networks_NetIP struct {
 
 func (x *Networks_NetIP) Reset() {
 	*x = Networks_NetIP{}
-	mi := &file_common_ip_transport_proto_msgTypes[2]
+	mi := &file_common_ip_transport_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -291,7 +346,7 @@ func (x *Networks_NetIP) String() string {
 func (*Networks_NetIP) ProtoMessage() {}
 
 func (x *Networks_NetIP) ProtoReflect() protoreflect.Message {
-	mi := &file_common_ip_transport_proto_msgTypes[2]
+	mi := &file_common_ip_transport_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -327,7 +382,7 @@ type Networks_NetIP_PortRange struct {
 
 func (x *Networks_NetIP_PortRange) Reset() {
 	*x = Networks_NetIP_PortRange{}
-	mi := &file_common_ip_transport_proto_msgTypes[3]
+	mi := &file_common_ip_transport_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -339,7 +394,7 @@ func (x *Networks_NetIP_PortRange) String() string {
 func (*Networks_NetIP_PortRange) ProtoMessage() {}
 
 func (x *Networks_NetIP_PortRange) ProtoReflect() protoreflect.Message {
-	mi := &file_common_ip_transport_proto_msgTypes[3]
+	mi := &file_common_ip_transport_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -385,7 +440,10 @@ const file_common_ip_transport_proto_rawDesc = "" +
 	"\x03UDP\x10\x01\"D\n" +
 	"\x04ICMP\x12&\n" +
 	"\x03ipv\x18\x01 \x01(\x0e2\x14.common.IpAddrFamilyR\x03ipv\x12\x14\n" +
-	"\x05types\x18\x02 \x03(\rR\x05types*1\n" +
+	"\x05types\x18\x02 \x03(\rR\x05types\"-\n" +
+	"\x03IPs\x12\x12\n" +
+	"\x04ipv4\x18\x01 \x03(\tR\x04IPv4\x12\x12\n" +
+	"\x04ipv6\x18\x02 \x03(\tR\x04IPv6*1\n" +
 	"\fIpAddrFamily\x12\r\n" +
 	"\tIPV_UNDEF\x10\x00\x12\b\n" +
 	"\x04IPV4\x10\x01\x12\b\n" +
@@ -409,15 +467,16 @@ func file_common_ip_transport_proto_rawDescGZIP() []byte {
 }
 
 var file_common_ip_transport_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_ip_transport_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_common_ip_transport_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_common_ip_transport_proto_goTypes = []any{
 	(IpAddrFamily)(0),                // 0: common.IpAddrFamily
 	(Traffic)(0),                     // 1: common.Traffic
 	(Networks_NetIP_Transport)(0),    // 2: common.Networks.NetIP.Transport
 	(*Networks)(nil),                 // 3: common.Networks
 	(*ICMP)(nil),                     // 4: common.ICMP
-	(*Networks_NetIP)(nil),           // 5: common.Networks.NetIP
-	(*Networks_NetIP_PortRange)(nil), // 6: common.Networks.NetIP.PortRange
+	(*IPs)(nil),                      // 5: common.IPs
+	(*Networks_NetIP)(nil),           // 6: common.Networks.NetIP
+	(*Networks_NetIP_PortRange)(nil), // 7: common.Networks.NetIP.PortRange
 }
 var file_common_ip_transport_proto_depIdxs = []int32{
 	0, // 0: common.ICMP.ipv:type_name -> common.IpAddrFamily
@@ -439,7 +498,7 @@ func file_common_ip_transport_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_ip_transport_proto_rawDesc), len(file_common_ip_transport_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

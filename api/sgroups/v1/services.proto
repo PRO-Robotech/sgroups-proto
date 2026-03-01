@@ -127,3 +127,80 @@ service SGroupsAddressGroupsAPI {
     };
   }
 }
+
+// SGroupsHostsAPI: SGroups Hosts API
+service SGroupsHostsAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Hosts Resource API"};
+
+  // Upsert: Create or update host(s)
+  rpc Upsert(HostReq.Upsert) returns (HostResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete host(s)
+  rpc Delete(HostReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/delete"
+      body: "*"
+    };
+  }
+
+  // List: List host(s)
+  rpc List(HostReq.List) returns (HostResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch host(s)
+  rpc Watch(HostReq.Watch) returns (stream HostResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/watch"
+      body: "*"
+    };
+  }
+
+  // UpdIPs: Update host(s) IP list
+  rpc UpdIPs(HostReq.UpdIPs) returns (HostResp.UpdIPs) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdIPs: Update host(s) IP list"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/upd-iplist"
+      body: "*"
+    };
+  }
+
+  // UpdMetaInfo: Update host(s) meta information
+  rpc UpdMetaInfo(HostReq.UpdMetaInfo) returns (HostResp.UpdMetaInfo) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdMetaInfo: Update host(s) meta information"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/host/upd-metainfo"
+      body: "*"
+    };
+  }
+}

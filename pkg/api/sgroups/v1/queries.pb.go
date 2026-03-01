@@ -172,6 +172,80 @@ func (*AddressGroupResp) Descriptor() ([]byte, []int) {
 	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3}
 }
 
+// HostReq: host requests
+type HostReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq) Reset() {
+	*x = HostReq{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq) ProtoMessage() {}
+
+func (x *HostReq) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq.ProtoReflect.Descriptor instead.
+func (*HostReq) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4}
+}
+
+// HostResp: host responses
+type HostResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp) Reset() {
+	*x = HostResp{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp) ProtoMessage() {}
+
+func (x *HostResp) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp.ProtoReflect.Descriptor instead.
+func (*HostResp) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5}
+}
+
 // Selector: resource selector
 type NamespaceReq_Selector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -185,7 +259,7 @@ type NamespaceReq_Selector struct {
 
 func (x *NamespaceReq_Selector) Reset() {
 	*x = NamespaceReq_Selector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -197,7 +271,7 @@ func (x *NamespaceReq_Selector) String() string {
 func (*NamespaceReq_Selector) ProtoMessage() {}
 
 func (x *NamespaceReq_Selector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -238,7 +312,7 @@ type NamespaceReq_Upsert struct {
 
 func (x *NamespaceReq_Upsert) Reset() {
 	*x = NamespaceReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -250,7 +324,7 @@ func (x *NamespaceReq_Upsert) String() string {
 func (*NamespaceReq_Upsert) ProtoMessage() {}
 
 func (x *NamespaceReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -284,7 +358,7 @@ type NamespaceReq_Delete struct {
 
 func (x *NamespaceReq_Delete) Reset() {
 	*x = NamespaceReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -296,7 +370,7 @@ func (x *NamespaceReq_Delete) String() string {
 func (*NamespaceReq_Delete) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +404,7 @@ type NamespaceReq_List struct {
 
 func (x *NamespaceReq_List) Reset() {
 	*x = NamespaceReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -342,7 +416,7 @@ func (x *NamespaceReq_List) String() string {
 func (*NamespaceReq_List) ProtoMessage() {}
 
 func (x *NamespaceReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,7 +452,7 @@ type NamespaceReq_Watch struct {
 
 func (x *NamespaceReq_Watch) Reset() {
 	*x = NamespaceReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -390,7 +464,7 @@ func (x *NamespaceReq_Watch) String() string {
 func (*NamespaceReq_Watch) ProtoMessage() {}
 
 func (x *NamespaceReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -431,7 +505,7 @@ type NamespaceReq_Selector_FieldSelector struct {
 
 func (x *NamespaceReq_Selector_FieldSelector) Reset() {
 	*x = NamespaceReq_Selector_FieldSelector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -443,7 +517,7 @@ func (x *NamespaceReq_Selector_FieldSelector) String() string {
 func (*NamespaceReq_Selector_FieldSelector) ProtoMessage() {}
 
 func (x *NamespaceReq_Selector_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -479,7 +553,7 @@ type NamespaceReq_Delete_MetadataScope struct {
 
 func (x *NamespaceReq_Delete_MetadataScope) Reset() {
 	*x = NamespaceReq_Delete_MetadataScope{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -491,7 +565,7 @@ func (x *NamespaceReq_Delete_MetadataScope) String() string {
 func (*NamespaceReq_Delete_MetadataScope) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete_MetadataScope) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -532,7 +606,7 @@ type NamespaceReq_Delete_Namespace struct {
 
 func (x *NamespaceReq_Delete_Namespace) Reset() {
 	*x = NamespaceReq_Delete_Namespace{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -544,7 +618,7 @@ func (x *NamespaceReq_Delete_Namespace) String() string {
 func (*NamespaceReq_Delete_Namespace) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete_Namespace) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -578,7 +652,7 @@ type NamespaceResp_Upsert struct {
 
 func (x *NamespaceResp_Upsert) Reset() {
 	*x = NamespaceResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -590,7 +664,7 @@ func (x *NamespaceResp_Upsert) String() string {
 func (*NamespaceResp_Upsert) ProtoMessage() {}
 
 func (x *NamespaceResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +700,7 @@ type NamespaceResp_List struct {
 
 func (x *NamespaceResp_List) Reset() {
 	*x = NamespaceResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -638,7 +712,7 @@ func (x *NamespaceResp_List) String() string {
 func (*NamespaceResp_List) ProtoMessage() {}
 
 func (x *NamespaceResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -681,7 +755,7 @@ type NamespaceResp_Watch struct {
 
 func (x *NamespaceResp_Watch) Reset() {
 	*x = NamespaceResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -693,7 +767,7 @@ func (x *NamespaceResp_Watch) String() string {
 func (*NamespaceResp_Watch) ProtoMessage() {}
 
 func (x *NamespaceResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -734,7 +808,7 @@ type AddressGroupReq_Upsert struct {
 
 func (x *AddressGroupReq_Upsert) Reset() {
 	*x = AddressGroupReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -746,7 +820,7 @@ func (x *AddressGroupReq_Upsert) String() string {
 func (*AddressGroupReq_Upsert) ProtoMessage() {}
 
 func (x *AddressGroupReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -780,7 +854,7 @@ type AddressGroupReq_Delete struct {
 
 func (x *AddressGroupReq_Delete) Reset() {
 	*x = AddressGroupReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -792,7 +866,7 @@ func (x *AddressGroupReq_Delete) String() string {
 func (*AddressGroupReq_Delete) ProtoMessage() {}
 
 func (x *AddressGroupReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -826,7 +900,7 @@ type AddressGroupReq_List struct {
 
 func (x *AddressGroupReq_List) Reset() {
 	*x = AddressGroupReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -838,7 +912,7 @@ func (x *AddressGroupReq_List) String() string {
 func (*AddressGroupReq_List) ProtoMessage() {}
 
 func (x *AddressGroupReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -874,7 +948,7 @@ type AddressGroupReq_Watch struct {
 
 func (x *AddressGroupReq_Watch) Reset() {
 	*x = AddressGroupReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -886,7 +960,7 @@ func (x *AddressGroupReq_Watch) String() string {
 func (*AddressGroupReq_Watch) ProtoMessage() {}
 
 func (x *AddressGroupReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -927,7 +1001,7 @@ type AddressGroupReq_Delete_AddressGroup struct {
 
 func (x *AddressGroupReq_Delete_AddressGroup) Reset() {
 	*x = AddressGroupReq_Delete_AddressGroup{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -939,7 +1013,7 @@ func (x *AddressGroupReq_Delete_AddressGroup) String() string {
 func (*AddressGroupReq_Delete_AddressGroup) ProtoMessage() {}
 
 func (x *AddressGroupReq_Delete_AddressGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -962,6 +1036,70 @@ func (x *AddressGroupReq_Delete_AddressGroup) GetMetadata() *common.MetadataScop
 	return nil
 }
 
+// AddressGroupExt: extended address group information
+type AddressGroupResp_AddressGroupExt struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: address group metadata
+	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: address group specification
+	Spec *AddressGroup_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	// Refs: list of resource references in the address group
+	Refs          []*common.ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddressGroupResp_AddressGroupExt) Reset() {
+	*x = AddressGroupResp_AddressGroupExt{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddressGroupResp_AddressGroupExt) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddressGroupResp_AddressGroupExt) ProtoMessage() {}
+
+func (x *AddressGroupResp_AddressGroupExt) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddressGroupResp_AddressGroupExt.ProtoReflect.Descriptor instead.
+func (*AddressGroupResp_AddressGroupExt) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *AddressGroupResp_AddressGroupExt) GetMetadata() *common.Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *AddressGroupResp_AddressGroupExt) GetSpec() *AddressGroup_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *AddressGroupResp_AddressGroupExt) GetRefs() []*common.ResourceRef {
+	if x != nil {
+		return x.Refs
+	}
+	return nil
+}
+
 // Upsert: response for upsert address groups
 type AddressGroupResp_Upsert struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -973,7 +1111,7 @@ type AddressGroupResp_Upsert struct {
 
 func (x *AddressGroupResp_Upsert) Reset() {
 	*x = AddressGroupResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -985,7 +1123,7 @@ func (x *AddressGroupResp_Upsert) String() string {
 func (*AddressGroupResp_Upsert) ProtoMessage() {}
 
 func (x *AddressGroupResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -998,7 +1136,7 @@ func (x *AddressGroupResp_Upsert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressGroupResp_Upsert.ProtoReflect.Descriptor instead.
 func (*AddressGroupResp_Upsert) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 0}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 1}
 }
 
 func (x *AddressGroupResp_Upsert) GetAddressGroups() []*AddressGroup {
@@ -1014,14 +1152,14 @@ type AddressGroupResp_List struct {
 	// ResourceVersion: current global resource revision
 	ResourceVersion string `protobuf:"bytes,1,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
 	// AddressGroups: list of address groups
-	AddressGroups []*AddressGroupResp_List_AddressGroupExt `protobuf:"bytes,2,rep,name=address_groups,json=addressGroups,proto3" json:"address_groups,omitempty"`
+	AddressGroups []*AddressGroupResp_AddressGroupExt `protobuf:"bytes,2,rep,name=address_groups,json=addressGroups,proto3" json:"address_groups,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AddressGroupResp_List) Reset() {
 	*x = AddressGroupResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1033,7 +1171,7 @@ func (x *AddressGroupResp_List) String() string {
 func (*AddressGroupResp_List) ProtoMessage() {}
 
 func (x *AddressGroupResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1046,7 +1184,7 @@ func (x *AddressGroupResp_List) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressGroupResp_List.ProtoReflect.Descriptor instead.
 func (*AddressGroupResp_List) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 1}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 2}
 }
 
 func (x *AddressGroupResp_List) GetResourceVersion() string {
@@ -1056,7 +1194,7 @@ func (x *AddressGroupResp_List) GetResourceVersion() string {
 	return ""
 }
 
-func (x *AddressGroupResp_List) GetAddressGroups() []*AddressGroupResp_List_AddressGroupExt {
+func (x *AddressGroupResp_List) GetAddressGroups() []*AddressGroupResp_AddressGroupExt {
 	if x != nil {
 		return x.AddressGroups
 	}
@@ -1069,14 +1207,14 @@ type AddressGroupResp_Watch struct {
 	// Type: watch event type
 	Type common.WatchEventType `protobuf:"varint,1,opt,name=type,proto3,enum=common.WatchEventType" json:"type,omitempty"`
 	// AddressGroups: list of address groups
-	AddressGroups []*AddressGroup `protobuf:"bytes,2,rep,name=address_groups,json=addressGroups,proto3" json:"address_groups,omitempty"`
+	AddressGroups []*AddressGroupResp_AddressGroupExt `protobuf:"bytes,2,rep,name=address_groups,json=addressGroups,proto3" json:"address_groups,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AddressGroupResp_Watch) Reset() {
 	*x = AddressGroupResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1088,7 +1226,7 @@ func (x *AddressGroupResp_Watch) String() string {
 func (*AddressGroupResp_Watch) ProtoMessage() {}
 
 func (x *AddressGroupResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1101,7 +1239,7 @@ func (x *AddressGroupResp_Watch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressGroupResp_Watch.ProtoReflect.Descriptor instead.
 func (*AddressGroupResp_Watch) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 2}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 3}
 }
 
 func (x *AddressGroupResp_Watch) GetType() common.WatchEventType {
@@ -1111,41 +1249,37 @@ func (x *AddressGroupResp_Watch) GetType() common.WatchEventType {
 	return common.WatchEventType(0)
 }
 
-func (x *AddressGroupResp_Watch) GetAddressGroups() []*AddressGroup {
+func (x *AddressGroupResp_Watch) GetAddressGroups() []*AddressGroupResp_AddressGroupExt {
 	if x != nil {
 		return x.AddressGroups
 	}
 	return nil
 }
 
-// AddressGroupExt: extended address group information
-type AddressGroupResp_List_AddressGroupExt struct {
+// Upsert: request to upsert hosts
+type HostReq_Upsert struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Metadata: address group metadata
-	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// Spec: address group specification
-	Spec *AddressGroup_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
-	// Refs: list of resource references in the address group
-	Refs          []*common.ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
+	// Hosts: list of hosts
+	Hosts         []*Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddressGroupResp_List_AddressGroupExt) Reset() {
-	*x = AddressGroupResp_List_AddressGroupExt{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+func (x *HostReq_Upsert) Reset() {
+	*x = HostReq_Upsert{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddressGroupResp_List_AddressGroupExt) String() string {
+func (x *HostReq_Upsert) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddressGroupResp_List_AddressGroupExt) ProtoMessage() {}
+func (*HostReq_Upsert) ProtoMessage() {}
 
-func (x *AddressGroupResp_List_AddressGroupExt) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+func (x *HostReq_Upsert) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,28 +1290,813 @@ func (x *AddressGroupResp_List_AddressGroupExt) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddressGroupResp_List_AddressGroupExt.ProtoReflect.Descriptor instead.
-func (*AddressGroupResp_List_AddressGroupExt) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3, 1, 0}
+// Deprecated: Use HostReq_Upsert.ProtoReflect.Descriptor instead.
+func (*HostReq_Upsert) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 0}
 }
 
-func (x *AddressGroupResp_List_AddressGroupExt) GetMetadata() *common.Metadata {
+func (x *HostReq_Upsert) GetHosts() []*Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// Delete: request to delete hosts
+type HostReq_Delete struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts to delete
+	Hosts         []*HostReq_Delete_Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_Delete) Reset() {
+	*x = HostReq_Delete{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_Delete) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_Delete) ProtoMessage() {}
+
+func (x *HostReq_Delete) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_Delete.ProtoReflect.Descriptor instead.
+func (*HostReq_Delete) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 1}
+}
+
+func (x *HostReq_Delete) GetHosts() []*HostReq_Delete_Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// List: request to list hosts
+type HostReq_List struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Selectors: list of selectors
+	Selectors     []*common.ResSelector `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_List) Reset() {
+	*x = HostReq_List{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_List) ProtoMessage() {}
+
+func (x *HostReq_List) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_List.ProtoReflect.Descriptor instead.
+func (*HostReq_List) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 2}
+}
+
+func (x *HostReq_List) GetSelectors() []*common.ResSelector {
+	if x != nil {
+		return x.Selectors
+	}
+	return nil
+}
+
+// Watch: request to watch hosts
+type HostReq_Watch struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ResourceVersion: resource version for watch
+	ResourceVersion string `protobuf:"bytes,1,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
+	// Selectors: list of selectors
+	Selectors     []*common.ResSelector `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_Watch) Reset() {
+	*x = HostReq_Watch{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_Watch) ProtoMessage() {}
+
+func (x *HostReq_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_Watch.ProtoReflect.Descriptor instead.
+func (*HostReq_Watch) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 3}
+}
+
+func (x *HostReq_Watch) GetResourceVersion() string {
+	if x != nil {
+		return x.ResourceVersion
+	}
+	return ""
+}
+
+func (x *HostReq_Watch) GetSelectors() []*common.ResSelector {
+	if x != nil {
+		return x.Selectors
+	}
+	return nil
+}
+
+// UpdIPs: request to update IPs in hosts
+type HostReq_UpdIPs struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts to update IPs
+	Hosts         []*HostReq_UpdIPs_Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdIPs) Reset() {
+	*x = HostReq_UpdIPs{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdIPs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdIPs) ProtoMessage() {}
+
+func (x *HostReq_UpdIPs) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdIPs.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdIPs) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 4}
+}
+
+func (x *HostReq_UpdIPs) GetHosts() []*HostReq_UpdIPs_Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// UpdMetaInfo: request to update host meta information
+type HostReq_UpdMetaInfo struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts to update information
+	Hosts         []*HostReq_UpdMetaInfo_HostInfo `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdMetaInfo) Reset() {
+	*x = HostReq_UpdMetaInfo{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdMetaInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdMetaInfo) ProtoMessage() {}
+
+func (x *HostReq_UpdMetaInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdMetaInfo.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdMetaInfo) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 5}
+}
+
+func (x *HostReq_UpdMetaInfo) GetHosts() []*HostReq_UpdMetaInfo_HostInfo {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// Host: host to delete
+type HostReq_Delete_Host struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: metadata for scoping
+	Metadata      *common.MetadataScope `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_Delete_Host) Reset() {
+	*x = HostReq_Delete_Host{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_Delete_Host) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_Delete_Host) ProtoMessage() {}
+
+func (x *HostReq_Delete_Host) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_Delete_Host.ProtoReflect.Descriptor instead.
+func (*HostReq_Delete_Host) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 1, 0}
+}
+
+func (x *HostReq_Delete_Host) GetMetadata() *common.MetadataScope {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *AddressGroupResp_List_AddressGroupExt) GetSpec() *AddressGroup_Spec {
+// Host: host to update IPs
+type HostReq_UpdIPs_Host struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: metadata for scoping
+	Metadata *common.MetadataScope `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: host specification for IP update
+	Spec          *HostReq_UpdIPs_Host_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdIPs_Host) Reset() {
+	*x = HostReq_UpdIPs_Host{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdIPs_Host) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdIPs_Host) ProtoMessage() {}
+
+func (x *HostReq_UpdIPs_Host) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdIPs_Host.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdIPs_Host) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 4, 0}
+}
+
+func (x *HostReq_UpdIPs_Host) GetMetadata() *common.MetadataScope {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *HostReq_UpdIPs_Host) GetSpec() *HostReq_UpdIPs_Host_Spec {
 	if x != nil {
 		return x.Spec
 	}
 	return nil
 }
 
-func (x *AddressGroupResp_List_AddressGroupExt) GetRefs() []*common.ResourceRef {
+// Spec: host specification for IP update
+type HostReq_UpdIPs_Host_Spec struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// IPs: list of IPs to update in the host
+	Ips           *common.IPs `protobuf:"bytes,1,opt,name=ips,json=IPs,proto3" json:"ips,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdIPs_Host_Spec) Reset() {
+	*x = HostReq_UpdIPs_Host_Spec{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdIPs_Host_Spec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdIPs_Host_Spec) ProtoMessage() {}
+
+func (x *HostReq_UpdIPs_Host_Spec) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdIPs_Host_Spec.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdIPs_Host_Spec) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 4, 0, 0}
+}
+
+func (x *HostReq_UpdIPs_Host_Spec) GetIps() *common.IPs {
+	if x != nil {
+		return x.Ips
+	}
+	return nil
+}
+
+// HostInfo: host to update information
+type HostReq_UpdMetaInfo_HostInfo struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: metadata for scoping
+	Metadata *common.MetadataScope `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: host specification for information update
+	Spec          *HostReq_UpdMetaInfo_HostInfo_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo) Reset() {
+	*x = HostReq_UpdMetaInfo_HostInfo{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdMetaInfo_HostInfo) ProtoMessage() {}
+
+func (x *HostReq_UpdMetaInfo_HostInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdMetaInfo_HostInfo.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdMetaInfo_HostInfo) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 5, 0}
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo) GetMetadata() *common.MetadataScope {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo) GetSpec() *HostReq_UpdMetaInfo_HostInfo_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+// Spec: host specification for information update
+type HostReq_UpdMetaInfo_HostInfo_Spec struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// MetaInfo: meta information to update in the host
+	MetaInfo      *Host_Spec_MetaInfo `protobuf:"bytes,1,opt,name=meta_info,json=metaInfo,proto3" json:"meta_info,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo_Spec) Reset() {
+	*x = HostReq_UpdMetaInfo_HostInfo_Spec{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo_Spec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostReq_UpdMetaInfo_HostInfo_Spec) ProtoMessage() {}
+
+func (x *HostReq_UpdMetaInfo_HostInfo_Spec) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostReq_UpdMetaInfo_HostInfo_Spec.ProtoReflect.Descriptor instead.
+func (*HostReq_UpdMetaInfo_HostInfo_Spec) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4, 5, 0, 0}
+}
+
+func (x *HostReq_UpdMetaInfo_HostInfo_Spec) GetMetaInfo() *Host_Spec_MetaInfo {
+	if x != nil {
+		return x.MetaInfo
+	}
+	return nil
+}
+
+// HostExt: extended host information
+type HostResp_HostExt struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: host metadata
+	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: host specification
+	Spec *Host_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	// Refs: list of resource references in the host
+	Refs          []*common.ResourceRef `protobuf:"bytes,3,rep,name=refs,proto3" json:"refs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_HostExt) Reset() {
+	*x = HostResp_HostExt{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_HostExt) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_HostExt) ProtoMessage() {}
+
+func (x *HostResp_HostExt) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_HostExt.ProtoReflect.Descriptor instead.
+func (*HostResp_HostExt) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *HostResp_HostExt) GetMetadata() *common.Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *HostResp_HostExt) GetSpec() *Host_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *HostResp_HostExt) GetRefs() []*common.ResourceRef {
 	if x != nil {
 		return x.Refs
+	}
+	return nil
+}
+
+// Upsert: response for upsert hosts
+type HostResp_Upsert struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts
+	Hosts         []*Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_Upsert) Reset() {
+	*x = HostResp_Upsert{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_Upsert) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_Upsert) ProtoMessage() {}
+
+func (x *HostResp_Upsert) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_Upsert.ProtoReflect.Descriptor instead.
+func (*HostResp_Upsert) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 1}
+}
+
+func (x *HostResp_Upsert) GetHosts() []*Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// List: response for list hosts
+type HostResp_List struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ResourceVersion: current global resource revision
+	ResourceVersion string `protobuf:"bytes,1,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
+	// Hosts: list of hosts
+	Hosts         []*HostResp_HostExt `protobuf:"bytes,2,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_List) Reset() {
+	*x = HostResp_List{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_List) ProtoMessage() {}
+
+func (x *HostResp_List) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_List.ProtoReflect.Descriptor instead.
+func (*HostResp_List) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 2}
+}
+
+func (x *HostResp_List) GetResourceVersion() string {
+	if x != nil {
+		return x.ResourceVersion
+	}
+	return ""
+}
+
+func (x *HostResp_List) GetHosts() []*HostResp_HostExt {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// Watch: response for watch hosts
+type HostResp_Watch struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Type: watch event type
+	Type common.WatchEventType `protobuf:"varint,1,opt,name=type,proto3,enum=common.WatchEventType" json:"type,omitempty"`
+	// Hosts: list of hosts
+	Hosts         []*HostResp_HostExt `protobuf:"bytes,2,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_Watch) Reset() {
+	*x = HostResp_Watch{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_Watch) ProtoMessage() {}
+
+func (x *HostResp_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_Watch.ProtoReflect.Descriptor instead.
+func (*HostResp_Watch) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 3}
+}
+
+func (x *HostResp_Watch) GetType() common.WatchEventType {
+	if x != nil {
+		return x.Type
+	}
+	return common.WatchEventType(0)
+}
+
+func (x *HostResp_Watch) GetHosts() []*HostResp_HostExt {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// UpdIPs: response for update IPs in hosts
+type HostResp_UpdIPs struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts
+	Hosts         []*Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_UpdIPs) Reset() {
+	*x = HostResp_UpdIPs{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_UpdIPs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_UpdIPs) ProtoMessage() {}
+
+func (x *HostResp_UpdIPs) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_UpdIPs.ProtoReflect.Descriptor instead.
+func (*HostResp_UpdIPs) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 4}
+}
+
+func (x *HostResp_UpdIPs) GetHosts() []*Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
+// UpdMetaInfo: response for update host meta information
+type HostResp_UpdMetaInfo struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Hosts: list of hosts
+	Hosts         []*Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HostResp_UpdMetaInfo) Reset() {
+	*x = HostResp_UpdMetaInfo{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HostResp_UpdMetaInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HostResp_UpdMetaInfo) ProtoMessage() {}
+
+func (x *HostResp_UpdMetaInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HostResp_UpdMetaInfo.ProtoReflect.Descriptor instead.
+func (*HostResp_UpdMetaInfo) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5, 5}
+}
+
+func (x *HostResp_UpdMetaInfo) GetHosts() []*Host {
+	if x != nil {
+		return x.Hosts
 	}
 	return nil
 }
@@ -1187,7 +2106,7 @@ var File_sgroups_v1_queries_proto protoreflect.FileDescriptor
 const file_sgroups_v1_queries_proto_rawDesc = "" +
 	"\n" +
 	"\x18sgroups/v1/queries.proto\x12\n" +
-	"sgroups.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15common/resource.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x18sgroups/v1/domains.proto\"\xa2\a\n" +
+	"sgroups.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19common/ip_transport.proto\x1a\x15common/resource.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x18sgroups/v1/domains.proto\"\xa2\a\n" +
 	"\fNamespaceReq\x1a\xa6\x02\n" +
 	"\bSelector\x12V\n" +
 	"\x0efield_selector\x18\x01 \x01(\v2/.sgroups.v1.NamespaceReq.Selector.FieldSelectorR\rfieldSelector\x12[\n" +
@@ -1241,20 +2160,64 @@ const file_sgroups_v1_queries_proto_rawDesc = "" +
 	"\tselectors\x18\x01 \x03(\v2\x13.common.ResSelectorB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1am\n" +
 	"\x05Watch\x12)\n" +
 	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x129\n" +
-	"\tselectors\x18\x02 \x03(\v2\x13.common.ResSelectorB\x06\xbaH\x03\xc8\x01\x01R\tselectors\"\xff\x03\n" +
-	"\x10AddressGroupResp\x1aI\n" +
-	"\x06Upsert\x12?\n" +
-	"\x0eaddress_groups\x18\x01 \x03(\v2\x18.sgroups.v1.AddressGroupR\raddressGroups\x1a\xa9\x02\n" +
-	"\x04List\x12)\n" +
-	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x12X\n" +
-	"\x0eaddress_groups\x18\x02 \x03(\v21.sgroups.v1.AddressGroupResp.List.AddressGroupExtR\raddressGroups\x1a\x9b\x01\n" +
+	"\tselectors\x18\x02 \x03(\v2\x13.common.ResSelectorB\x06\xbaH\x03\xc8\x01\x01R\tselectors\"\x8f\x04\n" +
+	"\x10AddressGroupResp\x1a\x9b\x01\n" +
 	"\x0fAddressGroupExt\x12,\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataR\bmetadata\x121\n" +
 	"\x04spec\x18\x02 \x01(\v2\x1d.sgroups.v1.AddressGroup.SpecR\x04spec\x12'\n" +
-	"\x04refs\x18\x03 \x03(\v2\x13.common.ResourceRefR\x04refs\x1at\n" +
+	"\x04refs\x18\x03 \x03(\v2\x13.common.ResourceRefR\x04refs\x1aI\n" +
+	"\x06Upsert\x12?\n" +
+	"\x0eaddress_groups\x18\x01 \x03(\v2\x18.sgroups.v1.AddressGroupR\raddressGroups\x1a\x86\x01\n" +
+	"\x04List\x12)\n" +
+	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x12S\n" +
+	"\x0eaddress_groups\x18\x02 \x03(\v2,.sgroups.v1.AddressGroupResp.AddressGroupExtR\raddressGroups\x1a\x88\x01\n" +
 	"\x05Watch\x12*\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x12?\n" +
-	"\x0eaddress_groups\x18\x02 \x03(\v2\x18.sgroups.v1.AddressGroupR\raddressGroupsBDZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
+	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x12S\n" +
+	"\x0eaddress_groups\x18\x02 \x03(\v2,.sgroups.v1.AddressGroupResp.AddressGroupExtR\raddressGroups\"\xcc\n" +
+	"\n" +
+	"\aHostReq\x1a=\n" +
+	"\x06Upsert\x123\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x10.sgroups.v1.HostB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05hosts\x1a\x93\x02\n" +
+	"\x06Delete\x12B\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x1f.sgroups.v1.HostReq.Delete.HostB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05hosts\x1a\xc4\x01\n" +
+	"\x04Host\x12\xbb\x01\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x1aA\n" +
+	"\x04List\x129\n" +
+	"\tselectors\x18\x01 \x03(\v2\x13.common.ResSelectorB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1am\n" +
+	"\x05Watch\x12)\n" +
+	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x129\n" +
+	"\tselectors\x18\x02 \x03(\v2\x13.common.ResSelectorB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1a\x81\x03\n" +
+	"\x06UpdIPs\x12B\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x1f.sgroups.v1.HostReq.UpdIPs.HostB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05hosts\x1a\xb2\x02\n" +
+	"\x04Host\x12\xbb\x01\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x12@\n" +
+	"\x04spec\x18\x02 \x01(\v2$.sgroups.v1.HostReq.UpdIPs.Host.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a*\n" +
+	"\x04Spec\x12\"\n" +
+	"\x03ips\x18\x01 \x01(\v2\v.common.IPsB\x03\xe0A\x02R\x03IPs\x1a\xb5\x03\n" +
+	"\vUpdMetaInfo\x12K\n" +
+	"\x05hosts\x18\x01 \x03(\v2(.sgroups.v1.HostReq.UpdMetaInfo.HostInfoB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05hosts\x1a\xd8\x02\n" +
+	"\bHostInfo\x12\xbb\x01\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x12I\n" +
+	"\x04spec\x18\x02 \x01(\v2-.sgroups.v1.HostReq.UpdMetaInfo.HostInfo.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1aC\n" +
+	"\x04Spec\x12;\n" +
+	"\tmeta_info\x18\x01 \x01(\v2\x1e.sgroups.v1.Host.Spec.MetaInfoR\bmetaInfo\"\x83\x04\n" +
+	"\bHostResp\x1a\x8b\x01\n" +
+	"\aHostExt\x12,\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataR\bmetadata\x12)\n" +
+	"\x04spec\x18\x02 \x01(\v2\x15.sgroups.v1.Host.SpecR\x04spec\x12'\n" +
+	"\x04refs\x18\x03 \x03(\v2\x13.common.ResourceRefR\x04refs\x1a0\n" +
+	"\x06Upsert\x12&\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x10.sgroups.v1.HostR\x05hosts\x1ae\n" +
+	"\x04List\x12)\n" +
+	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x122\n" +
+	"\x05hosts\x18\x02 \x03(\v2\x1c.sgroups.v1.HostResp.HostExtR\x05hosts\x1ag\n" +
+	"\x05Watch\x12*\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x122\n" +
+	"\x05hosts\x18\x02 \x03(\v2\x1c.sgroups.v1.HostResp.HostExtR\x05hosts\x1a0\n" +
+	"\x06UpdIPs\x12&\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x10.sgroups.v1.HostR\x05hosts\x1a5\n" +
+	"\vUpdMetaInfo\x12&\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x10.sgroups.v1.HostR\x05hostsBDZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
 
 var (
 	file_sgroups_v1_queries_proto_rawDescOnce sync.Once
@@ -1268,71 +2231,116 @@ func file_sgroups_v1_queries_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_queries_proto_rawDescData
 }
 
-var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*NamespaceReq)(nil),                        // 0: sgroups.v1.NamespaceReq
 	(*NamespaceResp)(nil),                       // 1: sgroups.v1.NamespaceResp
 	(*AddressGroupReq)(nil),                     // 2: sgroups.v1.AddressGroupReq
 	(*AddressGroupResp)(nil),                    // 3: sgroups.v1.AddressGroupResp
-	(*NamespaceReq_Selector)(nil),               // 4: sgroups.v1.NamespaceReq.Selector
-	(*NamespaceReq_Upsert)(nil),                 // 5: sgroups.v1.NamespaceReq.Upsert
-	(*NamespaceReq_Delete)(nil),                 // 6: sgroups.v1.NamespaceReq.Delete
-	(*NamespaceReq_List)(nil),                   // 7: sgroups.v1.NamespaceReq.List
-	(*NamespaceReq_Watch)(nil),                  // 8: sgroups.v1.NamespaceReq.Watch
-	(*NamespaceReq_Selector_FieldSelector)(nil), // 9: sgroups.v1.NamespaceReq.Selector.FieldSelector
-	nil, // 10: sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
-	(*NamespaceReq_Delete_MetadataScope)(nil),     // 11: sgroups.v1.NamespaceReq.Delete.MetadataScope
-	(*NamespaceReq_Delete_Namespace)(nil),         // 12: sgroups.v1.NamespaceReq.Delete.Namespace
-	(*NamespaceResp_Upsert)(nil),                  // 13: sgroups.v1.NamespaceResp.Upsert
-	(*NamespaceResp_List)(nil),                    // 14: sgroups.v1.NamespaceResp.List
-	(*NamespaceResp_Watch)(nil),                   // 15: sgroups.v1.NamespaceResp.Watch
-	(*AddressGroupReq_Upsert)(nil),                // 16: sgroups.v1.AddressGroupReq.Upsert
-	(*AddressGroupReq_Delete)(nil),                // 17: sgroups.v1.AddressGroupReq.Delete
-	(*AddressGroupReq_List)(nil),                  // 18: sgroups.v1.AddressGroupReq.List
-	(*AddressGroupReq_Watch)(nil),                 // 19: sgroups.v1.AddressGroupReq.Watch
-	(*AddressGroupReq_Delete_AddressGroup)(nil),   // 20: sgroups.v1.AddressGroupReq.Delete.AddressGroup
-	(*AddressGroupResp_Upsert)(nil),               // 21: sgroups.v1.AddressGroupResp.Upsert
-	(*AddressGroupResp_List)(nil),                 // 22: sgroups.v1.AddressGroupResp.List
-	(*AddressGroupResp_Watch)(nil),                // 23: sgroups.v1.AddressGroupResp.Watch
-	(*AddressGroupResp_List_AddressGroupExt)(nil), // 24: sgroups.v1.AddressGroupResp.List.AddressGroupExt
-	(*Namespace)(nil),                             // 25: sgroups.v1.Namespace
-	(common.WatchEventType)(0),                    // 26: common.WatchEventType
-	(*AddressGroup)(nil),                          // 27: sgroups.v1.AddressGroup
-	(*common.ResSelector)(nil),                    // 28: common.ResSelector
-	(*common.MetadataScope)(nil),                  // 29: common.MetadataScope
-	(*common.Metadata)(nil),                       // 30: common.Metadata
-	(*AddressGroup_Spec)(nil),                     // 31: sgroups.v1.AddressGroup.Spec
-	(*common.ResourceRef)(nil),                    // 32: common.ResourceRef
+	(*HostReq)(nil),                             // 4: sgroups.v1.HostReq
+	(*HostResp)(nil),                            // 5: sgroups.v1.HostResp
+	(*NamespaceReq_Selector)(nil),               // 6: sgroups.v1.NamespaceReq.Selector
+	(*NamespaceReq_Upsert)(nil),                 // 7: sgroups.v1.NamespaceReq.Upsert
+	(*NamespaceReq_Delete)(nil),                 // 8: sgroups.v1.NamespaceReq.Delete
+	(*NamespaceReq_List)(nil),                   // 9: sgroups.v1.NamespaceReq.List
+	(*NamespaceReq_Watch)(nil),                  // 10: sgroups.v1.NamespaceReq.Watch
+	(*NamespaceReq_Selector_FieldSelector)(nil), // 11: sgroups.v1.NamespaceReq.Selector.FieldSelector
+	nil, // 12: sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
+	(*NamespaceReq_Delete_MetadataScope)(nil),   // 13: sgroups.v1.NamespaceReq.Delete.MetadataScope
+	(*NamespaceReq_Delete_Namespace)(nil),       // 14: sgroups.v1.NamespaceReq.Delete.Namespace
+	(*NamespaceResp_Upsert)(nil),                // 15: sgroups.v1.NamespaceResp.Upsert
+	(*NamespaceResp_List)(nil),                  // 16: sgroups.v1.NamespaceResp.List
+	(*NamespaceResp_Watch)(nil),                 // 17: sgroups.v1.NamespaceResp.Watch
+	(*AddressGroupReq_Upsert)(nil),              // 18: sgroups.v1.AddressGroupReq.Upsert
+	(*AddressGroupReq_Delete)(nil),              // 19: sgroups.v1.AddressGroupReq.Delete
+	(*AddressGroupReq_List)(nil),                // 20: sgroups.v1.AddressGroupReq.List
+	(*AddressGroupReq_Watch)(nil),               // 21: sgroups.v1.AddressGroupReq.Watch
+	(*AddressGroupReq_Delete_AddressGroup)(nil), // 22: sgroups.v1.AddressGroupReq.Delete.AddressGroup
+	(*AddressGroupResp_AddressGroupExt)(nil),    // 23: sgroups.v1.AddressGroupResp.AddressGroupExt
+	(*AddressGroupResp_Upsert)(nil),             // 24: sgroups.v1.AddressGroupResp.Upsert
+	(*AddressGroupResp_List)(nil),               // 25: sgroups.v1.AddressGroupResp.List
+	(*AddressGroupResp_Watch)(nil),              // 26: sgroups.v1.AddressGroupResp.Watch
+	(*HostReq_Upsert)(nil),                      // 27: sgroups.v1.HostReq.Upsert
+	(*HostReq_Delete)(nil),                      // 28: sgroups.v1.HostReq.Delete
+	(*HostReq_List)(nil),                        // 29: sgroups.v1.HostReq.List
+	(*HostReq_Watch)(nil),                       // 30: sgroups.v1.HostReq.Watch
+	(*HostReq_UpdIPs)(nil),                      // 31: sgroups.v1.HostReq.UpdIPs
+	(*HostReq_UpdMetaInfo)(nil),                 // 32: sgroups.v1.HostReq.UpdMetaInfo
+	(*HostReq_Delete_Host)(nil),                 // 33: sgroups.v1.HostReq.Delete.Host
+	(*HostReq_UpdIPs_Host)(nil),                 // 34: sgroups.v1.HostReq.UpdIPs.Host
+	(*HostReq_UpdIPs_Host_Spec)(nil),            // 35: sgroups.v1.HostReq.UpdIPs.Host.Spec
+	(*HostReq_UpdMetaInfo_HostInfo)(nil),        // 36: sgroups.v1.HostReq.UpdMetaInfo.HostInfo
+	(*HostReq_UpdMetaInfo_HostInfo_Spec)(nil),   // 37: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
+	(*HostResp_HostExt)(nil),                    // 38: sgroups.v1.HostResp.HostExt
+	(*HostResp_Upsert)(nil),                     // 39: sgroups.v1.HostResp.Upsert
+	(*HostResp_List)(nil),                       // 40: sgroups.v1.HostResp.List
+	(*HostResp_Watch)(nil),                      // 41: sgroups.v1.HostResp.Watch
+	(*HostResp_UpdIPs)(nil),                     // 42: sgroups.v1.HostResp.UpdIPs
+	(*HostResp_UpdMetaInfo)(nil),                // 43: sgroups.v1.HostResp.UpdMetaInfo
+	(*Namespace)(nil),                           // 44: sgroups.v1.Namespace
+	(common.WatchEventType)(0),                  // 45: common.WatchEventType
+	(*AddressGroup)(nil),                        // 46: sgroups.v1.AddressGroup
+	(*common.ResSelector)(nil),                  // 47: common.ResSelector
+	(*common.MetadataScope)(nil),                // 48: common.MetadataScope
+	(*common.Metadata)(nil),                     // 49: common.Metadata
+	(*AddressGroup_Spec)(nil),                   // 50: sgroups.v1.AddressGroup.Spec
+	(*common.ResourceRef)(nil),                  // 51: common.ResourceRef
+	(*Host)(nil),                                // 52: sgroups.v1.Host
+	(*common.IPs)(nil),                          // 53: common.IPs
+	(*Host_Spec_MetaInfo)(nil),                  // 54: sgroups.v1.Host.Spec.MetaInfo
+	(*Host_Spec)(nil),                           // 55: sgroups.v1.Host.Spec
 }
 var file_sgroups_v1_queries_proto_depIdxs = []int32{
-	9,  // 0: sgroups.v1.NamespaceReq.Selector.field_selector:type_name -> sgroups.v1.NamespaceReq.Selector.FieldSelector
-	10, // 1: sgroups.v1.NamespaceReq.Selector.label_selector:type_name -> sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
-	25, // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
-	12, // 3: sgroups.v1.NamespaceReq.Delete.namespaces:type_name -> sgroups.v1.NamespaceReq.Delete.Namespace
-	4,  // 4: sgroups.v1.NamespaceReq.List.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
-	4,  // 5: sgroups.v1.NamespaceReq.Watch.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
-	11, // 6: sgroups.v1.NamespaceReq.Delete.Namespace.metadata:type_name -> sgroups.v1.NamespaceReq.Delete.MetadataScope
-	25, // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
-	25, // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
-	26, // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
-	25, // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
-	27, // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
-	20, // 12: sgroups.v1.AddressGroupReq.Delete.address_groups:type_name -> sgroups.v1.AddressGroupReq.Delete.AddressGroup
-	28, // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
-	28, // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
-	29, // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
-	27, // 16: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
-	24, // 17: sgroups.v1.AddressGroupResp.List.address_groups:type_name -> sgroups.v1.AddressGroupResp.List.AddressGroupExt
-	26, // 18: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
-	27, // 19: sgroups.v1.AddressGroupResp.Watch.address_groups:type_name -> sgroups.v1.AddressGroup
-	30, // 20: sgroups.v1.AddressGroupResp.List.AddressGroupExt.metadata:type_name -> common.Metadata
-	31, // 21: sgroups.v1.AddressGroupResp.List.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	32, // 22: sgroups.v1.AddressGroupResp.List.AddressGroupExt.refs:type_name -> common.ResourceRef
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	11, // 0: sgroups.v1.NamespaceReq.Selector.field_selector:type_name -> sgroups.v1.NamespaceReq.Selector.FieldSelector
+	12, // 1: sgroups.v1.NamespaceReq.Selector.label_selector:type_name -> sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
+	44, // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	14, // 3: sgroups.v1.NamespaceReq.Delete.namespaces:type_name -> sgroups.v1.NamespaceReq.Delete.Namespace
+	6,  // 4: sgroups.v1.NamespaceReq.List.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
+	6,  // 5: sgroups.v1.NamespaceReq.Watch.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
+	13, // 6: sgroups.v1.NamespaceReq.Delete.Namespace.metadata:type_name -> sgroups.v1.NamespaceReq.Delete.MetadataScope
+	44, // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	44, // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
+	45, // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
+	44, // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
+	46, // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	22, // 12: sgroups.v1.AddressGroupReq.Delete.address_groups:type_name -> sgroups.v1.AddressGroupReq.Delete.AddressGroup
+	47, // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
+	47, // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
+	48, // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
+	49, // 16: sgroups.v1.AddressGroupResp.AddressGroupExt.metadata:type_name -> common.Metadata
+	50, // 17: sgroups.v1.AddressGroupResp.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	51, // 18: sgroups.v1.AddressGroupResp.AddressGroupExt.refs:type_name -> common.ResourceRef
+	46, // 19: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	23, // 20: sgroups.v1.AddressGroupResp.List.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
+	45, // 21: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
+	23, // 22: sgroups.v1.AddressGroupResp.Watch.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
+	52, // 23: sgroups.v1.HostReq.Upsert.hosts:type_name -> sgroups.v1.Host
+	33, // 24: sgroups.v1.HostReq.Delete.hosts:type_name -> sgroups.v1.HostReq.Delete.Host
+	47, // 25: sgroups.v1.HostReq.List.selectors:type_name -> common.ResSelector
+	47, // 26: sgroups.v1.HostReq.Watch.selectors:type_name -> common.ResSelector
+	34, // 27: sgroups.v1.HostReq.UpdIPs.hosts:type_name -> sgroups.v1.HostReq.UpdIPs.Host
+	36, // 28: sgroups.v1.HostReq.UpdMetaInfo.hosts:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo
+	48, // 29: sgroups.v1.HostReq.Delete.Host.metadata:type_name -> common.MetadataScope
+	48, // 30: sgroups.v1.HostReq.UpdIPs.Host.metadata:type_name -> common.MetadataScope
+	35, // 31: sgroups.v1.HostReq.UpdIPs.Host.spec:type_name -> sgroups.v1.HostReq.UpdIPs.Host.Spec
+	53, // 32: sgroups.v1.HostReq.UpdIPs.Host.Spec.ips:type_name -> common.IPs
+	48, // 33: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.metadata:type_name -> common.MetadataScope
+	37, // 34: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.spec:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
+	54, // 35: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
+	49, // 36: sgroups.v1.HostResp.HostExt.metadata:type_name -> common.Metadata
+	55, // 37: sgroups.v1.HostResp.HostExt.spec:type_name -> sgroups.v1.Host.Spec
+	51, // 38: sgroups.v1.HostResp.HostExt.refs:type_name -> common.ResourceRef
+	52, // 39: sgroups.v1.HostResp.Upsert.hosts:type_name -> sgroups.v1.Host
+	38, // 40: sgroups.v1.HostResp.List.hosts:type_name -> sgroups.v1.HostResp.HostExt
+	45, // 41: sgroups.v1.HostResp.Watch.type:type_name -> common.WatchEventType
+	38, // 42: sgroups.v1.HostResp.Watch.hosts:type_name -> sgroups.v1.HostResp.HostExt
+	52, // 43: sgroups.v1.HostResp.UpdIPs.hosts:type_name -> sgroups.v1.Host
+	52, // 44: sgroups.v1.HostResp.UpdMetaInfo.hosts:type_name -> sgroups.v1.Host
+	45, // [45:45] is the sub-list for method output_type
+	45, // [45:45] is the sub-list for method input_type
+	45, // [45:45] is the sub-list for extension type_name
+	45, // [45:45] is the sub-list for extension extendee
+	0,  // [0:45] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_queries_proto_init() }
@@ -1347,7 +2355,7 @@ func file_sgroups_v1_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_queries_proto_rawDesc), len(file_sgroups_v1_queries_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   25,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

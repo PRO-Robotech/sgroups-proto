@@ -3,7 +3,10 @@ syntax = "proto3";
 package sgroups.v1;
 
 import "buf/validate/validate.proto";
+import "common/ip_transport.proto";
 import "common/resource.proto";
+import "google/api/field_behavior.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
 
@@ -52,5 +55,50 @@ message AddressGroup {
   // Metadata: address group metadata
   common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
   // Spec: address group specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// Host: represents host resource
+message Host {
+  // Spec: resource specification
+  message Spec {
+    // MetaInfo: represents host meta information
+    message MetaInfo {
+      // HostName: host name
+      string host_name = 1;
+      // Os: host operating system
+      string os = 2;
+      // Platform: host platform
+      string platform = 3;
+      // PlatformFamily: host platform family
+      string platform_family = 4;
+      // PlatformVersion: host platform version
+      string platform_version = 5;
+      // KernelVersion: host kernel version
+      string kernel_version = 6;
+    }
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // IPs: list of IP addresses associated with the host
+    repeated common.IPs ips = 4 [
+      json_name = "IPs",
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
+    ];
+    // MetaInfo: host meta information
+    MetaInfo meta_info = 5 [
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
+    ];
+  }
+  // Metadata: host metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: host specification
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }

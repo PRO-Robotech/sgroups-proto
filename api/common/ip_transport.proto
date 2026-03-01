@@ -54,3 +54,11 @@ enum Traffic {
   // Egress
   EGRESS = 2;
 }
+
+// IPs: represents list of IP addresses
+message IPs {
+  // Ipv4: list of IPv4 addresses
+  repeated string ipv4 = 1 [json_name = "IPv4"];
+  // Ipv6: list of IPv6 addresses
+  repeated string ipv6 = 2 [json_name = "IPv6"];
+}
