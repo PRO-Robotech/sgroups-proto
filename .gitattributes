@@ -1,0 +1,3 @@
+pkg/api/**/*.pb.go -diff
+pkg/api/**/*.swagger.json -diff
+pkg/api/**/*.connect.go -diff

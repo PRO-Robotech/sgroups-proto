@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package common;
+
+import "buf/validate/validate.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
+
+// Metadata: common resource metadata
+message Metadata {
+  // UID: unique identifier. Use this for update requests; for create requests, leave it empty
+  string uid = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    pattern: "^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$"
+    title: "uid"
+    description: "id of the resource. Use this for update requests; for create requests, leave it empty"
+    format: "uuid"
+    example: "\"2438ac3c-37eb-4902-adef-ed16b4431030\""
+  }];
+  // Name: resource name
+  string name = 2 [(buf.validate.field) = {
+    ignore: IGNORE_IF_ZERO_VALUE
+    string: {
+      min_len: 1
+      max_len: 63
+      pattern: "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+    }
+  }];
+  // Namespace: resource namespace
+  string namespace = 3 [
+    (google.api.field_behavior) = OPTIONAL,
+    (buf.validate.field) = {
+      ignore: IGNORE_IF_ZERO_VALUE
+      string: {
+        min_len: 1
+        max_len: 63
+        pattern: "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+      }
+    }
+  ];
+  // Labels: resource labels
+  map<string, string> labels = 4;
+  // Annotations: resource annotations
+  map<string, string> annotations = 5;
+  // CreationTimestamp: resource creation timestamp
+  google.protobuf.Timestamp creation_timestamp = 6 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
+  ];
+  // ResourceVersion: resource revision version
+  string resource_version = 7 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
+  ];
+}
+
+// MetadataScope: common resource metadata for scoping
+message MetadataScope {
+  // UID: unique identifier. Use this for update requests; for create requests, leave it empty
+  string uid = 1;
+  // Name: resource name
+  string name = 2;
+  // Namespace: resource namespace
+  string namespace = 3;
+}
+
+// ResourceRef: reference to a resource
+message ResourceRef {
+  // Name: reference resource name
+  string name = 1;
+  // Namespace: reference resource namespace
+  string namespace = 2;
+  // ResType: reference resource type
+  string res_type = 3;
+}
+
+// FieldSelector: resource field selector
+message FieldSelector {
+  // Name: resource name
+  string name = 1;
+  // Namespace: resource namespace
+  string namespace = 2;
+  // Refs: resource references
+  repeated ResourceRef refs = 3;
+}
+
+// ResSelector: resource selector for list requests
+message ResSelector {
+  // FieldSelector: field selector
+  FieldSelector field_selector = 1;
+  // LabelSelector: label selector
+  map<string, string> label_selector = 2;
+}
+
+// Action: enumeration of possible actions
+enum Action {
+  // UNKNOWN: unknown action
+  UNKNOWN = 0;
+  // ALLOW: allow action
+  ALLOW = 1;
+  // DENY: deny action
+  DENY = 2;
+}
+
+// WatchEventType: type of watch event
+enum WatchEventType {
+  // EVENT_UNKNOWN: unknown event type
+  EVENT_UNKNOWN = 0;
+  // ADDED: object was created
+  ADDED = 1;
+  // MODIFIED: object was updated
+  MODIFIED = 2;
+  // DELETED: object was deleted
+  DELETED = 3;
+}

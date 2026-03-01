@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+import "buf/validate/validate.proto";
+import "common/resource.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+// Namespace: represents namespace resource
+message Namespace {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+  }
+  // Metadata: namespace metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: namespace specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// AddressGroup: represents address group resource
+message AddressGroup {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // DefaultAction: default action for the address group
+    common.Action default_action = 4 [(buf.validate.field) = {
+      enum: {
+        not_in: [0]
+      }
+    }];
+    // Logs: enable logging
+    bool logs = 5;
+    // Trace: enable flow logging
+    bool trace = 6;
+  }
+  // Metadata: address group metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: address group specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
