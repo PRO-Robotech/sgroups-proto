@@ -243,10 +243,10 @@
         ]
       }
     },
-    "/v1/host/upd-iplist": {
+    "/v1/host/upd-ips": {
       "post": {
-        "summary": "UpdIPs: Update host(s) IP list",
-        "description": "UpdIPs: Update host(s) IP list",
+        "summary": "UpdIPs: Update host(s) IPs",
+        "description": "UpdIPs: Update host(s) IPs",
         "operationId": "SGroupsHostsAPI_UpdIPs",
         "responses": {
           "200": {

@@ -507,7 +507,7 @@ type SGroupsHostsAPIClient interface {
 	List(ctx context.Context, in *HostReq_List, opts ...grpc.CallOption) (*HostResp_List, error)
 	// Watch: Watch host(s)
 	Watch(ctx context.Context, in *HostReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_Watch], error)
-	// UpdIPs: Update host(s) IP list
+	// UpdIPs: Update host(s) IPs
 	UpdIPs(ctx context.Context, in *HostReq_UpdIPs, opts ...grpc.CallOption) (*HostResp_UpdIPs, error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(ctx context.Context, in *HostReq_UpdMetaInfo, opts ...grpc.CallOption) (*HostResp_UpdMetaInfo, error)
@@ -604,7 +604,7 @@ type SGroupsHostsAPIServer interface {
 	List(context.Context, *HostReq_List) (*HostResp_List, error)
 	// Watch: Watch host(s)
 	Watch(*HostReq_Watch, grpc.ServerStreamingServer[HostResp_Watch]) error
-	// UpdIPs: Update host(s) IP list
+	// UpdIPs: Update host(s) IPs
 	UpdIPs(context.Context, *HostReq_UpdIPs) (*HostResp_UpdIPs, error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *HostReq_UpdMetaInfo) (*HostResp_UpdMetaInfo, error)

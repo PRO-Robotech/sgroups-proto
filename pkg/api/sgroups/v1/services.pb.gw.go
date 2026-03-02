@@ -634,7 +634,7 @@ func RegisterSGroupsHostsAPIHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsHostsAPI/UpdIPs", runtime.WithHTTPPathPattern("/v1/host/upd-iplist"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsHostsAPI/UpdIPs", runtime.WithHTTPPathPattern("/v1/host/upd-ips"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1022,7 +1022,7 @@ func RegisterSGroupsHostsAPIHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsHostsAPI/UpdIPs", runtime.WithHTTPPathPattern("/v1/host/upd-iplist"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsHostsAPI/UpdIPs", runtime.WithHTTPPathPattern("/v1/host/upd-ips"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1060,7 +1060,7 @@ var (
 	pattern_SGroupsHostsAPI_Delete_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "delete"}, ""))
 	pattern_SGroupsHostsAPI_List_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "list"}, ""))
 	pattern_SGroupsHostsAPI_Watch_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "watch"}, ""))
-	pattern_SGroupsHostsAPI_UpdIPs_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "upd-iplist"}, ""))
+	pattern_SGroupsHostsAPI_UpdIPs_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "upd-ips"}, ""))
 	pattern_SGroupsHostsAPI_UpdMetaInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "host", "upd-metainfo"}, ""))
 )
 

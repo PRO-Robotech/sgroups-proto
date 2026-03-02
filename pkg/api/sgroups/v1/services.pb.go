@@ -46,7 +46,7 @@ const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\x04List\x12 .sgroups.v1.AddressGroupReq.List\x1a!.sgroups.v1.AddressGroupResp.List\"D\x92A+\n" +
 	"\fAddressGroup\x1a\x1bList: List address group(s)\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/v1/ag/list\x12\x99\x01\n" +
 	"\x05Watch\x12!.sgroups.v1.AddressGroupReq.Watch\x1a\".sgroups.v1.AddressGroupResp.Watch\"G\x92A-\n" +
-	"\fAddressGroup\x1a\x1dWatch: Watch address group(s)\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ag/watch0\x01\x1a\x1f\x92A\x1c\x12\x1aAddressGroups Resource API2\xd9\x06\n" +
+	"\fAddressGroup\x1a\x1dWatch: Watch address group(s)\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ag/watch0\x01\x1a\x1f\x92A\x1c\x12\x1aAddressGroups Resource API2\xd2\x06\n" +
 	"\x0fSGroupsHostsAPI\x12\x88\x01\n" +
 	"\x06Upsert\x12\x1a.sgroups.v1.HostReq.Upsert\x1a\x1b.sgroups.v1.HostResp.Upsert\"E\x92A(\n" +
 	"\x04Host\x1a Upsert: Create or update host(s)\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/host/upsert\x12y\n" +
@@ -55,9 +55,9 @@ const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\x04List\x12\x18.sgroups.v1.HostReq.List\x1a\x19.sgroups.v1.HostResp.List\"5\x92A\x1a\n" +
 	"\x04Host\x1a\x12List: List host(s)\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/host/list\x12z\n" +
 	"\x05Watch\x12\x19.sgroups.v1.HostReq.Watch\x1a\x1a.sgroups.v1.HostResp.Watch\"8\x92A\x1c\n" +
-	"\x04Host\x1a\x14Watch: Watch host(s)\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/host/watch0\x01\x12\x8a\x01\n" +
-	"\x06UpdIPs\x12\x1a.sgroups.v1.HostReq.UpdIPs\x1a\x1b.sgroups.v1.HostResp.UpdIPs\"G\x92A&\n" +
-	"\x04Host\x1a\x1eUpdIPs: Update host(s) IP list\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/host/upd-iplist\x12\xa9\x01\n" +
+	"\x04Host\x1a\x14Watch: Watch host(s)\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/host/watch0\x01\x12\x83\x01\n" +
+	"\x06UpdIPs\x12\x1a.sgroups.v1.HostReq.UpdIPs\x1a\x1b.sgroups.v1.HostResp.UpdIPs\"@\x92A\"\n" +
+	"\x04Host\x1a\x1aUpdIPs: Update host(s) IPs\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/host/upd-ips\x12\xa9\x01\n" +
 	"\vUpdMetaInfo\x12\x1f.sgroups.v1.HostReq.UpdMetaInfo\x1a .sgroups.v1.HostResp.UpdMetaInfo\"W\x92A4\n" +
 	"\x04Host\x1a,UpdMetaInfo: Update host(s) meta information\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v1/host/upd-metainfo\x1a\x17\x92A\x14\x12\x12Hosts Resource APIB\xb0\x01\x92Ai\x12\x12\n" +
 	"\vSGroups API2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +

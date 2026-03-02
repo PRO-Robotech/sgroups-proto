@@ -180,14 +180,14 @@ service SGroupsHostsAPI {
     };
   }
 
-  // UpdIPs: Update host(s) IP list
+  // UpdIPs: Update host(s) IPs
   rpc UpdIPs(HostReq.UpdIPs) returns (HostResp.UpdIPs) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      description: "UpdIPs: Update host(s) IP list"
+      description: "UpdIPs: Update host(s) IPs"
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/upd-iplist"
+      post: "/v1/host/upd-ips"
       body: "*"
     };
   }

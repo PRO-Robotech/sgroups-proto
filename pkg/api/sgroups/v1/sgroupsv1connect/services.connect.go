@@ -400,7 +400,7 @@ type SGroupsHostsAPIClient interface {
 	List(context.Context, *connect.Request[v1.HostReq_List]) (*connect.Response[v1.HostResp_List], error)
 	// Watch: Watch host(s)
 	Watch(context.Context, *connect.Request[v1.HostReq_Watch]) (*connect.ServerStreamForClient[v1.HostResp_Watch], error)
-	// UpdIPs: Update host(s) IP list
+	// UpdIPs: Update host(s) IPs
 	UpdIPs(context.Context, *connect.Request[v1.HostReq_UpdIPs]) (*connect.Response[v1.HostResp_UpdIPs], error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error)
@@ -506,7 +506,7 @@ type SGroupsHostsAPIHandler interface {
 	List(context.Context, *connect.Request[v1.HostReq_List]) (*connect.Response[v1.HostResp_List], error)
 	// Watch: Watch host(s)
 	Watch(context.Context, *connect.Request[v1.HostReq_Watch], *connect.ServerStream[v1.HostResp_Watch]) error
-	// UpdIPs: Update host(s) IP list
+	// UpdIPs: Update host(s) IPs
 	UpdIPs(context.Context, *connect.Request[v1.HostReq_UpdIPs]) (*connect.Response[v1.HostResp_UpdIPs], error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error)
