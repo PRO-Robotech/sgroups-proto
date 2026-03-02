@@ -969,12 +969,7 @@
           "title": "Description: resource description"
         },
         "IPs": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/commonIPs",
-            "readOnly": true
-          },
+          "$ref": "#/definitions/commonIPs",
           "title": "IPs: list of IP addresses associated with the host",
           "readOnly": true
         },

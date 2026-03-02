@@ -86,7 +86,7 @@ message Host {
     // Description: resource description
     string description = 3;
     // IPs: list of IP addresses associated with the host
-    repeated common.IPs ips = 4 [
+    common.IPs ips = 4 [
       json_name = "IPs",
       (google.api.field_behavior) = OUTPUT_ONLY,
       (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}

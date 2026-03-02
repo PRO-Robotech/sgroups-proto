@@ -355,7 +355,7 @@ type Host_Spec struct {
 	// Description: resource description
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// IPs: list of IP addresses associated with the host
-	Ips []*common.IPs `protobuf:"bytes,4,rep,name=ips,json=IPs,proto3" json:"ips,omitempty"`
+	Ips *common.IPs `protobuf:"bytes,4,opt,name=ips,json=IPs,proto3" json:"ips,omitempty"`
 	// MetaInfo: host meta information
 	MetaInfo      *Host_Spec_MetaInfo `protobuf:"bytes,5,opt,name=meta_info,json=metaInfo,proto3" json:"meta_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -413,7 +413,7 @@ func (x *Host_Spec) GetDescription() string {
 	return ""
 }
 
-func (x *Host_Spec) GetIps() []*common.IPs {
+func (x *Host_Spec) GetIps() *common.IPs {
 	if x != nil {
 		return x.Ips
 	}
@@ -548,7 +548,7 @@ const file_sgroups_v1_domains_proto_rawDesc = "" +
 	"\fdisplay_name\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18?R\vdisplayName\x12\x18\n" +
 	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12'\n" +
-	"\x03ips\x18\x04 \x03(\v2\v.common.IPsB\b\x92A\x02@\x01\xe0A\x03R\x03IPs\x12E\n" +
+	"\x03ips\x18\x04 \x01(\v2\v.common.IPsB\b\x92A\x02@\x01\xe0A\x03R\x03IPs\x12E\n" +
 	"\tmeta_info\x18\x05 \x01(\v2\x1e.sgroups.v1.Host.Spec.MetaInfoB\b\x92A\x02@\x01\xe0A\x03R\bmetaInfo\x1a\xce\x01\n" +
 	"\bMetaInfo\x12\x1b\n" +
 	"\thost_name\x18\x01 \x01(\tR\bhostName\x12\x0e\n" +
