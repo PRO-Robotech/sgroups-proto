@@ -94,6 +94,14 @@ message ResSelector {
   map<string, string> label_selector = 2;
 }
 
+// ResourceIdentifier: resource identifier
+message ResourceIdentifier {
+  // Name: resource name
+  string name = 1;
+  // Namespace: resource namespace
+  string namespace = 2;
+}
+
 // Action: enumeration of possible actions
 enum Action {
   // UNKNOWN: unknown action

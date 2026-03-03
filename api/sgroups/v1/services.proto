@@ -33,7 +33,7 @@ service SGroupsNamespaceAPI {
       tags: "Namespace"
     };
     option (google.api.http) = {
-      post: "/v1/namespace/upsert"
+      post: "/v1/namespaces/upsert"
       body: "*"
     };
   }
@@ -45,7 +45,7 @@ service SGroupsNamespaceAPI {
       tags: "Namespace"
     };
     option (google.api.http) = {
-      post: "/v1/namespace/delete"
+      post: "/v1/namespaces/delete"
       body: "*"
     };
   }
@@ -57,7 +57,7 @@ service SGroupsNamespaceAPI {
       tags: "Namespace"
     };
     option (google.api.http) = {
-      post: "/v1/namespace/list"
+      post: "/v1/namespaces/list"
       body: "*"
     };
   }
@@ -69,7 +69,7 @@ service SGroupsNamespaceAPI {
       tags: "Namespace"
     };
     option (google.api.http) = {
-      post: "/v1/namespace/watch"
+      post: "/v1/namespaces/watch"
       body: "*"
     };
   }
@@ -86,7 +86,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ag/upsert"
+      post: "/v1/ags/upsert"
       body: "*"
     };
   }
@@ -98,7 +98,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ag/delete"
+      post: "/v1/ags/delete"
       body: "*"
     };
   }
@@ -110,7 +110,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ag/list"
+      post: "/v1/ags/list"
       body: "*"
     };
   }
@@ -122,7 +122,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ag/watch"
+      post: "/v1/ags/watch"
       body: "*"
     };
   }
@@ -139,7 +139,7 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/upsert"
+      post: "/v1/hosts/upsert"
       body: "*"
     };
   }
@@ -151,7 +151,7 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/delete"
+      post: "/v1/hosts/delete"
       body: "*"
     };
   }
@@ -163,7 +163,7 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/list"
+      post: "/v1/hosts/list"
       body: "*"
     };
   }
@@ -175,7 +175,7 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/watch"
+      post: "/v1/hosts/watch"
       body: "*"
     };
   }
@@ -187,7 +187,7 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/upd-ips"
+      post: "/v1/hosts/upd-ips"
       body: "*"
     };
   }
@@ -199,7 +199,60 @@ service SGroupsHostsAPI {
       tags: "Host"
     };
     option (google.api.http) = {
-      post: "/v1/host/upd-metainfo"
+      post: "/v1/hosts/upd-metainfo"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsHostBindingAPI: SGroups Host Binding API
+service SGroupsHostBindingAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "HostBinding Resource API"};
+
+  // Upsert: Create or update host binding(s)
+  rpc Upsert(HostBindingReq.Upsert) returns (HostBindingResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete host binding(s)
+  rpc Delete(HostBindingReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/delete"
+      body: "*"
+    };
+  }
+
+  // List: List host binding(s)
+  rpc List(HostBindingReq.List) returns (HostBindingResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch host binding(s)
+  rpc Watch(HostBindingReq.Watch) returns (stream HostBindingResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/watch"
       body: "*"
     };
   }

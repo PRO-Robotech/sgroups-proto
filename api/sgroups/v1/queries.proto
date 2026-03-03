@@ -321,3 +321,92 @@ message HostResp {
     repeated Host hosts = 1;
   }
 }
+
+// HostBindingReq: host binding requests
+message HostBindingReq {
+  // Upsert: request to upsert host bindings
+  message Upsert {
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 1 [
+      json_name = "hostBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete host bindings
+  message Delete {
+    // HostBinding: host binding to delete
+    message HostBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // HostBindings: list of host bindings to delete
+    repeated HostBinding host_bindings = 1 [
+      json_name = "hostBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select host bindings
+  message Selectors {
+    // FieldSelector: resource field selector for host binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Host: reference to the host
+      common.ResourceIdentifier host = 4;
+    }
+    // FieldSelector: field selector for host binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for host binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list hosts
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch hosts
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// HostBindingResp: host binding responses
+message HostBindingResp {
+  // Upsert: response for upsert host bindings
+  message Upsert {
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 1;
+  }
+  // List: response for list of host bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 2;
+  }
+  // Watch: response for watch host bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 2;
+  }
+}

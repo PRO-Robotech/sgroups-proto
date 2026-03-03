@@ -28,6 +28,8 @@ const (
 	SGroupsAddressGroupsAPIName = "sgroups.v1.SGroupsAddressGroupsAPI"
 	// SGroupsHostsAPIName is the fully-qualified name of the SGroupsHostsAPI service.
 	SGroupsHostsAPIName = "sgroups.v1.SGroupsHostsAPI"
+	// SGroupsHostBindingAPIName is the fully-qualified name of the SGroupsHostBindingAPI service.
+	SGroupsHostBindingAPIName = "sgroups.v1.SGroupsHostBindingAPI"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -75,6 +77,18 @@ const (
 	// SGroupsHostsAPIUpdMetaInfoProcedure is the fully-qualified name of the SGroupsHostsAPI's
 	// UpdMetaInfo RPC.
 	SGroupsHostsAPIUpdMetaInfoProcedure = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
+	// SGroupsHostBindingAPIUpsertProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
+	// Upsert RPC.
+	SGroupsHostBindingAPIUpsertProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Upsert"
+	// SGroupsHostBindingAPIDeleteProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
+	// Delete RPC.
+	SGroupsHostBindingAPIDeleteProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Delete"
+	// SGroupsHostBindingAPIListProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
+	// List RPC.
+	SGroupsHostBindingAPIListProcedure = "/sgroups.v1.SGroupsHostBindingAPI/List"
+	// SGroupsHostBindingAPIWatchProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
+	// Watch RPC.
+	SGroupsHostBindingAPIWatchProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Watch"
 )
 
 // SGroupsNamespaceAPIClient is a client for the sgroups.v1.SGroupsNamespaceAPI service.
@@ -600,4 +614,161 @@ func (UnimplementedSGroupsHostsAPIHandler) UpdIPs(context.Context, *connect.Requ
 
 func (UnimplementedSGroupsHostsAPIHandler) UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.UpdMetaInfo is not implemented"))
+}
+
+// SGroupsHostBindingAPIClient is a client for the sgroups.v1.SGroupsHostBindingAPI service.
+type SGroupsHostBindingAPIClient interface {
+	// Upsert: Create or update host binding(s)
+	Upsert(context.Context, *connect.Request[v1.HostBindingReq_Upsert]) (*connect.Response[v1.HostBindingResp_Upsert], error)
+	// Delete: Delete host binding(s)
+	Delete(context.Context, *connect.Request[v1.HostBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List host binding(s)
+	List(context.Context, *connect.Request[v1.HostBindingReq_List]) (*connect.Response[v1.HostBindingResp_List], error)
+	// Watch: Watch host binding(s)
+	Watch(context.Context, *connect.Request[v1.HostBindingReq_Watch]) (*connect.ServerStreamForClient[v1.HostBindingResp_Watch], error)
+}
+
+// NewSGroupsHostBindingAPIClient constructs a client for the sgroups.v1.SGroupsHostBindingAPI
+// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
+// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
+// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsHostBindingAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsHostBindingAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsHostBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsHostBindingAPI").Methods()
+	return &sGroupsHostBindingAPIClient{
+		upsert: connect.NewClient[v1.HostBindingReq_Upsert, v1.HostBindingResp_Upsert](
+			httpClient,
+			baseURL+SGroupsHostBindingAPIUpsertProcedure,
+			connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.HostBindingReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsHostBindingAPIDeleteProcedure,
+			connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.HostBindingReq_List, v1.HostBindingResp_List](
+			httpClient,
+			baseURL+SGroupsHostBindingAPIListProcedure,
+			connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.HostBindingReq_Watch, v1.HostBindingResp_Watch](
+			httpClient,
+			baseURL+SGroupsHostBindingAPIWatchProcedure,
+			connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsHostBindingAPIClient implements SGroupsHostBindingAPIClient.
+type sGroupsHostBindingAPIClient struct {
+	upsert *connect.Client[v1.HostBindingReq_Upsert, v1.HostBindingResp_Upsert]
+	delete *connect.Client[v1.HostBindingReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.HostBindingReq_List, v1.HostBindingResp_List]
+	watch  *connect.Client[v1.HostBindingReq_Watch, v1.HostBindingResp_Watch]
+}
+
+// Upsert calls sgroups.v1.SGroupsHostBindingAPI.Upsert.
+func (c *sGroupsHostBindingAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.HostBindingReq_Upsert]) (*connect.Response[v1.HostBindingResp_Upsert], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsHostBindingAPI.Delete.
+func (c *sGroupsHostBindingAPIClient) Delete(ctx context.Context, req *connect.Request[v1.HostBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsHostBindingAPI.List.
+func (c *sGroupsHostBindingAPIClient) List(ctx context.Context, req *connect.Request[v1.HostBindingReq_List]) (*connect.Response[v1.HostBindingResp_List], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsHostBindingAPI.Watch.
+func (c *sGroupsHostBindingAPIClient) Watch(ctx context.Context, req *connect.Request[v1.HostBindingReq_Watch]) (*connect.ServerStreamForClient[v1.HostBindingResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsHostBindingAPIHandler is an implementation of the sgroups.v1.SGroupsHostBindingAPI
+// service.
+type SGroupsHostBindingAPIHandler interface {
+	// Upsert: Create or update host binding(s)
+	Upsert(context.Context, *connect.Request[v1.HostBindingReq_Upsert]) (*connect.Response[v1.HostBindingResp_Upsert], error)
+	// Delete: Delete host binding(s)
+	Delete(context.Context, *connect.Request[v1.HostBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List host binding(s)
+	List(context.Context, *connect.Request[v1.HostBindingReq_List]) (*connect.Response[v1.HostBindingResp_List], error)
+	// Watch: Watch host binding(s)
+	Watch(context.Context, *connect.Request[v1.HostBindingReq_Watch], *connect.ServerStream[v1.HostBindingResp_Watch]) error
+}
+
+// NewSGroupsHostBindingAPIHandler builds an HTTP handler from the service implementation. It
+// returns the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsHostBindingAPIHandler(svc SGroupsHostBindingAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsHostBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsHostBindingAPI").Methods()
+	sGroupsHostBindingAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsHostBindingAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsHostBindingAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsHostBindingAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsHostBindingAPIListHandler := connect.NewUnaryHandler(
+		SGroupsHostBindingAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsHostBindingAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsHostBindingAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsHostBindingAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsHostBindingAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsHostBindingAPIUpsertProcedure:
+			sGroupsHostBindingAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsHostBindingAPIDeleteProcedure:
+			sGroupsHostBindingAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsHostBindingAPIListProcedure:
+			sGroupsHostBindingAPIListHandler.ServeHTTP(w, r)
+		case SGroupsHostBindingAPIWatchProcedure:
+			sGroupsHostBindingAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsHostBindingAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsHostBindingAPIHandler struct{}
+
+func (UnimplementedSGroupsHostBindingAPIHandler) Upsert(context.Context, *connect.Request[v1.HostBindingReq_Upsert]) (*connect.Response[v1.HostBindingResp_Upsert], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsHostBindingAPIHandler) Delete(context.Context, *connect.Request[v1.HostBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsHostBindingAPIHandler) List(context.Context, *connect.Request[v1.HostBindingReq_List]) (*connect.Response[v1.HostBindingResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsHostBindingAPIHandler) Watch(context.Context, *connect.Request[v1.HostBindingReq_Watch], *connect.ServerStream[v1.HostBindingResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.Watch is not implemented"))
 }

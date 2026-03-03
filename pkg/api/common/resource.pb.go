@@ -482,6 +482,61 @@ func (x *ResSelector) GetLabelSelector() map[string]string {
 	return nil
 }
 
+// ResourceIdentifier: resource identifier
+type ResourceIdentifier struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: resource name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: resource namespace
+	Namespace     string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResourceIdentifier) Reset() {
+	*x = ResourceIdentifier{}
+	mi := &file_common_resource_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResourceIdentifier) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResourceIdentifier) ProtoMessage() {}
+
+func (x *ResourceIdentifier) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResourceIdentifier.ProtoReflect.Descriptor instead.
+func (*ResourceIdentifier) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ResourceIdentifier) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ResourceIdentifier) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
 var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
@@ -518,7 +573,10 @@ const file_common_resource_proto_rawDesc = "" +
 	"\x0elabel_selector\x18\x02 \x03(\v2&.common.ResSelector.LabelSelectorEntryR\rlabelSelector\x1a@\n" +
 	"\x12LabelSelectorEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01**\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"F\n" +
+	"\x12ResourceIdentifier\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace**\n" +
 	"\x06Action\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\t\n" +
 	"\x05ALLOW\x10\x01\x12\b\n" +
@@ -542,7 +600,7 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 }
 
 var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_common_resource_proto_goTypes = []any{
 	(Action)(0),                   // 0: common.Action
 	(WatchEventType)(0),           // 1: common.WatchEventType
@@ -551,18 +609,19 @@ var file_common_resource_proto_goTypes = []any{
 	(*ResourceRef)(nil),           // 4: common.ResourceRef
 	(*FieldSelector)(nil),         // 5: common.FieldSelector
 	(*ResSelector)(nil),           // 6: common.ResSelector
-	nil,                           // 7: common.Metadata.LabelsEntry
-	nil,                           // 8: common.Metadata.AnnotationsEntry
-	nil,                           // 9: common.ResSelector.LabelSelectorEntry
-	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(*ResourceIdentifier)(nil),    // 7: common.ResourceIdentifier
+	nil,                           // 8: common.Metadata.LabelsEntry
+	nil,                           // 9: common.Metadata.AnnotationsEntry
+	nil,                           // 10: common.ResSelector.LabelSelectorEntry
+	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
 var file_common_resource_proto_depIdxs = []int32{
-	7,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
-	8,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
-	10, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
+	8,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
+	9,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
+	11, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
 	4,  // 3: common.FieldSelector.refs:type_name -> common.ResourceRef
 	5,  // 4: common.ResSelector.field_selector:type_name -> common.FieldSelector
-	9,  // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
+	10, // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
 	6,  // [6:6] is the sub-list for method output_type
 	6,  // [6:6] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
@@ -581,7 +640,7 @@ func file_common_resource_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_resource_proto_rawDesc), len(file_common_resource_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
