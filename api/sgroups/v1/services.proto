@@ -139,7 +139,7 @@ service SGroupsNetworksAPI {
       tags: "Network"
     };
     option (google.api.http) = {
-      post: "/v1/network/upsert"
+      post: "/v1/networks/upsert"
       body: "*"
     };
   }
@@ -151,7 +151,7 @@ service SGroupsNetworksAPI {
       tags: "Network"
     };
     option (google.api.http) = {
-      post: "/v1/network/delete"
+      post: "/v1/networks/delete"
       body: "*"
     };
   }
@@ -163,7 +163,7 @@ service SGroupsNetworksAPI {
       tags: "Network"
     };
     option (google.api.http) = {
-      post: "/v1/network/list"
+      post: "/v1/networks/list"
       body: "*"
     };
   }
@@ -175,7 +175,7 @@ service SGroupsNetworksAPI {
       tags: "Network"
     };
     option (google.api.http) = {
-      post: "/v1/network/watch"
+      post: "/v1/networks/watch"
       body: "*"
     };
   }

@@ -688,7 +688,7 @@
         ]
       }
     },
-    "/v1/network/delete": {
+    "/v1/networks/delete": {
       "post": {
         "summary": "Delete: Delete network(s)",
         "description": "Delete: Delete network(s)",
@@ -723,7 +723,7 @@
         ]
       }
     },
-    "/v1/network/list": {
+    "/v1/networks/list": {
       "post": {
         "summary": "List: List network(s)",
         "description": "List: List network(s)",
@@ -757,7 +757,7 @@
         ]
       }
     },
-    "/v1/network/upsert": {
+    "/v1/networks/upsert": {
       "post": {
         "summary": "Upsert: Create or update network(s)",
         "description": "Upsert: Create or update network(s)",
@@ -791,7 +791,7 @@
         ]
       }
     },
-    "/v1/network/watch": {
+    "/v1/networks/watch": {
       "post": {
         "summary": "Watch: Watch network(s)",
         "description": "Watch: Watch network(s)",

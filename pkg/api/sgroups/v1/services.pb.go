@@ -46,16 +46,16 @@ const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\x04List\x12 .sgroups.v1.AddressGroupReq.List\x1a!.sgroups.v1.AddressGroupResp.List\"E\x92A+\n" +
 	"\fAddressGroup\x1a\x1bList: List address group(s)\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ags/list\x12\x9a\x01\n" +
 	"\x05Watch\x12!.sgroups.v1.AddressGroupReq.Watch\x1a\".sgroups.v1.AddressGroupResp.Watch\"H\x92A-\n" +
-	"\fAddressGroup\x1a\x1dWatch: Watch address group(s)\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ags/watch0\x01\x1a\x1f\x92A\x1c\x12\x1aAddressGroups Resource API2\xe2\x04\n" +
-	"\x12SGroupsNetworksAPI\x12\x97\x01\n" +
-	"\x06Upsert\x12\x1d.sgroups.v1.NetworkReq.Upsert\x1a\x1e.sgroups.v1.NetworkResp.Upsert\"N\x92A.\n" +
-	"\aNetwork\x1a#Upsert: Create or update network(s)\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/network/upsert\x12\x85\x01\n" +
-	"\x06Delete\x12\x1d.sgroups.v1.NetworkReq.Delete\x1a\x16.google.protobuf.Empty\"D\x92A$\n" +
-	"\aNetwork\x1a\x19Delete: Delete network(s)\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/network/delete\x12\x81\x01\n" +
-	"\x04List\x12\x1b.sgroups.v1.NetworkReq.List\x1a\x1c.sgroups.v1.NetworkResp.List\">\x92A \n" +
-	"\aNetwork\x1a\x15List: List network(s)\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/network/list\x12\x89\x01\n" +
-	"\x05Watch\x12\x1c.sgroups.v1.NetworkReq.Watch\x1a\x1d.sgroups.v1.NetworkResp.Watch\"A\x92A\"\n" +
-	"\aNetwork\x1a\x17Watch: Watch network(s)\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/network/watch0\x01\x1a\x1a\x92A\x17\x12\x15Networks Resource API2\xd8\x06\n" +
+	"\fAddressGroup\x1a\x1dWatch: Watch address group(s)\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ags/watch0\x01\x1a\x1f\x92A\x1c\x12\x1aAddressGroups Resource API2\xe6\x04\n" +
+	"\x12SGroupsNetworksAPI\x12\x98\x01\n" +
+	"\x06Upsert\x12\x1d.sgroups.v1.NetworkReq.Upsert\x1a\x1e.sgroups.v1.NetworkResp.Upsert\"O\x92A.\n" +
+	"\aNetwork\x1a#Upsert: Create or update network(s)\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/networks/upsert\x12\x86\x01\n" +
+	"\x06Delete\x12\x1d.sgroups.v1.NetworkReq.Delete\x1a\x16.google.protobuf.Empty\"E\x92A$\n" +
+	"\aNetwork\x1a\x19Delete: Delete network(s)\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/networks/delete\x12\x82\x01\n" +
+	"\x04List\x12\x1b.sgroups.v1.NetworkReq.List\x1a\x1c.sgroups.v1.NetworkResp.List\"?\x92A \n" +
+	"\aNetwork\x1a\x15List: List network(s)\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/networks/list\x12\x8a\x01\n" +
+	"\x05Watch\x12\x1c.sgroups.v1.NetworkReq.Watch\x1a\x1d.sgroups.v1.NetworkResp.Watch\"B\x92A\"\n" +
+	"\aNetwork\x1a\x17Watch: Watch network(s)\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/networks/watch0\x01\x1a\x1a\x92A\x17\x12\x15Networks Resource API2\xd8\x06\n" +
 	"\x0fSGroupsHostsAPI\x12\x89\x01\n" +
 	"\x06Upsert\x12\x1a.sgroups.v1.HostReq.Upsert\x1a\x1b.sgroups.v1.HostResp.Upsert\"F\x92A(\n" +
 	"\x04Host\x1a Upsert: Create or update host(s)\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/hosts/upsert\x12z\n" +

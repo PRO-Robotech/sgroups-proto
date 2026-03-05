@@ -775,7 +775,7 @@ func RegisterSGroupsNetworksAPIHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Upsert", runtime.WithHTTPPathPattern("/v1/network/upsert"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Upsert", runtime.WithHTTPPathPattern("/v1/networks/upsert"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -795,7 +795,7 @@ func RegisterSGroupsNetworksAPIHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Delete", runtime.WithHTTPPathPattern("/v1/network/delete"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Delete", runtime.WithHTTPPathPattern("/v1/networks/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -815,7 +815,7 @@ func RegisterSGroupsNetworksAPIHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/List", runtime.WithHTTPPathPattern("/v1/network/list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/List", runtime.WithHTTPPathPattern("/v1/networks/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1316,7 +1316,7 @@ func RegisterSGroupsNetworksAPIHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Upsert", runtime.WithHTTPPathPattern("/v1/network/upsert"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Upsert", runtime.WithHTTPPathPattern("/v1/networks/upsert"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1333,7 +1333,7 @@ func RegisterSGroupsNetworksAPIHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Delete", runtime.WithHTTPPathPattern("/v1/network/delete"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Delete", runtime.WithHTTPPathPattern("/v1/networks/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1350,7 +1350,7 @@ func RegisterSGroupsNetworksAPIHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/List", runtime.WithHTTPPathPattern("/v1/network/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/List", runtime.WithHTTPPathPattern("/v1/networks/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1367,7 +1367,7 @@ func RegisterSGroupsNetworksAPIHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Watch", runtime.WithHTTPPathPattern("/v1/network/watch"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsNetworksAPI/Watch", runtime.WithHTTPPathPattern("/v1/networks/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1384,10 +1384,10 @@ func RegisterSGroupsNetworksAPIHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 var (
-	pattern_SGroupsNetworksAPI_Upsert_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "network", "upsert"}, ""))
-	pattern_SGroupsNetworksAPI_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "network", "delete"}, ""))
-	pattern_SGroupsNetworksAPI_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "network", "list"}, ""))
-	pattern_SGroupsNetworksAPI_Watch_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "network", "watch"}, ""))
+	pattern_SGroupsNetworksAPI_Upsert_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "networks", "upsert"}, ""))
+	pattern_SGroupsNetworksAPI_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "networks", "delete"}, ""))
+	pattern_SGroupsNetworksAPI_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "networks", "list"}, ""))
+	pattern_SGroupsNetworksAPI_Watch_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "networks", "watch"}, ""))
 )
 
 var (
