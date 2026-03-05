@@ -14,6 +14,10 @@
       "description": "AddressGroups Resource API"
     },
     {
+      "name": "SGroupsNetworksAPI",
+      "description": "Networks Resource API"
+    },
+    {
       "name": "SGroupsHostsAPI",
       "description": "Hosts Resource API"
     },
@@ -683,6 +687,152 @@
           "Namespace"
         ]
       }
+    },
+    "/v1/network/delete": {
+      "post": {
+        "summary": "Delete: Delete network(s)",
+        "description": "Delete: Delete network(s)",
+        "operationId": "SGroupsNetworksAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/network/list": {
+      "post": {
+        "summary": "List: List network(s)",
+        "description": "List: List network(s)",
+        "operationId": "SGroupsNetworksAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/network/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update network(s)",
+        "description": "Upsert: Create or update network(s)",
+        "operationId": "SGroupsNetworksAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/network/watch": {
+      "post": {
+        "summary": "Watch: Watch network(s)",
+        "description": "Watch: Watch network(s)",
+        "operationId": "SGroupsNetworksAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NetworkRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NetworkRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
     }
   },
   "definitions": {
@@ -876,6 +1026,38 @@
         }
       },
       "title": "FieldSelector: resource field selector"
+    },
+    "NetworkReqDeleteNetwork": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Network: network to delete"
+    },
+    "NetworkRespNetworkExt": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkSpec",
+          "title": "Spec: network specification"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: list of resource references in the network"
+        }
+      },
+      "title": "NetworkExt: extended network information"
     },
     "SpecMetaInfo": {
       "type": "object",
@@ -1221,6 +1403,20 @@
         }
       },
       "title": "Namespace: represents namespace resource"
+    },
+    "sgroupsV1Network": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkSpec",
+          "title": "Spec: network specification"
+        }
+      },
+      "title": "Network: represents network resource"
     },
     "v1AddressGroupReqDelete": {
       "type": "object",
@@ -1818,6 +2014,144 @@
         "description": {
           "type": "string",
           "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1NetworkReqDelete": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkReqDeleteNetwork"
+          },
+          "title": "Networks: list of networks to delete"
+        }
+      },
+      "title": "Delete: request to delete networks",
+      "required": [
+        "networks"
+      ]
+    },
+    "v1NetworkReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list networks"
+    },
+    "v1NetworkReqUpsert": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Network"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Upsert: request to upsert networks",
+      "required": [
+        "networks"
+      ]
+    },
+    "v1NetworkReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch networks"
+    },
+    "v1NetworkRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkRespNetworkExt"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "List: response for list networks"
+    },
+    "v1NetworkRespUpsert": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Network"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Upsert: response for upsert networks"
+    },
+    "v1NetworkRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkRespNetworkExt"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Watch: response for watch networks"
+    },
+    "v1NetworkSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "CIDR": {
+          "type": "string",
+          "title": "CIDR: network CIDR"
         }
       },
       "title": "Spec: resource specification"

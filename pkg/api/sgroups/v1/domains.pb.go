@@ -135,6 +135,61 @@ func (x *AddressGroup) GetSpec() *AddressGroup_Spec {
 	return nil
 }
 
+// Network: represents network resource
+type Network struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: network metadata
+	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: network specification
+	Spec          *Network_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Network) Reset() {
+	*x = Network{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Network) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Network) ProtoMessage() {}
+
+func (x *Network) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Network.ProtoReflect.Descriptor instead.
+func (*Network) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Network) GetMetadata() *common.Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *Network) GetSpec() *Network_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
 // Host: represents host resource
 type Host struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -148,7 +203,7 @@ type Host struct {
 
 func (x *Host) Reset() {
 	*x = Host{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -160,7 +215,7 @@ func (x *Host) String() string {
 func (*Host) ProtoMessage() {}
 
 func (x *Host) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[2]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -173,7 +228,7 @@ func (x *Host) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Host.ProtoReflect.Descriptor instead.
 func (*Host) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Host) GetMetadata() *common.Metadata {
@@ -203,7 +258,7 @@ type HostBinding struct {
 
 func (x *HostBinding) Reset() {
 	*x = HostBinding{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -215,7 +270,7 @@ func (x *HostBinding) String() string {
 func (*HostBinding) ProtoMessage() {}
 
 func (x *HostBinding) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[3]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -228,7 +283,7 @@ func (x *HostBinding) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HostBinding.ProtoReflect.Descriptor instead.
 func (*HostBinding) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *HostBinding) GetMetadata() *common.Metadata {
@@ -260,7 +315,7 @@ type Namespace_Spec struct {
 
 func (x *Namespace_Spec) Reset() {
 	*x = Namespace_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +327,7 @@ func (x *Namespace_Spec) String() string {
 func (*Namespace_Spec) ProtoMessage() {}
 
 func (x *Namespace_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[4]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +385,7 @@ type AddressGroup_Spec struct {
 
 func (x *AddressGroup_Spec) Reset() {
 	*x = AddressGroup_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -342,7 +397,7 @@ func (x *AddressGroup_Spec) String() string {
 func (*AddressGroup_Spec) ProtoMessage() {}
 
 func (x *AddressGroup_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[5]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -401,6 +456,79 @@ func (x *AddressGroup_Spec) GetTrace() bool {
 }
 
 // Spec: resource specification
+type Network_Spec struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// DisplayName: resource display name
+	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Comment: resource comment
+	Comment string `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	// Description: resource description
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// CIDR: network CIDR
+	Cidr          string `protobuf:"bytes,4,opt,name=cidr,json=CIDR,proto3" json:"cidr,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Network_Spec) Reset() {
+	*x = Network_Spec{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Network_Spec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Network_Spec) ProtoMessage() {}
+
+func (x *Network_Spec) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Network_Spec.ProtoReflect.Descriptor instead.
+func (*Network_Spec) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *Network_Spec) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *Network_Spec) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+func (x *Network_Spec) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Network_Spec) GetCidr() string {
+	if x != nil {
+		return x.Cidr
+	}
+	return ""
+}
+
+// Spec: resource specification
 type Host_Spec struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// DisplayName: resource display name
@@ -419,7 +547,7 @@ type Host_Spec struct {
 
 func (x *Host_Spec) Reset() {
 	*x = Host_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -431,7 +559,7 @@ func (x *Host_Spec) String() string {
 func (*Host_Spec) ProtoMessage() {}
 
 func (x *Host_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -444,7 +572,7 @@ func (x *Host_Spec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Host_Spec.ProtoReflect.Descriptor instead.
 func (*Host_Spec) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2, 0}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *Host_Spec) GetDisplayName() string {
@@ -503,7 +631,7 @@ type Host_Spec_MetaInfo struct {
 
 func (x *Host_Spec_MetaInfo) Reset() {
 	*x = Host_Spec_MetaInfo{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -515,7 +643,7 @@ func (x *Host_Spec_MetaInfo) String() string {
 func (*Host_Spec_MetaInfo) ProtoMessage() {}
 
 func (x *Host_Spec_MetaInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -528,7 +656,7 @@ func (x *Host_Spec_MetaInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Host_Spec_MetaInfo.ProtoReflect.Descriptor instead.
 func (*Host_Spec_MetaInfo) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{2, 0, 0}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3, 0, 0}
 }
 
 func (x *Host_Spec_MetaInfo) GetHostName() string {
@@ -592,7 +720,7 @@ type HostBinding_Spec struct {
 
 func (x *HostBinding_Spec) Reset() {
 	*x = HostBinding_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -604,7 +732,7 @@ func (x *HostBinding_Spec) String() string {
 func (*HostBinding_Spec) ProtoMessage() {}
 
 func (x *HostBinding_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -617,7 +745,7 @@ func (x *HostBinding_Spec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HostBinding_Spec.ProtoReflect.Descriptor instead.
 func (*HostBinding_Spec) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{3, 0}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{4, 0}
 }
 
 func (x *HostBinding_Spec) GetDisplayName() string {
@@ -677,7 +805,15 @@ const file_sgroups_v1_domains_proto_rawDesc = "" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12?\n" +
 	"\x0edefault_action\x18\x04 \x01(\x0e2\x0e.common.ActionB\b\xbaH\x05\x82\x01\x02 \x00R\rdefaultAction\x12\x12\n" +
 	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x14\n" +
-	"\x05trace\x18\x06 \x01(\bR\x05trace\"\xa1\x04\n" +
+	"\x05trace\x18\x06 \x01(\bR\x05trace\"\xf6\x02\n" +
+	"\aNetwork\x124\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x124\n" +
+	"\x04spec\x18\x02 \x01(\v2\x18.sgroups.v1.Network.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xfe\x01\n" +
+	"\x04Spec\x12*\n" +
+	"\fdisplay_name\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18?R\vdisplayName\x12\x18\n" +
+	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x8d\x01\n" +
+	"\x04cidr\x18\x04 \x01(\tBy\xbaHv\xba\x01F\x12/must not contain leading or trailing whitespace\x1a\x13this == this.trim()\xba\x01&\x12\x10must contain '/'\x1a\x12this.contains('/')r\x02\x10\x01R\x04CIDR\"\xa1\x04\n" +
 	"\x04Host\x124\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x121\n" +
 	"\x04spec\x18\x02 \x01(\v2\x15.sgroups.v1.Host.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xaf\x03\n" +
@@ -716,41 +852,45 @@ func file_sgroups_v1_domains_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_domains_proto_rawDescData
 }
 
-var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_sgroups_v1_domains_proto_goTypes = []any{
 	(*Namespace)(nil),                 // 0: sgroups.v1.Namespace
 	(*AddressGroup)(nil),              // 1: sgroups.v1.AddressGroup
-	(*Host)(nil),                      // 2: sgroups.v1.Host
-	(*HostBinding)(nil),               // 3: sgroups.v1.HostBinding
-	(*Namespace_Spec)(nil),            // 4: sgroups.v1.Namespace.Spec
-	(*AddressGroup_Spec)(nil),         // 5: sgroups.v1.AddressGroup.Spec
-	(*Host_Spec)(nil),                 // 6: sgroups.v1.Host.Spec
-	(*Host_Spec_MetaInfo)(nil),        // 7: sgroups.v1.Host.Spec.MetaInfo
-	(*HostBinding_Spec)(nil),          // 8: sgroups.v1.HostBinding.Spec
-	(*common.Metadata)(nil),           // 9: common.Metadata
-	(common.Action)(0),                // 10: common.Action
-	(*common.IPs)(nil),                // 11: common.IPs
-	(*common.ResourceIdentifier)(nil), // 12: common.ResourceIdentifier
+	(*Network)(nil),                   // 2: sgroups.v1.Network
+	(*Host)(nil),                      // 3: sgroups.v1.Host
+	(*HostBinding)(nil),               // 4: sgroups.v1.HostBinding
+	(*Namespace_Spec)(nil),            // 5: sgroups.v1.Namespace.Spec
+	(*AddressGroup_Spec)(nil),         // 6: sgroups.v1.AddressGroup.Spec
+	(*Network_Spec)(nil),              // 7: sgroups.v1.Network.Spec
+	(*Host_Spec)(nil),                 // 8: sgroups.v1.Host.Spec
+	(*Host_Spec_MetaInfo)(nil),        // 9: sgroups.v1.Host.Spec.MetaInfo
+	(*HostBinding_Spec)(nil),          // 10: sgroups.v1.HostBinding.Spec
+	(*common.Metadata)(nil),           // 11: common.Metadata
+	(common.Action)(0),                // 12: common.Action
+	(*common.IPs)(nil),                // 13: common.IPs
+	(*common.ResourceIdentifier)(nil), // 14: common.ResourceIdentifier
 }
 var file_sgroups_v1_domains_proto_depIdxs = []int32{
-	9,  // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
-	4,  // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
-	9,  // 2: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
-	5,  // 3: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	9,  // 4: sgroups.v1.Host.metadata:type_name -> common.Metadata
-	6,  // 5: sgroups.v1.Host.spec:type_name -> sgroups.v1.Host.Spec
-	9,  // 6: sgroups.v1.HostBinding.metadata:type_name -> common.Metadata
-	8,  // 7: sgroups.v1.HostBinding.spec:type_name -> sgroups.v1.HostBinding.Spec
-	10, // 8: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
-	11, // 9: sgroups.v1.Host.Spec.ips:type_name -> common.IPs
-	7,  // 10: sgroups.v1.Host.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
-	12, // 11: sgroups.v1.HostBinding.Spec.address_group:type_name -> common.ResourceIdentifier
-	12, // 12: sgroups.v1.HostBinding.Spec.host:type_name -> common.ResourceIdentifier
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	11, // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
+	5,  // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
+	11, // 2: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
+	6,  // 3: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	11, // 4: sgroups.v1.Network.metadata:type_name -> common.Metadata
+	7,  // 5: sgroups.v1.Network.spec:type_name -> sgroups.v1.Network.Spec
+	11, // 6: sgroups.v1.Host.metadata:type_name -> common.Metadata
+	8,  // 7: sgroups.v1.Host.spec:type_name -> sgroups.v1.Host.Spec
+	11, // 8: sgroups.v1.HostBinding.metadata:type_name -> common.Metadata
+	10, // 9: sgroups.v1.HostBinding.spec:type_name -> sgroups.v1.HostBinding.Spec
+	12, // 10: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
+	13, // 11: sgroups.v1.Host.Spec.ips:type_name -> common.IPs
+	9,  // 12: sgroups.v1.Host.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
+	14, // 13: sgroups.v1.HostBinding.Spec.address_group:type_name -> common.ResourceIdentifier
+	14, // 14: sgroups.v1.HostBinding.Spec.host:type_name -> common.ResourceIdentifier
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_domains_proto_init() }
@@ -764,7 +904,7 @@ func file_sgroups_v1_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_domains_proto_rawDesc), len(file_sgroups_v1_domains_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
