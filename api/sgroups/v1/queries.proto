@@ -176,6 +176,85 @@ message AddressGroupResp {
   }
 }
 
+// NetworkReq: network requests
+message NetworkReq {
+  // Upsert: request to upsert networks
+  message Upsert {
+    // Networks: list of networks
+    repeated Network networks = 1 [
+      json_name = "networks",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete networks
+  message Delete {
+    // Network: network to delete
+    message Network {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Networks: list of networks to delete
+    repeated Network networks = 1 [
+      json_name = "networks",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list networks
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch networks
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NetworkResp: network responses
+message NetworkResp {
+  // NetworkExt: extended network information
+  message NetworkExt {
+    // Metadata: network metadata
+    common.Metadata metadata = 1;
+    // Spec: network specification
+    Network.Spec spec = 2;
+    // Refs: list of resource references in the network
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert networks
+  message Upsert {
+    // Networks: list of networks
+    repeated Network networks = 1;
+  }
+  // List: response for list networks
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Networks: list of networks
+    repeated NetworkExt networks = 2;
+  }
+  // Watch: response for watch networks
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Networks: list of networks
+    repeated NetworkExt networks = 2;
+  }
+}
+
 // HostReq: host requests
 message HostReq {
   // Upsert: request to upsert hosts

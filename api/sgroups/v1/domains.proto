@@ -58,6 +58,40 @@ message AddressGroup {
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
 
+// Network: represents network resource
+message Network {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // CIDR: network CIDR
+    string cidr = 4 [
+      json_name = "CIDR",
+      (buf.validate.field) = {
+        string: {min_len: 1}
+        cel: {
+          expression: "this == this.trim()"
+          message: "must not contain leading or trailing whitespace"
+        }
+        cel: {
+          expression: "this.contains('/')"
+          message: "must contain '/'"
+        }
+      }
+    ];
+  }
+  // Metadata: network metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: network specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
 // Host: represents host resource
 message Host {
   // Spec: resource specification
