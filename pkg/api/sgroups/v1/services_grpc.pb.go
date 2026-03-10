@@ -483,3 +483,779 @@ var SGroupsAddressGroupsAPI_ServiceDesc = grpc.ServiceDesc{
 	},
 	Metadata: "sgroups/v1/services.proto",
 }
+
+const (
+	SGroupsNetworksAPI_Upsert_FullMethodName = "/sgroups.v1.SGroupsNetworksAPI/Upsert"
+	SGroupsNetworksAPI_Delete_FullMethodName = "/sgroups.v1.SGroupsNetworksAPI/Delete"
+	SGroupsNetworksAPI_List_FullMethodName   = "/sgroups.v1.SGroupsNetworksAPI/List"
+	SGroupsNetworksAPI_Watch_FullMethodName  = "/sgroups.v1.SGroupsNetworksAPI/Watch"
+)
+
+// SGroupsNetworksAPIClient is the client API for SGroupsNetworksAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SGroupsNetworksAPI: SGroups Networks API
+type SGroupsNetworksAPIClient interface {
+	// Upsert: Create or update network(s)
+	Upsert(ctx context.Context, in *NetworkReq_Upsert, opts ...grpc.CallOption) (*NetworkResp_Upsert, error)
+	// Delete: Delete network(s)
+	Delete(ctx context.Context, in *NetworkReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List network(s)
+	List(ctx context.Context, in *NetworkReq_List, opts ...grpc.CallOption) (*NetworkResp_List, error)
+	// Watch: Watch network(s)
+	Watch(ctx context.Context, in *NetworkReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NetworkResp_Watch], error)
+}
+
+type sGroupsNetworksAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSGroupsNetworksAPIClient(cc grpc.ClientConnInterface) SGroupsNetworksAPIClient {
+	return &sGroupsNetworksAPIClient{cc}
+}
+
+func (c *sGroupsNetworksAPIClient) Upsert(ctx context.Context, in *NetworkReq_Upsert, opts ...grpc.CallOption) (*NetworkResp_Upsert, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NetworkResp_Upsert)
+	err := c.cc.Invoke(ctx, SGroupsNetworksAPI_Upsert_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsNetworksAPIClient) Delete(ctx context.Context, in *NetworkReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, SGroupsNetworksAPI_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsNetworksAPIClient) List(ctx context.Context, in *NetworkReq_List, opts ...grpc.CallOption) (*NetworkResp_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NetworkResp_List)
+	err := c.cc.Invoke(ctx, SGroupsNetworksAPI_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsNetworksAPIClient) Watch(ctx context.Context, in *NetworkReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NetworkResp_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsNetworksAPI_ServiceDesc.Streams[0], SGroupsNetworksAPI_Watch_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[NetworkReq_Watch, NetworkResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsNetworksAPI_WatchClient = grpc.ServerStreamingClient[NetworkResp_Watch]
+
+// SGroupsNetworksAPIServer is the server API for SGroupsNetworksAPI service.
+// All implementations must embed UnimplementedSGroupsNetworksAPIServer
+// for forward compatibility.
+//
+// SGroupsNetworksAPI: SGroups Networks API
+type SGroupsNetworksAPIServer interface {
+	// Upsert: Create or update network(s)
+	Upsert(context.Context, *NetworkReq_Upsert) (*NetworkResp_Upsert, error)
+	// Delete: Delete network(s)
+	Delete(context.Context, *NetworkReq_Delete) (*emptypb.Empty, error)
+	// List: List network(s)
+	List(context.Context, *NetworkReq_List) (*NetworkResp_List, error)
+	// Watch: Watch network(s)
+	Watch(*NetworkReq_Watch, grpc.ServerStreamingServer[NetworkResp_Watch]) error
+	mustEmbedUnimplementedSGroupsNetworksAPIServer()
+}
+
+// UnimplementedSGroupsNetworksAPIServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSGroupsNetworksAPIServer struct{}
+
+func (UnimplementedSGroupsNetworksAPIServer) Upsert(context.Context, *NetworkReq_Upsert) (*NetworkResp_Upsert, error) {
+	return nil, status.Error(codes.Unimplemented, "method Upsert not implemented")
+}
+func (UnimplementedSGroupsNetworksAPIServer) Delete(context.Context, *NetworkReq_Delete) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSGroupsNetworksAPIServer) List(context.Context, *NetworkReq_List) (*NetworkResp_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedSGroupsNetworksAPIServer) Watch(*NetworkReq_Watch, grpc.ServerStreamingServer[NetworkResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
+}
+func (UnimplementedSGroupsNetworksAPIServer) mustEmbedUnimplementedSGroupsNetworksAPIServer() {}
+func (UnimplementedSGroupsNetworksAPIServer) testEmbeddedByValue()                            {}
+
+// UnsafeSGroupsNetworksAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SGroupsNetworksAPIServer will
+// result in compilation errors.
+type UnsafeSGroupsNetworksAPIServer interface {
+	mustEmbedUnimplementedSGroupsNetworksAPIServer()
+}
+
+func RegisterSGroupsNetworksAPIServer(s grpc.ServiceRegistrar, srv SGroupsNetworksAPIServer) {
+	// If the following call panics, it indicates UnimplementedSGroupsNetworksAPIServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SGroupsNetworksAPI_ServiceDesc, srv)
+}
+
+func _SGroupsNetworksAPI_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NetworkReq_Upsert)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsNetworksAPIServer).Upsert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsNetworksAPI_Upsert_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsNetworksAPIServer).Upsert(ctx, req.(*NetworkReq_Upsert))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsNetworksAPI_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NetworkReq_Delete)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsNetworksAPIServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsNetworksAPI_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsNetworksAPIServer).Delete(ctx, req.(*NetworkReq_Delete))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsNetworksAPI_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NetworkReq_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsNetworksAPIServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsNetworksAPI_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsNetworksAPIServer).List(ctx, req.(*NetworkReq_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsNetworksAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(NetworkReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsNetworksAPIServer).Watch(m, &grpc.GenericServerStream[NetworkReq_Watch, NetworkResp_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsNetworksAPI_WatchServer = grpc.ServerStreamingServer[NetworkResp_Watch]
+
+// SGroupsNetworksAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsNetworksAPI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SGroupsNetworksAPI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sgroups.v1.SGroupsNetworksAPI",
+	HandlerType: (*SGroupsNetworksAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Upsert",
+			Handler:    _SGroupsNetworksAPI_Upsert_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _SGroupsNetworksAPI_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _SGroupsNetworksAPI_List_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Watch",
+			Handler:       _SGroupsNetworksAPI_Watch_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "sgroups/v1/services.proto",
+}
+
+const (
+	SGroupsHostsAPI_Upsert_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/Upsert"
+	SGroupsHostsAPI_Delete_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/Delete"
+	SGroupsHostsAPI_List_FullMethodName        = "/sgroups.v1.SGroupsHostsAPI/List"
+	SGroupsHostsAPI_Watch_FullMethodName       = "/sgroups.v1.SGroupsHostsAPI/Watch"
+	SGroupsHostsAPI_UpdIPs_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/UpdIPs"
+	SGroupsHostsAPI_UpdMetaInfo_FullMethodName = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
+)
+
+// SGroupsHostsAPIClient is the client API for SGroupsHostsAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SGroupsHostsAPI: SGroups Hosts API
+type SGroupsHostsAPIClient interface {
+	// Upsert: Create or update host(s)
+	Upsert(ctx context.Context, in *HostReq_Upsert, opts ...grpc.CallOption) (*HostResp_Upsert, error)
+	// Delete: Delete host(s)
+	Delete(ctx context.Context, in *HostReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List host(s)
+	List(ctx context.Context, in *HostReq_List, opts ...grpc.CallOption) (*HostResp_List, error)
+	// Watch: Watch host(s)
+	Watch(ctx context.Context, in *HostReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_Watch], error)
+	// UpdIPs: Update host(s) IPs
+	UpdIPs(ctx context.Context, in *HostReq_UpdIPs, opts ...grpc.CallOption) (*HostResp_UpdIPs, error)
+	// UpdMetaInfo: Update host(s) meta information
+	UpdMetaInfo(ctx context.Context, in *HostReq_UpdMetaInfo, opts ...grpc.CallOption) (*HostResp_UpdMetaInfo, error)
+}
+
+type sGroupsHostsAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSGroupsHostsAPIClient(cc grpc.ClientConnInterface) SGroupsHostsAPIClient {
+	return &sGroupsHostsAPIClient{cc}
+}
+
+func (c *sGroupsHostsAPIClient) Upsert(ctx context.Context, in *HostReq_Upsert, opts ...grpc.CallOption) (*HostResp_Upsert, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostResp_Upsert)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_Upsert_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) Delete(ctx context.Context, in *HostReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) List(ctx context.Context, in *HostReq_List, opts ...grpc.CallOption) (*HostResp_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostResp_List)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) Watch(ctx context.Context, in *HostReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsHostsAPI_ServiceDesc.Streams[0], SGroupsHostsAPI_Watch_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[HostReq_Watch, HostResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchClient = grpc.ServerStreamingClient[HostResp_Watch]
+
+func (c *sGroupsHostsAPIClient) UpdIPs(ctx context.Context, in *HostReq_UpdIPs, opts ...grpc.CallOption) (*HostResp_UpdIPs, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostResp_UpdIPs)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_UpdIPs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) UpdMetaInfo(ctx context.Context, in *HostReq_UpdMetaInfo, opts ...grpc.CallOption) (*HostResp_UpdMetaInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostResp_UpdMetaInfo)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_UpdMetaInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SGroupsHostsAPIServer is the server API for SGroupsHostsAPI service.
+// All implementations must embed UnimplementedSGroupsHostsAPIServer
+// for forward compatibility.
+//
+// SGroupsHostsAPI: SGroups Hosts API
+type SGroupsHostsAPIServer interface {
+	// Upsert: Create or update host(s)
+	Upsert(context.Context, *HostReq_Upsert) (*HostResp_Upsert, error)
+	// Delete: Delete host(s)
+	Delete(context.Context, *HostReq_Delete) (*emptypb.Empty, error)
+	// List: List host(s)
+	List(context.Context, *HostReq_List) (*HostResp_List, error)
+	// Watch: Watch host(s)
+	Watch(*HostReq_Watch, grpc.ServerStreamingServer[HostResp_Watch]) error
+	// UpdIPs: Update host(s) IPs
+	UpdIPs(context.Context, *HostReq_UpdIPs) (*HostResp_UpdIPs, error)
+	// UpdMetaInfo: Update host(s) meta information
+	UpdMetaInfo(context.Context, *HostReq_UpdMetaInfo) (*HostResp_UpdMetaInfo, error)
+	mustEmbedUnimplementedSGroupsHostsAPIServer()
+}
+
+// UnimplementedSGroupsHostsAPIServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSGroupsHostsAPIServer struct{}
+
+func (UnimplementedSGroupsHostsAPIServer) Upsert(context.Context, *HostReq_Upsert) (*HostResp_Upsert, error) {
+	return nil, status.Error(codes.Unimplemented, "method Upsert not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) Delete(context.Context, *HostReq_Delete) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) List(context.Context, *HostReq_List) (*HostResp_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) Watch(*HostReq_Watch, grpc.ServerStreamingServer[HostResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) UpdIPs(context.Context, *HostReq_UpdIPs) (*HostResp_UpdIPs, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdIPs not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) UpdMetaInfo(context.Context, *HostReq_UpdMetaInfo) (*HostResp_UpdMetaInfo, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdMetaInfo not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) mustEmbedUnimplementedSGroupsHostsAPIServer() {}
+func (UnimplementedSGroupsHostsAPIServer) testEmbeddedByValue()                         {}
+
+// UnsafeSGroupsHostsAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SGroupsHostsAPIServer will
+// result in compilation errors.
+type UnsafeSGroupsHostsAPIServer interface {
+	mustEmbedUnimplementedSGroupsHostsAPIServer()
+}
+
+func RegisterSGroupsHostsAPIServer(s grpc.ServiceRegistrar, srv SGroupsHostsAPIServer) {
+	// If the following call panics, it indicates UnimplementedSGroupsHostsAPIServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SGroupsHostsAPI_ServiceDesc, srv)
+}
+
+func _SGroupsHostsAPI_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_Upsert)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).Upsert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_Upsert_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).Upsert(ctx, req.(*HostReq_Upsert))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_Delete)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).Delete(ctx, req.(*HostReq_Delete))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).List(ctx, req.(*HostReq_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(HostReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsHostsAPIServer).Watch(m, &grpc.GenericServerStream[HostReq_Watch, HostResp_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchServer = grpc.ServerStreamingServer[HostResp_Watch]
+
+func _SGroupsHostsAPI_UpdIPs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_UpdIPs)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).UpdIPs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_UpdIPs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).UpdIPs(ctx, req.(*HostReq_UpdIPs))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_UpdMetaInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_UpdMetaInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).UpdMetaInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_UpdMetaInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).UpdMetaInfo(ctx, req.(*HostReq_UpdMetaInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SGroupsHostsAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsHostsAPI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SGroupsHostsAPI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sgroups.v1.SGroupsHostsAPI",
+	HandlerType: (*SGroupsHostsAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Upsert",
+			Handler:    _SGroupsHostsAPI_Upsert_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _SGroupsHostsAPI_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _SGroupsHostsAPI_List_Handler,
+		},
+		{
+			MethodName: "UpdIPs",
+			Handler:    _SGroupsHostsAPI_UpdIPs_Handler,
+		},
+		{
+			MethodName: "UpdMetaInfo",
+			Handler:    _SGroupsHostsAPI_UpdMetaInfo_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Watch",
+			Handler:       _SGroupsHostsAPI_Watch_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "sgroups/v1/services.proto",
+}
+
+const (
+	SGroupsHostBindingAPI_Upsert_FullMethodName = "/sgroups.v1.SGroupsHostBindingAPI/Upsert"
+	SGroupsHostBindingAPI_Delete_FullMethodName = "/sgroups.v1.SGroupsHostBindingAPI/Delete"
+	SGroupsHostBindingAPI_List_FullMethodName   = "/sgroups.v1.SGroupsHostBindingAPI/List"
+	SGroupsHostBindingAPI_Watch_FullMethodName  = "/sgroups.v1.SGroupsHostBindingAPI/Watch"
+)
+
+// SGroupsHostBindingAPIClient is the client API for SGroupsHostBindingAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SGroupsHostBindingAPI: SGroups Host Binding API
+type SGroupsHostBindingAPIClient interface {
+	// Upsert: Create or update host binding(s)
+	Upsert(ctx context.Context, in *HostBindingReq_Upsert, opts ...grpc.CallOption) (*HostBindingResp_Upsert, error)
+	// Delete: Delete host binding(s)
+	Delete(ctx context.Context, in *HostBindingReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List host binding(s)
+	List(ctx context.Context, in *HostBindingReq_List, opts ...grpc.CallOption) (*HostBindingResp_List, error)
+	// Watch: Watch host binding(s)
+	Watch(ctx context.Context, in *HostBindingReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostBindingResp_Watch], error)
+}
+
+type sGroupsHostBindingAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSGroupsHostBindingAPIClient(cc grpc.ClientConnInterface) SGroupsHostBindingAPIClient {
+	return &sGroupsHostBindingAPIClient{cc}
+}
+
+func (c *sGroupsHostBindingAPIClient) Upsert(ctx context.Context, in *HostBindingReq_Upsert, opts ...grpc.CallOption) (*HostBindingResp_Upsert, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostBindingResp_Upsert)
+	err := c.cc.Invoke(ctx, SGroupsHostBindingAPI_Upsert_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostBindingAPIClient) Delete(ctx context.Context, in *HostBindingReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, SGroupsHostBindingAPI_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostBindingAPIClient) List(ctx context.Context, in *HostBindingReq_List, opts ...grpc.CallOption) (*HostBindingResp_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostBindingResp_List)
+	err := c.cc.Invoke(ctx, SGroupsHostBindingAPI_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostBindingAPIClient) Watch(ctx context.Context, in *HostBindingReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostBindingResp_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsHostBindingAPI_ServiceDesc.Streams[0], SGroupsHostBindingAPI_Watch_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[HostBindingReq_Watch, HostBindingResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostBindingAPI_WatchClient = grpc.ServerStreamingClient[HostBindingResp_Watch]
+
+// SGroupsHostBindingAPIServer is the server API for SGroupsHostBindingAPI service.
+// All implementations must embed UnimplementedSGroupsHostBindingAPIServer
+// for forward compatibility.
+//
+// SGroupsHostBindingAPI: SGroups Host Binding API
+type SGroupsHostBindingAPIServer interface {
+	// Upsert: Create or update host binding(s)
+	Upsert(context.Context, *HostBindingReq_Upsert) (*HostBindingResp_Upsert, error)
+	// Delete: Delete host binding(s)
+	Delete(context.Context, *HostBindingReq_Delete) (*emptypb.Empty, error)
+	// List: List host binding(s)
+	List(context.Context, *HostBindingReq_List) (*HostBindingResp_List, error)
+	// Watch: Watch host binding(s)
+	Watch(*HostBindingReq_Watch, grpc.ServerStreamingServer[HostBindingResp_Watch]) error
+	mustEmbedUnimplementedSGroupsHostBindingAPIServer()
+}
+
+// UnimplementedSGroupsHostBindingAPIServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSGroupsHostBindingAPIServer struct{}
+
+func (UnimplementedSGroupsHostBindingAPIServer) Upsert(context.Context, *HostBindingReq_Upsert) (*HostBindingResp_Upsert, error) {
+	return nil, status.Error(codes.Unimplemented, "method Upsert not implemented")
+}
+func (UnimplementedSGroupsHostBindingAPIServer) Delete(context.Context, *HostBindingReq_Delete) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSGroupsHostBindingAPIServer) List(context.Context, *HostBindingReq_List) (*HostBindingResp_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedSGroupsHostBindingAPIServer) Watch(*HostBindingReq_Watch, grpc.ServerStreamingServer[HostBindingResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
+}
+func (UnimplementedSGroupsHostBindingAPIServer) mustEmbedUnimplementedSGroupsHostBindingAPIServer() {}
+func (UnimplementedSGroupsHostBindingAPIServer) testEmbeddedByValue()                               {}
+
+// UnsafeSGroupsHostBindingAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SGroupsHostBindingAPIServer will
+// result in compilation errors.
+type UnsafeSGroupsHostBindingAPIServer interface {
+	mustEmbedUnimplementedSGroupsHostBindingAPIServer()
+}
+
+func RegisterSGroupsHostBindingAPIServer(s grpc.ServiceRegistrar, srv SGroupsHostBindingAPIServer) {
+	// If the following call panics, it indicates UnimplementedSGroupsHostBindingAPIServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SGroupsHostBindingAPI_ServiceDesc, srv)
+}
+
+func _SGroupsHostBindingAPI_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostBindingReq_Upsert)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostBindingAPIServer).Upsert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostBindingAPI_Upsert_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostBindingAPIServer).Upsert(ctx, req.(*HostBindingReq_Upsert))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostBindingAPI_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostBindingReq_Delete)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostBindingAPIServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostBindingAPI_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostBindingAPIServer).Delete(ctx, req.(*HostBindingReq_Delete))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostBindingAPI_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostBindingReq_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostBindingAPIServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostBindingAPI_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostBindingAPIServer).List(ctx, req.(*HostBindingReq_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostBindingAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(HostBindingReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsHostBindingAPIServer).Watch(m, &grpc.GenericServerStream[HostBindingReq_Watch, HostBindingResp_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostBindingAPI_WatchServer = grpc.ServerStreamingServer[HostBindingResp_Watch]
+
+// SGroupsHostBindingAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsHostBindingAPI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SGroupsHostBindingAPI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sgroups.v1.SGroupsHostBindingAPI",
+	HandlerType: (*SGroupsHostBindingAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Upsert",
+			Handler:    _SGroupsHostBindingAPI_Upsert_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _SGroupsHostBindingAPI_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _SGroupsHostBindingAPI_List_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Watch",
+			Handler:       _SGroupsHostBindingAPI_Watch_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "sgroups/v1/services.proto",
+}
