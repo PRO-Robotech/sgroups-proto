@@ -310,3 +310,56 @@ service SGroupsHostBindingAPI {
     };
   }
 }
+
+// SGroupsNetworkBindingAPI: SGroups Network Binding API
+service SGroupsNetworkBindingAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "NetworkBinding Resource API"};
+
+  // Upsert: Create or update network binding(s)
+  rpc Upsert(NetworkBindingReq.Upsert) returns (NetworkBindingResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete network binding(s)
+  rpc Delete(NetworkBindingReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/delete"
+      body: "*"
+    };
+  }
+
+  // List: List network binding(s)
+  rpc List(NetworkBindingReq.List) returns (NetworkBindingResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch network binding(s)
+  rpc Watch(NetworkBindingReq.Watch) returns (stream NetworkBindingResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/watch"
+      body: "*"
+    };
+  }
+}
