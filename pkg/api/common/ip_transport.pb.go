@@ -74,129 +74,139 @@ func (IpAddrFamily) EnumDescriptor() ([]byte, []int) {
 	return file_common_ip_transport_proto_rawDescGZIP(), []int{0}
 }
 
-// Ingress / Egress traffic dir
-type Traffic int32
-
-const (
-	// undefined traffic direction
-	Traffic_DIR_UNDEF Traffic = 0
-	// Ingress
-	Traffic_INGRESS Traffic = 1
-	// Egress
-	Traffic_EGRESS Traffic = 2
-)
-
-// Enum value maps for Traffic.
-var (
-	Traffic_name = map[int32]string{
-		0: "DIR_UNDEF",
-		1: "INGRESS",
-		2: "EGRESS",
-	}
-	Traffic_value = map[string]int32{
-		"DIR_UNDEF": 0,
-		"INGRESS":   1,
-		"EGRESS":    2,
-	}
-)
-
-func (x Traffic) Enum() *Traffic {
-	p := new(Traffic)
-	*p = x
-	return p
-}
-
-func (x Traffic) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (Traffic) Descriptor() protoreflect.EnumDescriptor {
-	return file_common_ip_transport_proto_enumTypes[1].Descriptor()
-}
-
-func (Traffic) Type() protoreflect.EnumType {
-	return &file_common_ip_transport_proto_enumTypes[1]
-}
-
-func (x Traffic) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use Traffic.Descriptor instead.
-func (Traffic) EnumDescriptor() ([]byte, []int) {
-	return file_common_ip_transport_proto_rawDescGZIP(), []int{1}
-}
-
-// Transport: represents net transport (L4)
-type Networks_NetIP_Transport int32
+// Protocol: represents supported network protocols
+type Transport_Protocol int32
 
 const (
 	// TCP
-	Networks_NetIP_TCP Networks_NetIP_Transport = 0
+	Transport_TCP Transport_Protocol = 0
 	// UDP
-	Networks_NetIP_UDP Networks_NetIP_Transport = 1
+	Transport_UDP Transport_Protocol = 1
+	// ICMP
+	Transport_ICMP Transport_Protocol = 2
 )
 
-// Enum value maps for Networks_NetIP_Transport.
+// Enum value maps for Transport_Protocol.
 var (
-	Networks_NetIP_Transport_name = map[int32]string{
+	Transport_Protocol_name = map[int32]string{
 		0: "TCP",
 		1: "UDP",
+		2: "ICMP",
 	}
-	Networks_NetIP_Transport_value = map[string]int32{
-		"TCP": 0,
-		"UDP": 1,
+	Transport_Protocol_value = map[string]int32{
+		"TCP":  0,
+		"UDP":  1,
+		"ICMP": 2,
 	}
 )
 
-func (x Networks_NetIP_Transport) Enum() *Networks_NetIP_Transport {
-	p := new(Networks_NetIP_Transport)
+func (x Transport_Protocol) Enum() *Transport_Protocol {
+	p := new(Transport_Protocol)
 	*p = x
 	return p
 }
 
-func (x Networks_NetIP_Transport) String() string {
+func (x Transport_Protocol) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (Networks_NetIP_Transport) Descriptor() protoreflect.EnumDescriptor {
-	return file_common_ip_transport_proto_enumTypes[2].Descriptor()
+func (Transport_Protocol) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_ip_transport_proto_enumTypes[1].Descriptor()
 }
 
-func (Networks_NetIP_Transport) Type() protoreflect.EnumType {
-	return &file_common_ip_transport_proto_enumTypes[2]
+func (Transport_Protocol) Type() protoreflect.EnumType {
+	return &file_common_ip_transport_proto_enumTypes[1]
 }
 
-func (x Networks_NetIP_Transport) Number() protoreflect.EnumNumber {
+func (x Transport_Protocol) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use Networks_NetIP_Transport.Descriptor instead.
-func (Networks_NetIP_Transport) EnumDescriptor() ([]byte, []int) {
-	return file_common_ip_transport_proto_rawDescGZIP(), []int{0, 0, 0}
+// Deprecated: Use Transport_Protocol.Descriptor instead.
+func (Transport_Protocol) EnumDescriptor() ([]byte, []int) {
+	return file_common_ip_transport_proto_rawDescGZIP(), []int{0, 0}
 }
 
-// Networks: represents network types
-type Networks struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+// Ingress / Egress traffic dir
+type Session_Traffic int32
+
+const (
+	// Both ingress and egress
+	Session_BOTH Session_Traffic = 0
+	// Ingress
+	Session_INGRESS Session_Traffic = 1
+	// Egress
+	Session_EGRESS Session_Traffic = 2
+)
+
+// Enum value maps for Session_Traffic.
+var (
+	Session_Traffic_name = map[int32]string{
+		0: "BOTH",
+		1: "INGRESS",
+		2: "EGRESS",
+	}
+	Session_Traffic_value = map[string]int32{
+		"BOTH":    0,
+		"INGRESS": 1,
+		"EGRESS":  2,
+	}
+)
+
+func (x Session_Traffic) Enum() *Session_Traffic {
+	p := new(Session_Traffic)
+	*p = x
+	return p
+}
+
+func (x Session_Traffic) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Session_Traffic) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_ip_transport_proto_enumTypes[2].Descriptor()
+}
+
+func (Session_Traffic) Type() protoreflect.EnumType {
+	return &file_common_ip_transport_proto_enumTypes[2]
+}
+
+func (x Session_Traffic) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Session_Traffic.Descriptor instead.
+func (Session_Traffic) EnumDescriptor() ([]byte, []int) {
+	return file_common_ip_transport_proto_rawDescGZIP(), []int{1, 0}
+}
+
+// Transport: represents supported network transports (L4)
+type Transport struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Protocol: network protocol
+	Protocol Transport_Protocol `protobuf:"varint,1,opt,name=protocol,proto3,enum=common.Transport_Protocol" json:"protocol,omitempty"`
+	// IPv: IP address family
+	Ipv IpAddrFamily `protobuf:"varint,2,opt,name=ipv,json=IPv,proto3,enum=common.IpAddrFamily" json:"ipv,omitempty"`
+	// Entries: list of transport entries
+	Entries       []*Transport_Entry `protobuf:"bytes,3,rep,name=entries,proto3" json:"entries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Networks) Reset() {
-	*x = Networks{}
+func (x *Transport) Reset() {
+	*x = Transport{}
 	mi := &file_common_ip_transport_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Networks) String() string {
+func (x *Transport) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Networks) ProtoMessage() {}
+func (*Transport) ProtoMessage() {}
 
-func (x *Networks) ProtoReflect() protoreflect.Message {
+func (x *Transport) ProtoReflect() protoreflect.Message {
 	mi := &file_common_ip_transport_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,64 +218,76 @@ func (x *Networks) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Networks.ProtoReflect.Descriptor instead.
-func (*Networks) Descriptor() ([]byte, []int) {
+// Deprecated: Use Transport.ProtoReflect.Descriptor instead.
+func (*Transport) Descriptor() ([]byte, []int) {
 	return file_common_ip_transport_proto_rawDescGZIP(), []int{0}
 }
 
-// IP/ICMP protocol
-type ICMP struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// IP address family
-	Ipv IpAddrFamily `protobuf:"varint,1,opt,name=ipv,proto3,enum=common.IpAddrFamily" json:"ipv,omitempty"`
-	// ICMP message types
-	Types         []uint32 `protobuf:"varint,2,rep,packed,name=types,proto3" json:"types,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ICMP) Reset() {
-	*x = ICMP{}
-	mi := &file_common_ip_transport_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ICMP) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ICMP) ProtoMessage() {}
-
-func (x *ICMP) ProtoReflect() protoreflect.Message {
-	mi := &file_common_ip_transport_proto_msgTypes[1]
+func (x *Transport) GetProtocol() Transport_Protocol {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Protocol
 	}
-	return mi.MessageOf(x)
+	return Transport_TCP
 }
 
-// Deprecated: Use ICMP.ProtoReflect.Descriptor instead.
-func (*ICMP) Descriptor() ([]byte, []int) {
-	return file_common_ip_transport_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *ICMP) GetIpv() IpAddrFamily {
+func (x *Transport) GetIpv() IpAddrFamily {
 	if x != nil {
 		return x.Ipv
 	}
 	return IpAddrFamily_IPV_UNDEF
 }
 
-func (x *ICMP) GetTypes() []uint32 {
+func (x *Transport) GetEntries() []*Transport_Entry {
 	if x != nil {
-		return x.Types
+		return x.Entries
 	}
 	return nil
+}
+
+// Session: represents session parameters
+type Session struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Traffic: traffic direction
+	Traffic       Session_Traffic `protobuf:"varint,1,opt,name=traffic,proto3,enum=common.Session_Traffic" json:"traffic,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Session) Reset() {
+	*x = Session{}
+	mi := &file_common_ip_transport_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Session) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session) ProtoMessage() {}
+
+func (x *Session) ProtoReflect() protoreflect.Message {
+	mi := &file_common_ip_transport_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session.ProtoReflect.Descriptor instead.
+func (*Session) Descriptor() ([]byte, []int) {
+	return file_common_ip_transport_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Session) GetTraffic() Session_Traffic {
+	if x != nil {
+		return x.Traffic
+	}
+	return Session_BOTH
 }
 
 // IPs: represents list of IP addresses
@@ -323,29 +345,35 @@ func (x *IPs) GetIpv6() []string {
 	return nil
 }
 
-// NetIP: represents IP-Network type (L3)
-type Networks_NetIP struct {
+// Entry: represents transport entry
+type Transport_Entry struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// CIDR: IP range
-	Cidr          string `protobuf:"bytes,1,opt,name=cidr,proto3" json:"cidr,omitempty"`
+	// Description: description
+	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
+	// Comment: comment
+	Comment string `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	// Ports: represents TCP/UDP port or port range
+	Ports string `protobuf:"bytes,3,opt,name=ports,proto3" json:"ports,omitempty"`
+	// Types: ICMP message types
+	Types         []uint32 `protobuf:"varint,4,rep,packed,name=types,proto3" json:"types,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Networks_NetIP) Reset() {
-	*x = Networks_NetIP{}
+func (x *Transport_Entry) Reset() {
+	*x = Transport_Entry{}
 	mi := &file_common_ip_transport_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Networks_NetIP) String() string {
+func (x *Transport_Entry) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Networks_NetIP) ProtoMessage() {}
+func (*Transport_Entry) ProtoMessage() {}
 
-func (x *Networks_NetIP) ProtoReflect() protoreflect.Message {
+func (x *Transport_Entry) ProtoReflect() protoreflect.Message {
 	mi := &file_common_ip_transport_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -357,102 +385,71 @@ func (x *Networks_NetIP) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Networks_NetIP.ProtoReflect.Descriptor instead.
-func (*Networks_NetIP) Descriptor() ([]byte, []int) {
+// Deprecated: Use Transport_Entry.ProtoReflect.Descriptor instead.
+func (*Transport_Entry) Descriptor() ([]byte, []int) {
 	return file_common_ip_transport_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *Networks_NetIP) GetCidr() string {
+func (x *Transport_Entry) GetDescription() string {
 	if x != nil {
-		return x.Cidr
+		return x.Description
 	}
 	return ""
 }
 
-// PortRange: port [from - to] range
-type Networks_NetIP_PortRange struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// From: range left bound
-	From uint32 `protobuf:"varint,1,opt,name=from,proto3" json:"from,omitempty"`
-	// To: range right bound
-	To            uint32 `protobuf:"varint,2,opt,name=to,proto3" json:"to,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Networks_NetIP_PortRange) Reset() {
-	*x = Networks_NetIP_PortRange{}
-	mi := &file_common_ip_transport_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Networks_NetIP_PortRange) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Networks_NetIP_PortRange) ProtoMessage() {}
-
-func (x *Networks_NetIP_PortRange) ProtoReflect() protoreflect.Message {
-	mi := &file_common_ip_transport_proto_msgTypes[4]
+func (x *Transport_Entry) GetComment() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Comment
 	}
-	return mi.MessageOf(x)
+	return ""
 }
 
-// Deprecated: Use Networks_NetIP_PortRange.ProtoReflect.Descriptor instead.
-func (*Networks_NetIP_PortRange) Descriptor() ([]byte, []int) {
-	return file_common_ip_transport_proto_rawDescGZIP(), []int{0, 0, 0}
-}
-
-func (x *Networks_NetIP_PortRange) GetFrom() uint32 {
+func (x *Transport_Entry) GetPorts() string {
 	if x != nil {
-		return x.From
+		return x.Ports
 	}
-	return 0
+	return ""
 }
 
-func (x *Networks_NetIP_PortRange) GetTo() uint32 {
+func (x *Transport_Entry) GetTypes() []uint32 {
 	if x != nil {
-		return x.To
+		return x.Types
 	}
-	return 0
+	return nil
 }
 
 var File_common_ip_transport_proto protoreflect.FileDescriptor
 
 const file_common_ip_transport_proto_rawDesc = "" +
 	"\n" +
-	"\x19common/ip_transport.proto\x12\x06common\"w\n" +
-	"\bNetworks\x1ak\n" +
-	"\x05NetIP\x12\x12\n" +
-	"\x04cidr\x18\x01 \x01(\tR\x04cidr\x1a/\n" +
-	"\tPortRange\x12\x12\n" +
-	"\x04from\x18\x01 \x01(\rR\x04from\x12\x0e\n" +
-	"\x02to\x18\x02 \x01(\rR\x02to\"\x1d\n" +
-	"\tTransport\x12\a\n" +
+	"\x19common/ip_transport.proto\x12\x06common\"\xb7\x02\n" +
+	"\tTransport\x126\n" +
+	"\bprotocol\x18\x01 \x01(\x0e2\x1a.common.Transport.ProtocolR\bprotocol\x12&\n" +
+	"\x03ipv\x18\x02 \x01(\x0e2\x14.common.IpAddrFamilyR\x03IPv\x121\n" +
+	"\aentries\x18\x03 \x03(\v2\x17.common.Transport.EntryR\aentries\x1ao\n" +
+	"\x05Entry\x12 \n" +
+	"\vdescription\x18\x01 \x01(\tR\vdescription\x12\x18\n" +
+	"\acomment\x18\x02 \x01(\tR\acomment\x12\x14\n" +
+	"\x05ports\x18\x03 \x01(\tR\x05ports\x12\x14\n" +
+	"\x05types\x18\x04 \x03(\rR\x05types\"&\n" +
+	"\bProtocol\x12\a\n" +
 	"\x03TCP\x10\x00\x12\a\n" +
-	"\x03UDP\x10\x01\"D\n" +
-	"\x04ICMP\x12&\n" +
-	"\x03ipv\x18\x01 \x01(\x0e2\x14.common.IpAddrFamilyR\x03ipv\x12\x14\n" +
-	"\x05types\x18\x02 \x03(\rR\x05types\"-\n" +
+	"\x03UDP\x10\x01\x12\b\n" +
+	"\x04ICMP\x10\x02\"j\n" +
+	"\aSession\x121\n" +
+	"\atraffic\x18\x01 \x01(\x0e2\x17.common.Session.TrafficR\atraffic\",\n" +
+	"\aTraffic\x12\b\n" +
+	"\x04BOTH\x10\x00\x12\v\n" +
+	"\aINGRESS\x10\x01\x12\n" +
+	"\n" +
+	"\x06EGRESS\x10\x02\"-\n" +
 	"\x03IPs\x12\x12\n" +
 	"\x04ipv4\x18\x01 \x03(\tR\x04IPv4\x12\x12\n" +
 	"\x04ipv6\x18\x02 \x03(\tR\x04IPv6*1\n" +
 	"\fIpAddrFamily\x12\r\n" +
 	"\tIPV_UNDEF\x10\x00\x12\b\n" +
 	"\x04IPV4\x10\x01\x12\b\n" +
-	"\x04IPV6\x10\x02*1\n" +
-	"\aTraffic\x12\r\n" +
-	"\tDIR_UNDEF\x10\x00\x12\v\n" +
-	"\aINGRESS\x10\x01\x12\n" +
-	"\n" +
-	"\x06EGRESS\x10\x02B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
+	"\x04IPV6\x10\x02B=Z;github.com/PRO-Robotech/sgroups-proto/pkg/api/common;commonb\x06proto3"
 
 var (
 	file_common_ip_transport_proto_rawDescOnce sync.Once
@@ -467,24 +464,26 @@ func file_common_ip_transport_proto_rawDescGZIP() []byte {
 }
 
 var file_common_ip_transport_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_ip_transport_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_common_ip_transport_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_ip_transport_proto_goTypes = []any{
-	(IpAddrFamily)(0),                // 0: common.IpAddrFamily
-	(Traffic)(0),                     // 1: common.Traffic
-	(Networks_NetIP_Transport)(0),    // 2: common.Networks.NetIP.Transport
-	(*Networks)(nil),                 // 3: common.Networks
-	(*ICMP)(nil),                     // 4: common.ICMP
-	(*IPs)(nil),                      // 5: common.IPs
-	(*Networks_NetIP)(nil),           // 6: common.Networks.NetIP
-	(*Networks_NetIP_PortRange)(nil), // 7: common.Networks.NetIP.PortRange
+	(IpAddrFamily)(0),       // 0: common.IpAddrFamily
+	(Transport_Protocol)(0), // 1: common.Transport.Protocol
+	(Session_Traffic)(0),    // 2: common.Session.Traffic
+	(*Transport)(nil),       // 3: common.Transport
+	(*Session)(nil),         // 4: common.Session
+	(*IPs)(nil),             // 5: common.IPs
+	(*Transport_Entry)(nil), // 6: common.Transport.Entry
 }
 var file_common_ip_transport_proto_depIdxs = []int32{
-	0, // 0: common.ICMP.ipv:type_name -> common.IpAddrFamily
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 0: common.Transport.protocol:type_name -> common.Transport.Protocol
+	0, // 1: common.Transport.ipv:type_name -> common.IpAddrFamily
+	6, // 2: common.Transport.entries:type_name -> common.Transport.Entry
+	2, // 3: common.Session.traffic:type_name -> common.Session.Traffic
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_common_ip_transport_proto_init() }
@@ -498,7 +497,7 @@ func file_common_ip_transport_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_ip_transport_proto_rawDesc), len(file_common_ip_transport_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   5,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

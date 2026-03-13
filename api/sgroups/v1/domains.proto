@@ -159,3 +159,34 @@ message HostBinding {
   // Spec: host specification
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
+
+// Rule: represents rule resource
+message Rule {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // Action: rule action
+    common.Action action = 4 [(buf.validate.field) = {
+      enum: {
+        not_in: [0]
+      }
+    }];
+    // Session: session parameters
+    common.Session session = 5;
+    // Endpoints: local and remote endpoints
+    common.Endpoints endpoints = 6;
+    // Transport: network transport
+    common.Transport transport = 7;
+  }
+  // Metadata: rule metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: rule specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}

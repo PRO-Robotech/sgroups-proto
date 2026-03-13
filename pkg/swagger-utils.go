@@ -76,6 +76,18 @@ func init() {
 
 		SwaggerUtil[sgroupsv1.SGroupsAddressGroupsAPIServer]{},
 		SwaggerUtil[sgroupsv1.SGroupsAddressGroupsAPIClient]{},
+
+		SwaggerUtil[sgroupsv1.SGroupsHostsAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsHostsAPIClient]{},
+
+		SwaggerUtil[sgroupsv1.SGroupsHostBindingAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsHostBindingAPIClient]{},
+
+		SwaggerUtil[sgroupsv1.SGroupsNetworksAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsNetworksAPIClient]{},
+
+		SwaggerUtil[sgroupsv1.SGroupsRulesAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsRulesAPIClient]{},
 	}
 
 	for _, api := range apis {

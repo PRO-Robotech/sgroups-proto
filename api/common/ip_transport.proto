@@ -4,29 +4,6 @@ package common;
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
 
-//Networks: represents network types
-message Networks {
-  //NetIP: represents IP-Network type (L3)
-  message NetIP {
-    //Transport: represents net transport (L4)
-    enum Transport {
-      // TCP
-      TCP = 0;
-      // UDP
-      UDP = 1;
-    }
-    //PortRange: port [from - to] range
-    message PortRange {
-      // From: range left bound
-      uint32 from = 1;
-      // To: range right bound
-      uint32 to = 2;
-    }
-    //CIDR: IP range
-    string cidr = 1;
-  }
-}
-
 // IpAddrFamily: IP Address family
 enum IpAddrFamily {
   // undefined ip version
@@ -37,22 +14,49 @@ enum IpAddrFamily {
   IPV6 = 2;
 }
 
-// IP/ICMP protocol
-message ICMP {
-  // IP address family
-  IpAddrFamily ipv = 1;
-  // ICMP message types
-  repeated uint32 types = 2;
+// Transport: represents supported network transports (L4)
+message Transport {
+  // Protocol: represents supported network protocols
+  enum Protocol {
+    // TCP
+    TCP = 0;
+    // UDP
+    UDP = 1;
+    // ICMP
+    ICMP = 2;
+  }
+  // Entry: represents transport entry
+  message Entry {
+    // Description: description
+    string description = 1;
+    // Comment: comment
+    string comment = 2;
+    // Ports: represents TCP/UDP port or port range
+    string ports = 3;
+    // Types: ICMP message types
+    repeated uint32 types = 4;
+  }
+  // Protocol: network protocol
+  Protocol protocol = 1;
+  // IPv: IP address family
+  IpAddrFamily ipv = 2 [json_name = "IPv"];
+  // Entries: list of transport entries
+  repeated Entry entries = 3;
 }
 
-// Ingress / Egress traffic dir
-enum Traffic {
-  // undefined traffic direction
-  DIR_UNDEF = 0;
-  // Ingress
-  INGRESS = 1;
-  // Egress
-  EGRESS = 2;
+// Session: represents session parameters
+message Session {
+  // Ingress / Egress traffic dir
+  enum Traffic {
+    // Both ingress and egress
+    BOTH = 0;
+    // Ingress
+    INGRESS = 1;
+    // Egress
+    EGRESS = 2;
+  }
+  // Traffic: traffic direction
+  Traffic traffic = 1;
 }
 
 // IPs: represents list of IP addresses

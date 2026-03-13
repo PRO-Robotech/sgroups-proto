@@ -86,7 +86,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ags/upsert"
+      post: "/v1/address-groups/upsert"
       body: "*"
     };
   }
@@ -98,7 +98,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ags/delete"
+      post: "/v1/address-groups/delete"
       body: "*"
     };
   }
@@ -110,7 +110,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ags/list"
+      post: "/v1/address-groups/list"
       body: "*"
     };
   }
@@ -122,7 +122,7 @@ service SGroupsAddressGroupsAPI {
       tags: "AddressGroup"
     };
     option (google.api.http) = {
-      post: "/v1/ags/watch"
+      post: "/v1/address-groups/watch"
       body: "*"
     };
   }
@@ -306,6 +306,59 @@ service SGroupsHostBindingAPI {
     };
     option (google.api.http) = {
       post: "/v1/host-bindings/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsRulesAPI: SGroups Rules API
+service SGroupsRulesAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "SGroups Rules API"};
+
+  // Upsert: Create or update rules
+  rpc Upsert(RuleReq.Upsert) returns (RuleResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete rules
+  rpc Delete(RuleReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/delete"
+      body: "*"
+    };
+  }
+
+  // List: List rules
+  rpc List(RuleReq.List) returns (RuleResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch rules
+  rpc Watch(RuleReq.Watch) returns (stream RuleResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/watch"
       body: "*"
     };
   }

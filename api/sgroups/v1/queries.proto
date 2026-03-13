@@ -489,3 +489,123 @@ message HostBindingResp {
     repeated HostBinding host_bindings = 2;
   }
 }
+
+// RuleReq: rule requests
+message RuleReq {
+  // Upsert: request to upsert rules
+  message Upsert {
+    // Rules: list of rules
+    repeated Rule rules = 1 [
+      json_name = "rules",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete rules
+  message Delete {
+    // Rule: rule to delete
+    message Rule {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Rules: list of rules to delete
+    repeated Rule rules = 1 [
+      json_name = "rules",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Selectors: request to select rules
+  message Selectors {
+    // Endpoints: local and remote endpoints for rule selection
+    message Endpoints {
+      // Local: local endpoint
+      message Local {
+        // Name: endpoint name
+        string name = 1;
+        // Namespace: endpoint namespace
+        string namespace = 2;
+        // Type: endpoint type
+        common.Endpoints.Type type = 3;
+        // Labels: resource labels
+        map<string, string> labels = 4;
+      }
+      // Remote: remote endpoint
+      message Remote {
+        // Name: endpoint name
+        string name = 1;
+        // Namespace: endpoint namespace
+        string namespace = 2;
+        // Type: endpoint type
+        common.Endpoints.Type type = 3;
+        // Value: endpoint value
+        string value = 4;
+        // Labels: resource labels
+        map<string, string> labels = 5;
+      }
+      // Local: local endpoint
+      Local local = 1;
+      // Remote: remote endpoint
+      Remote remote = 2;
+    }
+    // FieldSelector: field selector for rule
+    message FieldSelector {
+      // Name: rule name
+      string name = 1;
+      // Namespace: rule namespace
+      string namespace = 2;
+      // Traffic: traffic parameters
+      common.Session.Traffic traffic = 3;
+      // Protocol: network transport protocol
+      common.Transport.Protocol protocol = 4;
+      // Endpoints: local and remote endpoints
+      Endpoints endpoints = 5;
+    }
+    // SvcFieldSelector: field selector for rule
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for rule
+    map<string, string> label_selector = 2;
+  }
+  // List: request to list rules
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch rules
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// RuleResp: rule responses
+message RuleResp {
+  // Upsert: response for upsert rules
+  message Upsert {
+    // Rules: list of rules
+    repeated Rule rules = 1;
+  }
+  // List: response for list of rules
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Rules: list of rules
+    repeated Rule rules = 2;
+  }
+  // Watch: response for watch rules
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Rules: list of rules
+    repeated Rule rules = 2;
+  }
+}

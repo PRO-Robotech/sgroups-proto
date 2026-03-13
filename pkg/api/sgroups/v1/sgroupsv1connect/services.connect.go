@@ -32,6 +32,8 @@ const (
 	SGroupsHostsAPIName = "sgroups.v1.SGroupsHostsAPI"
 	// SGroupsHostBindingAPIName is the fully-qualified name of the SGroupsHostBindingAPI service.
 	SGroupsHostBindingAPIName = "sgroups.v1.SGroupsHostBindingAPI"
+	// SGroupsRulesAPIName is the fully-qualified name of the SGroupsRulesAPI service.
+	SGroupsRulesAPIName = "sgroups.v1.SGroupsRulesAPI"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -102,6 +104,14 @@ const (
 	// SGroupsHostBindingAPIWatchProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
 	// Watch RPC.
 	SGroupsHostBindingAPIWatchProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Watch"
+	// SGroupsRulesAPIUpsertProcedure is the fully-qualified name of the SGroupsRulesAPI's Upsert RPC.
+	SGroupsRulesAPIUpsertProcedure = "/sgroups.v1.SGroupsRulesAPI/Upsert"
+	// SGroupsRulesAPIDeleteProcedure is the fully-qualified name of the SGroupsRulesAPI's Delete RPC.
+	SGroupsRulesAPIDeleteProcedure = "/sgroups.v1.SGroupsRulesAPI/Delete"
+	// SGroupsRulesAPIListProcedure is the fully-qualified name of the SGroupsRulesAPI's List RPC.
+	SGroupsRulesAPIListProcedure = "/sgroups.v1.SGroupsRulesAPI/List"
+	// SGroupsRulesAPIWatchProcedure is the fully-qualified name of the SGroupsRulesAPI's Watch RPC.
+	SGroupsRulesAPIWatchProcedure = "/sgroups.v1.SGroupsRulesAPI/Watch"
 )
 
 // SGroupsNamespaceAPIClient is a client for the sgroups.v1.SGroupsNamespaceAPI service.
@@ -940,4 +950,160 @@ func (UnimplementedSGroupsHostBindingAPIHandler) List(context.Context, *connect.
 
 func (UnimplementedSGroupsHostBindingAPIHandler) Watch(context.Context, *connect.Request[v1.HostBindingReq_Watch], *connect.ServerStream[v1.HostBindingResp_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.Watch is not implemented"))
+}
+
+// SGroupsRulesAPIClient is a client for the sgroups.v1.SGroupsRulesAPI service.
+type SGroupsRulesAPIClient interface {
+	// Upsert: Create or update rules
+	Upsert(context.Context, *connect.Request[v1.RuleReq_Upsert]) (*connect.Response[v1.RuleResp_Upsert], error)
+	// Delete: Delete rules
+	Delete(context.Context, *connect.Request[v1.RuleReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List rules
+	List(context.Context, *connect.Request[v1.RuleReq_List]) (*connect.Response[v1.RuleResp_List], error)
+	// Watch: Watch rules
+	Watch(context.Context, *connect.Request[v1.RuleReq_Watch]) (*connect.ServerStreamForClient[v1.RuleResp_Watch], error)
+}
+
+// NewSGroupsRulesAPIClient constructs a client for the sgroups.v1.SGroupsRulesAPI service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsRulesAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsRulesAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsRulesAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsRulesAPI").Methods()
+	return &sGroupsRulesAPIClient{
+		upsert: connect.NewClient[v1.RuleReq_Upsert, v1.RuleResp_Upsert](
+			httpClient,
+			baseURL+SGroupsRulesAPIUpsertProcedure,
+			connect.WithSchema(sGroupsRulesAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.RuleReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsRulesAPIDeleteProcedure,
+			connect.WithSchema(sGroupsRulesAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.RuleReq_List, v1.RuleResp_List](
+			httpClient,
+			baseURL+SGroupsRulesAPIListProcedure,
+			connect.WithSchema(sGroupsRulesAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.RuleReq_Watch, v1.RuleResp_Watch](
+			httpClient,
+			baseURL+SGroupsRulesAPIWatchProcedure,
+			connect.WithSchema(sGroupsRulesAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsRulesAPIClient implements SGroupsRulesAPIClient.
+type sGroupsRulesAPIClient struct {
+	upsert *connect.Client[v1.RuleReq_Upsert, v1.RuleResp_Upsert]
+	delete *connect.Client[v1.RuleReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.RuleReq_List, v1.RuleResp_List]
+	watch  *connect.Client[v1.RuleReq_Watch, v1.RuleResp_Watch]
+}
+
+// Upsert calls sgroups.v1.SGroupsRulesAPI.Upsert.
+func (c *sGroupsRulesAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.RuleReq_Upsert]) (*connect.Response[v1.RuleResp_Upsert], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsRulesAPI.Delete.
+func (c *sGroupsRulesAPIClient) Delete(ctx context.Context, req *connect.Request[v1.RuleReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsRulesAPI.List.
+func (c *sGroupsRulesAPIClient) List(ctx context.Context, req *connect.Request[v1.RuleReq_List]) (*connect.Response[v1.RuleResp_List], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsRulesAPI.Watch.
+func (c *sGroupsRulesAPIClient) Watch(ctx context.Context, req *connect.Request[v1.RuleReq_Watch]) (*connect.ServerStreamForClient[v1.RuleResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsRulesAPIHandler is an implementation of the sgroups.v1.SGroupsRulesAPI service.
+type SGroupsRulesAPIHandler interface {
+	// Upsert: Create or update rules
+	Upsert(context.Context, *connect.Request[v1.RuleReq_Upsert]) (*connect.Response[v1.RuleResp_Upsert], error)
+	// Delete: Delete rules
+	Delete(context.Context, *connect.Request[v1.RuleReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List rules
+	List(context.Context, *connect.Request[v1.RuleReq_List]) (*connect.Response[v1.RuleResp_List], error)
+	// Watch: Watch rules
+	Watch(context.Context, *connect.Request[v1.RuleReq_Watch], *connect.ServerStream[v1.RuleResp_Watch]) error
+}
+
+// NewSGroupsRulesAPIHandler builds an HTTP handler from the service implementation. It returns the
+// path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsRulesAPIHandler(svc SGroupsRulesAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsRulesAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsRulesAPI").Methods()
+	sGroupsRulesAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsRulesAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsRulesAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsRulesAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsRulesAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsRulesAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsRulesAPIListHandler := connect.NewUnaryHandler(
+		SGroupsRulesAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsRulesAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsRulesAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsRulesAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsRulesAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsRulesAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsRulesAPIUpsertProcedure:
+			sGroupsRulesAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsRulesAPIDeleteProcedure:
+			sGroupsRulesAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsRulesAPIListProcedure:
+			sGroupsRulesAPIListHandler.ServeHTTP(w, r)
+		case SGroupsRulesAPIWatchProcedure:
+			sGroupsRulesAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsRulesAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsRulesAPIHandler struct{}
+
+func (UnimplementedSGroupsRulesAPIHandler) Upsert(context.Context, *connect.Request[v1.RuleReq_Upsert]) (*connect.Response[v1.RuleResp_Upsert], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsRulesAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsRulesAPIHandler) Delete(context.Context, *connect.Request[v1.RuleReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsRulesAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsRulesAPIHandler) List(context.Context, *connect.Request[v1.RuleReq_List]) (*connect.Response[v1.RuleResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsRulesAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsRulesAPIHandler) Watch(context.Context, *connect.Request[v1.RuleReq_Watch], *connect.ServerStream[v1.RuleResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsRulesAPI.Watch is not implemented"))
 }
