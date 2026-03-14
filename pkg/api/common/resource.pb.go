@@ -661,7 +661,9 @@ type Endpoints_Local struct {
 	// Namespace: endpoint namespace
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// Type: endpoint type
-	Type          Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
+	Type Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
+	// Labels: resource labels
+	Labels        map[string]string `protobuf:"bytes,4,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -717,6 +719,13 @@ func (x *Endpoints_Local) GetType() Endpoints_Type {
 	return Endpoints_UNKNOWN
 }
 
+func (x *Endpoints_Local) GetLabels() map[string]string {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
 // Remote: remote endpoint
 type Endpoints_Remote struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -727,7 +736,9 @@ type Endpoints_Remote struct {
 	// Type: endpoint type
 	Type Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
 	// Value: endpoint value
-	Value         string `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	Value string `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	// Labels: resource labels
+	Labels        map[string]string `protobuf:"bytes,5,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -790,6 +801,13 @@ func (x *Endpoints_Remote) GetValue() string {
 	return ""
 }
 
+func (x *Endpoints_Remote) GetLabels() map[string]string {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
 var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
@@ -829,19 +847,27 @@ const file_common_resource_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"F\n" +
 	"\x12ResourceIdentifier\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x02 \x01(\tR\tnamespace\"\x9a\x03\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\"\x8d\x05\n" +
 	"\tEndpoints\x12-\n" +
 	"\x05local\x18\x01 \x01(\v2\x17.common.Endpoints.LocalR\x05local\x120\n" +
-	"\x06remote\x18\x02 \x01(\v2\x18.common.Endpoints.RemoteR\x06remote\x1ae\n" +
+	"\x06remote\x18\x02 \x01(\v2\x18.common.Endpoints.RemoteR\x06remote\x1a\xdd\x01\n" +
 	"\x05Local\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
 	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x1a|\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12;\n" +
+	"\x06labels\x18\x04 \x03(\v2#.common.Endpoints.Local.LabelsEntryR\x06labels\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\xf5\x01\n" +
 	"\x06Remote\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
 	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
 	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12\x14\n" +
-	"\x05value\x18\x04 \x01(\tR\x05value\"G\n" +
+	"\x05value\x18\x04 \x01(\tR\x05value\x12<\n" +
+	"\x06labels\x18\x05 \x03(\v2$.common.Endpoints.Remote.LabelsEntryR\x06labels\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"G\n" +
 	"\x04Type\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\x11\n" +
 	"\rADDRESS_GROUP\x10\x01\x12\v\n" +
@@ -871,7 +897,7 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 }
 
 var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_common_resource_proto_goTypes = []any{
 	(Action)(0),                   // 0: common.Action
 	(WatchEventType)(0),           // 1: common.WatchEventType
@@ -888,24 +914,28 @@ var file_common_resource_proto_goTypes = []any{
 	nil,                           // 12: common.ResSelector.LabelSelectorEntry
 	(*Endpoints_Local)(nil),       // 13: common.Endpoints.Local
 	(*Endpoints_Remote)(nil),      // 14: common.Endpoints.Remote
-	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
+	nil,                           // 15: common.Endpoints.Local.LabelsEntry
+	nil,                           // 16: common.Endpoints.Remote.LabelsEntry
+	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
 }
 var file_common_resource_proto_depIdxs = []int32{
 	10, // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
 	11, // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
-	15, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
+	17, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
 	5,  // 3: common.FieldSelector.refs:type_name -> common.ResourceRef
 	6,  // 4: common.ResSelector.field_selector:type_name -> common.FieldSelector
 	12, // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
 	13, // 6: common.Endpoints.local:type_name -> common.Endpoints.Local
 	14, // 7: common.Endpoints.remote:type_name -> common.Endpoints.Remote
 	2,  // 8: common.Endpoints.Local.type:type_name -> common.Endpoints.Type
-	2,  // 9: common.Endpoints.Remote.type:type_name -> common.Endpoints.Type
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	15, // 9: common.Endpoints.Local.labels:type_name -> common.Endpoints.Local.LabelsEntry
+	2,  // 10: common.Endpoints.Remote.type:type_name -> common.Endpoints.Type
+	16, // 11: common.Endpoints.Remote.labels:type_name -> common.Endpoints.Remote.LabelsEntry
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_common_resource_proto_init() }
@@ -919,7 +949,7 @@ func file_common_resource_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_resource_proto_rawDesc), len(file_common_resource_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

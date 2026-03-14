@@ -3599,61 +3599,6 @@ func (x *RuleReq_Delete_Rule) GetMetadata() *common.MetadataScope {
 	return nil
 }
 
-// Endpoints: local and remote endpoints for rule selection
-type RuleReq_Selectors_Endpoints struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Local: local endpoint
-	Local *RuleReq_Selectors_Endpoints_Local `protobuf:"bytes,1,opt,name=local,proto3" json:"local,omitempty"`
-	// Remote: remote endpoint
-	Remote        *RuleReq_Selectors_Endpoints_Remote `protobuf:"bytes,2,opt,name=remote,proto3" json:"remote,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RuleReq_Selectors_Endpoints) Reset() {
-	*x = RuleReq_Selectors_Endpoints{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RuleReq_Selectors_Endpoints) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RuleReq_Selectors_Endpoints) ProtoMessage() {}
-
-func (x *RuleReq_Selectors_Endpoints) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RuleReq_Selectors_Endpoints.ProtoReflect.Descriptor instead.
-func (*RuleReq_Selectors_Endpoints) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0}
-}
-
-func (x *RuleReq_Selectors_Endpoints) GetLocal() *RuleReq_Selectors_Endpoints_Local {
-	if x != nil {
-		return x.Local
-	}
-	return nil
-}
-
-func (x *RuleReq_Selectors_Endpoints) GetRemote() *RuleReq_Selectors_Endpoints_Remote {
-	if x != nil {
-		return x.Remote
-	}
-	return nil
-}
-
 // FieldSelector: field selector for rule
 type RuleReq_Selectors_FieldSelector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -3666,14 +3611,14 @@ type RuleReq_Selectors_FieldSelector struct {
 	// Protocol: network transport protocol
 	Protocol common.Transport_Protocol `protobuf:"varint,4,opt,name=protocol,proto3,enum=common.Transport_Protocol" json:"protocol,omitempty"`
 	// Endpoints: local and remote endpoints
-	Endpoints     *RuleReq_Selectors_Endpoints `protobuf:"bytes,5,opt,name=endpoints,proto3" json:"endpoints,omitempty"`
+	Endpoints     *common.Endpoints `protobuf:"bytes,5,opt,name=endpoints,proto3" json:"endpoints,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RuleReq_Selectors_FieldSelector) Reset() {
 	*x = RuleReq_Selectors_FieldSelector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[77]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3685,7 +3630,7 @@ func (x *RuleReq_Selectors_FieldSelector) String() string {
 func (*RuleReq_Selectors_FieldSelector) ProtoMessage() {}
 
 func (x *RuleReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[77]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3698,7 +3643,7 @@ func (x *RuleReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Selectors_FieldSelector.ProtoReflect.Descriptor instead.
 func (*RuleReq_Selectors_FieldSelector) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 1}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0}
 }
 
 func (x *RuleReq_Selectors_FieldSelector) GetName() string {
@@ -3729,164 +3674,9 @@ func (x *RuleReq_Selectors_FieldSelector) GetProtocol() common.Transport_Protoco
 	return common.Transport_Protocol(0)
 }
 
-func (x *RuleReq_Selectors_FieldSelector) GetEndpoints() *RuleReq_Selectors_Endpoints {
+func (x *RuleReq_Selectors_FieldSelector) GetEndpoints() *common.Endpoints {
 	if x != nil {
 		return x.Endpoints
-	}
-	return nil
-}
-
-// Local: local endpoint
-type RuleReq_Selectors_Endpoints_Local struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Name: endpoint name
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Namespace: endpoint namespace
-	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// Type: endpoint type
-	Type common.Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
-	// Labels: resource labels
-	Labels        map[string]string `protobuf:"bytes,4,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) Reset() {
-	*x = RuleReq_Selectors_Endpoints_Local{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RuleReq_Selectors_Endpoints_Local) ProtoMessage() {}
-
-func (x *RuleReq_Selectors_Endpoints_Local) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RuleReq_Selectors_Endpoints_Local.ProtoReflect.Descriptor instead.
-func (*RuleReq_Selectors_Endpoints_Local) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0, 0}
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) GetNamespace() string {
-	if x != nil {
-		return x.Namespace
-	}
-	return ""
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) GetType() common.Endpoints_Type {
-	if x != nil {
-		return x.Type
-	}
-	return common.Endpoints_Type(0)
-}
-
-func (x *RuleReq_Selectors_Endpoints_Local) GetLabels() map[string]string {
-	if x != nil {
-		return x.Labels
-	}
-	return nil
-}
-
-// Remote: remote endpoint
-type RuleReq_Selectors_Endpoints_Remote struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Name: endpoint name
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Namespace: endpoint namespace
-	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// Type: endpoint type
-	Type common.Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
-	// Value: endpoint value
-	Value string `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	// Labels: resource labels
-	Labels        map[string]string `protobuf:"bytes,5,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) Reset() {
-	*x = RuleReq_Selectors_Endpoints_Remote{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RuleReq_Selectors_Endpoints_Remote) ProtoMessage() {}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RuleReq_Selectors_Endpoints_Remote.ProtoReflect.Descriptor instead.
-func (*RuleReq_Selectors_Endpoints_Remote) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0, 1}
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) GetNamespace() string {
-	if x != nil {
-		return x.Namespace
-	}
-	return ""
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) GetType() common.Endpoints_Type {
-	if x != nil {
-		return x.Type
-	}
-	return common.Endpoints_Type(0)
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-func (x *RuleReq_Selectors_Endpoints_Remote) GetLabels() map[string]string {
-	if x != nil {
-		return x.Labels
 	}
 	return nil
 }
@@ -3902,7 +3692,7 @@ type RuleResp_Upsert struct {
 
 func (x *RuleResp_Upsert) Reset() {
 	*x = RuleResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[83]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3914,7 +3704,7 @@ func (x *RuleResp_Upsert) String() string {
 func (*RuleResp_Upsert) ProtoMessage() {}
 
 func (x *RuleResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[83]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3950,7 +3740,7 @@ type RuleResp_List struct {
 
 func (x *RuleResp_List) Reset() {
 	*x = RuleResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[84]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3962,7 +3752,7 @@ func (x *RuleResp_List) String() string {
 func (*RuleResp_List) ProtoMessage() {}
 
 func (x *RuleResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[84]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4005,7 +3795,7 @@ type RuleResp_Watch struct {
 
 func (x *RuleResp_Watch) Reset() {
 	*x = RuleResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[85]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4017,7 +3807,7 @@ func (x *RuleResp_Watch) String() string {
 func (*RuleResp_Watch) ProtoMessage() {}
 
 func (x *RuleResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[85]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4222,43 +4012,23 @@ const file_sgroups_v1_queries_proto_rawDesc = "" +
 	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\x1aq\n" +
 	"\x05Watch\x12*\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x12<\n" +
-	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\"\xb6\r\n" +
+	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\"\x81\b\n" +
 	"\aRuleReq\x1a=\n" +
 	"\x06Upsert\x123\n" +
 	"\x05rules\x18\x01 \x03(\v2\x10.sgroups.v1.RuleB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05rules\x1a\x93\x02\n" +
 	"\x06Delete\x12B\n" +
 	"\x05rules\x18\x01 \x03(\v2\x1f.sgroups.v1.RuleReq.Delete.RuleB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05rules\x1a\xc4\x01\n" +
 	"\x04Rule\x12\xbb\x01\n" +
-	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x1a\x8f\t\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x1a\xda\x03\n" +
 	"\tSelectors\x12R\n" +
 	"\x0efield_selector\x18\x01 \x01(\v2+.sgroups.v1.RuleReq.Selectors.FieldSelectorR\rfieldSelector\x12W\n" +
-	"\x0elabel_selector\x18\x02 \x03(\v20.sgroups.v1.RuleReq.Selectors.LabelSelectorEntryR\rlabelSelector\x1a\x9c\x05\n" +
-	"\tEndpoints\x12C\n" +
-	"\x05local\x18\x01 \x01(\v2-.sgroups.v1.RuleReq.Selectors.Endpoints.LocalR\x05local\x12F\n" +
-	"\x06remote\x18\x02 \x01(\v2..sgroups.v1.RuleReq.Selectors.Endpoints.RemoteR\x06remote\x1a\xf3\x01\n" +
-	"\x05Local\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12Q\n" +
-	"\x06labels\x18\x04 \x03(\v29.sgroups.v1.RuleReq.Selectors.Endpoints.Local.LabelsEntryR\x06labels\x1a9\n" +
-	"\vLabelsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\x8b\x02\n" +
-	"\x06Remote\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12\x14\n" +
-	"\x05value\x18\x04 \x01(\tR\x05value\x12R\n" +
-	"\x06labels\x18\x05 \x03(\v2:.sgroups.v1.RuleReq.Selectors.Endpoints.Remote.LabelsEntryR\x06labels\x1a9\n" +
-	"\vLabelsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\xf3\x01\n" +
+	"\x0elabel_selector\x18\x02 \x03(\v20.sgroups.v1.RuleReq.Selectors.LabelSelectorEntryR\rlabelSelector\x1a\xdd\x01\n" +
 	"\rFieldSelector\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
 	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x121\n" +
 	"\atraffic\x18\x03 \x01(\x0e2\x17.common.Session.TrafficR\atraffic\x126\n" +
-	"\bprotocol\x18\x04 \x01(\x0e2\x1a.common.Transport.ProtocolR\bprotocol\x12E\n" +
-	"\tendpoints\x18\x05 \x01(\v2'.sgroups.v1.RuleReq.Selectors.EndpointsR\tendpoints\x1a@\n" +
+	"\bprotocol\x18\x04 \x01(\x0e2\x1a.common.Transport.ProtocolR\bprotocol\x12/\n" +
+	"\tendpoints\x18\x05 \x01(\v2\x11.common.EndpointsR\tendpoints\x1a@\n" +
 	"\x12LabelSelectorEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aK\n" +
@@ -4289,7 +4059,7 @@ func file_sgroups_v1_queries_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_queries_proto_rawDescData
 }
 
-var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 86)
+var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 81)
 var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*NamespaceReq)(nil),                        // 0: sgroups.v1.NamespaceReq
 	(*NamespaceResp)(nil),                       // 1: sgroups.v1.NamespaceResp
@@ -4357,143 +4127,132 @@ var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*HostBindingReq_Watch)(nil),                   // 63: sgroups.v1.HostBindingReq.Watch
 	(*HostBindingReq_Delete_HostBinding)(nil),      // 64: sgroups.v1.HostBindingReq.Delete.HostBinding
 	(*HostBindingReq_Selectors_FieldSelector)(nil), // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector
-	nil,                                        // 66: sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
-	(*HostBindingResp_Upsert)(nil),             // 67: sgroups.v1.HostBindingResp.Upsert
-	(*HostBindingResp_List)(nil),               // 68: sgroups.v1.HostBindingResp.List
-	(*HostBindingResp_Watch)(nil),              // 69: sgroups.v1.HostBindingResp.Watch
-	(*RuleReq_Upsert)(nil),                     // 70: sgroups.v1.RuleReq.Upsert
-	(*RuleReq_Delete)(nil),                     // 71: sgroups.v1.RuleReq.Delete
-	(*RuleReq_Selectors)(nil),                  // 72: sgroups.v1.RuleReq.Selectors
-	(*RuleReq_List)(nil),                       // 73: sgroups.v1.RuleReq.List
-	(*RuleReq_Watch)(nil),                      // 74: sgroups.v1.RuleReq.Watch
-	(*RuleReq_Delete_Rule)(nil),                // 75: sgroups.v1.RuleReq.Delete.Rule
-	(*RuleReq_Selectors_Endpoints)(nil),        // 76: sgroups.v1.RuleReq.Selectors.Endpoints
-	(*RuleReq_Selectors_FieldSelector)(nil),    // 77: sgroups.v1.RuleReq.Selectors.FieldSelector
-	nil,                                        // 78: sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
-	(*RuleReq_Selectors_Endpoints_Local)(nil),  // 79: sgroups.v1.RuleReq.Selectors.Endpoints.Local
-	(*RuleReq_Selectors_Endpoints_Remote)(nil), // 80: sgroups.v1.RuleReq.Selectors.Endpoints.Remote
-	nil,                               // 81: sgroups.v1.RuleReq.Selectors.Endpoints.Local.LabelsEntry
-	nil,                               // 82: sgroups.v1.RuleReq.Selectors.Endpoints.Remote.LabelsEntry
-	(*RuleResp_Upsert)(nil),           // 83: sgroups.v1.RuleResp.Upsert
-	(*RuleResp_List)(nil),             // 84: sgroups.v1.RuleResp.List
-	(*RuleResp_Watch)(nil),            // 85: sgroups.v1.RuleResp.Watch
-	(*Namespace)(nil),                 // 86: sgroups.v1.Namespace
-	(common.WatchEventType)(0),        // 87: common.WatchEventType
-	(*AddressGroup)(nil),              // 88: sgroups.v1.AddressGroup
-	(*common.ResSelector)(nil),        // 89: common.ResSelector
-	(*common.MetadataScope)(nil),      // 90: common.MetadataScope
-	(*common.Metadata)(nil),           // 91: common.Metadata
-	(*AddressGroup_Spec)(nil),         // 92: sgroups.v1.AddressGroup.Spec
-	(*common.ResourceRef)(nil),        // 93: common.ResourceRef
-	(*Network)(nil),                   // 94: sgroups.v1.Network
-	(*Network_Spec)(nil),              // 95: sgroups.v1.Network.Spec
-	(*Host)(nil),                      // 96: sgroups.v1.Host
-	(*common.IPs)(nil),                // 97: common.IPs
-	(*Host_Spec_MetaInfo)(nil),        // 98: sgroups.v1.Host.Spec.MetaInfo
-	(*Host_Spec)(nil),                 // 99: sgroups.v1.Host.Spec
-	(*HostBinding)(nil),               // 100: sgroups.v1.HostBinding
-	(*common.ResourceIdentifier)(nil), // 101: common.ResourceIdentifier
-	(*Rule)(nil),                      // 102: sgroups.v1.Rule
-	(common.Session_Traffic)(0),       // 103: common.Session.Traffic
-	(common.Transport_Protocol)(0),    // 104: common.Transport.Protocol
-	(common.Endpoints_Type)(0),        // 105: common.Endpoints.Type
+	nil,                                     // 66: sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
+	(*HostBindingResp_Upsert)(nil),          // 67: sgroups.v1.HostBindingResp.Upsert
+	(*HostBindingResp_List)(nil),            // 68: sgroups.v1.HostBindingResp.List
+	(*HostBindingResp_Watch)(nil),           // 69: sgroups.v1.HostBindingResp.Watch
+	(*RuleReq_Upsert)(nil),                  // 70: sgroups.v1.RuleReq.Upsert
+	(*RuleReq_Delete)(nil),                  // 71: sgroups.v1.RuleReq.Delete
+	(*RuleReq_Selectors)(nil),               // 72: sgroups.v1.RuleReq.Selectors
+	(*RuleReq_List)(nil),                    // 73: sgroups.v1.RuleReq.List
+	(*RuleReq_Watch)(nil),                   // 74: sgroups.v1.RuleReq.Watch
+	(*RuleReq_Delete_Rule)(nil),             // 75: sgroups.v1.RuleReq.Delete.Rule
+	(*RuleReq_Selectors_FieldSelector)(nil), // 76: sgroups.v1.RuleReq.Selectors.FieldSelector
+	nil,                                     // 77: sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
+	(*RuleResp_Upsert)(nil),                 // 78: sgroups.v1.RuleResp.Upsert
+	(*RuleResp_List)(nil),                   // 79: sgroups.v1.RuleResp.List
+	(*RuleResp_Watch)(nil),                  // 80: sgroups.v1.RuleResp.Watch
+	(*Namespace)(nil),                       // 81: sgroups.v1.Namespace
+	(common.WatchEventType)(0),              // 82: common.WatchEventType
+	(*AddressGroup)(nil),                    // 83: sgroups.v1.AddressGroup
+	(*common.ResSelector)(nil),              // 84: common.ResSelector
+	(*common.MetadataScope)(nil),            // 85: common.MetadataScope
+	(*common.Metadata)(nil),                 // 86: common.Metadata
+	(*AddressGroup_Spec)(nil),               // 87: sgroups.v1.AddressGroup.Spec
+	(*common.ResourceRef)(nil),              // 88: common.ResourceRef
+	(*Network)(nil),                         // 89: sgroups.v1.Network
+	(*Network_Spec)(nil),                    // 90: sgroups.v1.Network.Spec
+	(*Host)(nil),                            // 91: sgroups.v1.Host
+	(*common.IPs)(nil),                      // 92: common.IPs
+	(*Host_Spec_MetaInfo)(nil),              // 93: sgroups.v1.Host.Spec.MetaInfo
+	(*Host_Spec)(nil),                       // 94: sgroups.v1.Host.Spec
+	(*HostBinding)(nil),                     // 95: sgroups.v1.HostBinding
+	(*common.ResourceIdentifier)(nil),       // 96: common.ResourceIdentifier
+	(*Rule)(nil),                            // 97: sgroups.v1.Rule
+	(common.Session_Traffic)(0),             // 98: common.Session.Traffic
+	(common.Transport_Protocol)(0),          // 99: common.Transport.Protocol
+	(*common.Endpoints)(nil),                // 100: common.Endpoints
 }
 var file_sgroups_v1_queries_proto_depIdxs = []int32{
 	17,  // 0: sgroups.v1.NamespaceReq.Selector.field_selector:type_name -> sgroups.v1.NamespaceReq.Selector.FieldSelector
 	18,  // 1: sgroups.v1.NamespaceReq.Selector.label_selector:type_name -> sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
-	86,  // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	81,  // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
 	20,  // 3: sgroups.v1.NamespaceReq.Delete.namespaces:type_name -> sgroups.v1.NamespaceReq.Delete.Namespace
 	12,  // 4: sgroups.v1.NamespaceReq.List.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
 	12,  // 5: sgroups.v1.NamespaceReq.Watch.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
 	19,  // 6: sgroups.v1.NamespaceReq.Delete.Namespace.metadata:type_name -> sgroups.v1.NamespaceReq.Delete.MetadataScope
-	86,  // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
-	86,  // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
-	87,  // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
-	86,  // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
-	88,  // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	81,  // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	81,  // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
+	82,  // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
+	81,  // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
+	83,  // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
 	28,  // 12: sgroups.v1.AddressGroupReq.Delete.address_groups:type_name -> sgroups.v1.AddressGroupReq.Delete.AddressGroup
-	89,  // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
-	89,  // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
-	90,  // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
-	91,  // 16: sgroups.v1.AddressGroupResp.AddressGroupExt.metadata:type_name -> common.Metadata
-	92,  // 17: sgroups.v1.AddressGroupResp.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	93,  // 18: sgroups.v1.AddressGroupResp.AddressGroupExt.refs:type_name -> common.ResourceRef
-	88,  // 19: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	84,  // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
+	84,  // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
+	85,  // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
+	86,  // 16: sgroups.v1.AddressGroupResp.AddressGroupExt.metadata:type_name -> common.Metadata
+	87,  // 17: sgroups.v1.AddressGroupResp.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	88,  // 18: sgroups.v1.AddressGroupResp.AddressGroupExt.refs:type_name -> common.ResourceRef
+	83,  // 19: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
 	29,  // 20: sgroups.v1.AddressGroupResp.List.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
-	87,  // 21: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
+	82,  // 21: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
 	29,  // 22: sgroups.v1.AddressGroupResp.Watch.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
-	94,  // 23: sgroups.v1.NetworkReq.Upsert.networks:type_name -> sgroups.v1.Network
+	89,  // 23: sgroups.v1.NetworkReq.Upsert.networks:type_name -> sgroups.v1.Network
 	37,  // 24: sgroups.v1.NetworkReq.Delete.networks:type_name -> sgroups.v1.NetworkReq.Delete.Network
-	89,  // 25: sgroups.v1.NetworkReq.List.selectors:type_name -> common.ResSelector
-	89,  // 26: sgroups.v1.NetworkReq.Watch.selectors:type_name -> common.ResSelector
-	90,  // 27: sgroups.v1.NetworkReq.Delete.Network.metadata:type_name -> common.MetadataScope
-	91,  // 28: sgroups.v1.NetworkResp.NetworkExt.metadata:type_name -> common.Metadata
-	95,  // 29: sgroups.v1.NetworkResp.NetworkExt.spec:type_name -> sgroups.v1.Network.Spec
-	93,  // 30: sgroups.v1.NetworkResp.NetworkExt.refs:type_name -> common.ResourceRef
-	94,  // 31: sgroups.v1.NetworkResp.Upsert.networks:type_name -> sgroups.v1.Network
+	84,  // 25: sgroups.v1.NetworkReq.List.selectors:type_name -> common.ResSelector
+	84,  // 26: sgroups.v1.NetworkReq.Watch.selectors:type_name -> common.ResSelector
+	85,  // 27: sgroups.v1.NetworkReq.Delete.Network.metadata:type_name -> common.MetadataScope
+	86,  // 28: sgroups.v1.NetworkResp.NetworkExt.metadata:type_name -> common.Metadata
+	90,  // 29: sgroups.v1.NetworkResp.NetworkExt.spec:type_name -> sgroups.v1.Network.Spec
+	88,  // 30: sgroups.v1.NetworkResp.NetworkExt.refs:type_name -> common.ResourceRef
+	89,  // 31: sgroups.v1.NetworkResp.Upsert.networks:type_name -> sgroups.v1.Network
 	38,  // 32: sgroups.v1.NetworkResp.List.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
-	87,  // 33: sgroups.v1.NetworkResp.Watch.type:type_name -> common.WatchEventType
+	82,  // 33: sgroups.v1.NetworkResp.Watch.type:type_name -> common.WatchEventType
 	38,  // 34: sgroups.v1.NetworkResp.Watch.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
-	96,  // 35: sgroups.v1.HostReq.Upsert.hosts:type_name -> sgroups.v1.Host
+	91,  // 35: sgroups.v1.HostReq.Upsert.hosts:type_name -> sgroups.v1.Host
 	48,  // 36: sgroups.v1.HostReq.Delete.hosts:type_name -> sgroups.v1.HostReq.Delete.Host
-	89,  // 37: sgroups.v1.HostReq.List.selectors:type_name -> common.ResSelector
-	89,  // 38: sgroups.v1.HostReq.Watch.selectors:type_name -> common.ResSelector
+	84,  // 37: sgroups.v1.HostReq.List.selectors:type_name -> common.ResSelector
+	84,  // 38: sgroups.v1.HostReq.Watch.selectors:type_name -> common.ResSelector
 	49,  // 39: sgroups.v1.HostReq.UpdIPs.hosts:type_name -> sgroups.v1.HostReq.UpdIPs.Host
 	51,  // 40: sgroups.v1.HostReq.UpdMetaInfo.hosts:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo
-	90,  // 41: sgroups.v1.HostReq.Delete.Host.metadata:type_name -> common.MetadataScope
-	90,  // 42: sgroups.v1.HostReq.UpdIPs.Host.metadata:type_name -> common.MetadataScope
+	85,  // 41: sgroups.v1.HostReq.Delete.Host.metadata:type_name -> common.MetadataScope
+	85,  // 42: sgroups.v1.HostReq.UpdIPs.Host.metadata:type_name -> common.MetadataScope
 	50,  // 43: sgroups.v1.HostReq.UpdIPs.Host.spec:type_name -> sgroups.v1.HostReq.UpdIPs.Host.Spec
-	97,  // 44: sgroups.v1.HostReq.UpdIPs.Host.Spec.ips:type_name -> common.IPs
-	90,  // 45: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.metadata:type_name -> common.MetadataScope
+	92,  // 44: sgroups.v1.HostReq.UpdIPs.Host.Spec.ips:type_name -> common.IPs
+	85,  // 45: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.metadata:type_name -> common.MetadataScope
 	52,  // 46: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.spec:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
-	98,  // 47: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
-	91,  // 48: sgroups.v1.HostResp.HostExt.metadata:type_name -> common.Metadata
-	99,  // 49: sgroups.v1.HostResp.HostExt.spec:type_name -> sgroups.v1.Host.Spec
-	93,  // 50: sgroups.v1.HostResp.HostExt.refs:type_name -> common.ResourceRef
-	96,  // 51: sgroups.v1.HostResp.Upsert.hosts:type_name -> sgroups.v1.Host
+	93,  // 47: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
+	86,  // 48: sgroups.v1.HostResp.HostExt.metadata:type_name -> common.Metadata
+	94,  // 49: sgroups.v1.HostResp.HostExt.spec:type_name -> sgroups.v1.Host.Spec
+	88,  // 50: sgroups.v1.HostResp.HostExt.refs:type_name -> common.ResourceRef
+	91,  // 51: sgroups.v1.HostResp.Upsert.hosts:type_name -> sgroups.v1.Host
 	53,  // 52: sgroups.v1.HostResp.List.hosts:type_name -> sgroups.v1.HostResp.HostExt
-	87,  // 53: sgroups.v1.HostResp.Watch.type:type_name -> common.WatchEventType
+	82,  // 53: sgroups.v1.HostResp.Watch.type:type_name -> common.WatchEventType
 	53,  // 54: sgroups.v1.HostResp.Watch.hosts:type_name -> sgroups.v1.HostResp.HostExt
-	96,  // 55: sgroups.v1.HostResp.UpdIPs.hosts:type_name -> sgroups.v1.Host
-	96,  // 56: sgroups.v1.HostResp.UpdMetaInfo.hosts:type_name -> sgroups.v1.Host
-	100, // 57: sgroups.v1.HostBindingReq.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
+	91,  // 55: sgroups.v1.HostResp.UpdIPs.hosts:type_name -> sgroups.v1.Host
+	91,  // 56: sgroups.v1.HostResp.UpdMetaInfo.hosts:type_name -> sgroups.v1.Host
+	95,  // 57: sgroups.v1.HostBindingReq.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
 	64,  // 58: sgroups.v1.HostBindingReq.Delete.host_bindings:type_name -> sgroups.v1.HostBindingReq.Delete.HostBinding
 	65,  // 59: sgroups.v1.HostBindingReq.Selectors.field_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.FieldSelector
 	66,  // 60: sgroups.v1.HostBindingReq.Selectors.label_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
 	61,  // 61: sgroups.v1.HostBindingReq.List.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
 	61,  // 62: sgroups.v1.HostBindingReq.Watch.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
-	90,  // 63: sgroups.v1.HostBindingReq.Delete.HostBinding.metadata:type_name -> common.MetadataScope
-	101, // 64: sgroups.v1.HostBindingReq.Selectors.FieldSelector.address_group:type_name -> common.ResourceIdentifier
-	101, // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector.host:type_name -> common.ResourceIdentifier
-	100, // 66: sgroups.v1.HostBindingResp.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
-	100, // 67: sgroups.v1.HostBindingResp.List.host_bindings:type_name -> sgroups.v1.HostBinding
-	87,  // 68: sgroups.v1.HostBindingResp.Watch.type:type_name -> common.WatchEventType
-	100, // 69: sgroups.v1.HostBindingResp.Watch.host_bindings:type_name -> sgroups.v1.HostBinding
-	102, // 70: sgroups.v1.RuleReq.Upsert.rules:type_name -> sgroups.v1.Rule
+	85,  // 63: sgroups.v1.HostBindingReq.Delete.HostBinding.metadata:type_name -> common.MetadataScope
+	96,  // 64: sgroups.v1.HostBindingReq.Selectors.FieldSelector.address_group:type_name -> common.ResourceIdentifier
+	96,  // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector.host:type_name -> common.ResourceIdentifier
+	95,  // 66: sgroups.v1.HostBindingResp.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
+	95,  // 67: sgroups.v1.HostBindingResp.List.host_bindings:type_name -> sgroups.v1.HostBinding
+	82,  // 68: sgroups.v1.HostBindingResp.Watch.type:type_name -> common.WatchEventType
+	95,  // 69: sgroups.v1.HostBindingResp.Watch.host_bindings:type_name -> sgroups.v1.HostBinding
+	97,  // 70: sgroups.v1.RuleReq.Upsert.rules:type_name -> sgroups.v1.Rule
 	75,  // 71: sgroups.v1.RuleReq.Delete.rules:type_name -> sgroups.v1.RuleReq.Delete.Rule
-	77,  // 72: sgroups.v1.RuleReq.Selectors.field_selector:type_name -> sgroups.v1.RuleReq.Selectors.FieldSelector
-	78,  // 73: sgroups.v1.RuleReq.Selectors.label_selector:type_name -> sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
+	76,  // 72: sgroups.v1.RuleReq.Selectors.field_selector:type_name -> sgroups.v1.RuleReq.Selectors.FieldSelector
+	77,  // 73: sgroups.v1.RuleReq.Selectors.label_selector:type_name -> sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
 	72,  // 74: sgroups.v1.RuleReq.List.selectors:type_name -> sgroups.v1.RuleReq.Selectors
 	72,  // 75: sgroups.v1.RuleReq.Watch.selectors:type_name -> sgroups.v1.RuleReq.Selectors
-	90,  // 76: sgroups.v1.RuleReq.Delete.Rule.metadata:type_name -> common.MetadataScope
-	79,  // 77: sgroups.v1.RuleReq.Selectors.Endpoints.local:type_name -> sgroups.v1.RuleReq.Selectors.Endpoints.Local
-	80,  // 78: sgroups.v1.RuleReq.Selectors.Endpoints.remote:type_name -> sgroups.v1.RuleReq.Selectors.Endpoints.Remote
-	103, // 79: sgroups.v1.RuleReq.Selectors.FieldSelector.traffic:type_name -> common.Session.Traffic
-	104, // 80: sgroups.v1.RuleReq.Selectors.FieldSelector.protocol:type_name -> common.Transport.Protocol
-	76,  // 81: sgroups.v1.RuleReq.Selectors.FieldSelector.endpoints:type_name -> sgroups.v1.RuleReq.Selectors.Endpoints
-	105, // 82: sgroups.v1.RuleReq.Selectors.Endpoints.Local.type:type_name -> common.Endpoints.Type
-	81,  // 83: sgroups.v1.RuleReq.Selectors.Endpoints.Local.labels:type_name -> sgroups.v1.RuleReq.Selectors.Endpoints.Local.LabelsEntry
-	105, // 84: sgroups.v1.RuleReq.Selectors.Endpoints.Remote.type:type_name -> common.Endpoints.Type
-	82,  // 85: sgroups.v1.RuleReq.Selectors.Endpoints.Remote.labels:type_name -> sgroups.v1.RuleReq.Selectors.Endpoints.Remote.LabelsEntry
-	102, // 86: sgroups.v1.RuleResp.Upsert.rules:type_name -> sgroups.v1.Rule
-	102, // 87: sgroups.v1.RuleResp.List.rules:type_name -> sgroups.v1.Rule
-	87,  // 88: sgroups.v1.RuleResp.Watch.type:type_name -> common.WatchEventType
-	102, // 89: sgroups.v1.RuleResp.Watch.rules:type_name -> sgroups.v1.Rule
-	90,  // [90:90] is the sub-list for method output_type
-	90,  // [90:90] is the sub-list for method input_type
-	90,  // [90:90] is the sub-list for extension type_name
-	90,  // [90:90] is the sub-list for extension extendee
-	0,   // [0:90] is the sub-list for field type_name
+	85,  // 76: sgroups.v1.RuleReq.Delete.Rule.metadata:type_name -> common.MetadataScope
+	98,  // 77: sgroups.v1.RuleReq.Selectors.FieldSelector.traffic:type_name -> common.Session.Traffic
+	99,  // 78: sgroups.v1.RuleReq.Selectors.FieldSelector.protocol:type_name -> common.Transport.Protocol
+	100, // 79: sgroups.v1.RuleReq.Selectors.FieldSelector.endpoints:type_name -> common.Endpoints
+	97,  // 80: sgroups.v1.RuleResp.Upsert.rules:type_name -> sgroups.v1.Rule
+	97,  // 81: sgroups.v1.RuleResp.List.rules:type_name -> sgroups.v1.Rule
+	82,  // 82: sgroups.v1.RuleResp.Watch.type:type_name -> common.WatchEventType
+	97,  // 83: sgroups.v1.RuleResp.Watch.rules:type_name -> sgroups.v1.Rule
+	84,  // [84:84] is the sub-list for method output_type
+	84,  // [84:84] is the sub-list for method input_type
+	84,  // [84:84] is the sub-list for extension type_name
+	84,  // [84:84] is the sub-list for extension extendee
+	0,   // [0:84] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_queries_proto_init() }
@@ -4508,7 +4267,7 @@ func file_sgroups_v1_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_queries_proto_rawDesc), len(file_sgroups_v1_queries_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   86,
+			NumMessages:   81,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

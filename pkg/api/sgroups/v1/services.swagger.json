@@ -1018,6 +1018,60 @@
       },
       "title": "AddressGroupExt: extended address group information"
     },
+    "EndpointsLocal": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: endpoint name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: endpoint namespace"
+        },
+        "type": {
+          "$ref": "#/definitions/commonEndpointsType",
+          "title": "Type: endpoint type"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        }
+      },
+      "title": "Local: local endpoint"
+    },
+    "EndpointsRemote": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: endpoint name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: endpoint namespace"
+        },
+        "type": {
+          "$ref": "#/definitions/commonEndpointsType",
+          "title": "Type: endpoint type"
+        },
+        "value": {
+          "type": "string",
+          "title": "Value: endpoint value"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        }
+      },
+      "title": "Remote: remote endpoint"
+    },
     "HostBindingReqDeleteHostBinding": {
       "type": "object",
       "properties": {
@@ -1180,74 +1234,6 @@
       },
       "title": "Rule: rule to delete"
     },
-    "RuleReqSelectorsEndpoints": {
-      "type": "object",
-      "properties": {
-        "local": {
-          "$ref": "#/definitions/RuleReqSelectorsEndpointsLocal",
-          "title": "Local: local endpoint"
-        },
-        "remote": {
-          "$ref": "#/definitions/RuleReqSelectorsEndpointsRemote",
-          "title": "Remote: remote endpoint"
-        }
-      },
-      "title": "Endpoints: local and remote endpoints for rule selection"
-    },
-    "RuleReqSelectorsEndpointsLocal": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name: endpoint name"
-        },
-        "namespace": {
-          "type": "string",
-          "title": "Namespace: endpoint namespace"
-        },
-        "type": {
-          "$ref": "#/definitions/commonEndpointsType",
-          "title": "Type: endpoint type"
-        },
-        "labels": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Labels: resource labels"
-        }
-      },
-      "title": "Local: local endpoint"
-    },
-    "RuleReqSelectorsEndpointsRemote": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name: endpoint name"
-        },
-        "namespace": {
-          "type": "string",
-          "title": "Namespace: endpoint namespace"
-        },
-        "type": {
-          "$ref": "#/definitions/commonEndpointsType",
-          "title": "Type: endpoint type"
-        },
-        "value": {
-          "type": "string",
-          "title": "Value: endpoint value"
-        },
-        "labels": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Labels: resource labels"
-        }
-      },
-      "title": "Remote: remote endpoint"
-    },
     "SessionTraffic": {
       "type": "string",
       "enum": [
@@ -1365,55 +1351,15 @@
       "type": "object",
       "properties": {
         "local": {
-          "$ref": "#/definitions/commonEndpointsLocal",
+          "$ref": "#/definitions/EndpointsLocal",
           "title": "Local: local endpoint"
         },
         "remote": {
-          "$ref": "#/definitions/commonEndpointsRemote",
+          "$ref": "#/definitions/EndpointsRemote",
           "title": "Remote: remote endpoint"
         }
       },
       "title": "Endpoints: represents endpoints"
-    },
-    "commonEndpointsLocal": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name: endpoint name"
-        },
-        "namespace": {
-          "type": "string",
-          "title": "Namespace: endpoint namespace"
-        },
-        "type": {
-          "$ref": "#/definitions/commonEndpointsType",
-          "title": "Type: endpoint type"
-        }
-      },
-      "title": "Local: local endpoint"
-    },
-    "commonEndpointsRemote": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name: endpoint name"
-        },
-        "namespace": {
-          "type": "string",
-          "title": "Namespace: endpoint namespace"
-        },
-        "type": {
-          "$ref": "#/definitions/commonEndpointsType",
-          "title": "Type: endpoint type"
-        },
-        "value": {
-          "type": "string",
-          "title": "Value: endpoint value"
-        }
-      },
-      "title": "Remote: remote endpoint"
     },
     "commonEndpointsType": {
       "type": "string",
@@ -2624,7 +2570,7 @@
           "title": "Protocol: network transport protocol"
         },
         "endpoints": {
-          "$ref": "#/definitions/RuleReqSelectorsEndpoints",
+          "$ref": "#/definitions/commonEndpoints",
           "title": "Endpoints: local and remote endpoints"
         }
       },

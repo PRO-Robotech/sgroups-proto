@@ -147,6 +147,8 @@ message Endpoints {
     string namespace = 2;
     // Type: endpoint type
     Type type = 3;
+    // Labels: resource labels
+    map<string, string> labels = 4;
   }
   // Remote: remote endpoint
   message Remote {
@@ -158,6 +160,8 @@ message Endpoints {
     Type type = 3;
     // Value: endpoint value
     string value = 4;
+    // Labels: resource labels
+    map<string, string> labels = 5;
   }
   // Local: local endpoint
   Local local = 1;

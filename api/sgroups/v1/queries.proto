@@ -523,37 +523,6 @@ message RuleReq {
   }
   // Selectors: request to select rules
   message Selectors {
-    // Endpoints: local and remote endpoints for rule selection
-    message Endpoints {
-      // Local: local endpoint
-      message Local {
-        // Name: endpoint name
-        string name = 1;
-        // Namespace: endpoint namespace
-        string namespace = 2;
-        // Type: endpoint type
-        common.Endpoints.Type type = 3;
-        // Labels: resource labels
-        map<string, string> labels = 4;
-      }
-      // Remote: remote endpoint
-      message Remote {
-        // Name: endpoint name
-        string name = 1;
-        // Namespace: endpoint namespace
-        string namespace = 2;
-        // Type: endpoint type
-        common.Endpoints.Type type = 3;
-        // Value: endpoint value
-        string value = 4;
-        // Labels: resource labels
-        map<string, string> labels = 5;
-      }
-      // Local: local endpoint
-      Local local = 1;
-      // Remote: remote endpoint
-      Remote remote = 2;
-    }
     // FieldSelector: field selector for rule
     message FieldSelector {
       // Name: rule name
@@ -565,7 +534,7 @@ message RuleReq {
       // Protocol: network transport protocol
       common.Transport.Protocol protocol = 4;
       // Endpoints: local and remote endpoints
-      Endpoints endpoints = 5;
+      common.Endpoints endpoints = 5;
     }
     // SvcFieldSelector: field selector for rule
     FieldSelector field_selector = 1;
