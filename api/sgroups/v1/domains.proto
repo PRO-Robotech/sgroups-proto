@@ -182,3 +182,82 @@ message NetworkBinding {
   // Spec: network binding specification
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
+
+// Service: represents service resource with protocol specifications
+message Service {
+  // Spec: resource specification
+  message Spec {
+    // PortSpec: port specification for TCP/UDP protocols
+    message PortSpec {
+      // DstPorts: destination port range (e.g. "80", "8080-8090")
+      string dst_ports = 1;
+      // Comment: port spec comment
+      string comment = 2;
+      // Description: port spec description
+      string description = 3;
+    }
+    // TCPSpec: TCP protocol specification
+    message TCPSpec {
+      // Ports: list of TCP port specifications
+      repeated PortSpec ports = 1;
+    }
+    // UDPSpec: UDP protocol specification
+    message UDPSpec {
+      // Ports: list of UDP port specifications
+      repeated PortSpec ports = 1;
+    }
+    // ICMPSpec: ICMP protocol specification
+    message ICMPSpec {
+      // Types: list of ICMP type numbers (0-255)
+      repeated int32 types = 1;
+    }
+    // Protocols: protocol specifications for the service
+    message Protocols {
+      // TCP: TCP protocol specification
+      TCPSpec tcp = 1;
+      // UDP: UDP protocol specification
+      UDPSpec udp = 2;
+      // ICMPv4: ICMPv4 protocol specification
+      ICMPSpec icmpv4 = 3;
+      // ICMPv6: ICMPv6 protocol specification
+      ICMPSpec icmpv6 = 4;
+    }
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // Protocols: protocol specifications
+    Protocols protocols = 4;
+  }
+  // Metadata: service metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: service specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// ServiceBinding: represents service binding resource
+message ServiceBinding {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // AddressGroup: reference to the address group
+    common.ResourceIdentifier address_group = 4 [(buf.validate.field) = {required: true}];
+    // Service: reference to the service
+    common.ResourceIdentifier service = 5 [(buf.validate.field) = {required: true}];
+  }
+  // Metadata: service binding metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: service binding specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}

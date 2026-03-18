@@ -88,4 +88,10 @@ func init() {
 
 	(clientConstructor[sgroupsv1.SGroupsNetworkBindingAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsNetworkBindingAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsServicesAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsServicesAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsServiceBindingAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsServiceBindingAPIClient)
 }
