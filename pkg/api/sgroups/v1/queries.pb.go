@@ -394,6 +394,80 @@ func (*HostBindingResp) Descriptor() ([]byte, []int) {
 	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{9}
 }
 
+// NetworkBindingReq: network binding requests
+type NetworkBindingReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq) Reset() {
+	*x = NetworkBindingReq{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq) ProtoMessage() {}
+
+func (x *NetworkBindingReq) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10}
+}
+
+// NetworkBindingResp: network binding responses
+type NetworkBindingResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingResp) Reset() {
+	*x = NetworkBindingResp{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingResp) ProtoMessage() {}
+
+func (x *NetworkBindingResp) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingResp.ProtoReflect.Descriptor instead.
+func (*NetworkBindingResp) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11}
+}
+
 // RuleReq: rule requests
 type RuleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -403,7 +477,7 @@ type RuleReq struct {
 
 func (x *RuleReq) Reset() {
 	*x = RuleReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +489,7 @@ func (x *RuleReq) String() string {
 func (*RuleReq) ProtoMessage() {}
 
 func (x *RuleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +502,7 @@ func (x *RuleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq.ProtoReflect.Descriptor instead.
 func (*RuleReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12}
 }
 
 // RuleResp: rule responses
@@ -440,7 +514,7 @@ type RuleResp struct {
 
 func (x *RuleResp) Reset() {
 	*x = RuleResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -452,7 +526,7 @@ func (x *RuleResp) String() string {
 func (*RuleResp) ProtoMessage() {}
 
 func (x *RuleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -465,7 +539,7 @@ func (x *RuleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleResp.ProtoReflect.Descriptor instead.
 func (*RuleResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{13}
 }
 
 // Selector: resource selector
@@ -481,7 +555,7 @@ type NamespaceReq_Selector struct {
 
 func (x *NamespaceReq_Selector) Reset() {
 	*x = NamespaceReq_Selector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -493,7 +567,7 @@ func (x *NamespaceReq_Selector) String() string {
 func (*NamespaceReq_Selector) ProtoMessage() {}
 
 func (x *NamespaceReq_Selector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -534,7 +608,7 @@ type NamespaceReq_Upsert struct {
 
 func (x *NamespaceReq_Upsert) Reset() {
 	*x = NamespaceReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -546,7 +620,7 @@ func (x *NamespaceReq_Upsert) String() string {
 func (*NamespaceReq_Upsert) ProtoMessage() {}
 
 func (x *NamespaceReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +654,7 @@ type NamespaceReq_Delete struct {
 
 func (x *NamespaceReq_Delete) Reset() {
 	*x = NamespaceReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -592,7 +666,7 @@ func (x *NamespaceReq_Delete) String() string {
 func (*NamespaceReq_Delete) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +700,7 @@ type NamespaceReq_List struct {
 
 func (x *NamespaceReq_List) Reset() {
 	*x = NamespaceReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -638,7 +712,7 @@ func (x *NamespaceReq_List) String() string {
 func (*NamespaceReq_List) ProtoMessage() {}
 
 func (x *NamespaceReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +748,7 @@ type NamespaceReq_Watch struct {
 
 func (x *NamespaceReq_Watch) Reset() {
 	*x = NamespaceReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -686,7 +760,7 @@ func (x *NamespaceReq_Watch) String() string {
 func (*NamespaceReq_Watch) ProtoMessage() {}
 
 func (x *NamespaceReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -727,7 +801,7 @@ type NamespaceReq_Selector_FieldSelector struct {
 
 func (x *NamespaceReq_Selector_FieldSelector) Reset() {
 	*x = NamespaceReq_Selector_FieldSelector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -739,7 +813,7 @@ func (x *NamespaceReq_Selector_FieldSelector) String() string {
 func (*NamespaceReq_Selector_FieldSelector) ProtoMessage() {}
 
 func (x *NamespaceReq_Selector_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -775,7 +849,7 @@ type NamespaceReq_Delete_MetadataScope struct {
 
 func (x *NamespaceReq_Delete_MetadataScope) Reset() {
 	*x = NamespaceReq_Delete_MetadataScope{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -787,7 +861,7 @@ func (x *NamespaceReq_Delete_MetadataScope) String() string {
 func (*NamespaceReq_Delete_MetadataScope) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete_MetadataScope) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -828,7 +902,7 @@ type NamespaceReq_Delete_Namespace struct {
 
 func (x *NamespaceReq_Delete_Namespace) Reset() {
 	*x = NamespaceReq_Delete_Namespace{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -840,7 +914,7 @@ func (x *NamespaceReq_Delete_Namespace) String() string {
 func (*NamespaceReq_Delete_Namespace) ProtoMessage() {}
 
 func (x *NamespaceReq_Delete_Namespace) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -874,7 +948,7 @@ type NamespaceResp_Upsert struct {
 
 func (x *NamespaceResp_Upsert) Reset() {
 	*x = NamespaceResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -886,7 +960,7 @@ func (x *NamespaceResp_Upsert) String() string {
 func (*NamespaceResp_Upsert) ProtoMessage() {}
 
 func (x *NamespaceResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -922,7 +996,7 @@ type NamespaceResp_List struct {
 
 func (x *NamespaceResp_List) Reset() {
 	*x = NamespaceResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -934,7 +1008,7 @@ func (x *NamespaceResp_List) String() string {
 func (*NamespaceResp_List) ProtoMessage() {}
 
 func (x *NamespaceResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,7 +1051,7 @@ type NamespaceResp_Watch struct {
 
 func (x *NamespaceResp_Watch) Reset() {
 	*x = NamespaceResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -989,7 +1063,7 @@ func (x *NamespaceResp_Watch) String() string {
 func (*NamespaceResp_Watch) ProtoMessage() {}
 
 func (x *NamespaceResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1030,7 +1104,7 @@ type AddressGroupReq_Upsert struct {
 
 func (x *AddressGroupReq_Upsert) Reset() {
 	*x = AddressGroupReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1042,7 +1116,7 @@ func (x *AddressGroupReq_Upsert) String() string {
 func (*AddressGroupReq_Upsert) ProtoMessage() {}
 
 func (x *AddressGroupReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1076,7 +1150,7 @@ type AddressGroupReq_Delete struct {
 
 func (x *AddressGroupReq_Delete) Reset() {
 	*x = AddressGroupReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1088,7 +1162,7 @@ func (x *AddressGroupReq_Delete) String() string {
 func (*AddressGroupReq_Delete) ProtoMessage() {}
 
 func (x *AddressGroupReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1122,7 +1196,7 @@ type AddressGroupReq_List struct {
 
 func (x *AddressGroupReq_List) Reset() {
 	*x = AddressGroupReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1134,7 +1208,7 @@ func (x *AddressGroupReq_List) String() string {
 func (*AddressGroupReq_List) ProtoMessage() {}
 
 func (x *AddressGroupReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1170,7 +1244,7 @@ type AddressGroupReq_Watch struct {
 
 func (x *AddressGroupReq_Watch) Reset() {
 	*x = AddressGroupReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1182,7 +1256,7 @@ func (x *AddressGroupReq_Watch) String() string {
 func (*AddressGroupReq_Watch) ProtoMessage() {}
 
 func (x *AddressGroupReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1223,7 +1297,7 @@ type AddressGroupReq_Delete_AddressGroup struct {
 
 func (x *AddressGroupReq_Delete_AddressGroup) Reset() {
 	*x = AddressGroupReq_Delete_AddressGroup{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1235,7 +1309,7 @@ func (x *AddressGroupReq_Delete_AddressGroup) String() string {
 func (*AddressGroupReq_Delete_AddressGroup) ProtoMessage() {}
 
 func (x *AddressGroupReq_Delete_AddressGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1273,7 +1347,7 @@ type AddressGroupResp_AddressGroupExt struct {
 
 func (x *AddressGroupResp_AddressGroupExt) Reset() {
 	*x = AddressGroupResp_AddressGroupExt{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1285,7 +1359,7 @@ func (x *AddressGroupResp_AddressGroupExt) String() string {
 func (*AddressGroupResp_AddressGroupExt) ProtoMessage() {}
 
 func (x *AddressGroupResp_AddressGroupExt) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1333,7 +1407,7 @@ type AddressGroupResp_Upsert struct {
 
 func (x *AddressGroupResp_Upsert) Reset() {
 	*x = AddressGroupResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1345,7 +1419,7 @@ func (x *AddressGroupResp_Upsert) String() string {
 func (*AddressGroupResp_Upsert) ProtoMessage() {}
 
 func (x *AddressGroupResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1381,7 +1455,7 @@ type AddressGroupResp_List struct {
 
 func (x *AddressGroupResp_List) Reset() {
 	*x = AddressGroupResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1393,7 +1467,7 @@ func (x *AddressGroupResp_List) String() string {
 func (*AddressGroupResp_List) ProtoMessage() {}
 
 func (x *AddressGroupResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1436,7 +1510,7 @@ type AddressGroupResp_Watch struct {
 
 func (x *AddressGroupResp_Watch) Reset() {
 	*x = AddressGroupResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1448,7 +1522,7 @@ func (x *AddressGroupResp_Watch) String() string {
 func (*AddressGroupResp_Watch) ProtoMessage() {}
 
 func (x *AddressGroupResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1489,7 +1563,7 @@ type NetworkReq_Upsert struct {
 
 func (x *NetworkReq_Upsert) Reset() {
 	*x = NetworkReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1501,7 +1575,7 @@ func (x *NetworkReq_Upsert) String() string {
 func (*NetworkReq_Upsert) ProtoMessage() {}
 
 func (x *NetworkReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1535,7 +1609,7 @@ type NetworkReq_Delete struct {
 
 func (x *NetworkReq_Delete) Reset() {
 	*x = NetworkReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1547,7 +1621,7 @@ func (x *NetworkReq_Delete) String() string {
 func (*NetworkReq_Delete) ProtoMessage() {}
 
 func (x *NetworkReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1581,7 +1655,7 @@ type NetworkReq_List struct {
 
 func (x *NetworkReq_List) Reset() {
 	*x = NetworkReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1593,7 +1667,7 @@ func (x *NetworkReq_List) String() string {
 func (*NetworkReq_List) ProtoMessage() {}
 
 func (x *NetworkReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1629,7 +1703,7 @@ type NetworkReq_Watch struct {
 
 func (x *NetworkReq_Watch) Reset() {
 	*x = NetworkReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1641,7 +1715,7 @@ func (x *NetworkReq_Watch) String() string {
 func (*NetworkReq_Watch) ProtoMessage() {}
 
 func (x *NetworkReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1682,7 +1756,7 @@ type NetworkReq_Delete_Network struct {
 
 func (x *NetworkReq_Delete_Network) Reset() {
 	*x = NetworkReq_Delete_Network{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1694,7 +1768,7 @@ func (x *NetworkReq_Delete_Network) String() string {
 func (*NetworkReq_Delete_Network) ProtoMessage() {}
 
 func (x *NetworkReq_Delete_Network) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1732,7 +1806,7 @@ type NetworkResp_NetworkExt struct {
 
 func (x *NetworkResp_NetworkExt) Reset() {
 	*x = NetworkResp_NetworkExt{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1744,7 +1818,7 @@ func (x *NetworkResp_NetworkExt) String() string {
 func (*NetworkResp_NetworkExt) ProtoMessage() {}
 
 func (x *NetworkResp_NetworkExt) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1792,7 +1866,7 @@ type NetworkResp_Upsert struct {
 
 func (x *NetworkResp_Upsert) Reset() {
 	*x = NetworkResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1804,7 +1878,7 @@ func (x *NetworkResp_Upsert) String() string {
 func (*NetworkResp_Upsert) ProtoMessage() {}
 
 func (x *NetworkResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1840,7 +1914,7 @@ type NetworkResp_List struct {
 
 func (x *NetworkResp_List) Reset() {
 	*x = NetworkResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1852,7 +1926,7 @@ func (x *NetworkResp_List) String() string {
 func (*NetworkResp_List) ProtoMessage() {}
 
 func (x *NetworkResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1895,7 +1969,7 @@ type NetworkResp_Watch struct {
 
 func (x *NetworkResp_Watch) Reset() {
 	*x = NetworkResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1907,7 +1981,7 @@ func (x *NetworkResp_Watch) String() string {
 func (*NetworkResp_Watch) ProtoMessage() {}
 
 func (x *NetworkResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1948,7 +2022,7 @@ type HostReq_Upsert struct {
 
 func (x *HostReq_Upsert) Reset() {
 	*x = HostReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1960,7 +2034,7 @@ func (x *HostReq_Upsert) String() string {
 func (*HostReq_Upsert) ProtoMessage() {}
 
 func (x *HostReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1994,7 +2068,7 @@ type HostReq_Delete struct {
 
 func (x *HostReq_Delete) Reset() {
 	*x = HostReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2006,7 +2080,7 @@ func (x *HostReq_Delete) String() string {
 func (*HostReq_Delete) ProtoMessage() {}
 
 func (x *HostReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2040,7 +2114,7 @@ type HostReq_List struct {
 
 func (x *HostReq_List) Reset() {
 	*x = HostReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2052,7 +2126,7 @@ func (x *HostReq_List) String() string {
 func (*HostReq_List) ProtoMessage() {}
 
 func (x *HostReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2088,7 +2162,7 @@ type HostReq_Watch struct {
 
 func (x *HostReq_Watch) Reset() {
 	*x = HostReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2100,7 +2174,7 @@ func (x *HostReq_Watch) String() string {
 func (*HostReq_Watch) ProtoMessage() {}
 
 func (x *HostReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2141,7 +2215,7 @@ type HostReq_UpdIPs struct {
 
 func (x *HostReq_UpdIPs) Reset() {
 	*x = HostReq_UpdIPs{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2153,7 +2227,7 @@ func (x *HostReq_UpdIPs) String() string {
 func (*HostReq_UpdIPs) ProtoMessage() {}
 
 func (x *HostReq_UpdIPs) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2187,7 +2261,7 @@ type HostReq_UpdMetaInfo struct {
 
 func (x *HostReq_UpdMetaInfo) Reset() {
 	*x = HostReq_UpdMetaInfo{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2199,7 +2273,7 @@ func (x *HostReq_UpdMetaInfo) String() string {
 func (*HostReq_UpdMetaInfo) ProtoMessage() {}
 
 func (x *HostReq_UpdMetaInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2233,7 +2307,7 @@ type HostReq_Delete_Host struct {
 
 func (x *HostReq_Delete_Host) Reset() {
 	*x = HostReq_Delete_Host{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2245,7 +2319,7 @@ func (x *HostReq_Delete_Host) String() string {
 func (*HostReq_Delete_Host) ProtoMessage() {}
 
 func (x *HostReq_Delete_Host) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2281,7 +2355,7 @@ type HostReq_UpdIPs_Host struct {
 
 func (x *HostReq_UpdIPs_Host) Reset() {
 	*x = HostReq_UpdIPs_Host{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2293,7 +2367,7 @@ func (x *HostReq_UpdIPs_Host) String() string {
 func (*HostReq_UpdIPs_Host) ProtoMessage() {}
 
 func (x *HostReq_UpdIPs_Host) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2334,7 +2408,7 @@ type HostReq_UpdIPs_Host_Spec struct {
 
 func (x *HostReq_UpdIPs_Host_Spec) Reset() {
 	*x = HostReq_UpdIPs_Host_Spec{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2346,7 +2420,7 @@ func (x *HostReq_UpdIPs_Host_Spec) String() string {
 func (*HostReq_UpdIPs_Host_Spec) ProtoMessage() {}
 
 func (x *HostReq_UpdIPs_Host_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2382,7 +2456,7 @@ type HostReq_UpdMetaInfo_HostInfo struct {
 
 func (x *HostReq_UpdMetaInfo_HostInfo) Reset() {
 	*x = HostReq_UpdMetaInfo_HostInfo{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2394,7 +2468,7 @@ func (x *HostReq_UpdMetaInfo_HostInfo) String() string {
 func (*HostReq_UpdMetaInfo_HostInfo) ProtoMessage() {}
 
 func (x *HostReq_UpdMetaInfo_HostInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2435,7 +2509,7 @@ type HostReq_UpdMetaInfo_HostInfo_Spec struct {
 
 func (x *HostReq_UpdMetaInfo_HostInfo_Spec) Reset() {
 	*x = HostReq_UpdMetaInfo_HostInfo_Spec{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2447,7 +2521,7 @@ func (x *HostReq_UpdMetaInfo_HostInfo_Spec) String() string {
 func (*HostReq_UpdMetaInfo_HostInfo_Spec) ProtoMessage() {}
 
 func (x *HostReq_UpdMetaInfo_HostInfo_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2485,7 +2559,7 @@ type HostResp_HostExt struct {
 
 func (x *HostResp_HostExt) Reset() {
 	*x = HostResp_HostExt{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2497,7 +2571,7 @@ func (x *HostResp_HostExt) String() string {
 func (*HostResp_HostExt) ProtoMessage() {}
 
 func (x *HostResp_HostExt) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2545,7 +2619,7 @@ type HostResp_Upsert struct {
 
 func (x *HostResp_Upsert) Reset() {
 	*x = HostResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2557,7 +2631,7 @@ func (x *HostResp_Upsert) String() string {
 func (*HostResp_Upsert) ProtoMessage() {}
 
 func (x *HostResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2593,7 +2667,7 @@ type HostResp_List struct {
 
 func (x *HostResp_List) Reset() {
 	*x = HostResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2605,7 +2679,7 @@ func (x *HostResp_List) String() string {
 func (*HostResp_List) ProtoMessage() {}
 
 func (x *HostResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2648,7 +2722,7 @@ type HostResp_Watch struct {
 
 func (x *HostResp_Watch) Reset() {
 	*x = HostResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2660,7 +2734,7 @@ func (x *HostResp_Watch) String() string {
 func (*HostResp_Watch) ProtoMessage() {}
 
 func (x *HostResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2701,7 +2775,7 @@ type HostResp_UpdIPs struct {
 
 func (x *HostResp_UpdIPs) Reset() {
 	*x = HostResp_UpdIPs{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2713,7 +2787,7 @@ func (x *HostResp_UpdIPs) String() string {
 func (*HostResp_UpdIPs) ProtoMessage() {}
 
 func (x *HostResp_UpdIPs) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2747,7 +2821,7 @@ type HostResp_UpdMetaInfo struct {
 
 func (x *HostResp_UpdMetaInfo) Reset() {
 	*x = HostResp_UpdMetaInfo{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2759,7 +2833,7 @@ func (x *HostResp_UpdMetaInfo) String() string {
 func (*HostResp_UpdMetaInfo) ProtoMessage() {}
 
 func (x *HostResp_UpdMetaInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2793,7 +2867,7 @@ type HostBindingReq_Upsert struct {
 
 func (x *HostBindingReq_Upsert) Reset() {
 	*x = HostBindingReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2805,7 +2879,7 @@ func (x *HostBindingReq_Upsert) String() string {
 func (*HostBindingReq_Upsert) ProtoMessage() {}
 
 func (x *HostBindingReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2839,7 +2913,7 @@ type HostBindingReq_Delete struct {
 
 func (x *HostBindingReq_Delete) Reset() {
 	*x = HostBindingReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2851,7 +2925,7 @@ func (x *HostBindingReq_Delete) String() string {
 func (*HostBindingReq_Delete) ProtoMessage() {}
 
 func (x *HostBindingReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2887,7 +2961,7 @@ type HostBindingReq_Selectors struct {
 
 func (x *HostBindingReq_Selectors) Reset() {
 	*x = HostBindingReq_Selectors{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2899,7 +2973,7 @@ func (x *HostBindingReq_Selectors) String() string {
 func (*HostBindingReq_Selectors) ProtoMessage() {}
 
 func (x *HostBindingReq_Selectors) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2940,7 +3014,7 @@ type HostBindingReq_List struct {
 
 func (x *HostBindingReq_List) Reset() {
 	*x = HostBindingReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2952,7 +3026,7 @@ func (x *HostBindingReq_List) String() string {
 func (*HostBindingReq_List) ProtoMessage() {}
 
 func (x *HostBindingReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2988,7 +3062,7 @@ type HostBindingReq_Watch struct {
 
 func (x *HostBindingReq_Watch) Reset() {
 	*x = HostBindingReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3000,7 +3074,7 @@ func (x *HostBindingReq_Watch) String() string {
 func (*HostBindingReq_Watch) ProtoMessage() {}
 
 func (x *HostBindingReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3041,7 +3115,7 @@ type HostBindingReq_Delete_HostBinding struct {
 
 func (x *HostBindingReq_Delete_HostBinding) Reset() {
 	*x = HostBindingReq_Delete_HostBinding{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[64]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3053,7 +3127,7 @@ func (x *HostBindingReq_Delete_HostBinding) String() string {
 func (*HostBindingReq_Delete_HostBinding) ProtoMessage() {}
 
 func (x *HostBindingReq_Delete_HostBinding) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[64]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3093,7 +3167,7 @@ type HostBindingReq_Selectors_FieldSelector struct {
 
 func (x *HostBindingReq_Selectors_FieldSelector) Reset() {
 	*x = HostBindingReq_Selectors_FieldSelector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[65]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3105,7 +3179,7 @@ func (x *HostBindingReq_Selectors_FieldSelector) String() string {
 func (*HostBindingReq_Selectors_FieldSelector) ProtoMessage() {}
 
 func (x *HostBindingReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[65]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3160,7 +3234,7 @@ type HostBindingResp_Upsert struct {
 
 func (x *HostBindingResp_Upsert) Reset() {
 	*x = HostBindingResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[67]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3172,7 +3246,7 @@ func (x *HostBindingResp_Upsert) String() string {
 func (*HostBindingResp_Upsert) ProtoMessage() {}
 
 func (x *HostBindingResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[67]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3208,7 +3282,7 @@ type HostBindingResp_List struct {
 
 func (x *HostBindingResp_List) Reset() {
 	*x = HostBindingResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[68]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3220,7 +3294,7 @@ func (x *HostBindingResp_List) String() string {
 func (*HostBindingResp_List) ProtoMessage() {}
 
 func (x *HostBindingResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[68]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3263,7 +3337,7 @@ type HostBindingResp_Watch struct {
 
 func (x *HostBindingResp_Watch) Reset() {
 	*x = HostBindingResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[69]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3275,7 +3349,7 @@ func (x *HostBindingResp_Watch) String() string {
 func (*HostBindingResp_Watch) ProtoMessage() {}
 
 func (x *HostBindingResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[69]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3305,6 +3379,529 @@ func (x *HostBindingResp_Watch) GetHostBindings() []*HostBinding {
 	return nil
 }
 
+// Upsert: request to upsert network bindings
+type NetworkBindingReq_Upsert struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// NetworkBindings: list of network bindings
+	NetworkBindings []*NetworkBinding `protobuf:"bytes,1,rep,name=network_bindings,json=networkBindings,proto3" json:"network_bindings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Upsert) Reset() {
+	*x = NetworkBindingReq_Upsert{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[72]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Upsert) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Upsert) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Upsert) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[72]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Upsert.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Upsert) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 0}
+}
+
+func (x *NetworkBindingReq_Upsert) GetNetworkBindings() []*NetworkBinding {
+	if x != nil {
+		return x.NetworkBindings
+	}
+	return nil
+}
+
+// Delete: request to delete network bindings
+type NetworkBindingReq_Delete struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// NetworkBindings: list of network bindings to delete
+	NetworkBindings []*NetworkBindingReq_Delete_NetworkBinding `protobuf:"bytes,1,rep,name=network_bindings,json=networkBindings,proto3" json:"network_bindings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Delete) Reset() {
+	*x = NetworkBindingReq_Delete{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[73]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Delete) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Delete) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Delete) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[73]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Delete.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Delete) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 1}
+}
+
+func (x *NetworkBindingReq_Delete) GetNetworkBindings() []*NetworkBindingReq_Delete_NetworkBinding {
+	if x != nil {
+		return x.NetworkBindings
+	}
+	return nil
+}
+
+// Selectors: request to select network bindings
+type NetworkBindingReq_Selectors struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// FieldSelector: field selector for network binding
+	FieldSelector *NetworkBindingReq_Selectors_FieldSelector `protobuf:"bytes,1,opt,name=field_selector,json=fieldSelector,proto3" json:"field_selector,omitempty"`
+	// LabelSelector: label selector for network binding
+	LabelSelector map[string]string `protobuf:"bytes,2,rep,name=label_selector,json=labelSelector,proto3" json:"label_selector,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Selectors) Reset() {
+	*x = NetworkBindingReq_Selectors{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[74]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Selectors) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Selectors) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Selectors) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[74]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Selectors.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Selectors) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2}
+}
+
+func (x *NetworkBindingReq_Selectors) GetFieldSelector() *NetworkBindingReq_Selectors_FieldSelector {
+	if x != nil {
+		return x.FieldSelector
+	}
+	return nil
+}
+
+func (x *NetworkBindingReq_Selectors) GetLabelSelector() map[string]string {
+	if x != nil {
+		return x.LabelSelector
+	}
+	return nil
+}
+
+// List: request to list network bindings
+type NetworkBindingReq_List struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Selectors: list of selectors
+	Selectors     []*NetworkBindingReq_Selectors `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_List) Reset() {
+	*x = NetworkBindingReq_List{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[75]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_List) ProtoMessage() {}
+
+func (x *NetworkBindingReq_List) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[75]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_List.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_List) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 3}
+}
+
+func (x *NetworkBindingReq_List) GetSelectors() []*NetworkBindingReq_Selectors {
+	if x != nil {
+		return x.Selectors
+	}
+	return nil
+}
+
+// Watch: request to watch network bindings
+type NetworkBindingReq_Watch struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ResourceVersion: resource version for watch
+	ResourceVersion string `protobuf:"bytes,1,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
+	// Selectors: list of selectors
+	Selectors     []*NetworkBindingReq_Selectors `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Watch) Reset() {
+	*x = NetworkBindingReq_Watch{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Watch) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Watch.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Watch) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 4}
+}
+
+func (x *NetworkBindingReq_Watch) GetResourceVersion() string {
+	if x != nil {
+		return x.ResourceVersion
+	}
+	return ""
+}
+
+func (x *NetworkBindingReq_Watch) GetSelectors() []*NetworkBindingReq_Selectors {
+	if x != nil {
+		return x.Selectors
+	}
+	return nil
+}
+
+// NetworkBinding: network binding to delete
+type NetworkBindingReq_Delete_NetworkBinding struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: metadata for scoping
+	Metadata      *common.MetadataScope `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Delete_NetworkBinding) Reset() {
+	*x = NetworkBindingReq_Delete_NetworkBinding{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[77]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Delete_NetworkBinding) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Delete_NetworkBinding) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Delete_NetworkBinding) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[77]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Delete_NetworkBinding.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Delete_NetworkBinding) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 1, 0}
+}
+
+func (x *NetworkBindingReq_Delete_NetworkBinding) GetMetadata() *common.MetadataScope {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+// FieldSelector: resource field selector for network binding
+type NetworkBindingReq_Selectors_FieldSelector struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: resource name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: resource namespace
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// AddressGroup: reference to the address group
+	AddressGroup *common.ResourceIdentifier `protobuf:"bytes,3,opt,name=address_group,json=addressGroup,proto3" json:"address_group,omitempty"`
+	// Network: reference to the network
+	Network       *common.ResourceIdentifier `protobuf:"bytes,4,opt,name=network,proto3" json:"network,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) Reset() {
+	*x = NetworkBindingReq_Selectors_FieldSelector{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingReq_Selectors_FieldSelector) ProtoMessage() {}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingReq_Selectors_FieldSelector.ProtoReflect.Descriptor instead.
+func (*NetworkBindingReq_Selectors_FieldSelector) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0}
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) GetAddressGroup() *common.ResourceIdentifier {
+	if x != nil {
+		return x.AddressGroup
+	}
+	return nil
+}
+
+func (x *NetworkBindingReq_Selectors_FieldSelector) GetNetwork() *common.ResourceIdentifier {
+	if x != nil {
+		return x.Network
+	}
+	return nil
+}
+
+// Upsert: response for upsert network bindings
+type NetworkBindingResp_Upsert struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// NetworkBindings: list of network bindings
+	NetworkBindings []*NetworkBinding `protobuf:"bytes,1,rep,name=network_bindings,json=networkBindings,proto3" json:"network_bindings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *NetworkBindingResp_Upsert) Reset() {
+	*x = NetworkBindingResp_Upsert{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingResp_Upsert) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingResp_Upsert) ProtoMessage() {}
+
+func (x *NetworkBindingResp_Upsert) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingResp_Upsert.ProtoReflect.Descriptor instead.
+func (*NetworkBindingResp_Upsert) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *NetworkBindingResp_Upsert) GetNetworkBindings() []*NetworkBinding {
+	if x != nil {
+		return x.NetworkBindings
+	}
+	return nil
+}
+
+// List: response for list of network bindings
+type NetworkBindingResp_List struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ResourceVersion: current global resource revision
+	ResourceVersion string `protobuf:"bytes,1,opt,name=resource_version,json=resourceVersion,proto3" json:"resource_version,omitempty"`
+	// NetworkBindings: list of network bindings
+	NetworkBindings []*NetworkBinding `protobuf:"bytes,2,rep,name=network_bindings,json=networkBindings,proto3" json:"network_bindings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *NetworkBindingResp_List) Reset() {
+	*x = NetworkBindingResp_List{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[81]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingResp_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingResp_List) ProtoMessage() {}
+
+func (x *NetworkBindingResp_List) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[81]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingResp_List.ProtoReflect.Descriptor instead.
+func (*NetworkBindingResp_List) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 1}
+}
+
+func (x *NetworkBindingResp_List) GetResourceVersion() string {
+	if x != nil {
+		return x.ResourceVersion
+	}
+	return ""
+}
+
+func (x *NetworkBindingResp_List) GetNetworkBindings() []*NetworkBinding {
+	if x != nil {
+		return x.NetworkBindings
+	}
+	return nil
+}
+
+// Watch: response for watch network bindings
+type NetworkBindingResp_Watch struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Type: watch event type
+	Type common.WatchEventType `protobuf:"varint,1,opt,name=type,proto3,enum=common.WatchEventType" json:"type,omitempty"`
+	// NetworkBindings: list of network bindings
+	NetworkBindings []*NetworkBinding `protobuf:"bytes,2,rep,name=network_bindings,json=networkBindings,proto3" json:"network_bindings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *NetworkBindingResp_Watch) Reset() {
+	*x = NetworkBindingResp_Watch{}
+	mi := &file_sgroups_v1_queries_proto_msgTypes[82]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkBindingResp_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkBindingResp_Watch) ProtoMessage() {}
+
+func (x *NetworkBindingResp_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_queries_proto_msgTypes[82]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkBindingResp_Watch.ProtoReflect.Descriptor instead.
+func (*NetworkBindingResp_Watch) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 2}
+}
+
+func (x *NetworkBindingResp_Watch) GetType() common.WatchEventType {
+	if x != nil {
+		return x.Type
+	}
+	return common.WatchEventType(0)
+}
+
+func (x *NetworkBindingResp_Watch) GetNetworkBindings() []*NetworkBinding {
+	if x != nil {
+		return x.NetworkBindings
+	}
+	return nil
+}
+
 // Upsert: request to upsert rules
 type RuleReq_Upsert struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -3316,7 +3913,7 @@ type RuleReq_Upsert struct {
 
 func (x *RuleReq_Upsert) Reset() {
 	*x = RuleReq_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[70]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3328,7 +3925,7 @@ func (x *RuleReq_Upsert) String() string {
 func (*RuleReq_Upsert) ProtoMessage() {}
 
 func (x *RuleReq_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[70]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3341,7 +3938,7 @@ func (x *RuleReq_Upsert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Upsert.ProtoReflect.Descriptor instead.
 func (*RuleReq_Upsert) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 0}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 0}
 }
 
 func (x *RuleReq_Upsert) GetRules() []*Rule {
@@ -3362,7 +3959,7 @@ type RuleReq_Delete struct {
 
 func (x *RuleReq_Delete) Reset() {
 	*x = RuleReq_Delete{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[71]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3374,7 +3971,7 @@ func (x *RuleReq_Delete) String() string {
 func (*RuleReq_Delete) ProtoMessage() {}
 
 func (x *RuleReq_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[71]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3387,7 +3984,7 @@ func (x *RuleReq_Delete) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Delete.ProtoReflect.Descriptor instead.
 func (*RuleReq_Delete) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 1}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 1}
 }
 
 func (x *RuleReq_Delete) GetRules() []*RuleReq_Delete_Rule {
@@ -3410,7 +4007,7 @@ type RuleReq_Selectors struct {
 
 func (x *RuleReq_Selectors) Reset() {
 	*x = RuleReq_Selectors{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[72]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3422,7 +4019,7 @@ func (x *RuleReq_Selectors) String() string {
 func (*RuleReq_Selectors) ProtoMessage() {}
 
 func (x *RuleReq_Selectors) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[72]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3435,7 +4032,7 @@ func (x *RuleReq_Selectors) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Selectors.ProtoReflect.Descriptor instead.
 func (*RuleReq_Selectors) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 2}
 }
 
 func (x *RuleReq_Selectors) GetFieldSelector() *RuleReq_Selectors_FieldSelector {
@@ -3463,7 +4060,7 @@ type RuleReq_List struct {
 
 func (x *RuleReq_List) Reset() {
 	*x = RuleReq_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[73]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3475,7 +4072,7 @@ func (x *RuleReq_List) String() string {
 func (*RuleReq_List) ProtoMessage() {}
 
 func (x *RuleReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[73]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3488,7 +4085,7 @@ func (x *RuleReq_List) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_List.ProtoReflect.Descriptor instead.
 func (*RuleReq_List) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 3}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 3}
 }
 
 func (x *RuleReq_List) GetSelectors() []*RuleReq_Selectors {
@@ -3511,7 +4108,7 @@ type RuleReq_Watch struct {
 
 func (x *RuleReq_Watch) Reset() {
 	*x = RuleReq_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[74]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3523,7 +4120,7 @@ func (x *RuleReq_Watch) String() string {
 func (*RuleReq_Watch) ProtoMessage() {}
 
 func (x *RuleReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[74]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3536,7 +4133,7 @@ func (x *RuleReq_Watch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Watch.ProtoReflect.Descriptor instead.
 func (*RuleReq_Watch) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 4}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 4}
 }
 
 func (x *RuleReq_Watch) GetResourceVersion() string {
@@ -3564,7 +4161,7 @@ type RuleReq_Delete_Rule struct {
 
 func (x *RuleReq_Delete_Rule) Reset() {
 	*x = RuleReq_Delete_Rule{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[75]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3576,7 +4173,7 @@ func (x *RuleReq_Delete_Rule) String() string {
 func (*RuleReq_Delete_Rule) ProtoMessage() {}
 
 func (x *RuleReq_Delete_Rule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[75]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3589,7 +4186,7 @@ func (x *RuleReq_Delete_Rule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Delete_Rule.ProtoReflect.Descriptor instead.
 func (*RuleReq_Delete_Rule) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 1, 0}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 1, 0}
 }
 
 func (x *RuleReq_Delete_Rule) GetMetadata() *common.MetadataScope {
@@ -3618,7 +4215,7 @@ type RuleReq_Selectors_FieldSelector struct {
 
 func (x *RuleReq_Selectors_FieldSelector) Reset() {
 	*x = RuleReq_Selectors_FieldSelector{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3630,7 +4227,7 @@ func (x *RuleReq_Selectors_FieldSelector) String() string {
 func (*RuleReq_Selectors_FieldSelector) ProtoMessage() {}
 
 func (x *RuleReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[76]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3643,7 +4240,7 @@ func (x *RuleReq_Selectors_FieldSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleReq_Selectors_FieldSelector.ProtoReflect.Descriptor instead.
 func (*RuleReq_Selectors_FieldSelector) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10, 2, 0}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12, 2, 0}
 }
 
 func (x *RuleReq_Selectors_FieldSelector) GetName() string {
@@ -3692,7 +4289,7 @@ type RuleResp_Upsert struct {
 
 func (x *RuleResp_Upsert) Reset() {
 	*x = RuleResp_Upsert{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3704,7 +4301,7 @@ func (x *RuleResp_Upsert) String() string {
 func (*RuleResp_Upsert) ProtoMessage() {}
 
 func (x *RuleResp_Upsert) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[78]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3717,7 +4314,7 @@ func (x *RuleResp_Upsert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleResp_Upsert.ProtoReflect.Descriptor instead.
 func (*RuleResp_Upsert) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 0}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *RuleResp_Upsert) GetRules() []*Rule {
@@ -3740,7 +4337,7 @@ type RuleResp_List struct {
 
 func (x *RuleResp_List) Reset() {
 	*x = RuleResp_List{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3752,7 +4349,7 @@ func (x *RuleResp_List) String() string {
 func (*RuleResp_List) ProtoMessage() {}
 
 func (x *RuleResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[79]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3765,7 +4362,7 @@ func (x *RuleResp_List) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleResp_List.ProtoReflect.Descriptor instead.
 func (*RuleResp_List) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 1}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{13, 1}
 }
 
 func (x *RuleResp_List) GetResourceVersion() string {
@@ -3795,7 +4392,7 @@ type RuleResp_Watch struct {
 
 func (x *RuleResp_Watch) Reset() {
 	*x = RuleResp_Watch{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3807,7 +4404,7 @@ func (x *RuleResp_Watch) String() string {
 func (*RuleResp_Watch) ProtoMessage() {}
 
 func (x *RuleResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[80]
+	mi := &file_sgroups_v1_queries_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3820,7 +4417,7 @@ func (x *RuleResp_Watch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleResp_Watch.ProtoReflect.Descriptor instead.
 func (*RuleResp_Watch) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11, 2}
+	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{13, 2}
 }
 
 func (x *RuleResp_Watch) GetType() common.WatchEventType {
@@ -4012,7 +4609,39 @@ const file_sgroups_v1_queries_proto_rawDesc = "" +
 	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\x1aq\n" +
 	"\x05Watch\x12*\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x12<\n" +
-	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\"\x81\b\n" +
+	"\rhost_bindings\x18\x02 \x03(\v2\x17.sgroups.v1.HostBindingR\fhostBindings\"\xe1\b\n" +
+	"\x11NetworkBindingReq\x1a\\\n" +
+	"\x06Upsert\x12R\n" +
+	"\x10network_bindings\x18\x01 \x03(\v2\x1a.sgroups.v1.NetworkBindingB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x0fnetworkBindings\x1a\xc6\x02\n" +
+	"\x06Delete\x12k\n" +
+	"\x10network_bindings\x18\x01 \x03(\v23.sgroups.v1.NetworkBindingReq.Delete.NetworkBindingB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x0fnetworkBindings\x1a\xce\x01\n" +
+	"\x0eNetworkBinding\x12\xbb\x01\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x15.common.MetadataScopeB\x87\x01\xbaH\x83\x01\xba\x01}\x12>either uid must be set, or both name and namespace must be set\x1a;this.uid != '' || (this.name != '' && this.namespace != '')\xc8\x01\x01R\bmetadata\x1a\xc9\x03\n" +
+	"\tSelectors\x12\\\n" +
+	"\x0efield_selector\x18\x01 \x01(\v25.sgroups.v1.NetworkBindingReq.Selectors.FieldSelectorR\rfieldSelector\x12a\n" +
+	"\x0elabel_selector\x18\x02 \x03(\v2:.sgroups.v1.NetworkBindingReq.Selectors.LabelSelectorEntryR\rlabelSelector\x1a\xb8\x01\n" +
+	"\rFieldSelector\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12?\n" +
+	"\raddress_group\x18\x03 \x01(\v2\x1a.common.ResourceIdentifierR\faddressGroup\x124\n" +
+	"\anetwork\x18\x04 \x01(\v2\x1a.common.ResourceIdentifierR\anetwork\x1a@\n" +
+	"\x12LabelSelectorEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aU\n" +
+	"\x04List\x12M\n" +
+	"\tselectors\x18\x01 \x03(\v2'.sgroups.v1.NetworkBindingReq.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1a\x81\x01\n" +
+	"\x05Watch\x12)\n" +
+	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x12M\n" +
+	"\tselectors\x18\x02 \x03(\v2'.sgroups.v1.NetworkBindingReq.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\"\xdb\x02\n" +
+	"\x12NetworkBindingResp\x1aO\n" +
+	"\x06Upsert\x12E\n" +
+	"\x10network_bindings\x18\x01 \x03(\v2\x1a.sgroups.v1.NetworkBindingR\x0fnetworkBindings\x1ax\n" +
+	"\x04List\x12)\n" +
+	"\x10resource_version\x18\x01 \x01(\tR\x0fresourceVersion\x12E\n" +
+	"\x10network_bindings\x18\x02 \x03(\v2\x1a.sgroups.v1.NetworkBindingR\x0fnetworkBindings\x1az\n" +
+	"\x05Watch\x12*\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x16.common.WatchEventTypeR\x04type\x12E\n" +
+	"\x10network_bindings\x18\x02 \x03(\v2\x1a.sgroups.v1.NetworkBindingR\x0fnetworkBindings\"\x81\b\n" +
 	"\aRuleReq\x1a=\n" +
 	"\x06Upsert\x123\n" +
 	"\x05rules\x18\x01 \x03(\v2\x10.sgroups.v1.RuleB\v\xe0A\x02\xbaH\x05\x92\x01\x02\b\x01R\x05rules\x1a\x93\x02\n" +
@@ -4059,7 +4688,7 @@ func file_sgroups_v1_queries_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_queries_proto_rawDescData
 }
 
-var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 81)
+var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 94)
 var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*NamespaceReq)(nil),                        // 0: sgroups.v1.NamespaceReq
 	(*NamespaceResp)(nil),                       // 1: sgroups.v1.NamespaceResp
@@ -4071,188 +4700,215 @@ var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*HostResp)(nil),                            // 7: sgroups.v1.HostResp
 	(*HostBindingReq)(nil),                      // 8: sgroups.v1.HostBindingReq
 	(*HostBindingResp)(nil),                     // 9: sgroups.v1.HostBindingResp
-	(*RuleReq)(nil),                             // 10: sgroups.v1.RuleReq
-	(*RuleResp)(nil),                            // 11: sgroups.v1.RuleResp
-	(*NamespaceReq_Selector)(nil),               // 12: sgroups.v1.NamespaceReq.Selector
-	(*NamespaceReq_Upsert)(nil),                 // 13: sgroups.v1.NamespaceReq.Upsert
-	(*NamespaceReq_Delete)(nil),                 // 14: sgroups.v1.NamespaceReq.Delete
-	(*NamespaceReq_List)(nil),                   // 15: sgroups.v1.NamespaceReq.List
-	(*NamespaceReq_Watch)(nil),                  // 16: sgroups.v1.NamespaceReq.Watch
-	(*NamespaceReq_Selector_FieldSelector)(nil), // 17: sgroups.v1.NamespaceReq.Selector.FieldSelector
-	nil, // 18: sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
-	(*NamespaceReq_Delete_MetadataScope)(nil),      // 19: sgroups.v1.NamespaceReq.Delete.MetadataScope
-	(*NamespaceReq_Delete_Namespace)(nil),          // 20: sgroups.v1.NamespaceReq.Delete.Namespace
-	(*NamespaceResp_Upsert)(nil),                   // 21: sgroups.v1.NamespaceResp.Upsert
-	(*NamespaceResp_List)(nil),                     // 22: sgroups.v1.NamespaceResp.List
-	(*NamespaceResp_Watch)(nil),                    // 23: sgroups.v1.NamespaceResp.Watch
-	(*AddressGroupReq_Upsert)(nil),                 // 24: sgroups.v1.AddressGroupReq.Upsert
-	(*AddressGroupReq_Delete)(nil),                 // 25: sgroups.v1.AddressGroupReq.Delete
-	(*AddressGroupReq_List)(nil),                   // 26: sgroups.v1.AddressGroupReq.List
-	(*AddressGroupReq_Watch)(nil),                  // 27: sgroups.v1.AddressGroupReq.Watch
-	(*AddressGroupReq_Delete_AddressGroup)(nil),    // 28: sgroups.v1.AddressGroupReq.Delete.AddressGroup
-	(*AddressGroupResp_AddressGroupExt)(nil),       // 29: sgroups.v1.AddressGroupResp.AddressGroupExt
-	(*AddressGroupResp_Upsert)(nil),                // 30: sgroups.v1.AddressGroupResp.Upsert
-	(*AddressGroupResp_List)(nil),                  // 31: sgroups.v1.AddressGroupResp.List
-	(*AddressGroupResp_Watch)(nil),                 // 32: sgroups.v1.AddressGroupResp.Watch
-	(*NetworkReq_Upsert)(nil),                      // 33: sgroups.v1.NetworkReq.Upsert
-	(*NetworkReq_Delete)(nil),                      // 34: sgroups.v1.NetworkReq.Delete
-	(*NetworkReq_List)(nil),                        // 35: sgroups.v1.NetworkReq.List
-	(*NetworkReq_Watch)(nil),                       // 36: sgroups.v1.NetworkReq.Watch
-	(*NetworkReq_Delete_Network)(nil),              // 37: sgroups.v1.NetworkReq.Delete.Network
-	(*NetworkResp_NetworkExt)(nil),                 // 38: sgroups.v1.NetworkResp.NetworkExt
-	(*NetworkResp_Upsert)(nil),                     // 39: sgroups.v1.NetworkResp.Upsert
-	(*NetworkResp_List)(nil),                       // 40: sgroups.v1.NetworkResp.List
-	(*NetworkResp_Watch)(nil),                      // 41: sgroups.v1.NetworkResp.Watch
-	(*HostReq_Upsert)(nil),                         // 42: sgroups.v1.HostReq.Upsert
-	(*HostReq_Delete)(nil),                         // 43: sgroups.v1.HostReq.Delete
-	(*HostReq_List)(nil),                           // 44: sgroups.v1.HostReq.List
-	(*HostReq_Watch)(nil),                          // 45: sgroups.v1.HostReq.Watch
-	(*HostReq_UpdIPs)(nil),                         // 46: sgroups.v1.HostReq.UpdIPs
-	(*HostReq_UpdMetaInfo)(nil),                    // 47: sgroups.v1.HostReq.UpdMetaInfo
-	(*HostReq_Delete_Host)(nil),                    // 48: sgroups.v1.HostReq.Delete.Host
-	(*HostReq_UpdIPs_Host)(nil),                    // 49: sgroups.v1.HostReq.UpdIPs.Host
-	(*HostReq_UpdIPs_Host_Spec)(nil),               // 50: sgroups.v1.HostReq.UpdIPs.Host.Spec
-	(*HostReq_UpdMetaInfo_HostInfo)(nil),           // 51: sgroups.v1.HostReq.UpdMetaInfo.HostInfo
-	(*HostReq_UpdMetaInfo_HostInfo_Spec)(nil),      // 52: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
-	(*HostResp_HostExt)(nil),                       // 53: sgroups.v1.HostResp.HostExt
-	(*HostResp_Upsert)(nil),                        // 54: sgroups.v1.HostResp.Upsert
-	(*HostResp_List)(nil),                          // 55: sgroups.v1.HostResp.List
-	(*HostResp_Watch)(nil),                         // 56: sgroups.v1.HostResp.Watch
-	(*HostResp_UpdIPs)(nil),                        // 57: sgroups.v1.HostResp.UpdIPs
-	(*HostResp_UpdMetaInfo)(nil),                   // 58: sgroups.v1.HostResp.UpdMetaInfo
-	(*HostBindingReq_Upsert)(nil),                  // 59: sgroups.v1.HostBindingReq.Upsert
-	(*HostBindingReq_Delete)(nil),                  // 60: sgroups.v1.HostBindingReq.Delete
-	(*HostBindingReq_Selectors)(nil),               // 61: sgroups.v1.HostBindingReq.Selectors
-	(*HostBindingReq_List)(nil),                    // 62: sgroups.v1.HostBindingReq.List
-	(*HostBindingReq_Watch)(nil),                   // 63: sgroups.v1.HostBindingReq.Watch
-	(*HostBindingReq_Delete_HostBinding)(nil),      // 64: sgroups.v1.HostBindingReq.Delete.HostBinding
-	(*HostBindingReq_Selectors_FieldSelector)(nil), // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector
-	nil,                                     // 66: sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
-	(*HostBindingResp_Upsert)(nil),          // 67: sgroups.v1.HostBindingResp.Upsert
-	(*HostBindingResp_List)(nil),            // 68: sgroups.v1.HostBindingResp.List
-	(*HostBindingResp_Watch)(nil),           // 69: sgroups.v1.HostBindingResp.Watch
-	(*RuleReq_Upsert)(nil),                  // 70: sgroups.v1.RuleReq.Upsert
-	(*RuleReq_Delete)(nil),                  // 71: sgroups.v1.RuleReq.Delete
-	(*RuleReq_Selectors)(nil),               // 72: sgroups.v1.RuleReq.Selectors
-	(*RuleReq_List)(nil),                    // 73: sgroups.v1.RuleReq.List
-	(*RuleReq_Watch)(nil),                   // 74: sgroups.v1.RuleReq.Watch
-	(*RuleReq_Delete_Rule)(nil),             // 75: sgroups.v1.RuleReq.Delete.Rule
-	(*RuleReq_Selectors_FieldSelector)(nil), // 76: sgroups.v1.RuleReq.Selectors.FieldSelector
-	nil,                                     // 77: sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
-	(*RuleResp_Upsert)(nil),                 // 78: sgroups.v1.RuleResp.Upsert
-	(*RuleResp_List)(nil),                   // 79: sgroups.v1.RuleResp.List
-	(*RuleResp_Watch)(nil),                  // 80: sgroups.v1.RuleResp.Watch
-	(*Namespace)(nil),                       // 81: sgroups.v1.Namespace
-	(common.WatchEventType)(0),              // 82: common.WatchEventType
-	(*AddressGroup)(nil),                    // 83: sgroups.v1.AddressGroup
-	(*common.ResSelector)(nil),              // 84: common.ResSelector
-	(*common.MetadataScope)(nil),            // 85: common.MetadataScope
-	(*common.Metadata)(nil),                 // 86: common.Metadata
-	(*AddressGroup_Spec)(nil),               // 87: sgroups.v1.AddressGroup.Spec
-	(*common.ResourceRef)(nil),              // 88: common.ResourceRef
-	(*Network)(nil),                         // 89: sgroups.v1.Network
-	(*Network_Spec)(nil),                    // 90: sgroups.v1.Network.Spec
-	(*Host)(nil),                            // 91: sgroups.v1.Host
-	(*common.IPs)(nil),                      // 92: common.IPs
-	(*Host_Spec_MetaInfo)(nil),              // 93: sgroups.v1.Host.Spec.MetaInfo
-	(*Host_Spec)(nil),                       // 94: sgroups.v1.Host.Spec
-	(*HostBinding)(nil),                     // 95: sgroups.v1.HostBinding
-	(*common.ResourceIdentifier)(nil),       // 96: common.ResourceIdentifier
-	(*Rule)(nil),                            // 97: sgroups.v1.Rule
-	(common.Session_Traffic)(0),             // 98: common.Session.Traffic
-	(common.Transport_Protocol)(0),          // 99: common.Transport.Protocol
-	(*common.Endpoints)(nil),                // 100: common.Endpoints
+	(*NetworkBindingReq)(nil),                   // 10: sgroups.v1.NetworkBindingReq
+	(*NetworkBindingResp)(nil),                  // 11: sgroups.v1.NetworkBindingResp
+	(*RuleReq)(nil),                             // 12: sgroups.v1.RuleReq
+	(*RuleResp)(nil),                            // 13: sgroups.v1.RuleResp
+	(*NamespaceReq_Selector)(nil),               // 14: sgroups.v1.NamespaceReq.Selector
+	(*NamespaceReq_Upsert)(nil),                 // 15: sgroups.v1.NamespaceReq.Upsert
+	(*NamespaceReq_Delete)(nil),                 // 16: sgroups.v1.NamespaceReq.Delete
+	(*NamespaceReq_List)(nil),                   // 17: sgroups.v1.NamespaceReq.List
+	(*NamespaceReq_Watch)(nil),                  // 18: sgroups.v1.NamespaceReq.Watch
+	(*NamespaceReq_Selector_FieldSelector)(nil), // 19: sgroups.v1.NamespaceReq.Selector.FieldSelector
+	nil, // 20: sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
+	(*NamespaceReq_Delete_MetadataScope)(nil),      // 21: sgroups.v1.NamespaceReq.Delete.MetadataScope
+	(*NamespaceReq_Delete_Namespace)(nil),          // 22: sgroups.v1.NamespaceReq.Delete.Namespace
+	(*NamespaceResp_Upsert)(nil),                   // 23: sgroups.v1.NamespaceResp.Upsert
+	(*NamespaceResp_List)(nil),                     // 24: sgroups.v1.NamespaceResp.List
+	(*NamespaceResp_Watch)(nil),                    // 25: sgroups.v1.NamespaceResp.Watch
+	(*AddressGroupReq_Upsert)(nil),                 // 26: sgroups.v1.AddressGroupReq.Upsert
+	(*AddressGroupReq_Delete)(nil),                 // 27: sgroups.v1.AddressGroupReq.Delete
+	(*AddressGroupReq_List)(nil),                   // 28: sgroups.v1.AddressGroupReq.List
+	(*AddressGroupReq_Watch)(nil),                  // 29: sgroups.v1.AddressGroupReq.Watch
+	(*AddressGroupReq_Delete_AddressGroup)(nil),    // 30: sgroups.v1.AddressGroupReq.Delete.AddressGroup
+	(*AddressGroupResp_AddressGroupExt)(nil),       // 31: sgroups.v1.AddressGroupResp.AddressGroupExt
+	(*AddressGroupResp_Upsert)(nil),                // 32: sgroups.v1.AddressGroupResp.Upsert
+	(*AddressGroupResp_List)(nil),                  // 33: sgroups.v1.AddressGroupResp.List
+	(*AddressGroupResp_Watch)(nil),                 // 34: sgroups.v1.AddressGroupResp.Watch
+	(*NetworkReq_Upsert)(nil),                      // 35: sgroups.v1.NetworkReq.Upsert
+	(*NetworkReq_Delete)(nil),                      // 36: sgroups.v1.NetworkReq.Delete
+	(*NetworkReq_List)(nil),                        // 37: sgroups.v1.NetworkReq.List
+	(*NetworkReq_Watch)(nil),                       // 38: sgroups.v1.NetworkReq.Watch
+	(*NetworkReq_Delete_Network)(nil),              // 39: sgroups.v1.NetworkReq.Delete.Network
+	(*NetworkResp_NetworkExt)(nil),                 // 40: sgroups.v1.NetworkResp.NetworkExt
+	(*NetworkResp_Upsert)(nil),                     // 41: sgroups.v1.NetworkResp.Upsert
+	(*NetworkResp_List)(nil),                       // 42: sgroups.v1.NetworkResp.List
+	(*NetworkResp_Watch)(nil),                      // 43: sgroups.v1.NetworkResp.Watch
+	(*HostReq_Upsert)(nil),                         // 44: sgroups.v1.HostReq.Upsert
+	(*HostReq_Delete)(nil),                         // 45: sgroups.v1.HostReq.Delete
+	(*HostReq_List)(nil),                           // 46: sgroups.v1.HostReq.List
+	(*HostReq_Watch)(nil),                          // 47: sgroups.v1.HostReq.Watch
+	(*HostReq_UpdIPs)(nil),                         // 48: sgroups.v1.HostReq.UpdIPs
+	(*HostReq_UpdMetaInfo)(nil),                    // 49: sgroups.v1.HostReq.UpdMetaInfo
+	(*HostReq_Delete_Host)(nil),                    // 50: sgroups.v1.HostReq.Delete.Host
+	(*HostReq_UpdIPs_Host)(nil),                    // 51: sgroups.v1.HostReq.UpdIPs.Host
+	(*HostReq_UpdIPs_Host_Spec)(nil),               // 52: sgroups.v1.HostReq.UpdIPs.Host.Spec
+	(*HostReq_UpdMetaInfo_HostInfo)(nil),           // 53: sgroups.v1.HostReq.UpdMetaInfo.HostInfo
+	(*HostReq_UpdMetaInfo_HostInfo_Spec)(nil),      // 54: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
+	(*HostResp_HostExt)(nil),                       // 55: sgroups.v1.HostResp.HostExt
+	(*HostResp_Upsert)(nil),                        // 56: sgroups.v1.HostResp.Upsert
+	(*HostResp_List)(nil),                          // 57: sgroups.v1.HostResp.List
+	(*HostResp_Watch)(nil),                         // 58: sgroups.v1.HostResp.Watch
+	(*HostResp_UpdIPs)(nil),                        // 59: sgroups.v1.HostResp.UpdIPs
+	(*HostResp_UpdMetaInfo)(nil),                   // 60: sgroups.v1.HostResp.UpdMetaInfo
+	(*HostBindingReq_Upsert)(nil),                  // 61: sgroups.v1.HostBindingReq.Upsert
+	(*HostBindingReq_Delete)(nil),                  // 62: sgroups.v1.HostBindingReq.Delete
+	(*HostBindingReq_Selectors)(nil),               // 63: sgroups.v1.HostBindingReq.Selectors
+	(*HostBindingReq_List)(nil),                    // 64: sgroups.v1.HostBindingReq.List
+	(*HostBindingReq_Watch)(nil),                   // 65: sgroups.v1.HostBindingReq.Watch
+	(*HostBindingReq_Delete_HostBinding)(nil),      // 66: sgroups.v1.HostBindingReq.Delete.HostBinding
+	(*HostBindingReq_Selectors_FieldSelector)(nil), // 67: sgroups.v1.HostBindingReq.Selectors.FieldSelector
+	nil,                                               // 68: sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
+	(*HostBindingResp_Upsert)(nil),                    // 69: sgroups.v1.HostBindingResp.Upsert
+	(*HostBindingResp_List)(nil),                      // 70: sgroups.v1.HostBindingResp.List
+	(*HostBindingResp_Watch)(nil),                     // 71: sgroups.v1.HostBindingResp.Watch
+	(*NetworkBindingReq_Upsert)(nil),                  // 72: sgroups.v1.NetworkBindingReq.Upsert
+	(*NetworkBindingReq_Delete)(nil),                  // 73: sgroups.v1.NetworkBindingReq.Delete
+	(*NetworkBindingReq_Selectors)(nil),               // 74: sgroups.v1.NetworkBindingReq.Selectors
+	(*NetworkBindingReq_List)(nil),                    // 75: sgroups.v1.NetworkBindingReq.List
+	(*NetworkBindingReq_Watch)(nil),                   // 76: sgroups.v1.NetworkBindingReq.Watch
+	(*NetworkBindingReq_Delete_NetworkBinding)(nil),   // 77: sgroups.v1.NetworkBindingReq.Delete.NetworkBinding
+	(*NetworkBindingReq_Selectors_FieldSelector)(nil), // 78: sgroups.v1.NetworkBindingReq.Selectors.FieldSelector
+	nil,                                     // 79: sgroups.v1.NetworkBindingReq.Selectors.LabelSelectorEntry
+	(*NetworkBindingResp_Upsert)(nil),       // 80: sgroups.v1.NetworkBindingResp.Upsert
+	(*NetworkBindingResp_List)(nil),         // 81: sgroups.v1.NetworkBindingResp.List
+	(*NetworkBindingResp_Watch)(nil),        // 82: sgroups.v1.NetworkBindingResp.Watch
+	(*RuleReq_Upsert)(nil),                  // 83: sgroups.v1.RuleReq.Upsert
+	(*RuleReq_Delete)(nil),                  // 84: sgroups.v1.RuleReq.Delete
+	(*RuleReq_Selectors)(nil),               // 85: sgroups.v1.RuleReq.Selectors
+	(*RuleReq_List)(nil),                    // 86: sgroups.v1.RuleReq.List
+	(*RuleReq_Watch)(nil),                   // 87: sgroups.v1.RuleReq.Watch
+	(*RuleReq_Delete_Rule)(nil),             // 88: sgroups.v1.RuleReq.Delete.Rule
+	(*RuleReq_Selectors_FieldSelector)(nil), // 89: sgroups.v1.RuleReq.Selectors.FieldSelector
+	nil,                                     // 90: sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
+	(*RuleResp_Upsert)(nil),                 // 91: sgroups.v1.RuleResp.Upsert
+	(*RuleResp_List)(nil),                   // 92: sgroups.v1.RuleResp.List
+	(*RuleResp_Watch)(nil),                  // 93: sgroups.v1.RuleResp.Watch
+	(*Namespace)(nil),                       // 94: sgroups.v1.Namespace
+	(common.WatchEventType)(0),              // 95: common.WatchEventType
+	(*AddressGroup)(nil),                    // 96: sgroups.v1.AddressGroup
+	(*common.ResSelector)(nil),              // 97: common.ResSelector
+	(*common.MetadataScope)(nil),            // 98: common.MetadataScope
+	(*common.Metadata)(nil),                 // 99: common.Metadata
+	(*AddressGroup_Spec)(nil),               // 100: sgroups.v1.AddressGroup.Spec
+	(*common.ResourceRef)(nil),              // 101: common.ResourceRef
+	(*Network)(nil),                         // 102: sgroups.v1.Network
+	(*Network_Spec)(nil),                    // 103: sgroups.v1.Network.Spec
+	(*Host)(nil),                            // 104: sgroups.v1.Host
+	(*common.IPs)(nil),                      // 105: common.IPs
+	(*Host_Spec_MetaInfo)(nil),              // 106: sgroups.v1.Host.Spec.MetaInfo
+	(*Host_Spec)(nil),                       // 107: sgroups.v1.Host.Spec
+	(*HostBinding)(nil),                     // 108: sgroups.v1.HostBinding
+	(*common.ResourceIdentifier)(nil),       // 109: common.ResourceIdentifier
+	(*NetworkBinding)(nil),                  // 110: sgroups.v1.NetworkBinding
+	(*Rule)(nil),                            // 111: sgroups.v1.Rule
+	(common.Session_Traffic)(0),             // 112: common.Session.Traffic
+	(common.Transport_Protocol)(0),          // 113: common.Transport.Protocol
+	(*common.Endpoints)(nil),                // 114: common.Endpoints
 }
 var file_sgroups_v1_queries_proto_depIdxs = []int32{
-	17,  // 0: sgroups.v1.NamespaceReq.Selector.field_selector:type_name -> sgroups.v1.NamespaceReq.Selector.FieldSelector
-	18,  // 1: sgroups.v1.NamespaceReq.Selector.label_selector:type_name -> sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
-	81,  // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
-	20,  // 3: sgroups.v1.NamespaceReq.Delete.namespaces:type_name -> sgroups.v1.NamespaceReq.Delete.Namespace
-	12,  // 4: sgroups.v1.NamespaceReq.List.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
-	12,  // 5: sgroups.v1.NamespaceReq.Watch.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
-	19,  // 6: sgroups.v1.NamespaceReq.Delete.Namespace.metadata:type_name -> sgroups.v1.NamespaceReq.Delete.MetadataScope
-	81,  // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
-	81,  // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
-	82,  // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
-	81,  // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
-	83,  // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
-	28,  // 12: sgroups.v1.AddressGroupReq.Delete.address_groups:type_name -> sgroups.v1.AddressGroupReq.Delete.AddressGroup
-	84,  // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
-	84,  // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
-	85,  // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
-	86,  // 16: sgroups.v1.AddressGroupResp.AddressGroupExt.metadata:type_name -> common.Metadata
-	87,  // 17: sgroups.v1.AddressGroupResp.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	88,  // 18: sgroups.v1.AddressGroupResp.AddressGroupExt.refs:type_name -> common.ResourceRef
-	83,  // 19: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
-	29,  // 20: sgroups.v1.AddressGroupResp.List.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
-	82,  // 21: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
-	29,  // 22: sgroups.v1.AddressGroupResp.Watch.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
-	89,  // 23: sgroups.v1.NetworkReq.Upsert.networks:type_name -> sgroups.v1.Network
-	37,  // 24: sgroups.v1.NetworkReq.Delete.networks:type_name -> sgroups.v1.NetworkReq.Delete.Network
-	84,  // 25: sgroups.v1.NetworkReq.List.selectors:type_name -> common.ResSelector
-	84,  // 26: sgroups.v1.NetworkReq.Watch.selectors:type_name -> common.ResSelector
-	85,  // 27: sgroups.v1.NetworkReq.Delete.Network.metadata:type_name -> common.MetadataScope
-	86,  // 28: sgroups.v1.NetworkResp.NetworkExt.metadata:type_name -> common.Metadata
-	90,  // 29: sgroups.v1.NetworkResp.NetworkExt.spec:type_name -> sgroups.v1.Network.Spec
-	88,  // 30: sgroups.v1.NetworkResp.NetworkExt.refs:type_name -> common.ResourceRef
-	89,  // 31: sgroups.v1.NetworkResp.Upsert.networks:type_name -> sgroups.v1.Network
-	38,  // 32: sgroups.v1.NetworkResp.List.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
-	82,  // 33: sgroups.v1.NetworkResp.Watch.type:type_name -> common.WatchEventType
-	38,  // 34: sgroups.v1.NetworkResp.Watch.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
-	91,  // 35: sgroups.v1.HostReq.Upsert.hosts:type_name -> sgroups.v1.Host
-	48,  // 36: sgroups.v1.HostReq.Delete.hosts:type_name -> sgroups.v1.HostReq.Delete.Host
-	84,  // 37: sgroups.v1.HostReq.List.selectors:type_name -> common.ResSelector
-	84,  // 38: sgroups.v1.HostReq.Watch.selectors:type_name -> common.ResSelector
-	49,  // 39: sgroups.v1.HostReq.UpdIPs.hosts:type_name -> sgroups.v1.HostReq.UpdIPs.Host
-	51,  // 40: sgroups.v1.HostReq.UpdMetaInfo.hosts:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo
-	85,  // 41: sgroups.v1.HostReq.Delete.Host.metadata:type_name -> common.MetadataScope
-	85,  // 42: sgroups.v1.HostReq.UpdIPs.Host.metadata:type_name -> common.MetadataScope
-	50,  // 43: sgroups.v1.HostReq.UpdIPs.Host.spec:type_name -> sgroups.v1.HostReq.UpdIPs.Host.Spec
-	92,  // 44: sgroups.v1.HostReq.UpdIPs.Host.Spec.ips:type_name -> common.IPs
-	85,  // 45: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.metadata:type_name -> common.MetadataScope
-	52,  // 46: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.spec:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
-	93,  // 47: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
-	86,  // 48: sgroups.v1.HostResp.HostExt.metadata:type_name -> common.Metadata
-	94,  // 49: sgroups.v1.HostResp.HostExt.spec:type_name -> sgroups.v1.Host.Spec
-	88,  // 50: sgroups.v1.HostResp.HostExt.refs:type_name -> common.ResourceRef
-	91,  // 51: sgroups.v1.HostResp.Upsert.hosts:type_name -> sgroups.v1.Host
-	53,  // 52: sgroups.v1.HostResp.List.hosts:type_name -> sgroups.v1.HostResp.HostExt
-	82,  // 53: sgroups.v1.HostResp.Watch.type:type_name -> common.WatchEventType
-	53,  // 54: sgroups.v1.HostResp.Watch.hosts:type_name -> sgroups.v1.HostResp.HostExt
-	91,  // 55: sgroups.v1.HostResp.UpdIPs.hosts:type_name -> sgroups.v1.Host
-	91,  // 56: sgroups.v1.HostResp.UpdMetaInfo.hosts:type_name -> sgroups.v1.Host
-	95,  // 57: sgroups.v1.HostBindingReq.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
-	64,  // 58: sgroups.v1.HostBindingReq.Delete.host_bindings:type_name -> sgroups.v1.HostBindingReq.Delete.HostBinding
-	65,  // 59: sgroups.v1.HostBindingReq.Selectors.field_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.FieldSelector
-	66,  // 60: sgroups.v1.HostBindingReq.Selectors.label_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
-	61,  // 61: sgroups.v1.HostBindingReq.List.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
-	61,  // 62: sgroups.v1.HostBindingReq.Watch.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
-	85,  // 63: sgroups.v1.HostBindingReq.Delete.HostBinding.metadata:type_name -> common.MetadataScope
-	96,  // 64: sgroups.v1.HostBindingReq.Selectors.FieldSelector.address_group:type_name -> common.ResourceIdentifier
-	96,  // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector.host:type_name -> common.ResourceIdentifier
-	95,  // 66: sgroups.v1.HostBindingResp.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
-	95,  // 67: sgroups.v1.HostBindingResp.List.host_bindings:type_name -> sgroups.v1.HostBinding
-	82,  // 68: sgroups.v1.HostBindingResp.Watch.type:type_name -> common.WatchEventType
-	95,  // 69: sgroups.v1.HostBindingResp.Watch.host_bindings:type_name -> sgroups.v1.HostBinding
-	97,  // 70: sgroups.v1.RuleReq.Upsert.rules:type_name -> sgroups.v1.Rule
-	75,  // 71: sgroups.v1.RuleReq.Delete.rules:type_name -> sgroups.v1.RuleReq.Delete.Rule
-	76,  // 72: sgroups.v1.RuleReq.Selectors.field_selector:type_name -> sgroups.v1.RuleReq.Selectors.FieldSelector
-	77,  // 73: sgroups.v1.RuleReq.Selectors.label_selector:type_name -> sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
-	72,  // 74: sgroups.v1.RuleReq.List.selectors:type_name -> sgroups.v1.RuleReq.Selectors
-	72,  // 75: sgroups.v1.RuleReq.Watch.selectors:type_name -> sgroups.v1.RuleReq.Selectors
-	85,  // 76: sgroups.v1.RuleReq.Delete.Rule.metadata:type_name -> common.MetadataScope
-	98,  // 77: sgroups.v1.RuleReq.Selectors.FieldSelector.traffic:type_name -> common.Session.Traffic
-	99,  // 78: sgroups.v1.RuleReq.Selectors.FieldSelector.protocol:type_name -> common.Transport.Protocol
-	100, // 79: sgroups.v1.RuleReq.Selectors.FieldSelector.endpoints:type_name -> common.Endpoints
-	97,  // 80: sgroups.v1.RuleResp.Upsert.rules:type_name -> sgroups.v1.Rule
-	97,  // 81: sgroups.v1.RuleResp.List.rules:type_name -> sgroups.v1.Rule
-	82,  // 82: sgroups.v1.RuleResp.Watch.type:type_name -> common.WatchEventType
-	97,  // 83: sgroups.v1.RuleResp.Watch.rules:type_name -> sgroups.v1.Rule
-	84,  // [84:84] is the sub-list for method output_type
-	84,  // [84:84] is the sub-list for method input_type
-	84,  // [84:84] is the sub-list for extension type_name
-	84,  // [84:84] is the sub-list for extension extendee
-	0,   // [0:84] is the sub-list for field type_name
+	19,  // 0: sgroups.v1.NamespaceReq.Selector.field_selector:type_name -> sgroups.v1.NamespaceReq.Selector.FieldSelector
+	20,  // 1: sgroups.v1.NamespaceReq.Selector.label_selector:type_name -> sgroups.v1.NamespaceReq.Selector.LabelSelectorEntry
+	94,  // 2: sgroups.v1.NamespaceReq.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	22,  // 3: sgroups.v1.NamespaceReq.Delete.namespaces:type_name -> sgroups.v1.NamespaceReq.Delete.Namespace
+	14,  // 4: sgroups.v1.NamespaceReq.List.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
+	14,  // 5: sgroups.v1.NamespaceReq.Watch.selectors:type_name -> sgroups.v1.NamespaceReq.Selector
+	21,  // 6: sgroups.v1.NamespaceReq.Delete.Namespace.metadata:type_name -> sgroups.v1.NamespaceReq.Delete.MetadataScope
+	94,  // 7: sgroups.v1.NamespaceResp.Upsert.namespaces:type_name -> sgroups.v1.Namespace
+	94,  // 8: sgroups.v1.NamespaceResp.List.namespaces:type_name -> sgroups.v1.Namespace
+	95,  // 9: sgroups.v1.NamespaceResp.Watch.type:type_name -> common.WatchEventType
+	94,  // 10: sgroups.v1.NamespaceResp.Watch.namespaces:type_name -> sgroups.v1.Namespace
+	96,  // 11: sgroups.v1.AddressGroupReq.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	30,  // 12: sgroups.v1.AddressGroupReq.Delete.address_groups:type_name -> sgroups.v1.AddressGroupReq.Delete.AddressGroup
+	97,  // 13: sgroups.v1.AddressGroupReq.List.selectors:type_name -> common.ResSelector
+	97,  // 14: sgroups.v1.AddressGroupReq.Watch.selectors:type_name -> common.ResSelector
+	98,  // 15: sgroups.v1.AddressGroupReq.Delete.AddressGroup.metadata:type_name -> common.MetadataScope
+	99,  // 16: sgroups.v1.AddressGroupResp.AddressGroupExt.metadata:type_name -> common.Metadata
+	100, // 17: sgroups.v1.AddressGroupResp.AddressGroupExt.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	101, // 18: sgroups.v1.AddressGroupResp.AddressGroupExt.refs:type_name -> common.ResourceRef
+	96,  // 19: sgroups.v1.AddressGroupResp.Upsert.address_groups:type_name -> sgroups.v1.AddressGroup
+	31,  // 20: sgroups.v1.AddressGroupResp.List.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
+	95,  // 21: sgroups.v1.AddressGroupResp.Watch.type:type_name -> common.WatchEventType
+	31,  // 22: sgroups.v1.AddressGroupResp.Watch.address_groups:type_name -> sgroups.v1.AddressGroupResp.AddressGroupExt
+	102, // 23: sgroups.v1.NetworkReq.Upsert.networks:type_name -> sgroups.v1.Network
+	39,  // 24: sgroups.v1.NetworkReq.Delete.networks:type_name -> sgroups.v1.NetworkReq.Delete.Network
+	97,  // 25: sgroups.v1.NetworkReq.List.selectors:type_name -> common.ResSelector
+	97,  // 26: sgroups.v1.NetworkReq.Watch.selectors:type_name -> common.ResSelector
+	98,  // 27: sgroups.v1.NetworkReq.Delete.Network.metadata:type_name -> common.MetadataScope
+	99,  // 28: sgroups.v1.NetworkResp.NetworkExt.metadata:type_name -> common.Metadata
+	103, // 29: sgroups.v1.NetworkResp.NetworkExt.spec:type_name -> sgroups.v1.Network.Spec
+	101, // 30: sgroups.v1.NetworkResp.NetworkExt.refs:type_name -> common.ResourceRef
+	102, // 31: sgroups.v1.NetworkResp.Upsert.networks:type_name -> sgroups.v1.Network
+	40,  // 32: sgroups.v1.NetworkResp.List.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
+	95,  // 33: sgroups.v1.NetworkResp.Watch.type:type_name -> common.WatchEventType
+	40,  // 34: sgroups.v1.NetworkResp.Watch.networks:type_name -> sgroups.v1.NetworkResp.NetworkExt
+	104, // 35: sgroups.v1.HostReq.Upsert.hosts:type_name -> sgroups.v1.Host
+	50,  // 36: sgroups.v1.HostReq.Delete.hosts:type_name -> sgroups.v1.HostReq.Delete.Host
+	97,  // 37: sgroups.v1.HostReq.List.selectors:type_name -> common.ResSelector
+	97,  // 38: sgroups.v1.HostReq.Watch.selectors:type_name -> common.ResSelector
+	51,  // 39: sgroups.v1.HostReq.UpdIPs.hosts:type_name -> sgroups.v1.HostReq.UpdIPs.Host
+	53,  // 40: sgroups.v1.HostReq.UpdMetaInfo.hosts:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo
+	98,  // 41: sgroups.v1.HostReq.Delete.Host.metadata:type_name -> common.MetadataScope
+	98,  // 42: sgroups.v1.HostReq.UpdIPs.Host.metadata:type_name -> common.MetadataScope
+	52,  // 43: sgroups.v1.HostReq.UpdIPs.Host.spec:type_name -> sgroups.v1.HostReq.UpdIPs.Host.Spec
+	105, // 44: sgroups.v1.HostReq.UpdIPs.Host.Spec.ips:type_name -> common.IPs
+	98,  // 45: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.metadata:type_name -> common.MetadataScope
+	54,  // 46: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.spec:type_name -> sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec
+	106, // 47: sgroups.v1.HostReq.UpdMetaInfo.HostInfo.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
+	99,  // 48: sgroups.v1.HostResp.HostExt.metadata:type_name -> common.Metadata
+	107, // 49: sgroups.v1.HostResp.HostExt.spec:type_name -> sgroups.v1.Host.Spec
+	101, // 50: sgroups.v1.HostResp.HostExt.refs:type_name -> common.ResourceRef
+	104, // 51: sgroups.v1.HostResp.Upsert.hosts:type_name -> sgroups.v1.Host
+	55,  // 52: sgroups.v1.HostResp.List.hosts:type_name -> sgroups.v1.HostResp.HostExt
+	95,  // 53: sgroups.v1.HostResp.Watch.type:type_name -> common.WatchEventType
+	55,  // 54: sgroups.v1.HostResp.Watch.hosts:type_name -> sgroups.v1.HostResp.HostExt
+	104, // 55: sgroups.v1.HostResp.UpdIPs.hosts:type_name -> sgroups.v1.Host
+	104, // 56: sgroups.v1.HostResp.UpdMetaInfo.hosts:type_name -> sgroups.v1.Host
+	108, // 57: sgroups.v1.HostBindingReq.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
+	66,  // 58: sgroups.v1.HostBindingReq.Delete.host_bindings:type_name -> sgroups.v1.HostBindingReq.Delete.HostBinding
+	67,  // 59: sgroups.v1.HostBindingReq.Selectors.field_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.FieldSelector
+	68,  // 60: sgroups.v1.HostBindingReq.Selectors.label_selector:type_name -> sgroups.v1.HostBindingReq.Selectors.LabelSelectorEntry
+	63,  // 61: sgroups.v1.HostBindingReq.List.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
+	63,  // 62: sgroups.v1.HostBindingReq.Watch.selectors:type_name -> sgroups.v1.HostBindingReq.Selectors
+	98,  // 63: sgroups.v1.HostBindingReq.Delete.HostBinding.metadata:type_name -> common.MetadataScope
+	109, // 64: sgroups.v1.HostBindingReq.Selectors.FieldSelector.address_group:type_name -> common.ResourceIdentifier
+	109, // 65: sgroups.v1.HostBindingReq.Selectors.FieldSelector.host:type_name -> common.ResourceIdentifier
+	108, // 66: sgroups.v1.HostBindingResp.Upsert.host_bindings:type_name -> sgroups.v1.HostBinding
+	108, // 67: sgroups.v1.HostBindingResp.List.host_bindings:type_name -> sgroups.v1.HostBinding
+	95,  // 68: sgroups.v1.HostBindingResp.Watch.type:type_name -> common.WatchEventType
+	108, // 69: sgroups.v1.HostBindingResp.Watch.host_bindings:type_name -> sgroups.v1.HostBinding
+	110, // 70: sgroups.v1.NetworkBindingReq.Upsert.network_bindings:type_name -> sgroups.v1.NetworkBinding
+	77,  // 71: sgroups.v1.NetworkBindingReq.Delete.network_bindings:type_name -> sgroups.v1.NetworkBindingReq.Delete.NetworkBinding
+	78,  // 72: sgroups.v1.NetworkBindingReq.Selectors.field_selector:type_name -> sgroups.v1.NetworkBindingReq.Selectors.FieldSelector
+	79,  // 73: sgroups.v1.NetworkBindingReq.Selectors.label_selector:type_name -> sgroups.v1.NetworkBindingReq.Selectors.LabelSelectorEntry
+	74,  // 74: sgroups.v1.NetworkBindingReq.List.selectors:type_name -> sgroups.v1.NetworkBindingReq.Selectors
+	74,  // 75: sgroups.v1.NetworkBindingReq.Watch.selectors:type_name -> sgroups.v1.NetworkBindingReq.Selectors
+	98,  // 76: sgroups.v1.NetworkBindingReq.Delete.NetworkBinding.metadata:type_name -> common.MetadataScope
+	109, // 77: sgroups.v1.NetworkBindingReq.Selectors.FieldSelector.address_group:type_name -> common.ResourceIdentifier
+	109, // 78: sgroups.v1.NetworkBindingReq.Selectors.FieldSelector.network:type_name -> common.ResourceIdentifier
+	110, // 79: sgroups.v1.NetworkBindingResp.Upsert.network_bindings:type_name -> sgroups.v1.NetworkBinding
+	110, // 80: sgroups.v1.NetworkBindingResp.List.network_bindings:type_name -> sgroups.v1.NetworkBinding
+	95,  // 81: sgroups.v1.NetworkBindingResp.Watch.type:type_name -> common.WatchEventType
+	110, // 82: sgroups.v1.NetworkBindingResp.Watch.network_bindings:type_name -> sgroups.v1.NetworkBinding
+	111, // 83: sgroups.v1.RuleReq.Upsert.rules:type_name -> sgroups.v1.Rule
+	88,  // 84: sgroups.v1.RuleReq.Delete.rules:type_name -> sgroups.v1.RuleReq.Delete.Rule
+	89,  // 85: sgroups.v1.RuleReq.Selectors.field_selector:type_name -> sgroups.v1.RuleReq.Selectors.FieldSelector
+	90,  // 86: sgroups.v1.RuleReq.Selectors.label_selector:type_name -> sgroups.v1.RuleReq.Selectors.LabelSelectorEntry
+	85,  // 87: sgroups.v1.RuleReq.List.selectors:type_name -> sgroups.v1.RuleReq.Selectors
+	85,  // 88: sgroups.v1.RuleReq.Watch.selectors:type_name -> sgroups.v1.RuleReq.Selectors
+	98,  // 89: sgroups.v1.RuleReq.Delete.Rule.metadata:type_name -> common.MetadataScope
+	112, // 90: sgroups.v1.RuleReq.Selectors.FieldSelector.traffic:type_name -> common.Session.Traffic
+	113, // 91: sgroups.v1.RuleReq.Selectors.FieldSelector.protocol:type_name -> common.Transport.Protocol
+	114, // 92: sgroups.v1.RuleReq.Selectors.FieldSelector.endpoints:type_name -> common.Endpoints
+	111, // 93: sgroups.v1.RuleResp.Upsert.rules:type_name -> sgroups.v1.Rule
+	111, // 94: sgroups.v1.RuleResp.List.rules:type_name -> sgroups.v1.Rule
+	95,  // 95: sgroups.v1.RuleResp.Watch.type:type_name -> common.WatchEventType
+	111, // 96: sgroups.v1.RuleResp.Watch.rules:type_name -> sgroups.v1.Rule
+	97,  // [97:97] is the sub-list for method output_type
+	97,  // [97:97] is the sub-list for method input_type
+	97,  // [97:97] is the sub-list for extension type_name
+	97,  // [97:97] is the sub-list for extension extendee
+	0,   // [0:97] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_queries_proto_init() }
@@ -4267,7 +4923,7 @@ func file_sgroups_v1_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_queries_proto_rawDesc), len(file_sgroups_v1_queries_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   81,
+			NumMessages:   94,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

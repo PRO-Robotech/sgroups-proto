@@ -32,6 +32,8 @@ const (
 	SGroupsHostsAPIName = "sgroups.v1.SGroupsHostsAPI"
 	// SGroupsHostBindingAPIName is the fully-qualified name of the SGroupsHostBindingAPI service.
 	SGroupsHostBindingAPIName = "sgroups.v1.SGroupsHostBindingAPI"
+	// SGroupsNetworkBindingAPIName is the fully-qualified name of the SGroupsNetworkBindingAPI service.
+	SGroupsNetworkBindingAPIName = "sgroups.v1.SGroupsNetworkBindingAPI"
 	// SGroupsRulesAPIName is the fully-qualified name of the SGroupsRulesAPI service.
 	SGroupsRulesAPIName = "sgroups.v1.SGroupsRulesAPI"
 )
@@ -104,6 +106,18 @@ const (
 	// SGroupsHostBindingAPIWatchProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
 	// Watch RPC.
 	SGroupsHostBindingAPIWatchProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Watch"
+	// SGroupsNetworkBindingAPIUpsertProcedure is the fully-qualified name of the
+	// SGroupsNetworkBindingAPI's Upsert RPC.
+	SGroupsNetworkBindingAPIUpsertProcedure = "/sgroups.v1.SGroupsNetworkBindingAPI/Upsert"
+	// SGroupsNetworkBindingAPIDeleteProcedure is the fully-qualified name of the
+	// SGroupsNetworkBindingAPI's Delete RPC.
+	SGroupsNetworkBindingAPIDeleteProcedure = "/sgroups.v1.SGroupsNetworkBindingAPI/Delete"
+	// SGroupsNetworkBindingAPIListProcedure is the fully-qualified name of the
+	// SGroupsNetworkBindingAPI's List RPC.
+	SGroupsNetworkBindingAPIListProcedure = "/sgroups.v1.SGroupsNetworkBindingAPI/List"
+	// SGroupsNetworkBindingAPIWatchProcedure is the fully-qualified name of the
+	// SGroupsNetworkBindingAPI's Watch RPC.
+	SGroupsNetworkBindingAPIWatchProcedure = "/sgroups.v1.SGroupsNetworkBindingAPI/Watch"
 	// SGroupsRulesAPIUpsertProcedure is the fully-qualified name of the SGroupsRulesAPI's Upsert RPC.
 	SGroupsRulesAPIUpsertProcedure = "/sgroups.v1.SGroupsRulesAPI/Upsert"
 	// SGroupsRulesAPIDeleteProcedure is the fully-qualified name of the SGroupsRulesAPI's Delete RPC.
@@ -950,6 +964,163 @@ func (UnimplementedSGroupsHostBindingAPIHandler) List(context.Context, *connect.
 
 func (UnimplementedSGroupsHostBindingAPIHandler) Watch(context.Context, *connect.Request[v1.HostBindingReq_Watch], *connect.ServerStream[v1.HostBindingResp_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostBindingAPI.Watch is not implemented"))
+}
+
+// SGroupsNetworkBindingAPIClient is a client for the sgroups.v1.SGroupsNetworkBindingAPI service.
+type SGroupsNetworkBindingAPIClient interface {
+	// Upsert: Create or update network binding(s)
+	Upsert(context.Context, *connect.Request[v1.NetworkBindingReq_Upsert]) (*connect.Response[v1.NetworkBindingResp_Upsert], error)
+	// Delete: Delete network binding(s)
+	Delete(context.Context, *connect.Request[v1.NetworkBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List network binding(s)
+	List(context.Context, *connect.Request[v1.NetworkBindingReq_List]) (*connect.Response[v1.NetworkBindingResp_List], error)
+	// Watch: Watch network binding(s)
+	Watch(context.Context, *connect.Request[v1.NetworkBindingReq_Watch]) (*connect.ServerStreamForClient[v1.NetworkBindingResp_Watch], error)
+}
+
+// NewSGroupsNetworkBindingAPIClient constructs a client for the sgroups.v1.SGroupsNetworkBindingAPI
+// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
+// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
+// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsNetworkBindingAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsNetworkBindingAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsNetworkBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsNetworkBindingAPI").Methods()
+	return &sGroupsNetworkBindingAPIClient{
+		upsert: connect.NewClient[v1.NetworkBindingReq_Upsert, v1.NetworkBindingResp_Upsert](
+			httpClient,
+			baseURL+SGroupsNetworkBindingAPIUpsertProcedure,
+			connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.NetworkBindingReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsNetworkBindingAPIDeleteProcedure,
+			connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.NetworkBindingReq_List, v1.NetworkBindingResp_List](
+			httpClient,
+			baseURL+SGroupsNetworkBindingAPIListProcedure,
+			connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.NetworkBindingReq_Watch, v1.NetworkBindingResp_Watch](
+			httpClient,
+			baseURL+SGroupsNetworkBindingAPIWatchProcedure,
+			connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsNetworkBindingAPIClient implements SGroupsNetworkBindingAPIClient.
+type sGroupsNetworkBindingAPIClient struct {
+	upsert *connect.Client[v1.NetworkBindingReq_Upsert, v1.NetworkBindingResp_Upsert]
+	delete *connect.Client[v1.NetworkBindingReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.NetworkBindingReq_List, v1.NetworkBindingResp_List]
+	watch  *connect.Client[v1.NetworkBindingReq_Watch, v1.NetworkBindingResp_Watch]
+}
+
+// Upsert calls sgroups.v1.SGroupsNetworkBindingAPI.Upsert.
+func (c *sGroupsNetworkBindingAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.NetworkBindingReq_Upsert]) (*connect.Response[v1.NetworkBindingResp_Upsert], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsNetworkBindingAPI.Delete.
+func (c *sGroupsNetworkBindingAPIClient) Delete(ctx context.Context, req *connect.Request[v1.NetworkBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsNetworkBindingAPI.List.
+func (c *sGroupsNetworkBindingAPIClient) List(ctx context.Context, req *connect.Request[v1.NetworkBindingReq_List]) (*connect.Response[v1.NetworkBindingResp_List], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsNetworkBindingAPI.Watch.
+func (c *sGroupsNetworkBindingAPIClient) Watch(ctx context.Context, req *connect.Request[v1.NetworkBindingReq_Watch]) (*connect.ServerStreamForClient[v1.NetworkBindingResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsNetworkBindingAPIHandler is an implementation of the sgroups.v1.SGroupsNetworkBindingAPI
+// service.
+type SGroupsNetworkBindingAPIHandler interface {
+	// Upsert: Create or update network binding(s)
+	Upsert(context.Context, *connect.Request[v1.NetworkBindingReq_Upsert]) (*connect.Response[v1.NetworkBindingResp_Upsert], error)
+	// Delete: Delete network binding(s)
+	Delete(context.Context, *connect.Request[v1.NetworkBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List network binding(s)
+	List(context.Context, *connect.Request[v1.NetworkBindingReq_List]) (*connect.Response[v1.NetworkBindingResp_List], error)
+	// Watch: Watch network binding(s)
+	Watch(context.Context, *connect.Request[v1.NetworkBindingReq_Watch], *connect.ServerStream[v1.NetworkBindingResp_Watch]) error
+}
+
+// NewSGroupsNetworkBindingAPIHandler builds an HTTP handler from the service implementation. It
+// returns the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsNetworkBindingAPIHandler(svc SGroupsNetworkBindingAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsNetworkBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsNetworkBindingAPI").Methods()
+	sGroupsNetworkBindingAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsNetworkBindingAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsNetworkBindingAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsNetworkBindingAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsNetworkBindingAPIListHandler := connect.NewUnaryHandler(
+		SGroupsNetworkBindingAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsNetworkBindingAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsNetworkBindingAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsNetworkBindingAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsNetworkBindingAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsNetworkBindingAPIUpsertProcedure:
+			sGroupsNetworkBindingAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsNetworkBindingAPIDeleteProcedure:
+			sGroupsNetworkBindingAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsNetworkBindingAPIListProcedure:
+			sGroupsNetworkBindingAPIListHandler.ServeHTTP(w, r)
+		case SGroupsNetworkBindingAPIWatchProcedure:
+			sGroupsNetworkBindingAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsNetworkBindingAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsNetworkBindingAPIHandler struct{}
+
+func (UnimplementedSGroupsNetworkBindingAPIHandler) Upsert(context.Context, *connect.Request[v1.NetworkBindingReq_Upsert]) (*connect.Response[v1.NetworkBindingResp_Upsert], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNetworkBindingAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsNetworkBindingAPIHandler) Delete(context.Context, *connect.Request[v1.NetworkBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNetworkBindingAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsNetworkBindingAPIHandler) List(context.Context, *connect.Request[v1.NetworkBindingReq_List]) (*connect.Response[v1.NetworkBindingResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNetworkBindingAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsNetworkBindingAPIHandler) Watch(context.Context, *connect.Request[v1.NetworkBindingReq_Watch], *connect.ServerStream[v1.NetworkBindingResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNetworkBindingAPI.Watch is not implemented"))
 }
 
 // SGroupsRulesAPIClient is a client for the sgroups.v1.SGroupsRulesAPI service.

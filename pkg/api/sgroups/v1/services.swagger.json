@@ -26,6 +26,10 @@
       "description": "HostBinding Resource API"
     },
     {
+      "name": "SGroupsNetworkBindingAPI",
+      "description": "NetworkBinding Resource API"
+    },
+    {
       "name": "SGroupsRulesAPI",
       "description": "SGroups Rules API"
     }
@@ -692,6 +696,152 @@
         ]
       }
     },
+    "/v1/network-bindings/delete": {
+      "post": {
+        "summary": "Delete: Delete network binding(s)",
+        "description": "Delete: Delete network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/list": {
+      "post": {
+        "summary": "List: List network binding(s)",
+        "description": "List: List network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqList"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update network binding(s)",
+        "description": "Upsert: Create or update network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/watch": {
+      "post": {
+        "summary": "Watch: Watch network binding(s)",
+        "description": "Watch: Watch network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NetworkBindingRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NetworkBindingRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
     "/v1/networks/delete": {
       "post": {
         "summary": "Delete: Delete network(s)",
@@ -1192,6 +1342,16 @@
       },
       "title": "FieldSelector: resource field selector"
     },
+    "NetworkBindingReqDeleteNetworkBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "NetworkBinding: network binding to delete"
+    },
     "NetworkReqDeleteNetwork": {
       "type": "object",
       "properties": {
@@ -1646,11 +1806,11 @@
       "properties": {
         "metadata": {
           "$ref": "#/definitions/commonMetadata",
-          "title": "Metadata: host metadata"
+          "title": "Metadata: host binding metadata"
         },
         "spec": {
           "$ref": "#/definitions/v1HostBindingSpec",
-          "title": "Spec: host specification"
+          "title": "Spec: host binding specification"
         }
       },
       "title": "HostBinding: represents host binding resource"
@@ -1710,6 +1870,20 @@
         }
       },
       "title": "Network: represents network resource"
+    },
+    "sgroupsV1NetworkBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network binding metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkBindingSpec",
+          "title": "Spec: network binding specification"
+        }
+      },
+      "title": "NetworkBinding: represents network binding resource"
     },
     "sgroupsV1Rule": {
       "type": "object",
@@ -2360,6 +2534,187 @@
         "description": {
           "type": "string",
           "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1NetworkBindingReqDelete": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkBindingReqDeleteNetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings to delete"
+        }
+      },
+      "title": "Delete: request to delete network bindings",
+      "required": [
+        "networkBindings"
+      ]
+    },
+    "v1NetworkBindingReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1NetworkBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list network bindings"
+    },
+    "v1NetworkBindingReqSelectors": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/v1NetworkBindingReqSelectorsFieldSelector",
+          "title": "FieldSelector: field selector for network binding"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector for network binding"
+        }
+      },
+      "title": "Selectors: request to select network bindings"
+    },
+    "v1NetworkBindingReqSelectorsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "network": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Network: reference to the network"
+        }
+      },
+      "title": "FieldSelector: resource field selector for network binding"
+    },
+    "v1NetworkBindingReqUpsert": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Upsert: request to upsert network bindings",
+      "required": [
+        "networkBindings"
+      ]
+    },
+    "v1NetworkBindingReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1NetworkBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch network bindings"
+    },
+    "v1NetworkBindingRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "List: response for list of network bindings"
+    },
+    "v1NetworkBindingRespUpsert": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Upsert: response for upsert network bindings"
+    },
+    "v1NetworkBindingRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Watch: response for watch network bindings"
+    },
+    "v1NetworkBindingSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "network": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Network: reference to the network"
         }
       },
       "title": "Spec: resource specification"

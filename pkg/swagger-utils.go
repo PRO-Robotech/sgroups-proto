@@ -86,6 +86,9 @@ func init() {
 		SwaggerUtil[sgroupsv1.SGroupsNetworksAPIServer]{},
 		SwaggerUtil[sgroupsv1.SGroupsNetworksAPIClient]{},
 
+		SwaggerUtil[sgroupsv1.SGroupsNetworkBindingAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsNetworkBindingAPIClient]{},
+
 		SwaggerUtil[sgroupsv1.SGroupsRulesAPIServer]{},
 		SwaggerUtil[sgroupsv1.SGroupsRulesAPIClient]{},
 	}

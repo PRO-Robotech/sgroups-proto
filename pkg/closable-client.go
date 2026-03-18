@@ -86,6 +86,9 @@ func init() {
 	(clientConstructor[sgroupsv1.SGroupsNetworksAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsNetworksAPIClient)
 
+	(clientConstructor[sgroupsv1.SGroupsNetworkBindingAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsNetworkBindingAPIClient)
+
 	(clientConstructor[sgroupsv1.SGroupsRulesAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsRulesAPIClient)
 }

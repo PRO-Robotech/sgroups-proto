@@ -490,6 +490,95 @@ message HostBindingResp {
   }
 }
 
+// NetworkBindingReq: network binding requests
+message NetworkBindingReq {
+  // Upsert: request to upsert network bindings
+  message Upsert {
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 1 [
+      json_name = "networkBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete network bindings
+  message Delete {
+    // NetworkBinding: network binding to delete
+    message NetworkBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // NetworkBindings: list of network bindings to delete
+    repeated NetworkBinding network_bindings = 1 [
+      json_name = "networkBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select network bindings
+  message Selectors {
+    // FieldSelector: resource field selector for network binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Network: reference to the network
+      common.ResourceIdentifier network = 4;
+    }
+    // FieldSelector: field selector for network binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for network binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list network bindings
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch network bindings
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NetworkBindingResp: network binding responses
+message NetworkBindingResp {
+  // Upsert: response for upsert network bindings
+  message Upsert {
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 1;
+  }
+  // List: response for list of network bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 2;
+  }
+  // Watch: response for watch network bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 2;
+  }
+}
+
 // RuleReq: rule requests
 message RuleReq {
   // Upsert: request to upsert rules

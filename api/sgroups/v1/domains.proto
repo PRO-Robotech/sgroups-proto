@@ -154,9 +154,32 @@ message HostBinding {
     // Host: reference to the host
     common.ResourceIdentifier host = 5 [(buf.validate.field) = {required: true}];
   }
-  // Metadata: host metadata
+  // Metadata: host binding metadata
   common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
-  // Spec: host specification
+  // Spec: host binding specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// NetworkBinding: represents network binding resource
+message NetworkBinding {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // AddressGroup: reference to the address group
+    common.ResourceIdentifier address_group = 4 [(buf.validate.field) = {required: true}];
+    // Network: reference to the network
+    common.ResourceIdentifier network = 5 [(buf.validate.field) = {required: true}];
+  }
+  // Metadata: network binding metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: network binding specification
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
 
