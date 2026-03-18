@@ -76,4 +76,16 @@ func init() {
 
 	(clientConstructor[sgroupsv1.SGroupsAddressGroupsAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsAddressGroupsAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsHostsAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsHostsAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsHostBindingAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsHostBindingAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsNetworksAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsNetworksAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsNetworkBindingAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsNetworkBindingAPIClient)
 }
