@@ -183,6 +183,50 @@ message NetworkBinding {
   Spec spec = 2 [(buf.validate.field) = {required: true}];
 }
 
+// Service: represents service resource with transport specifications
+message Service {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // Transports: transport protocol specifications
+    repeated common.Transport transports = 4;
+  }
+  // Metadata: service metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: service specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
+// ServiceBinding: represents service binding resource
+message ServiceBinding {
+  // Spec: resource specification
+  message Spec {
+    // DisplayName: resource display name
+    string display_name = 1 [(buf.validate.field) = {
+      string: {max_len: 63}
+    }];
+    // Comment: resource comment
+    string comment = 2;
+    // Description: resource description
+    string description = 3;
+    // AddressGroup: reference to the address group
+    common.ResourceIdentifier address_group = 4 [(buf.validate.field) = {required: true}];
+    // Service: reference to the service
+    common.ResourceIdentifier service = 5 [(buf.validate.field) = {required: true}];
+  }
+  // Metadata: service binding metadata
+  common.Metadata metadata = 1 [(buf.validate.field) = {required: true}];
+  // Spec: service binding specification
+  Spec spec = 2 [(buf.validate.field) = {required: true}];
+}
+
 // Rule: represents rule resource
 message Rule {
   // Spec: resource specification

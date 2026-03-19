@@ -34,6 +34,10 @@ const (
 	SGroupsHostBindingAPIName = "sgroups.v1.SGroupsHostBindingAPI"
 	// SGroupsNetworkBindingAPIName is the fully-qualified name of the SGroupsNetworkBindingAPI service.
 	SGroupsNetworkBindingAPIName = "sgroups.v1.SGroupsNetworkBindingAPI"
+	// SGroupsServicesAPIName is the fully-qualified name of the SGroupsServicesAPI service.
+	SGroupsServicesAPIName = "sgroups.v1.SGroupsServicesAPI"
+	// SGroupsServiceBindingAPIName is the fully-qualified name of the SGroupsServiceBindingAPI service.
+	SGroupsServiceBindingAPIName = "sgroups.v1.SGroupsServiceBindingAPI"
 	// SGroupsRulesAPIName is the fully-qualified name of the SGroupsRulesAPI service.
 	SGroupsRulesAPIName = "sgroups.v1.SGroupsRulesAPI"
 )
@@ -118,6 +122,29 @@ const (
 	// SGroupsNetworkBindingAPIWatchProcedure is the fully-qualified name of the
 	// SGroupsNetworkBindingAPI's Watch RPC.
 	SGroupsNetworkBindingAPIWatchProcedure = "/sgroups.v1.SGroupsNetworkBindingAPI/Watch"
+	// SGroupsServicesAPIUpsertProcedure is the fully-qualified name of the SGroupsServicesAPI's Upsert
+	// RPC.
+	SGroupsServicesAPIUpsertProcedure = "/sgroups.v1.SGroupsServicesAPI/Upsert"
+	// SGroupsServicesAPIDeleteProcedure is the fully-qualified name of the SGroupsServicesAPI's Delete
+	// RPC.
+	SGroupsServicesAPIDeleteProcedure = "/sgroups.v1.SGroupsServicesAPI/Delete"
+	// SGroupsServicesAPIListProcedure is the fully-qualified name of the SGroupsServicesAPI's List RPC.
+	SGroupsServicesAPIListProcedure = "/sgroups.v1.SGroupsServicesAPI/List"
+	// SGroupsServicesAPIWatchProcedure is the fully-qualified name of the SGroupsServicesAPI's Watch
+	// RPC.
+	SGroupsServicesAPIWatchProcedure = "/sgroups.v1.SGroupsServicesAPI/Watch"
+	// SGroupsServiceBindingAPIUpsertProcedure is the fully-qualified name of the
+	// SGroupsServiceBindingAPI's Upsert RPC.
+	SGroupsServiceBindingAPIUpsertProcedure = "/sgroups.v1.SGroupsServiceBindingAPI/Upsert"
+	// SGroupsServiceBindingAPIDeleteProcedure is the fully-qualified name of the
+	// SGroupsServiceBindingAPI's Delete RPC.
+	SGroupsServiceBindingAPIDeleteProcedure = "/sgroups.v1.SGroupsServiceBindingAPI/Delete"
+	// SGroupsServiceBindingAPIListProcedure is the fully-qualified name of the
+	// SGroupsServiceBindingAPI's List RPC.
+	SGroupsServiceBindingAPIListProcedure = "/sgroups.v1.SGroupsServiceBindingAPI/List"
+	// SGroupsServiceBindingAPIWatchProcedure is the fully-qualified name of the
+	// SGroupsServiceBindingAPI's Watch RPC.
+	SGroupsServiceBindingAPIWatchProcedure = "/sgroups.v1.SGroupsServiceBindingAPI/Watch"
 	// SGroupsRulesAPIUpsertProcedure is the fully-qualified name of the SGroupsRulesAPI's Upsert RPC.
 	SGroupsRulesAPIUpsertProcedure = "/sgroups.v1.SGroupsRulesAPI/Upsert"
 	// SGroupsRulesAPIDeleteProcedure is the fully-qualified name of the SGroupsRulesAPI's Delete RPC.
@@ -1121,6 +1148,303 @@ func (UnimplementedSGroupsNetworkBindingAPIHandler) List(context.Context, *conne
 
 func (UnimplementedSGroupsNetworkBindingAPIHandler) Watch(context.Context, *connect.Request[v1.NetworkBindingReq_Watch], *connect.ServerStream[v1.NetworkBindingResp_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsNetworkBindingAPI.Watch is not implemented"))
+}
+
+// SGroupsServicesAPIClient is a client for the sgroups.v1.SGroupsServicesAPI service.
+type SGroupsServicesAPIClient interface {
+	Upsert(context.Context, *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error)
+	Delete(context.Context, *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	List(context.Context, *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error)
+	Watch(context.Context, *connect.Request[v1.ServiceReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceResp_Watch], error)
+}
+
+// NewSGroupsServicesAPIClient constructs a client for the sgroups.v1.SGroupsServicesAPI service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsServicesAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsServicesAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsServicesAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsServicesAPI").Methods()
+	return &sGroupsServicesAPIClient{
+		upsert: connect.NewClient[v1.ServiceReq_Upsert, v1.ServiceResp_Upsert](
+			httpClient,
+			baseURL+SGroupsServicesAPIUpsertProcedure,
+			connect.WithSchema(sGroupsServicesAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.ServiceReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsServicesAPIDeleteProcedure,
+			connect.WithSchema(sGroupsServicesAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.ServiceReq_List, v1.ServiceResp_List](
+			httpClient,
+			baseURL+SGroupsServicesAPIListProcedure,
+			connect.WithSchema(sGroupsServicesAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.ServiceReq_Watch, v1.ServiceResp_Watch](
+			httpClient,
+			baseURL+SGroupsServicesAPIWatchProcedure,
+			connect.WithSchema(sGroupsServicesAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsServicesAPIClient implements SGroupsServicesAPIClient.
+type sGroupsServicesAPIClient struct {
+	upsert *connect.Client[v1.ServiceReq_Upsert, v1.ServiceResp_Upsert]
+	delete *connect.Client[v1.ServiceReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.ServiceReq_List, v1.ServiceResp_List]
+	watch  *connect.Client[v1.ServiceReq_Watch, v1.ServiceResp_Watch]
+}
+
+// Upsert calls sgroups.v1.SGroupsServicesAPI.Upsert.
+func (c *sGroupsServicesAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsServicesAPI.Delete.
+func (c *sGroupsServicesAPIClient) Delete(ctx context.Context, req *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsServicesAPI.List.
+func (c *sGroupsServicesAPIClient) List(ctx context.Context, req *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsServicesAPI.Watch.
+func (c *sGroupsServicesAPIClient) Watch(ctx context.Context, req *connect.Request[v1.ServiceReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsServicesAPIHandler is an implementation of the sgroups.v1.SGroupsServicesAPI service.
+type SGroupsServicesAPIHandler interface {
+	Upsert(context.Context, *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error)
+	Delete(context.Context, *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	List(context.Context, *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error)
+	Watch(context.Context, *connect.Request[v1.ServiceReq_Watch], *connect.ServerStream[v1.ServiceResp_Watch]) error
+}
+
+// NewSGroupsServicesAPIHandler builds an HTTP handler from the service implementation. It returns
+// the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsServicesAPIHandler(svc SGroupsServicesAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsServicesAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsServicesAPI").Methods()
+	sGroupsServicesAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsServicesAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsServicesAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServicesAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsServicesAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsServicesAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServicesAPIListHandler := connect.NewUnaryHandler(
+		SGroupsServicesAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsServicesAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServicesAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsServicesAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsServicesAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsServicesAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsServicesAPIUpsertProcedure:
+			sGroupsServicesAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsServicesAPIDeleteProcedure:
+			sGroupsServicesAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsServicesAPIListProcedure:
+			sGroupsServicesAPIListHandler.ServeHTTP(w, r)
+		case SGroupsServicesAPIWatchProcedure:
+			sGroupsServicesAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsServicesAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsServicesAPIHandler struct{}
+
+func (UnimplementedSGroupsServicesAPIHandler) Upsert(context.Context, *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServicesAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsServicesAPIHandler) Delete(context.Context, *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServicesAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsServicesAPIHandler) List(context.Context, *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServicesAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsServicesAPIHandler) Watch(context.Context, *connect.Request[v1.ServiceReq_Watch], *connect.ServerStream[v1.ServiceResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServicesAPI.Watch is not implemented"))
+}
+
+// SGroupsServiceBindingAPIClient is a client for the sgroups.v1.SGroupsServiceBindingAPI service.
+type SGroupsServiceBindingAPIClient interface {
+	Upsert(context.Context, *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error)
+	Delete(context.Context, *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	List(context.Context, *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error)
+	Watch(context.Context, *connect.Request[v1.ServiceBindingReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceBindingResp_Watch], error)
+}
+
+// NewSGroupsServiceBindingAPIClient constructs a client for the sgroups.v1.SGroupsServiceBindingAPI
+// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
+// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
+// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsServiceBindingAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsServiceBindingAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsServiceBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsServiceBindingAPI").Methods()
+	return &sGroupsServiceBindingAPIClient{
+		upsert: connect.NewClient[v1.ServiceBindingReq_Upsert, v1.ServiceBindingResp_Upsert](
+			httpClient,
+			baseURL+SGroupsServiceBindingAPIUpsertProcedure,
+			connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Upsert")),
+			connect.WithClientOptions(opts...),
+		),
+		delete: connect.NewClient[v1.ServiceBindingReq_Delete, emptypb.Empty](
+			httpClient,
+			baseURL+SGroupsServiceBindingAPIDeleteProcedure,
+			connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.ServiceBindingReq_List, v1.ServiceBindingResp_List](
+			httpClient,
+			baseURL+SGroupsServiceBindingAPIListProcedure,
+			connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[v1.ServiceBindingReq_Watch, v1.ServiceBindingResp_Watch](
+			httpClient,
+			baseURL+SGroupsServiceBindingAPIWatchProcedure,
+			connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsServiceBindingAPIClient implements SGroupsServiceBindingAPIClient.
+type sGroupsServiceBindingAPIClient struct {
+	upsert *connect.Client[v1.ServiceBindingReq_Upsert, v1.ServiceBindingResp_Upsert]
+	delete *connect.Client[v1.ServiceBindingReq_Delete, emptypb.Empty]
+	list   *connect.Client[v1.ServiceBindingReq_List, v1.ServiceBindingResp_List]
+	watch  *connect.Client[v1.ServiceBindingReq_Watch, v1.ServiceBindingResp_Watch]
+}
+
+// Upsert calls sgroups.v1.SGroupsServiceBindingAPI.Upsert.
+func (c *sGroupsServiceBindingAPIClient) Upsert(ctx context.Context, req *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error) {
+	return c.upsert.CallUnary(ctx, req)
+}
+
+// Delete calls sgroups.v1.SGroupsServiceBindingAPI.Delete.
+func (c *sGroupsServiceBindingAPIClient) Delete(ctx context.Context, req *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return c.delete.CallUnary(ctx, req)
+}
+
+// List calls sgroups.v1.SGroupsServiceBindingAPI.List.
+func (c *sGroupsServiceBindingAPIClient) List(ctx context.Context, req *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsServiceBindingAPI.Watch.
+func (c *sGroupsServiceBindingAPIClient) Watch(ctx context.Context, req *connect.Request[v1.ServiceBindingReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceBindingResp_Watch], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsServiceBindingAPIHandler is an implementation of the sgroups.v1.SGroupsServiceBindingAPI
+// service.
+type SGroupsServiceBindingAPIHandler interface {
+	Upsert(context.Context, *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error)
+	Delete(context.Context, *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	List(context.Context, *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error)
+	Watch(context.Context, *connect.Request[v1.ServiceBindingReq_Watch], *connect.ServerStream[v1.ServiceBindingResp_Watch]) error
+}
+
+// NewSGroupsServiceBindingAPIHandler builds an HTTP handler from the service implementation. It
+// returns the path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsServiceBindingAPIHandler(svc SGroupsServiceBindingAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsServiceBindingAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsServiceBindingAPI").Methods()
+	sGroupsServiceBindingAPIUpsertHandler := connect.NewUnaryHandler(
+		SGroupsServiceBindingAPIUpsertProcedure,
+		svc.Upsert,
+		connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Upsert")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServiceBindingAPIDeleteHandler := connect.NewUnaryHandler(
+		SGroupsServiceBindingAPIDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServiceBindingAPIListHandler := connect.NewUnaryHandler(
+		SGroupsServiceBindingAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsServiceBindingAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsServiceBindingAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsServiceBindingAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsServiceBindingAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsServiceBindingAPIUpsertProcedure:
+			sGroupsServiceBindingAPIUpsertHandler.ServeHTTP(w, r)
+		case SGroupsServiceBindingAPIDeleteProcedure:
+			sGroupsServiceBindingAPIDeleteHandler.ServeHTTP(w, r)
+		case SGroupsServiceBindingAPIListProcedure:
+			sGroupsServiceBindingAPIListHandler.ServeHTTP(w, r)
+		case SGroupsServiceBindingAPIWatchProcedure:
+			sGroupsServiceBindingAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsServiceBindingAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsServiceBindingAPIHandler struct{}
+
+func (UnimplementedSGroupsServiceBindingAPIHandler) Upsert(context.Context, *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServiceBindingAPI.Upsert is not implemented"))
+}
+
+func (UnimplementedSGroupsServiceBindingAPIHandler) Delete(context.Context, *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServiceBindingAPI.Delete is not implemented"))
+}
+
+func (UnimplementedSGroupsServiceBindingAPIHandler) List(context.Context, *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServiceBindingAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsServiceBindingAPIHandler) Watch(context.Context, *connect.Request[v1.ServiceBindingReq_Watch], *connect.ServerStream[v1.ServiceBindingResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsServiceBindingAPI.Watch is not implemented"))
 }
 
 // SGroupsRulesAPIClient is a client for the sgroups.v1.SGroupsRulesAPI service.

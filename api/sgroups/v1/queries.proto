@@ -579,6 +579,174 @@ message NetworkBindingResp {
   }
 }
 
+// ServiceReq: service requests
+message ServiceReq {
+  // Upsert: request to upsert services
+  message Upsert {
+    // Services: list of services
+    repeated Service services = 1 [
+      json_name = "services",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete services
+  message Delete {
+    // Service: service to delete
+    message Service {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Services: list of services to delete
+    repeated Service services = 1 [
+      json_name = "services",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list services
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch services
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// ServiceResp: service responses
+message ServiceResp {
+  // ServiceExt: extended service information
+  message ServiceExt {
+    // Metadata: service metadata
+    common.Metadata metadata = 1;
+    // Spec: service specification
+    Service.Spec spec = 2;
+    // Refs: list of resource references in the service
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert services
+  message Upsert {
+    // Services: list of services
+    repeated Service services = 1;
+  }
+  // List: response for list services
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Services: list of services
+    repeated ServiceExt services = 2;
+  }
+  // Watch: response for watch services
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Services: list of services
+    repeated ServiceExt services = 2;
+  }
+}
+
+// ServiceBindingReq: service binding requests
+message ServiceBindingReq {
+  // Upsert: request to upsert service bindings
+  message Upsert {
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 1 [
+      json_name = "serviceBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete service bindings
+  message Delete {
+    // ServiceBinding: service binding to delete
+    message ServiceBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // ServiceBindings: list of service bindings to delete
+    repeated ServiceBinding service_bindings = 1 [
+      json_name = "serviceBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select service bindings
+  message Selectors {
+    // FieldSelector: resource field selector for service binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Service: reference to the service
+      common.ResourceIdentifier service = 4;
+    }
+    // FieldSelector: field selector for service binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for service binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list service bindings
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch service bindings
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// ServiceBindingResp: service binding responses
+message ServiceBindingResp {
+  // Upsert: response for upsert service bindings
+  message Upsert {
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 1;
+  }
+  // List: response for list of service bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 2;
+  }
+  // Watch: response for watch service bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 2;
+  }
+}
+
 // RuleReq: rule requests
 message RuleReq {
   // Upsert: request to upsert rules

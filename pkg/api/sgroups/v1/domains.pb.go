@@ -355,6 +355,116 @@ func (x *NetworkBinding) GetSpec() *NetworkBinding_Spec {
 	return nil
 }
 
+// Service: represents service resource with transport specifications
+type Service struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: service metadata
+	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: service specification
+	Spec          *Service_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Service) Reset() {
+	*x = Service{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Service) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Service) ProtoMessage() {}
+
+func (x *Service) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Service.ProtoReflect.Descriptor instead.
+func (*Service) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Service) GetMetadata() *common.Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *Service) GetSpec() *Service_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+// ServiceBinding: represents service binding resource
+type ServiceBinding struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Metadata: service binding metadata
+	Metadata *common.Metadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Spec: service binding specification
+	Spec          *ServiceBinding_Spec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceBinding) Reset() {
+	*x = ServiceBinding{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceBinding) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceBinding) ProtoMessage() {}
+
+func (x *ServiceBinding) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceBinding.ProtoReflect.Descriptor instead.
+func (*ServiceBinding) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ServiceBinding) GetMetadata() *common.Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *ServiceBinding) GetSpec() *ServiceBinding_Spec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
 // Rule: represents rule resource
 type Rule struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -368,7 +478,7 @@ type Rule struct {
 
 func (x *Rule) Reset() {
 	*x = Rule{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -380,7 +490,7 @@ func (x *Rule) String() string {
 func (*Rule) ProtoMessage() {}
 
 func (x *Rule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[6]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -393,7 +503,7 @@ func (x *Rule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule.ProtoReflect.Descriptor instead.
 func (*Rule) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{6}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Rule) GetMetadata() *common.Metadata {
@@ -425,7 +535,7 @@ type Namespace_Spec struct {
 
 func (x *Namespace_Spec) Reset() {
 	*x = Namespace_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -437,7 +547,7 @@ func (x *Namespace_Spec) String() string {
 func (*Namespace_Spec) ProtoMessage() {}
 
 func (x *Namespace_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[7]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -495,7 +605,7 @@ type AddressGroup_Spec struct {
 
 func (x *AddressGroup_Spec) Reset() {
 	*x = AddressGroup_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +617,7 @@ func (x *AddressGroup_Spec) String() string {
 func (*AddressGroup_Spec) ProtoMessage() {}
 
 func (x *AddressGroup_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[8]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -582,7 +692,7 @@ type Network_Spec struct {
 
 func (x *Network_Spec) Reset() {
 	*x = Network_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -594,7 +704,7 @@ func (x *Network_Spec) String() string {
 func (*Network_Spec) ProtoMessage() {}
 
 func (x *Network_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[9]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +767,7 @@ type Host_Spec struct {
 
 func (x *Host_Spec) Reset() {
 	*x = Host_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -669,7 +779,7 @@ func (x *Host_Spec) String() string {
 func (*Host_Spec) ProtoMessage() {}
 
 func (x *Host_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[10]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -741,7 +851,7 @@ type Host_Spec_MetaInfo struct {
 
 func (x *Host_Spec_MetaInfo) Reset() {
 	*x = Host_Spec_MetaInfo{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[11]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -753,7 +863,7 @@ func (x *Host_Spec_MetaInfo) String() string {
 func (*Host_Spec_MetaInfo) ProtoMessage() {}
 
 func (x *Host_Spec_MetaInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[11]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,7 +940,7 @@ type HostBinding_Spec struct {
 
 func (x *HostBinding_Spec) Reset() {
 	*x = HostBinding_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[12]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -842,7 +952,7 @@ func (x *HostBinding_Spec) String() string {
 func (*HostBinding_Spec) ProtoMessage() {}
 
 func (x *HostBinding_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[12]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +1022,7 @@ type NetworkBinding_Spec struct {
 
 func (x *NetworkBinding_Spec) Reset() {
 	*x = NetworkBinding_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[13]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -924,7 +1034,7 @@ func (x *NetworkBinding_Spec) String() string {
 func (*NetworkBinding_Spec) ProtoMessage() {}
 
 func (x *NetworkBinding_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[13]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -976,6 +1086,161 @@ func (x *NetworkBinding_Spec) GetNetwork() *common.ResourceIdentifier {
 }
 
 // Spec: resource specification
+type Service_Spec struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// DisplayName: resource display name
+	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Comment: resource comment
+	Comment string `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	// Description: resource description
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// Transports: transport protocol specifications
+	Transports    []*common.Transport `protobuf:"bytes,4,rep,name=transports,proto3" json:"transports,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Service_Spec) Reset() {
+	*x = Service_Spec{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Service_Spec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Service_Spec) ProtoMessage() {}
+
+func (x *Service_Spec) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Service_Spec.ProtoReflect.Descriptor instead.
+func (*Service_Spec) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{6, 0}
+}
+
+func (x *Service_Spec) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *Service_Spec) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+func (x *Service_Spec) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Service_Spec) GetTransports() []*common.Transport {
+	if x != nil {
+		return x.Transports
+	}
+	return nil
+}
+
+// Spec: resource specification
+type ServiceBinding_Spec struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// DisplayName: resource display name
+	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Comment: resource comment
+	Comment string `protobuf:"bytes,2,opt,name=comment,proto3" json:"comment,omitempty"`
+	// Description: resource description
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// AddressGroup: reference to the address group
+	AddressGroup *common.ResourceIdentifier `protobuf:"bytes,4,opt,name=address_group,json=addressGroup,proto3" json:"address_group,omitempty"`
+	// Service: reference to the service
+	Service       *common.ResourceIdentifier `protobuf:"bytes,5,opt,name=service,proto3" json:"service,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceBinding_Spec) Reset() {
+	*x = ServiceBinding_Spec{}
+	mi := &file_sgroups_v1_domains_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceBinding_Spec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceBinding_Spec) ProtoMessage() {}
+
+func (x *ServiceBinding_Spec) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_v1_domains_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceBinding_Spec.ProtoReflect.Descriptor instead.
+func (*ServiceBinding_Spec) Descriptor() ([]byte, []int) {
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *ServiceBinding_Spec) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *ServiceBinding_Spec) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+func (x *ServiceBinding_Spec) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *ServiceBinding_Spec) GetAddressGroup() *common.ResourceIdentifier {
+	if x != nil {
+		return x.AddressGroup
+	}
+	return nil
+}
+
+func (x *ServiceBinding_Spec) GetService() *common.ResourceIdentifier {
+	if x != nil {
+		return x.Service
+	}
+	return nil
+}
+
+// Spec: resource specification
 type Rule_Spec struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// DisplayName: resource display name
@@ -998,7 +1263,7 @@ type Rule_Spec struct {
 
 func (x *Rule_Spec) Reset() {
 	*x = Rule_Spec{}
-	mi := &file_sgroups_v1_domains_proto_msgTypes[14]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1010,7 +1275,7 @@ func (x *Rule_Spec) String() string {
 func (*Rule_Spec) ProtoMessage() {}
 
 func (x *Rule_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_domains_proto_msgTypes[14]
+	mi := &file_sgroups_v1_domains_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1023,7 +1288,7 @@ func (x *Rule_Spec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Spec.ProtoReflect.Descriptor instead.
 func (*Rule_Spec) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{6, 0}
+	return file_sgroups_v1_domains_proto_rawDescGZIP(), []int{8, 0}
 }
 
 func (x *Rule_Spec) GetDisplayName() string {
@@ -1139,7 +1404,26 @@ const file_sgroups_v1_domains_proto_rawDesc = "" +
 	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12G\n" +
 	"\raddress_group\x18\x04 \x01(\v2\x1a.common.ResourceIdentifierB\x06\xbaH\x03\xc8\x01\x01R\faddressGroup\x12<\n" +
-	"\anetwork\x18\x05 \x01(\v2\x1a.common.ResourceIdentifierB\x06\xbaH\x03\xc8\x01\x01R\anetwork\"\x9f\x03\n" +
+	"\anetwork\x18\x05 \x01(\v2\x1a.common.ResourceIdentifierB\x06\xbaH\x03\xc8\x01\x01R\anetwork\"\x99\x02\n" +
+	"\aService\x124\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x124\n" +
+	"\x04spec\x18\x02 \x01(\v2\x18.sgroups.v1.Service.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xa1\x01\n" +
+	"\x04Spec\x12*\n" +
+	"\fdisplay_name\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18?R\vdisplayName\x12\x18\n" +
+	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x121\n" +
+	"\n" +
+	"transports\x18\x04 \x03(\v2\x11.common.TransportR\n" +
+	"transports\"\xfb\x02\n" +
+	"\x0eServiceBinding\x124\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x12;\n" +
+	"\x04spec\x18\x02 \x01(\v2\x1f.sgroups.v1.ServiceBinding.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xf5\x01\n" +
+	"\x04Spec\x12*\n" +
+	"\fdisplay_name\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18?R\vdisplayName\x12\x18\n" +
+	"\acomment\x18\x02 \x01(\tR\acomment\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12G\n" +
+	"\raddress_group\x18\x04 \x01(\v2\x1a.common.ResourceIdentifierB\x06\xbaH\x03\xc8\x01\x01R\faddressGroup\x12<\n" +
+	"\aservice\x18\x05 \x01(\v2\x1a.common.ResourceIdentifierB\x06\xbaH\x03\xc8\x01\x01R\aservice\"\x9f\x03\n" +
 	"\x04Rule\x124\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x10.common.MetadataB\x06\xbaH\x03\xc8\x01\x01R\bmetadata\x121\n" +
 	"\x04spec\x18\x02 \x01(\v2\x15.sgroups.v1.Rule.SpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\x1a\xad\x02\n" +
@@ -1164,7 +1448,7 @@ func file_sgroups_v1_domains_proto_rawDescGZIP() []byte {
 	return file_sgroups_v1_domains_proto_rawDescData
 }
 
-var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_sgroups_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_sgroups_v1_domains_proto_goTypes = []any{
 	(*Namespace)(nil),                 // 0: sgroups.v1.Namespace
 	(*AddressGroup)(nil),              // 1: sgroups.v1.AddressGroup
@@ -1172,54 +1456,65 @@ var file_sgroups_v1_domains_proto_goTypes = []any{
 	(*Host)(nil),                      // 3: sgroups.v1.Host
 	(*HostBinding)(nil),               // 4: sgroups.v1.HostBinding
 	(*NetworkBinding)(nil),            // 5: sgroups.v1.NetworkBinding
-	(*Rule)(nil),                      // 6: sgroups.v1.Rule
-	(*Namespace_Spec)(nil),            // 7: sgroups.v1.Namespace.Spec
-	(*AddressGroup_Spec)(nil),         // 8: sgroups.v1.AddressGroup.Spec
-	(*Network_Spec)(nil),              // 9: sgroups.v1.Network.Spec
-	(*Host_Spec)(nil),                 // 10: sgroups.v1.Host.Spec
-	(*Host_Spec_MetaInfo)(nil),        // 11: sgroups.v1.Host.Spec.MetaInfo
-	(*HostBinding_Spec)(nil),          // 12: sgroups.v1.HostBinding.Spec
-	(*NetworkBinding_Spec)(nil),       // 13: sgroups.v1.NetworkBinding.Spec
-	(*Rule_Spec)(nil),                 // 14: sgroups.v1.Rule.Spec
-	(*common.Metadata)(nil),           // 15: common.Metadata
-	(common.Action)(0),                // 16: common.Action
-	(*common.IPs)(nil),                // 17: common.IPs
-	(*common.ResourceIdentifier)(nil), // 18: common.ResourceIdentifier
-	(*common.Session)(nil),            // 19: common.Session
-	(*common.Endpoints)(nil),          // 20: common.Endpoints
-	(*common.Transport)(nil),          // 21: common.Transport
+	(*Service)(nil),                   // 6: sgroups.v1.Service
+	(*ServiceBinding)(nil),            // 7: sgroups.v1.ServiceBinding
+	(*Rule)(nil),                      // 8: sgroups.v1.Rule
+	(*Namespace_Spec)(nil),            // 9: sgroups.v1.Namespace.Spec
+	(*AddressGroup_Spec)(nil),         // 10: sgroups.v1.AddressGroup.Spec
+	(*Network_Spec)(nil),              // 11: sgroups.v1.Network.Spec
+	(*Host_Spec)(nil),                 // 12: sgroups.v1.Host.Spec
+	(*Host_Spec_MetaInfo)(nil),        // 13: sgroups.v1.Host.Spec.MetaInfo
+	(*HostBinding_Spec)(nil),          // 14: sgroups.v1.HostBinding.Spec
+	(*NetworkBinding_Spec)(nil),       // 15: sgroups.v1.NetworkBinding.Spec
+	(*Service_Spec)(nil),              // 16: sgroups.v1.Service.Spec
+	(*ServiceBinding_Spec)(nil),       // 17: sgroups.v1.ServiceBinding.Spec
+	(*Rule_Spec)(nil),                 // 18: sgroups.v1.Rule.Spec
+	(*common.Metadata)(nil),           // 19: common.Metadata
+	(common.Action)(0),                // 20: common.Action
+	(*common.IPs)(nil),                // 21: common.IPs
+	(*common.ResourceIdentifier)(nil), // 22: common.ResourceIdentifier
+	(*common.Transport)(nil),          // 23: common.Transport
+	(*common.Session)(nil),            // 24: common.Session
+	(*common.Endpoints)(nil),          // 25: common.Endpoints
 }
 var file_sgroups_v1_domains_proto_depIdxs = []int32{
-	15, // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
-	7,  // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
-	15, // 2: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
-	8,  // 3: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
-	15, // 4: sgroups.v1.Network.metadata:type_name -> common.Metadata
-	9,  // 5: sgroups.v1.Network.spec:type_name -> sgroups.v1.Network.Spec
-	15, // 6: sgroups.v1.Host.metadata:type_name -> common.Metadata
-	10, // 7: sgroups.v1.Host.spec:type_name -> sgroups.v1.Host.Spec
-	15, // 8: sgroups.v1.HostBinding.metadata:type_name -> common.Metadata
-	12, // 9: sgroups.v1.HostBinding.spec:type_name -> sgroups.v1.HostBinding.Spec
-	15, // 10: sgroups.v1.NetworkBinding.metadata:type_name -> common.Metadata
-	13, // 11: sgroups.v1.NetworkBinding.spec:type_name -> sgroups.v1.NetworkBinding.Spec
-	15, // 12: sgroups.v1.Rule.metadata:type_name -> common.Metadata
-	14, // 13: sgroups.v1.Rule.spec:type_name -> sgroups.v1.Rule.Spec
-	16, // 14: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
-	17, // 15: sgroups.v1.Host.Spec.ips:type_name -> common.IPs
-	11, // 16: sgroups.v1.Host.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
-	18, // 17: sgroups.v1.HostBinding.Spec.address_group:type_name -> common.ResourceIdentifier
-	18, // 18: sgroups.v1.HostBinding.Spec.host:type_name -> common.ResourceIdentifier
-	18, // 19: sgroups.v1.NetworkBinding.Spec.address_group:type_name -> common.ResourceIdentifier
-	18, // 20: sgroups.v1.NetworkBinding.Spec.network:type_name -> common.ResourceIdentifier
-	16, // 21: sgroups.v1.Rule.Spec.action:type_name -> common.Action
-	19, // 22: sgroups.v1.Rule.Spec.session:type_name -> common.Session
-	20, // 23: sgroups.v1.Rule.Spec.endpoints:type_name -> common.Endpoints
-	21, // 24: sgroups.v1.Rule.Spec.transport:type_name -> common.Transport
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	19, // 0: sgroups.v1.Namespace.metadata:type_name -> common.Metadata
+	9,  // 1: sgroups.v1.Namespace.spec:type_name -> sgroups.v1.Namespace.Spec
+	19, // 2: sgroups.v1.AddressGroup.metadata:type_name -> common.Metadata
+	10, // 3: sgroups.v1.AddressGroup.spec:type_name -> sgroups.v1.AddressGroup.Spec
+	19, // 4: sgroups.v1.Network.metadata:type_name -> common.Metadata
+	11, // 5: sgroups.v1.Network.spec:type_name -> sgroups.v1.Network.Spec
+	19, // 6: sgroups.v1.Host.metadata:type_name -> common.Metadata
+	12, // 7: sgroups.v1.Host.spec:type_name -> sgroups.v1.Host.Spec
+	19, // 8: sgroups.v1.HostBinding.metadata:type_name -> common.Metadata
+	14, // 9: sgroups.v1.HostBinding.spec:type_name -> sgroups.v1.HostBinding.Spec
+	19, // 10: sgroups.v1.NetworkBinding.metadata:type_name -> common.Metadata
+	15, // 11: sgroups.v1.NetworkBinding.spec:type_name -> sgroups.v1.NetworkBinding.Spec
+	19, // 12: sgroups.v1.Service.metadata:type_name -> common.Metadata
+	16, // 13: sgroups.v1.Service.spec:type_name -> sgroups.v1.Service.Spec
+	19, // 14: sgroups.v1.ServiceBinding.metadata:type_name -> common.Metadata
+	17, // 15: sgroups.v1.ServiceBinding.spec:type_name -> sgroups.v1.ServiceBinding.Spec
+	19, // 16: sgroups.v1.Rule.metadata:type_name -> common.Metadata
+	18, // 17: sgroups.v1.Rule.spec:type_name -> sgroups.v1.Rule.Spec
+	20, // 18: sgroups.v1.AddressGroup.Spec.default_action:type_name -> common.Action
+	21, // 19: sgroups.v1.Host.Spec.ips:type_name -> common.IPs
+	13, // 20: sgroups.v1.Host.Spec.meta_info:type_name -> sgroups.v1.Host.Spec.MetaInfo
+	22, // 21: sgroups.v1.HostBinding.Spec.address_group:type_name -> common.ResourceIdentifier
+	22, // 22: sgroups.v1.HostBinding.Spec.host:type_name -> common.ResourceIdentifier
+	22, // 23: sgroups.v1.NetworkBinding.Spec.address_group:type_name -> common.ResourceIdentifier
+	22, // 24: sgroups.v1.NetworkBinding.Spec.network:type_name -> common.ResourceIdentifier
+	23, // 25: sgroups.v1.Service.Spec.transports:type_name -> common.Transport
+	22, // 26: sgroups.v1.ServiceBinding.Spec.address_group:type_name -> common.ResourceIdentifier
+	22, // 27: sgroups.v1.ServiceBinding.Spec.service:type_name -> common.ResourceIdentifier
+	20, // 28: sgroups.v1.Rule.Spec.action:type_name -> common.Action
+	24, // 29: sgroups.v1.Rule.Spec.session:type_name -> common.Session
+	25, // 30: sgroups.v1.Rule.Spec.endpoints:type_name -> common.Endpoints
+	23, // 31: sgroups.v1.Rule.Spec.transport:type_name -> common.Transport
+	32, // [32:32] is the sub-list for method output_type
+	32, // [32:32] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_v1_domains_proto_init() }
@@ -1233,7 +1528,7 @@ func file_sgroups_v1_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_domains_proto_rawDesc), len(file_sgroups_v1_domains_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
