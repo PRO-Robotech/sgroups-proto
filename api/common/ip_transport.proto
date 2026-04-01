@@ -18,12 +18,14 @@ enum IpAddrFamily {
 message Transport {
   // Protocol: represents supported network protocols
   enum Protocol {
+    // PROTOCOL_UNDEF: not specified
+    PROTOCOL_UNDEF = 0;
     // TCP
-    TCP = 0;
+    TCP = 1;
     // UDP
-    UDP = 1;
+    UDP = 2;
     // ICMP
-    ICMP = 2;
+    ICMP = 3;
   }
   // Entry: represents transport entry
   message Entry {

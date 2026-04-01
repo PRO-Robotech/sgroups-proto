@@ -78,25 +78,29 @@ func (IpAddrFamily) EnumDescriptor() ([]byte, []int) {
 type Transport_Protocol int32
 
 const (
+	// PROTOCOL_UNDEF: not specified
+	Transport_PROTOCOL_UNDEF Transport_Protocol = 0
 	// TCP
-	Transport_TCP Transport_Protocol = 0
+	Transport_TCP Transport_Protocol = 1
 	// UDP
-	Transport_UDP Transport_Protocol = 1
+	Transport_UDP Transport_Protocol = 2
 	// ICMP
-	Transport_ICMP Transport_Protocol = 2
+	Transport_ICMP Transport_Protocol = 3
 )
 
 // Enum value maps for Transport_Protocol.
 var (
 	Transport_Protocol_name = map[int32]string{
-		0: "TCP",
-		1: "UDP",
-		2: "ICMP",
+		0: "PROTOCOL_UNDEF",
+		1: "TCP",
+		2: "UDP",
+		3: "ICMP",
 	}
 	Transport_Protocol_value = map[string]int32{
-		"TCP":  0,
-		"UDP":  1,
-		"ICMP": 2,
+		"PROTOCOL_UNDEF": 0,
+		"TCP":            1,
+		"UDP":            2,
+		"ICMP":           3,
 	}
 )
 
@@ -227,7 +231,7 @@ func (x *Transport) GetProtocol() Transport_Protocol {
 	if x != nil {
 		return x.Protocol
 	}
-	return Transport_TCP
+	return Transport_PROTOCOL_UNDEF
 }
 
 func (x *Transport) GetIpv() IpAddrFamily {
@@ -422,7 +426,7 @@ var File_common_ip_transport_proto protoreflect.FileDescriptor
 
 const file_common_ip_transport_proto_rawDesc = "" +
 	"\n" +
-	"\x19common/ip_transport.proto\x12\x06common\"\xb7\x02\n" +
+	"\x19common/ip_transport.proto\x12\x06common\"\xcb\x02\n" +
 	"\tTransport\x126\n" +
 	"\bprotocol\x18\x01 \x01(\x0e2\x1a.common.Transport.ProtocolR\bprotocol\x12&\n" +
 	"\x03ipv\x18\x02 \x01(\x0e2\x14.common.IpAddrFamilyR\x03IPv\x121\n" +
@@ -431,11 +435,12 @@ const file_common_ip_transport_proto_rawDesc = "" +
 	"\vdescription\x18\x01 \x01(\tR\vdescription\x12\x18\n" +
 	"\acomment\x18\x02 \x01(\tR\acomment\x12\x14\n" +
 	"\x05ports\x18\x03 \x01(\tR\x05ports\x12\x14\n" +
-	"\x05types\x18\x04 \x03(\rR\x05types\"&\n" +
-	"\bProtocol\x12\a\n" +
-	"\x03TCP\x10\x00\x12\a\n" +
-	"\x03UDP\x10\x01\x12\b\n" +
-	"\x04ICMP\x10\x02\"j\n" +
+	"\x05types\x18\x04 \x03(\rR\x05types\":\n" +
+	"\bProtocol\x12\x12\n" +
+	"\x0ePROTOCOL_UNDEF\x10\x00\x12\a\n" +
+	"\x03TCP\x10\x01\x12\a\n" +
+	"\x03UDP\x10\x02\x12\b\n" +
+	"\x04ICMP\x10\x03\"j\n" +
 	"\aSession\x121\n" +
 	"\atraffic\x18\x01 \x01(\x0e2\x17.common.Session.TrafficR\atraffic\",\n" +
 	"\aTraffic\x12\b\n" +

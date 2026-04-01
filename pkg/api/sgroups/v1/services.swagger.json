@@ -1798,12 +1798,13 @@
     "TransportProtocol": {
       "type": "string",
       "enum": [
+        "PROTOCOL_UNDEF",
         "TCP",
         "UDP",
         "ICMP"
       ],
-      "default": "TCP",
-      "description": "- TCP: TCP\n - UDP: UDP\n - ICMP: ICMP",
+      "default": "PROTOCOL_UNDEF",
+      "description": "- PROTOCOL_UNDEF: PROTOCOL_UNDEF: not specified\n - TCP: TCP\n - UDP: UDP\n - ICMP: ICMP",
       "title": "Protocol: represents supported network protocols"
     },
     "UpdMetaInfoHostInfo": {
