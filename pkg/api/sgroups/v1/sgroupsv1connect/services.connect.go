@@ -40,6 +40,8 @@ const (
 	SGroupsServiceBindingAPIName = "sgroups.v1.SGroupsServiceBindingAPI"
 	// SGroupsRulesAPIName is the fully-qualified name of the SGroupsRulesAPI service.
 	SGroupsRulesAPIName = "sgroups.v1.SGroupsRulesAPI"
+	// SGroupsStatusAPIName is the fully-qualified name of the SGroupsStatusAPI service.
+	SGroupsStatusAPIName = "sgroups.v1.SGroupsStatusAPI"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -153,6 +155,10 @@ const (
 	SGroupsRulesAPIListProcedure = "/sgroups.v1.SGroupsRulesAPI/List"
 	// SGroupsRulesAPIWatchProcedure is the fully-qualified name of the SGroupsRulesAPI's Watch RPC.
 	SGroupsRulesAPIWatchProcedure = "/sgroups.v1.SGroupsRulesAPI/Watch"
+	// SGroupsStatusAPIListProcedure is the fully-qualified name of the SGroupsStatusAPI's List RPC.
+	SGroupsStatusAPIListProcedure = "/sgroups.v1.SGroupsStatusAPI/List"
+	// SGroupsStatusAPIWatchProcedure is the fully-qualified name of the SGroupsStatusAPI's Watch RPC.
+	SGroupsStatusAPIWatchProcedure = "/sgroups.v1.SGroupsStatusAPI/Watch"
 )
 
 // SGroupsNamespaceAPIClient is a client for the sgroups.v1.SGroupsNamespaceAPI service.
@@ -1152,9 +1158,13 @@ func (UnimplementedSGroupsNetworkBindingAPIHandler) Watch(context.Context, *conn
 
 // SGroupsServicesAPIClient is a client for the sgroups.v1.SGroupsServicesAPI service.
 type SGroupsServicesAPIClient interface {
+	// Upsert: Create or update service(s)
 	Upsert(context.Context, *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error)
+	// Delete: Delete service(s)
 	Delete(context.Context, *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List service(s)
 	List(context.Context, *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error)
+	// Watch: Watch service(s)
 	Watch(context.Context, *connect.Request[v1.ServiceReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceResp_Watch], error)
 }
 
@@ -1226,9 +1236,13 @@ func (c *sGroupsServicesAPIClient) Watch(ctx context.Context, req *connect.Reque
 
 // SGroupsServicesAPIHandler is an implementation of the sgroups.v1.SGroupsServicesAPI service.
 type SGroupsServicesAPIHandler interface {
+	// Upsert: Create or update service(s)
 	Upsert(context.Context, *connect.Request[v1.ServiceReq_Upsert]) (*connect.Response[v1.ServiceResp_Upsert], error)
+	// Delete: Delete service(s)
 	Delete(context.Context, *connect.Request[v1.ServiceReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List service(s)
 	List(context.Context, *connect.Request[v1.ServiceReq_List]) (*connect.Response[v1.ServiceResp_List], error)
+	// Watch: Watch service(s)
 	Watch(context.Context, *connect.Request[v1.ServiceReq_Watch], *connect.ServerStream[v1.ServiceResp_Watch]) error
 }
 
@@ -1300,9 +1314,13 @@ func (UnimplementedSGroupsServicesAPIHandler) Watch(context.Context, *connect.Re
 
 // SGroupsServiceBindingAPIClient is a client for the sgroups.v1.SGroupsServiceBindingAPI service.
 type SGroupsServiceBindingAPIClient interface {
+	// Upsert: Create or update service binding(s)
 	Upsert(context.Context, *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error)
+	// Delete: Delete service binding(s)
 	Delete(context.Context, *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List service binding(s)
 	List(context.Context, *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error)
+	// Watch: Watch service binding(s)
 	Watch(context.Context, *connect.Request[v1.ServiceBindingReq_Watch]) (*connect.ServerStreamForClient[v1.ServiceBindingResp_Watch], error)
 }
 
@@ -1375,9 +1393,13 @@ func (c *sGroupsServiceBindingAPIClient) Watch(ctx context.Context, req *connect
 // SGroupsServiceBindingAPIHandler is an implementation of the sgroups.v1.SGroupsServiceBindingAPI
 // service.
 type SGroupsServiceBindingAPIHandler interface {
+	// Upsert: Create or update service binding(s)
 	Upsert(context.Context, *connect.Request[v1.ServiceBindingReq_Upsert]) (*connect.Response[v1.ServiceBindingResp_Upsert], error)
+	// Delete: Delete service binding(s)
 	Delete(context.Context, *connect.Request[v1.ServiceBindingReq_Delete]) (*connect.Response[emptypb.Empty], error)
+	// List: List service binding(s)
 	List(context.Context, *connect.Request[v1.ServiceBindingReq_List]) (*connect.Response[v1.ServiceBindingResp_List], error)
+	// Watch: Watch service binding(s)
 	Watch(context.Context, *connect.Request[v1.ServiceBindingReq_Watch], *connect.ServerStream[v1.ServiceBindingResp_Watch]) error
 }
 
@@ -1601,4 +1623,104 @@ func (UnimplementedSGroupsRulesAPIHandler) List(context.Context, *connect.Reques
 
 func (UnimplementedSGroupsRulesAPIHandler) Watch(context.Context, *connect.Request[v1.RuleReq_Watch], *connect.ServerStream[v1.RuleResp_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsRulesAPI.Watch is not implemented"))
+}
+
+// SGroupsStatusAPIClient is a client for the sgroups.v1.SGroupsStatusAPI service.
+type SGroupsStatusAPIClient interface {
+	// List: gets last succeeded update DB status
+	List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1.SyncStatusResp], error)
+	// Watch: gets stream of update DB statuses
+	Watch(context.Context, *connect.Request[emptypb.Empty]) (*connect.ServerStreamForClient[v1.SyncStatusResp], error)
+}
+
+// NewSGroupsStatusAPIClient constructs a client for the sgroups.v1.SGroupsStatusAPI service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
+//
+// The URL supplied here should be the base URL for the Connect or gRPC server (for example,
+// http://api.acme.com or https://acme.com/grpc).
+func NewSGroupsStatusAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SGroupsStatusAPIClient {
+	baseURL = strings.TrimRight(baseURL, "/")
+	sGroupsStatusAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsStatusAPI").Methods()
+	return &sGroupsStatusAPIClient{
+		list: connect.NewClient[emptypb.Empty, v1.SyncStatusResp](
+			httpClient,
+			baseURL+SGroupsStatusAPIListProcedure,
+			connect.WithSchema(sGroupsStatusAPIMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		watch: connect.NewClient[emptypb.Empty, v1.SyncStatusResp](
+			httpClient,
+			baseURL+SGroupsStatusAPIWatchProcedure,
+			connect.WithSchema(sGroupsStatusAPIMethods.ByName("Watch")),
+			connect.WithClientOptions(opts...),
+		),
+	}
+}
+
+// sGroupsStatusAPIClient implements SGroupsStatusAPIClient.
+type sGroupsStatusAPIClient struct {
+	list  *connect.Client[emptypb.Empty, v1.SyncStatusResp]
+	watch *connect.Client[emptypb.Empty, v1.SyncStatusResp]
+}
+
+// List calls sgroups.v1.SGroupsStatusAPI.List.
+func (c *sGroupsStatusAPIClient) List(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1.SyncStatusResp], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Watch calls sgroups.v1.SGroupsStatusAPI.Watch.
+func (c *sGroupsStatusAPIClient) Watch(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.ServerStreamForClient[v1.SyncStatusResp], error) {
+	return c.watch.CallServerStream(ctx, req)
+}
+
+// SGroupsStatusAPIHandler is an implementation of the sgroups.v1.SGroupsStatusAPI service.
+type SGroupsStatusAPIHandler interface {
+	// List: gets last succeeded update DB status
+	List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1.SyncStatusResp], error)
+	// Watch: gets stream of update DB statuses
+	Watch(context.Context, *connect.Request[emptypb.Empty], *connect.ServerStream[v1.SyncStatusResp]) error
+}
+
+// NewSGroupsStatusAPIHandler builds an HTTP handler from the service implementation. It returns the
+// path on which to mount the handler and the handler itself.
+//
+// By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
+// and JSON codecs. They also support gzip compression.
+func NewSGroupsStatusAPIHandler(svc SGroupsStatusAPIHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	sGroupsStatusAPIMethods := v1.File_sgroups_v1_services_proto.Services().ByName("SGroupsStatusAPI").Methods()
+	sGroupsStatusAPIListHandler := connect.NewUnaryHandler(
+		SGroupsStatusAPIListProcedure,
+		svc.List,
+		connect.WithSchema(sGroupsStatusAPIMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsStatusAPIWatchHandler := connect.NewServerStreamHandler(
+		SGroupsStatusAPIWatchProcedure,
+		svc.Watch,
+		connect.WithSchema(sGroupsStatusAPIMethods.ByName("Watch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/sgroups.v1.SGroupsStatusAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case SGroupsStatusAPIListProcedure:
+			sGroupsStatusAPIListHandler.ServeHTTP(w, r)
+		case SGroupsStatusAPIWatchProcedure:
+			sGroupsStatusAPIWatchHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
+}
+
+// UnimplementedSGroupsStatusAPIHandler returns CodeUnimplemented from all methods.
+type UnimplementedSGroupsStatusAPIHandler struct{}
+
+func (UnimplementedSGroupsStatusAPIHandler) List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1.SyncStatusResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsStatusAPI.List is not implemented"))
+}
+
+func (UnimplementedSGroupsStatusAPIHandler) Watch(context.Context, *connect.Request[emptypb.Empty], *connect.ServerStream[v1.SyncStatusResp]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsStatusAPI.Watch is not implemented"))
 }

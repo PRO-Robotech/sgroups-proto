@@ -22,6 +22,7 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // Suppress "imported and not used" errors
@@ -1025,6 +1026,47 @@ func request_SGroupsRulesAPI_Watch_0(ctx context.Context, marshaler runtime.Mars
 	return stream, metadata, nil
 }
 
+func request_SGroupsStatusAPI_List_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsStatusAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_SGroupsStatusAPI_List_0(ctx context.Context, marshaler runtime.Marshaler, server SGroupsStatusAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.List(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_SGroupsStatusAPI_Watch_0(ctx context.Context, marshaler runtime.Marshaler, client SGroupsStatusAPIClient, req *http.Request, pathParams map[string]string) (SGroupsStatusAPI_WatchClient, runtime.ServerMetadata, error) {
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	stream, err := client.Watch(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+}
+
 // RegisterSGroupsNamespaceAPIHandlerServer registers the http handlers for service SGroupsNamespaceAPI to "mux".
 // UnaryRPC     :call SGroupsNamespaceAPIServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1749,6 +1791,43 @@ func RegisterSGroupsRulesAPIHandlerServer(ctx context.Context, mux *runtime.Serv
 	})
 
 	mux.Handle(http.MethodPost, pattern_SGroupsRulesAPI_Watch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	return nil
+}
+
+// RegisterSGroupsStatusAPIHandlerServer registers the http handlers for service SGroupsStatusAPI to "mux".
+// UnaryRPC     :call SGroupsStatusAPIServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSGroupsStatusAPIHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
+func RegisterSGroupsStatusAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SGroupsStatusAPIServer) error {
+	mux.Handle(http.MethodGet, pattern_SGroupsStatusAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sgroups.v1.SGroupsStatusAPI/List", runtime.WithHTTPPathPattern("/v1/status/list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_SGroupsStatusAPI_List_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_SGroupsStatusAPI_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+
+	mux.Handle(http.MethodGet, pattern_SGroupsStatusAPI_Watch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2883,4 +2962,87 @@ var (
 	forward_SGroupsRulesAPI_Delete_0 = runtime.ForwardResponseMessage
 	forward_SGroupsRulesAPI_List_0   = runtime.ForwardResponseMessage
 	forward_SGroupsRulesAPI_Watch_0  = runtime.ForwardResponseStream
+)
+
+// RegisterSGroupsStatusAPIHandlerFromEndpoint is same as RegisterSGroupsStatusAPIHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterSGroupsStatusAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.NewClient(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+	return RegisterSGroupsStatusAPIHandler(ctx, mux, conn)
+}
+
+// RegisterSGroupsStatusAPIHandler registers the http handlers for service SGroupsStatusAPI to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterSGroupsStatusAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterSGroupsStatusAPIHandlerClient(ctx, mux, NewSGroupsStatusAPIClient(conn))
+}
+
+// RegisterSGroupsStatusAPIHandlerClient registers the http handlers for service SGroupsStatusAPI
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SGroupsStatusAPIClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SGroupsStatusAPIClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "SGroupsStatusAPIClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterSGroupsStatusAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SGroupsStatusAPIClient) error {
+	mux.Handle(http.MethodGet, pattern_SGroupsStatusAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsStatusAPI/List", runtime.WithHTTPPathPattern("/v1/status/list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_SGroupsStatusAPI_List_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_SGroupsStatusAPI_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_SGroupsStatusAPI_Watch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sgroups.v1.SGroupsStatusAPI/Watch", runtime.WithHTTPPathPattern("/v1/status/watch"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_SGroupsStatusAPI_Watch_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_SGroupsStatusAPI_Watch_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+	})
+	return nil
+}
+
+var (
+	pattern_SGroupsStatusAPI_List_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "status", "list"}, ""))
+	pattern_SGroupsStatusAPI_Watch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "status", "watch"}, ""))
+)
+
+var (
+	forward_SGroupsStatusAPI_List_0  = runtime.ForwardResponseMessage
+	forward_SGroupsStatusAPI_Watch_0 = runtime.ForwardResponseStream
 )

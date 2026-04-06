@@ -40,6 +40,10 @@
     {
       "name": "SGroupsRulesAPI",
       "description": "SGroups Rules API"
+    },
+    {
+      "name": "SGroupsStatusAPI",
+      "description": "SGroups Status API"
     }
   ],
   "schemes": [
@@ -1144,6 +1148,7 @@
     },
     "/v1/service-bindings/delete": {
       "post": {
+        "summary": "Delete: Delete service binding(s)",
         "description": "Delete: Delete service binding(s)",
         "operationId": "SGroupsServiceBindingAPI_Delete",
         "responses": {
@@ -1178,6 +1183,7 @@
     },
     "/v1/service-bindings/list": {
       "post": {
+        "summary": "List: List service binding(s)",
         "description": "List: List service binding(s)",
         "operationId": "SGroupsServiceBindingAPI_List",
         "responses": {
@@ -1211,6 +1217,7 @@
     },
     "/v1/service-bindings/upsert": {
       "post": {
+        "summary": "Upsert: Create or update service binding(s)",
         "description": "Upsert: Create or update service binding(s)",
         "operationId": "SGroupsServiceBindingAPI_Upsert",
         "responses": {
@@ -1244,6 +1251,7 @@
     },
     "/v1/service-bindings/watch": {
       "post": {
+        "summary": "Watch: Watch service binding(s)",
         "description": "Watch: Watch service binding(s)",
         "operationId": "SGroupsServiceBindingAPI_Watch",
         "responses": {
@@ -1286,6 +1294,7 @@
     },
     "/v1/services/delete": {
       "post": {
+        "summary": "Delete: Delete service(s)",
         "description": "Delete: Delete service(s)",
         "operationId": "SGroupsServicesAPI_Delete",
         "responses": {
@@ -1320,6 +1329,7 @@
     },
     "/v1/services/list": {
       "post": {
+        "summary": "List: List service(s)",
         "description": "List: List service(s)",
         "operationId": "SGroupsServicesAPI_List",
         "responses": {
@@ -1353,6 +1363,7 @@
     },
     "/v1/services/upsert": {
       "post": {
+        "summary": "Upsert: Create or update service(s)",
         "description": "Upsert: Create or update service(s)",
         "operationId": "SGroupsServicesAPI_Upsert",
         "responses": {
@@ -1386,6 +1397,7 @@
     },
     "/v1/services/watch": {
       "post": {
+        "summary": "Watch: Watch service(s)",
         "description": "Watch: Watch service(s)",
         "operationId": "SGroupsServicesAPI_Watch",
         "responses": {
@@ -1423,6 +1435,63 @@
         ],
         "tags": [
           "Service"
+        ]
+      }
+    },
+    "/v1/status/list": {
+      "get": {
+        "summary": "List: gets last succeeded update DB status",
+        "description": "List: gets last succeeded update DB status",
+        "operationId": "SGroupsStatusAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SyncStatusResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/v1/status/watch": {
+      "get": {
+        "summary": "Watch: gets stream of update DB statuses",
+        "description": "SyncStatuses: gets stream of update DB statuses",
+        "operationId": "SGroupsStatusAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1SyncStatusResp"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1SyncStatusResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
         ]
       }
     }
@@ -3735,6 +3804,17 @@
         }
       },
       "title": "Spec: resource specification"
+    },
+    "v1SyncStatusResp": {
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last succeeded updated DB timestamp"
+        }
+      },
+      "title": "SyncStatusResp: db status after last succeeded Sync"
     }
   },
   "externalDocs": {

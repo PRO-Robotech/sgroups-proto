@@ -1506,9 +1506,13 @@ const (
 //
 // SGroupsServicesAPI: SGroups Services API
 type SGroupsServicesAPIClient interface {
+	// Upsert: Create or update service(s)
 	Upsert(ctx context.Context, in *ServiceReq_Upsert, opts ...grpc.CallOption) (*ServiceResp_Upsert, error)
+	// Delete: Delete service(s)
 	Delete(ctx context.Context, in *ServiceReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List service(s)
 	List(ctx context.Context, in *ServiceReq_List, opts ...grpc.CallOption) (*ServiceResp_List, error)
+	// Watch: Watch service(s)
 	Watch(ctx context.Context, in *ServiceReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ServiceResp_Watch], error)
 }
 
@@ -1575,9 +1579,13 @@ type SGroupsServicesAPI_WatchClient = grpc.ServerStreamingClient[ServiceResp_Wat
 //
 // SGroupsServicesAPI: SGroups Services API
 type SGroupsServicesAPIServer interface {
+	// Upsert: Create or update service(s)
 	Upsert(context.Context, *ServiceReq_Upsert) (*ServiceResp_Upsert, error)
+	// Delete: Delete service(s)
 	Delete(context.Context, *ServiceReq_Delete) (*emptypb.Empty, error)
+	// List: List service(s)
 	List(context.Context, *ServiceReq_List) (*ServiceResp_List, error)
+	// Watch: Watch service(s)
 	Watch(*ServiceReq_Watch, grpc.ServerStreamingServer[ServiceResp_Watch]) error
 	mustEmbedUnimplementedSGroupsServicesAPIServer()
 }
@@ -1730,9 +1738,13 @@ const (
 //
 // SGroupsServiceBindingAPI: SGroups Service Binding API
 type SGroupsServiceBindingAPIClient interface {
+	// Upsert: Create or update service binding(s)
 	Upsert(ctx context.Context, in *ServiceBindingReq_Upsert, opts ...grpc.CallOption) (*ServiceBindingResp_Upsert, error)
+	// Delete: Delete service binding(s)
 	Delete(ctx context.Context, in *ServiceBindingReq_Delete, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// List: List service binding(s)
 	List(ctx context.Context, in *ServiceBindingReq_List, opts ...grpc.CallOption) (*ServiceBindingResp_List, error)
+	// Watch: Watch service binding(s)
 	Watch(ctx context.Context, in *ServiceBindingReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ServiceBindingResp_Watch], error)
 }
 
@@ -1799,9 +1811,13 @@ type SGroupsServiceBindingAPI_WatchClient = grpc.ServerStreamingClient[ServiceBi
 //
 // SGroupsServiceBindingAPI: SGroups Service Binding API
 type SGroupsServiceBindingAPIServer interface {
+	// Upsert: Create or update service binding(s)
 	Upsert(context.Context, *ServiceBindingReq_Upsert) (*ServiceBindingResp_Upsert, error)
+	// Delete: Delete service binding(s)
 	Delete(context.Context, *ServiceBindingReq_Delete) (*emptypb.Empty, error)
+	// List: List service binding(s)
 	List(context.Context, *ServiceBindingReq_List) (*ServiceBindingResp_List, error)
+	// Watch: Watch service binding(s)
 	Watch(*ServiceBindingReq_Watch, grpc.ServerStreamingServer[ServiceBindingResp_Watch]) error
 	mustEmbedUnimplementedSGroupsServiceBindingAPIServer()
 }
@@ -2168,6 +2184,158 @@ var SGroupsRulesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "Watch",
 			Handler:       _SGroupsRulesAPI_Watch_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "sgroups/v1/services.proto",
+}
+
+const (
+	SGroupsStatusAPI_List_FullMethodName  = "/sgroups.v1.SGroupsStatusAPI/List"
+	SGroupsStatusAPI_Watch_FullMethodName = "/sgroups.v1.SGroupsStatusAPI/Watch"
+)
+
+// SGroupsStatusAPIClient is the client API for SGroupsStatusAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SGroupsStatusAPI: SGroups Status API
+type SGroupsStatusAPIClient interface {
+	// List: gets last succeeded update DB status
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SyncStatusResp, error)
+	// Watch: gets stream of update DB statuses
+	Watch(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SyncStatusResp], error)
+}
+
+type sGroupsStatusAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSGroupsStatusAPIClient(cc grpc.ClientConnInterface) SGroupsStatusAPIClient {
+	return &sGroupsStatusAPIClient{cc}
+}
+
+func (c *sGroupsStatusAPIClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SyncStatusResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SyncStatusResp)
+	err := c.cc.Invoke(ctx, SGroupsStatusAPI_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsStatusAPIClient) Watch(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SyncStatusResp], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsStatusAPI_ServiceDesc.Streams[0], SGroupsStatusAPI_Watch_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[emptypb.Empty, SyncStatusResp]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsStatusAPI_WatchClient = grpc.ServerStreamingClient[SyncStatusResp]
+
+// SGroupsStatusAPIServer is the server API for SGroupsStatusAPI service.
+// All implementations must embed UnimplementedSGroupsStatusAPIServer
+// for forward compatibility.
+//
+// SGroupsStatusAPI: SGroups Status API
+type SGroupsStatusAPIServer interface {
+	// List: gets last succeeded update DB status
+	List(context.Context, *emptypb.Empty) (*SyncStatusResp, error)
+	// Watch: gets stream of update DB statuses
+	Watch(*emptypb.Empty, grpc.ServerStreamingServer[SyncStatusResp]) error
+	mustEmbedUnimplementedSGroupsStatusAPIServer()
+}
+
+// UnimplementedSGroupsStatusAPIServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSGroupsStatusAPIServer struct{}
+
+func (UnimplementedSGroupsStatusAPIServer) List(context.Context, *emptypb.Empty) (*SyncStatusResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedSGroupsStatusAPIServer) Watch(*emptypb.Empty, grpc.ServerStreamingServer[SyncStatusResp]) error {
+	return status.Error(codes.Unimplemented, "method Watch not implemented")
+}
+func (UnimplementedSGroupsStatusAPIServer) mustEmbedUnimplementedSGroupsStatusAPIServer() {}
+func (UnimplementedSGroupsStatusAPIServer) testEmbeddedByValue()                          {}
+
+// UnsafeSGroupsStatusAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SGroupsStatusAPIServer will
+// result in compilation errors.
+type UnsafeSGroupsStatusAPIServer interface {
+	mustEmbedUnimplementedSGroupsStatusAPIServer()
+}
+
+func RegisterSGroupsStatusAPIServer(s grpc.ServiceRegistrar, srv SGroupsStatusAPIServer) {
+	// If the following call panics, it indicates UnimplementedSGroupsStatusAPIServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SGroupsStatusAPI_ServiceDesc, srv)
+}
+
+func _SGroupsStatusAPI_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsStatusAPIServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsStatusAPI_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsStatusAPIServer).List(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsStatusAPI_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(emptypb.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsStatusAPIServer).Watch(m, &grpc.GenericServerStream[emptypb.Empty, SyncStatusResp]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsStatusAPI_WatchServer = grpc.ServerStreamingServer[SyncStatusResp]
+
+// SGroupsStatusAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsStatusAPI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SGroupsStatusAPI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sgroups.v1.SGroupsStatusAPI",
+	HandlerType: (*SGroupsStatusAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _SGroupsStatusAPI_List_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Watch",
+			Handler:       _SGroupsStatusAPI_Watch_Handler,
 			ServerStreams: true,
 		},
 	},
