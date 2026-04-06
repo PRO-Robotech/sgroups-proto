@@ -97,6 +97,9 @@ func init() {
 
 		SwaggerUtil[sgroupsv1.SGroupsRulesAPIServer]{},
 		SwaggerUtil[sgroupsv1.SGroupsRulesAPIClient]{},
+
+		SwaggerUtil[sgroupsv1.SGroupsStatusAPIServer]{},
+		SwaggerUtil[sgroupsv1.SGroupsStatusAPIClient]{},
 	}
 
 	for _, api := range apis {

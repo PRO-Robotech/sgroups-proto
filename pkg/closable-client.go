@@ -97,4 +97,7 @@ func init() {
 
 	(clientConstructor[sgroupsv1.SGroupsRulesAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsRulesAPIClient)
+
+	(clientConstructor[sgroupsv1.SGroupsStatusAPIClient])(nil).
+		reg(sgroupsv1.NewSGroupsStatusAPIClient)
 }
