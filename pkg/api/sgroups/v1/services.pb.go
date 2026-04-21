@@ -113,7 +113,12 @@ const file_sgroups_v1_services_proto_rawDesc = "" +
 	"\x04List\x12\x18.sgroups.v1.RuleReq.List\x1a\x19.sgroups.v1.RuleResp.List\"5\x92A\x19\n" +
 	"\x05Rules\x1a\x10List: List rules\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/rules/list\x12z\n" +
 	"\x05Watch\x12\x19.sgroups.v1.RuleReq.Watch\x1a\x1a.sgroups.v1.RuleResp.Watch\"8\x92A\x1b\n" +
-	"\x05Rules\x1a\x12Watch: Watch rules\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/rules/watch0\x01\x1a\x16\x92A\x13\x12\x11SGroups Rules APIB\xb0\x01\x92Ai\x12\x12\n" +
+	"\x05Rules\x1a\x12Watch: Watch rules\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/rules/watch0\x01\x1a\x16\x92A\x13\x12\x11SGroups Rules API2\xce\x02\n" +
+	"\x10SGroupsStatusAPI\x12\x8a\x01\n" +
+	"\x04List\x12\x16.google.protobuf.Empty\x1a\x1a.sgroups.v1.SyncStatusResp\"N\x92A4\n" +
+	"\x06Status\x1a*List: gets last succeeded update DB status\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/status/list\x12\x93\x01\n" +
+	"\x05Watch\x12\x16.google.protobuf.Empty\x1a\x1a.sgroups.v1.SyncStatusResp\"T\x92A9\n" +
+	"\x06Status\x1a/SyncStatuses: gets stream of update DB statuses\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/status/watch0\x01\x1a\x17\x92A\x14\x12\x12SGroups Status APIB\xb0\x01\x92Ai\x12\x12\n" +
 	"\vSGroups API2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
 	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZBgithub.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
 
@@ -156,8 +161,8 @@ var file_sgroups_v1_services_proto_goTypes = []any{
 	(*RuleReq_Delete)(nil),            // 35: sgroups.v1.RuleReq.Delete
 	(*RuleReq_List)(nil),              // 36: sgroups.v1.RuleReq.List
 	(*RuleReq_Watch)(nil),             // 37: sgroups.v1.RuleReq.Watch
-	(*NamespaceResp_Upsert)(nil),      // 38: sgroups.v1.NamespaceResp.Upsert
-	(*emptypb.Empty)(nil),             // 39: google.protobuf.Empty
+	(*emptypb.Empty)(nil),             // 38: google.protobuf.Empty
+	(*NamespaceResp_Upsert)(nil),      // 39: sgroups.v1.NamespaceResp.Upsert
 	(*NamespaceResp_List)(nil),        // 40: sgroups.v1.NamespaceResp.List
 	(*NamespaceResp_Watch)(nil),       // 41: sgroups.v1.NamespaceResp.Watch
 	(*AddressGroupResp_Upsert)(nil),   // 42: sgroups.v1.AddressGroupResp.Upsert
@@ -186,6 +191,7 @@ var file_sgroups_v1_services_proto_goTypes = []any{
 	(*RuleResp_Upsert)(nil),           // 65: sgroups.v1.RuleResp.Upsert
 	(*RuleResp_List)(nil),             // 66: sgroups.v1.RuleResp.List
 	(*RuleResp_Watch)(nil),            // 67: sgroups.v1.RuleResp.Watch
+	(*SyncStatusResp)(nil),            // 68: sgroups.v1.SyncStatusResp
 }
 var file_sgroups_v1_services_proto_depIdxs = []int32{
 	0,  // 0: sgroups.v1.SGroupsNamespaceAPI.Upsert:input_type -> sgroups.v1.NamespaceReq.Upsert
@@ -226,46 +232,50 @@ var file_sgroups_v1_services_proto_depIdxs = []int32{
 	35, // 35: sgroups.v1.SGroupsRulesAPI.Delete:input_type -> sgroups.v1.RuleReq.Delete
 	36, // 36: sgroups.v1.SGroupsRulesAPI.List:input_type -> sgroups.v1.RuleReq.List
 	37, // 37: sgroups.v1.SGroupsRulesAPI.Watch:input_type -> sgroups.v1.RuleReq.Watch
-	38, // 38: sgroups.v1.SGroupsNamespaceAPI.Upsert:output_type -> sgroups.v1.NamespaceResp.Upsert
-	39, // 39: sgroups.v1.SGroupsNamespaceAPI.Delete:output_type -> google.protobuf.Empty
-	40, // 40: sgroups.v1.SGroupsNamespaceAPI.List:output_type -> sgroups.v1.NamespaceResp.List
-	41, // 41: sgroups.v1.SGroupsNamespaceAPI.Watch:output_type -> sgroups.v1.NamespaceResp.Watch
-	42, // 42: sgroups.v1.SGroupsAddressGroupsAPI.Upsert:output_type -> sgroups.v1.AddressGroupResp.Upsert
-	39, // 43: sgroups.v1.SGroupsAddressGroupsAPI.Delete:output_type -> google.protobuf.Empty
-	43, // 44: sgroups.v1.SGroupsAddressGroupsAPI.List:output_type -> sgroups.v1.AddressGroupResp.List
-	44, // 45: sgroups.v1.SGroupsAddressGroupsAPI.Watch:output_type -> sgroups.v1.AddressGroupResp.Watch
-	45, // 46: sgroups.v1.SGroupsNetworksAPI.Upsert:output_type -> sgroups.v1.NetworkResp.Upsert
-	39, // 47: sgroups.v1.SGroupsNetworksAPI.Delete:output_type -> google.protobuf.Empty
-	46, // 48: sgroups.v1.SGroupsNetworksAPI.List:output_type -> sgroups.v1.NetworkResp.List
-	47, // 49: sgroups.v1.SGroupsNetworksAPI.Watch:output_type -> sgroups.v1.NetworkResp.Watch
-	48, // 50: sgroups.v1.SGroupsHostsAPI.Upsert:output_type -> sgroups.v1.HostResp.Upsert
-	39, // 51: sgroups.v1.SGroupsHostsAPI.Delete:output_type -> google.protobuf.Empty
-	49, // 52: sgroups.v1.SGroupsHostsAPI.List:output_type -> sgroups.v1.HostResp.List
-	50, // 53: sgroups.v1.SGroupsHostsAPI.Watch:output_type -> sgroups.v1.HostResp.Watch
-	51, // 54: sgroups.v1.SGroupsHostsAPI.UpdIPs:output_type -> sgroups.v1.HostResp.UpdIPs
-	52, // 55: sgroups.v1.SGroupsHostsAPI.UpdMetaInfo:output_type -> sgroups.v1.HostResp.UpdMetaInfo
-	53, // 56: sgroups.v1.SGroupsHostBindingAPI.Upsert:output_type -> sgroups.v1.HostBindingResp.Upsert
-	39, // 57: sgroups.v1.SGroupsHostBindingAPI.Delete:output_type -> google.protobuf.Empty
-	54, // 58: sgroups.v1.SGroupsHostBindingAPI.List:output_type -> sgroups.v1.HostBindingResp.List
-	55, // 59: sgroups.v1.SGroupsHostBindingAPI.Watch:output_type -> sgroups.v1.HostBindingResp.Watch
-	56, // 60: sgroups.v1.SGroupsNetworkBindingAPI.Upsert:output_type -> sgroups.v1.NetworkBindingResp.Upsert
-	39, // 61: sgroups.v1.SGroupsNetworkBindingAPI.Delete:output_type -> google.protobuf.Empty
-	57, // 62: sgroups.v1.SGroupsNetworkBindingAPI.List:output_type -> sgroups.v1.NetworkBindingResp.List
-	58, // 63: sgroups.v1.SGroupsNetworkBindingAPI.Watch:output_type -> sgroups.v1.NetworkBindingResp.Watch
-	59, // 64: sgroups.v1.SGroupsServicesAPI.Upsert:output_type -> sgroups.v1.ServiceResp.Upsert
-	39, // 65: sgroups.v1.SGroupsServicesAPI.Delete:output_type -> google.protobuf.Empty
-	60, // 66: sgroups.v1.SGroupsServicesAPI.List:output_type -> sgroups.v1.ServiceResp.List
-	61, // 67: sgroups.v1.SGroupsServicesAPI.Watch:output_type -> sgroups.v1.ServiceResp.Watch
-	62, // 68: sgroups.v1.SGroupsServiceBindingAPI.Upsert:output_type -> sgroups.v1.ServiceBindingResp.Upsert
-	39, // 69: sgroups.v1.SGroupsServiceBindingAPI.Delete:output_type -> google.protobuf.Empty
-	63, // 70: sgroups.v1.SGroupsServiceBindingAPI.List:output_type -> sgroups.v1.ServiceBindingResp.List
-	64, // 71: sgroups.v1.SGroupsServiceBindingAPI.Watch:output_type -> sgroups.v1.ServiceBindingResp.Watch
-	65, // 72: sgroups.v1.SGroupsRulesAPI.Upsert:output_type -> sgroups.v1.RuleResp.Upsert
-	39, // 73: sgroups.v1.SGroupsRulesAPI.Delete:output_type -> google.protobuf.Empty
-	66, // 74: sgroups.v1.SGroupsRulesAPI.List:output_type -> sgroups.v1.RuleResp.List
-	67, // 75: sgroups.v1.SGroupsRulesAPI.Watch:output_type -> sgroups.v1.RuleResp.Watch
-	38, // [38:76] is the sub-list for method output_type
-	0,  // [0:38] is the sub-list for method input_type
+	38, // 38: sgroups.v1.SGroupsStatusAPI.List:input_type -> google.protobuf.Empty
+	38, // 39: sgroups.v1.SGroupsStatusAPI.Watch:input_type -> google.protobuf.Empty
+	39, // 40: sgroups.v1.SGroupsNamespaceAPI.Upsert:output_type -> sgroups.v1.NamespaceResp.Upsert
+	38, // 41: sgroups.v1.SGroupsNamespaceAPI.Delete:output_type -> google.protobuf.Empty
+	40, // 42: sgroups.v1.SGroupsNamespaceAPI.List:output_type -> sgroups.v1.NamespaceResp.List
+	41, // 43: sgroups.v1.SGroupsNamespaceAPI.Watch:output_type -> sgroups.v1.NamespaceResp.Watch
+	42, // 44: sgroups.v1.SGroupsAddressGroupsAPI.Upsert:output_type -> sgroups.v1.AddressGroupResp.Upsert
+	38, // 45: sgroups.v1.SGroupsAddressGroupsAPI.Delete:output_type -> google.protobuf.Empty
+	43, // 46: sgroups.v1.SGroupsAddressGroupsAPI.List:output_type -> sgroups.v1.AddressGroupResp.List
+	44, // 47: sgroups.v1.SGroupsAddressGroupsAPI.Watch:output_type -> sgroups.v1.AddressGroupResp.Watch
+	45, // 48: sgroups.v1.SGroupsNetworksAPI.Upsert:output_type -> sgroups.v1.NetworkResp.Upsert
+	38, // 49: sgroups.v1.SGroupsNetworksAPI.Delete:output_type -> google.protobuf.Empty
+	46, // 50: sgroups.v1.SGroupsNetworksAPI.List:output_type -> sgroups.v1.NetworkResp.List
+	47, // 51: sgroups.v1.SGroupsNetworksAPI.Watch:output_type -> sgroups.v1.NetworkResp.Watch
+	48, // 52: sgroups.v1.SGroupsHostsAPI.Upsert:output_type -> sgroups.v1.HostResp.Upsert
+	38, // 53: sgroups.v1.SGroupsHostsAPI.Delete:output_type -> google.protobuf.Empty
+	49, // 54: sgroups.v1.SGroupsHostsAPI.List:output_type -> sgroups.v1.HostResp.List
+	50, // 55: sgroups.v1.SGroupsHostsAPI.Watch:output_type -> sgroups.v1.HostResp.Watch
+	51, // 56: sgroups.v1.SGroupsHostsAPI.UpdIPs:output_type -> sgroups.v1.HostResp.UpdIPs
+	52, // 57: sgroups.v1.SGroupsHostsAPI.UpdMetaInfo:output_type -> sgroups.v1.HostResp.UpdMetaInfo
+	53, // 58: sgroups.v1.SGroupsHostBindingAPI.Upsert:output_type -> sgroups.v1.HostBindingResp.Upsert
+	38, // 59: sgroups.v1.SGroupsHostBindingAPI.Delete:output_type -> google.protobuf.Empty
+	54, // 60: sgroups.v1.SGroupsHostBindingAPI.List:output_type -> sgroups.v1.HostBindingResp.List
+	55, // 61: sgroups.v1.SGroupsHostBindingAPI.Watch:output_type -> sgroups.v1.HostBindingResp.Watch
+	56, // 62: sgroups.v1.SGroupsNetworkBindingAPI.Upsert:output_type -> sgroups.v1.NetworkBindingResp.Upsert
+	38, // 63: sgroups.v1.SGroupsNetworkBindingAPI.Delete:output_type -> google.protobuf.Empty
+	57, // 64: sgroups.v1.SGroupsNetworkBindingAPI.List:output_type -> sgroups.v1.NetworkBindingResp.List
+	58, // 65: sgroups.v1.SGroupsNetworkBindingAPI.Watch:output_type -> sgroups.v1.NetworkBindingResp.Watch
+	59, // 66: sgroups.v1.SGroupsServicesAPI.Upsert:output_type -> sgroups.v1.ServiceResp.Upsert
+	38, // 67: sgroups.v1.SGroupsServicesAPI.Delete:output_type -> google.protobuf.Empty
+	60, // 68: sgroups.v1.SGroupsServicesAPI.List:output_type -> sgroups.v1.ServiceResp.List
+	61, // 69: sgroups.v1.SGroupsServicesAPI.Watch:output_type -> sgroups.v1.ServiceResp.Watch
+	62, // 70: sgroups.v1.SGroupsServiceBindingAPI.Upsert:output_type -> sgroups.v1.ServiceBindingResp.Upsert
+	38, // 71: sgroups.v1.SGroupsServiceBindingAPI.Delete:output_type -> google.protobuf.Empty
+	63, // 72: sgroups.v1.SGroupsServiceBindingAPI.List:output_type -> sgroups.v1.ServiceBindingResp.List
+	64, // 73: sgroups.v1.SGroupsServiceBindingAPI.Watch:output_type -> sgroups.v1.ServiceBindingResp.Watch
+	65, // 74: sgroups.v1.SGroupsRulesAPI.Upsert:output_type -> sgroups.v1.RuleResp.Upsert
+	38, // 75: sgroups.v1.SGroupsRulesAPI.Delete:output_type -> google.protobuf.Empty
+	66, // 76: sgroups.v1.SGroupsRulesAPI.List:output_type -> sgroups.v1.RuleResp.List
+	67, // 77: sgroups.v1.SGroupsRulesAPI.Watch:output_type -> sgroups.v1.RuleResp.Watch
+	68, // 78: sgroups.v1.SGroupsStatusAPI.List:output_type -> sgroups.v1.SyncStatusResp
+	68, // 79: sgroups.v1.SGroupsStatusAPI.Watch:output_type -> sgroups.v1.SyncStatusResp
+	40, // [40:80] is the sub-list for method output_type
+	0,  // [0:40] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -285,7 +295,7 @@ func file_sgroups_v1_services_proto_init() {
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
-			NumServices:   9,
+			NumServices:   10,
 		},
 		GoTypes:           file_sgroups_v1_services_proto_goTypes,
 		DependencyIndexes: file_sgroups_v1_services_proto_depIdxs,

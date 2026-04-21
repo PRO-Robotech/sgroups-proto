@@ -6,6 +6,7 @@ import "buf/validate/validate.proto";
 import "common/ip_transport.proto";
 import "common/resource.proto";
 import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "sgroups/v1/domains.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
@@ -834,4 +835,10 @@ message RuleResp {
     // Rules: list of rules
     repeated Rule rules = 2;
   }
+}
+
+// SyncStatusResp: db status after last succeeded Sync
+message SyncStatusResp {
+  // last succeeded updated DB timestamp
+  google.protobuf.Timestamp updated_at = 1;
 }
