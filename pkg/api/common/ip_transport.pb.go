@@ -135,25 +135,29 @@ func (Transport_Protocol) EnumDescriptor() ([]byte, []int) {
 type Session_Traffic int32
 
 const (
+	// TRAFFIC_UNDEF not specified
+	Session_TRAFFIC_UNDEF Session_Traffic = 0
 	// Both ingress and egress
-	Session_BOTH Session_Traffic = 0
+	Session_BOTH Session_Traffic = 1
 	// Ingress
-	Session_INGRESS Session_Traffic = 1
+	Session_INGRESS Session_Traffic = 2
 	// Egress
-	Session_EGRESS Session_Traffic = 2
+	Session_EGRESS Session_Traffic = 3
 )
 
 // Enum value maps for Session_Traffic.
 var (
 	Session_Traffic_name = map[int32]string{
-		0: "BOTH",
-		1: "INGRESS",
-		2: "EGRESS",
+		0: "TRAFFIC_UNDEF",
+		1: "BOTH",
+		2: "INGRESS",
+		3: "EGRESS",
 	}
 	Session_Traffic_value = map[string]int32{
-		"BOTH":    0,
-		"INGRESS": 1,
-		"EGRESS":  2,
+		"TRAFFIC_UNDEF": 0,
+		"BOTH":          1,
+		"INGRESS":       2,
+		"EGRESS":        3,
 	}
 )
 
@@ -291,7 +295,7 @@ func (x *Session) GetTraffic() Session_Traffic {
 	if x != nil {
 		return x.Traffic
 	}
-	return Session_BOTH
+	return Session_TRAFFIC_UNDEF
 }
 
 // IPs: represents list of IP addresses
@@ -440,14 +444,15 @@ const file_common_ip_transport_proto_rawDesc = "" +
 	"\x0ePROTOCOL_UNDEF\x10\x00\x12\a\n" +
 	"\x03TCP\x10\x01\x12\a\n" +
 	"\x03UDP\x10\x02\x12\b\n" +
-	"\x04ICMP\x10\x03\"j\n" +
+	"\x04ICMP\x10\x03\"}\n" +
 	"\aSession\x121\n" +
-	"\atraffic\x18\x01 \x01(\x0e2\x17.common.Session.TrafficR\atraffic\",\n" +
-	"\aTraffic\x12\b\n" +
-	"\x04BOTH\x10\x00\x12\v\n" +
-	"\aINGRESS\x10\x01\x12\n" +
+	"\atraffic\x18\x01 \x01(\x0e2\x17.common.Session.TrafficR\atraffic\"?\n" +
+	"\aTraffic\x12\x11\n" +
+	"\rTRAFFIC_UNDEF\x10\x00\x12\b\n" +
+	"\x04BOTH\x10\x01\x12\v\n" +
+	"\aINGRESS\x10\x02\x12\n" +
 	"\n" +
-	"\x06EGRESS\x10\x02\"-\n" +
+	"\x06EGRESS\x10\x03\"-\n" +
 	"\x03IPs\x12\x12\n" +
 	"\x04ipv4\x18\x01 \x03(\tR\x04IPv4\x12\x12\n" +
 	"\x04ipv6\x18\x02 \x03(\tR\x04IPv6*1\n" +

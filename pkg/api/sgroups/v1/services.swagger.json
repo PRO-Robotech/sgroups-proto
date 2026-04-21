@@ -1731,12 +1731,13 @@
     "SessionTraffic": {
       "type": "string",
       "enum": [
+        "TRAFFIC_UNDEF",
         "BOTH",
         "INGRESS",
         "EGRESS"
       ],
-      "default": "BOTH",
-      "description": "- BOTH: Both ingress and egress\n - INGRESS: Ingress\n - EGRESS: Egress",
+      "default": "TRAFFIC_UNDEF",
+      "description": "- TRAFFIC_UNDEF: TRAFFIC_UNDEF not specified\n - BOTH: Both ingress and egress\n - INGRESS: Ingress\n - EGRESS: Egress",
       "title": "Ingress / Egress traffic dir"
     },
     "SpecMetaInfo": {
