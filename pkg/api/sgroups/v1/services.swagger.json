@@ -1,0 +1,3825 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SGroups API",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "SGroupsNamespaceAPI",
+      "description": "Namespace Resource API"
+    },
+    {
+      "name": "SGroupsAddressGroupsAPI",
+      "description": "AddressGroups Resource API"
+    },
+    {
+      "name": "SGroupsNetworksAPI",
+      "description": "Networks Resource API"
+    },
+    {
+      "name": "SGroupsHostsAPI",
+      "description": "Hosts Resource API"
+    },
+    {
+      "name": "SGroupsHostBindingAPI",
+      "description": "HostBinding Resource API"
+    },
+    {
+      "name": "SGroupsNetworkBindingAPI",
+      "description": "NetworkBinding Resource API"
+    },
+    {
+      "name": "SGroupsServicesAPI",
+      "description": "Service Resource API"
+    },
+    {
+      "name": "SGroupsServiceBindingAPI",
+      "description": "ServiceBinding Resource API"
+    },
+    {
+      "name": "SGroupsRulesAPI",
+      "description": "SGroups Rules API"
+    },
+    {
+      "name": "SGroupsStatusAPI",
+      "description": "SGroups Status API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/address-groups/delete": {
+      "post": {
+        "summary": "Delete: Delete address group(s)",
+        "description": "Delete: Delete address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/address-groups/list": {
+      "post": {
+        "summary": "List: List address group(s)",
+        "description": "List: List address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqList"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/address-groups/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update address group(s)",
+        "description": "Upsert: Create or update address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/address-groups/watch": {
+      "post": {
+        "summary": "Watch: Watch address group(s)",
+        "description": "Watch: Watch address group(s)",
+        "operationId": "SGroupsAddressGroupsAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AddressGroupRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1AddressGroupRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddressGroupReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "AddressGroup"
+        ]
+      }
+    },
+    "/v1/host-bindings/delete": {
+      "post": {
+        "summary": "Delete: Delete host binding(s)",
+        "description": "Delete: Delete host binding(s)",
+        "operationId": "SGroupsHostBindingAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "HostBinding"
+        ]
+      }
+    },
+    "/v1/host-bindings/list": {
+      "post": {
+        "summary": "List: List host binding(s)",
+        "description": "List: List host binding(s)",
+        "operationId": "SGroupsHostBindingAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingReqList"
+            }
+          }
+        ],
+        "tags": [
+          "HostBinding"
+        ]
+      }
+    },
+    "/v1/host-bindings/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update host binding(s)",
+        "description": "Upsert: Create or update host binding(s)",
+        "operationId": "SGroupsHostBindingAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "HostBinding"
+        ]
+      }
+    },
+    "/v1/host-bindings/watch": {
+      "post": {
+        "summary": "Watch: Watch host binding(s)",
+        "description": "Watch: Watch host binding(s)",
+        "operationId": "SGroupsHostBindingAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1HostBindingRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1HostBindingRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostBindingReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "HostBinding"
+        ]
+      }
+    },
+    "/v1/hosts/delete": {
+      "post": {
+        "summary": "Delete: Delete host(s)",
+        "description": "Delete: Delete host(s)",
+        "operationId": "SGroupsHostsAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/list": {
+      "post": {
+        "summary": "List: List host(s)",
+        "description": "List: List host(s)",
+        "operationId": "SGroupsHostsAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/upd-ips": {
+      "post": {
+        "summary": "UpdIPs: Update host(s) IPs",
+        "description": "UpdIPs: Update host(s) IPs",
+        "operationId": "SGroupsHostsAPI_UpdIPs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostRespUpdIPs"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqUpdIPs"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/upd-metainfo": {
+      "post": {
+        "summary": "UpdMetaInfo: Update host(s) meta information",
+        "description": "UpdMetaInfo: Update host(s) meta information",
+        "operationId": "SGroupsHostsAPI_UpdMetaInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostRespUpdMetaInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqUpdMetaInfo"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update host(s)",
+        "description": "Upsert: Create or update host(s)",
+        "operationId": "SGroupsHostsAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/watch": {
+      "post": {
+        "summary": "Watch: Watch host(s)",
+        "description": "Watch: Watch host(s)",
+        "operationId": "SGroupsHostsAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1HostRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1HostRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/namespaces/delete": {
+      "post": {
+        "summary": "Delete: Delete namespace(es)",
+        "description": "Delete: Delete namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespaces/list": {
+      "post": {
+        "summary": "List: List namespace(es)",
+        "description": "List: List namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespaces/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update namespace(es)",
+        "description": "Upsert: Create or update namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/namespaces/watch": {
+      "post": {
+        "summary": "Watch: Watch namespace(es)",
+        "description": "Watch: Watch namespace(es)",
+        "operationId": "SGroupsNamespaceAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NamespaceRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NamespaceRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NamespaceReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Namespace"
+        ]
+      }
+    },
+    "/v1/network-bindings/delete": {
+      "post": {
+        "summary": "Delete: Delete network binding(s)",
+        "description": "Delete: Delete network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/list": {
+      "post": {
+        "summary": "List: List network binding(s)",
+        "description": "List: List network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqList"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update network binding(s)",
+        "description": "Upsert: Create or update network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/network-bindings/watch": {
+      "post": {
+        "summary": "Watch: Watch network binding(s)",
+        "description": "Watch: Watch network binding(s)",
+        "operationId": "SGroupsNetworkBindingAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NetworkBindingRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NetworkBindingRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkBindingReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkBinding"
+        ]
+      }
+    },
+    "/v1/networks/delete": {
+      "post": {
+        "summary": "Delete: Delete network(s)",
+        "description": "Delete: Delete network(s)",
+        "operationId": "SGroupsNetworksAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/networks/list": {
+      "post": {
+        "summary": "List: List network(s)",
+        "description": "List: List network(s)",
+        "operationId": "SGroupsNetworksAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/networks/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update network(s)",
+        "description": "Upsert: Create or update network(s)",
+        "operationId": "SGroupsNetworksAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/networks/watch": {
+      "post": {
+        "summary": "Watch: Watch network(s)",
+        "description": "Watch: Watch network(s)",
+        "operationId": "SGroupsNetworksAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NetworkRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NetworkRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NetworkReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Network"
+        ]
+      }
+    },
+    "/v1/rules/delete": {
+      "post": {
+        "summary": "Delete: Delete rules",
+        "description": "Delete: Delete rules",
+        "operationId": "SGroupsRulesAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RuleReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Rules"
+        ]
+      }
+    },
+    "/v1/rules/list": {
+      "post": {
+        "summary": "List: List rules",
+        "description": "List: List rules",
+        "operationId": "SGroupsRulesAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RuleRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RuleReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Rules"
+        ]
+      }
+    },
+    "/v1/rules/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update rules",
+        "description": "Upsert: Create or update rules",
+        "operationId": "SGroupsRulesAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RuleRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RuleReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Rules"
+        ]
+      }
+    },
+    "/v1/rules/watch": {
+      "post": {
+        "summary": "Watch: Watch rules",
+        "description": "Watch: Watch rules",
+        "operationId": "SGroupsRulesAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1RuleRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1RuleRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RuleReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Rules"
+        ]
+      }
+    },
+    "/v1/service-bindings/delete": {
+      "post": {
+        "summary": "Delete: Delete service binding(s)",
+        "description": "Delete: Delete service binding(s)",
+        "operationId": "SGroupsServiceBindingAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceBinding"
+        ]
+      }
+    },
+    "/v1/service-bindings/list": {
+      "post": {
+        "summary": "List: List service binding(s)",
+        "description": "List: List service binding(s)",
+        "operationId": "SGroupsServiceBindingAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingReqList"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceBinding"
+        ]
+      }
+    },
+    "/v1/service-bindings/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update service binding(s)",
+        "description": "Upsert: Create or update service binding(s)",
+        "operationId": "SGroupsServiceBindingAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceBinding"
+        ]
+      }
+    },
+    "/v1/service-bindings/watch": {
+      "post": {
+        "summary": "Watch: Watch service binding(s)",
+        "description": "Watch: Watch service binding(s)",
+        "operationId": "SGroupsServiceBindingAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ServiceBindingRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1ServiceBindingRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceBindingReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceBinding"
+        ]
+      }
+    },
+    "/v1/services/delete": {
+      "post": {
+        "summary": "Delete: Delete service(s)",
+        "description": "Delete: Delete service(s)",
+        "operationId": "SGroupsServicesAPI_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceReqDelete"
+            }
+          }
+        ],
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/v1/services/list": {
+      "post": {
+        "summary": "List: List service(s)",
+        "description": "List: List service(s)",
+        "operationId": "SGroupsServicesAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ServiceRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceReqList"
+            }
+          }
+        ],
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/v1/services/upsert": {
+      "post": {
+        "summary": "Upsert: Create or update service(s)",
+        "description": "Upsert: Create or update service(s)",
+        "operationId": "SGroupsServicesAPI_Upsert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ServiceRespUpsert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceReqUpsert"
+            }
+          }
+        ],
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/v1/services/watch": {
+      "post": {
+        "summary": "Watch: Watch service(s)",
+        "description": "Watch: Watch service(s)",
+        "operationId": "SGroupsServicesAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ServiceRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1ServiceRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ServiceReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/v1/status/list": {
+      "get": {
+        "summary": "List: gets last succeeded update DB status",
+        "description": "List: gets last succeeded update DB status",
+        "operationId": "SGroupsStatusAPI_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SyncStatusResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/v1/status/watch": {
+      "get": {
+        "summary": "Watch: gets stream of update DB statuses",
+        "description": "SyncStatuses: gets stream of update DB statuses",
+        "operationId": "SGroupsStatusAPI_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1SyncStatusResp"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1SyncStatusResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddressGroupReqDeleteAddressGroup": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "AddressGroup: address group to delete"
+    },
+    "AddressGroupRespAddressGroupExt": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: address group metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1AddressGroupSpec",
+          "title": "Spec: address group specification"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: list of resource references in the address group"
+        }
+      },
+      "title": "AddressGroupExt: extended address group information"
+    },
+    "EndpointsLocal": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: endpoint name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: endpoint namespace"
+        },
+        "type": {
+          "$ref": "#/definitions/commonEndpointsType",
+          "title": "Type: endpoint type"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        }
+      },
+      "title": "Local: local endpoint"
+    },
+    "EndpointsRemote": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: endpoint name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: endpoint namespace"
+        },
+        "type": {
+          "$ref": "#/definitions/commonEndpointsType",
+          "title": "Type: endpoint type"
+        },
+        "value": {
+          "type": "string",
+          "title": "Value: endpoint value"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        }
+      },
+      "title": "Remote: remote endpoint"
+    },
+    "HostBindingReqDeleteHostBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "HostBinding: host binding to delete"
+    },
+    "HostReqDeleteHost": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Host: host to delete"
+    },
+    "HostReqUpdIPsHost": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        },
+        "spec": {
+          "$ref": "#/definitions/HostReqUpdIPsHostSpec",
+          "title": "Spec: host specification for IP update"
+        }
+      },
+      "title": "Host: host to update IPs"
+    },
+    "HostReqUpdIPsHostSpec": {
+      "type": "object",
+      "properties": {
+        "IPs": {
+          "$ref": "#/definitions/commonIPs",
+          "title": "IPs: list of IPs to update in the host"
+        }
+      },
+      "title": "Spec: host specification for IP update",
+      "required": [
+        "IPs"
+      ]
+    },
+    "HostRespHostExt": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: host metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/sgroupsV1HostSpec",
+          "title": "Spec: host specification"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: list of resource references in the host"
+        }
+      },
+      "title": "HostExt: extended host information"
+    },
+    "NamespaceReqDeleteMetadataScope": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "title": "Uid: unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        }
+      },
+      "title": "MetadataScope: namespace metadata for scoping"
+    },
+    "NamespaceReqDeleteNamespace": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/NamespaceReqDeleteMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Namespace: namespace to delete"
+    },
+    "NamespaceReqSelector": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/NamespaceReqSelectorFieldSelector",
+          "title": "FieldSelector: field selector"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector"
+        }
+      },
+      "title": "Selector: resource selector"
+    },
+    "NamespaceReqSelectorFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
+    },
+    "NetworkBindingReqDeleteNetworkBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "NetworkBinding: network binding to delete"
+    },
+    "NetworkReqDeleteNetwork": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Network: network to delete"
+    },
+    "NetworkRespNetworkExt": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkSpec",
+          "title": "Spec: network specification"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: list of resource references in the network"
+        }
+      },
+      "title": "NetworkExt: extended network information"
+    },
+    "RuleReqDeleteRule": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Rule: rule to delete"
+    },
+    "ServiceBindingReqDeleteServiceBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "ServiceBinding: service binding to delete"
+    },
+    "ServiceReqDeleteService": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        }
+      },
+      "title": "Service: service to delete"
+    },
+    "ServiceRespServiceExt": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: service metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1ServiceSpec",
+          "title": "Spec: service specification"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: list of resource references in the service"
+        }
+      },
+      "title": "ServiceExt: extended service information"
+    },
+    "SessionTraffic": {
+      "type": "string",
+      "enum": [
+        "TRAFFIC_UNDEF",
+        "BOTH",
+        "INGRESS",
+        "EGRESS"
+      ],
+      "default": "TRAFFIC_UNDEF",
+      "description": "- TRAFFIC_UNDEF: TRAFFIC_UNDEF not specified\n - BOTH: Both ingress and egress\n - INGRESS: Ingress\n - EGRESS: Egress",
+      "title": "Ingress / Egress traffic dir"
+    },
+    "SpecMetaInfo": {
+      "type": "object",
+      "properties": {
+        "hostName": {
+          "type": "string",
+          "title": "HostName: host name"
+        },
+        "os": {
+          "type": "string",
+          "title": "Os: host operating system"
+        },
+        "platform": {
+          "type": "string",
+          "title": "Platform: host platform"
+        },
+        "platformFamily": {
+          "type": "string",
+          "title": "PlatformFamily: host platform family"
+        },
+        "platformVersion": {
+          "type": "string",
+          "title": "PlatformVersion: host platform version"
+        },
+        "kernelVersion": {
+          "type": "string",
+          "title": "KernelVersion: host kernel version"
+        }
+      },
+      "title": "MetaInfo: represents host meta information"
+    },
+    "TransportEntry": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "title": "Description: description"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: comment"
+        },
+        "ports": {
+          "type": "string",
+          "title": "Ports: represents TCP/UDP port or port range"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": "Types: ICMP message types"
+        }
+      },
+      "title": "Entry: represents transport entry"
+    },
+    "TransportProtocol": {
+      "type": "string",
+      "enum": [
+        "PROTOCOL_UNDEF",
+        "TCP",
+        "UDP",
+        "ICMP"
+      ],
+      "default": "PROTOCOL_UNDEF",
+      "description": "- PROTOCOL_UNDEF: PROTOCOL_UNDEF: not specified\n - TCP: TCP\n - UDP: UDP\n - ICMP: ICMP",
+      "title": "Protocol: represents supported network protocols"
+    },
+    "UpdMetaInfoHostInfo": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadataScope",
+          "title": "Metadata: metadata for scoping"
+        },
+        "spec": {
+          "$ref": "#/definitions/UpdMetaInfoHostInfoSpec",
+          "title": "Spec: host specification for information update"
+        }
+      },
+      "title": "HostInfo: host to update information"
+    },
+    "UpdMetaInfoHostInfoSpec": {
+      "type": "object",
+      "properties": {
+        "metaInfo": {
+          "$ref": "#/definitions/SpecMetaInfo",
+          "title": "MetaInfo: meta information to update in the host"
+        }
+      },
+      "title": "Spec: host specification for information update"
+    },
+    "commonAction": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "ALLOW",
+        "DENY"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: UNKNOWN: unknown action\n - ALLOW: ALLOW: allow action\n - DENY: DENY: deny action",
+      "title": "Action: enumeration of possible actions"
+    },
+    "commonEndpoints": {
+      "type": "object",
+      "properties": {
+        "local": {
+          "$ref": "#/definitions/EndpointsLocal",
+          "title": "Local: local endpoint"
+        },
+        "remote": {
+          "$ref": "#/definitions/EndpointsRemote",
+          "title": "Remote: remote endpoint"
+        }
+      },
+      "title": "Endpoints: represents endpoints"
+    },
+    "commonEndpointsType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "ADDRESS_GROUP",
+        "SERVICE",
+        "FQDN",
+        "CIDR"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: UNKNOWN: unknown type\n - ADDRESS_GROUP: ADDRESS_GROUP: address group type\n - SERVICE: SERVICE: service type\n - FQDN: FQDN: FQDN type\n - CIDR: CIDR: CIDR type",
+      "title": "Type: endpoint type"
+    },
+    "commonFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResourceRef"
+          },
+          "title": "Refs: resource references"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
+    },
+    "commonIPs": {
+      "type": "object",
+      "properties": {
+        "IPv4": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Ipv4: list of IPv4 addresses"
+        },
+        "IPv6": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Ipv6: list of IPv6 addresses"
+        }
+      },
+      "title": "IPs: represents list of IP addresses"
+    },
+    "commonIpAddrFamily": {
+      "type": "string",
+      "enum": [
+        "IPV_UNDEF",
+        "IPV4",
+        "IPV6"
+      ],
+      "default": "IPV_UNDEF",
+      "description": "- IPV_UNDEF: undefined ip version\n - IPV4: IPv4\n - IPV6: IPv6",
+      "title": "IpAddrFamily: IP Address family"
+    },
+    "commonMetadata": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "format": "uuid",
+          "example": "2438ac3c-37eb-4902-adef-ed16b4431030",
+          "description": "id of the resource. Use this for update requests; for create requests, leave it empty",
+          "title": "uid",
+          "pattern": "^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels: resource labels"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Annotations: resource annotations"
+        },
+        "creationTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "title": "CreationTimestamp: resource creation timestamp",
+          "readOnly": true
+        },
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource revision version",
+          "readOnly": true
+        }
+      },
+      "title": "Metadata: common resource metadata"
+    },
+    "commonMetadataScope": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "title": "UID: unique identifier. Use this for update requests; for create requests, leave it empty"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        }
+      },
+      "title": "MetadataScope: common resource metadata for scoping"
+    },
+    "commonResSelector": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/commonFieldSelector",
+          "title": "FieldSelector: field selector"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector"
+        }
+      },
+      "title": "ResSelector: resource selector for list requests"
+    },
+    "commonResourceIdentifier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        }
+      },
+      "title": "ResourceIdentifier: resource identifier"
+    },
+    "commonResourceRef": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: reference resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: reference resource namespace"
+        },
+        "resType": {
+          "type": "string",
+          "title": "ResType: reference resource type"
+        }
+      },
+      "title": "ResourceRef: reference to a resource"
+    },
+    "commonSession": {
+      "type": "object",
+      "properties": {
+        "traffic": {
+          "$ref": "#/definitions/SessionTraffic",
+          "title": "Traffic: traffic direction"
+        }
+      },
+      "title": "Session: represents session parameters"
+    },
+    "commonTransport": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "$ref": "#/definitions/TransportProtocol",
+          "title": "Protocol: network protocol"
+        },
+        "IPv": {
+          "$ref": "#/definitions/commonIpAddrFamily",
+          "title": "IPv: IP address family"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/TransportEntry"
+          },
+          "title": "Entries: list of transport entries"
+        }
+      },
+      "title": "Transport: represents supported network transports (L4)"
+    },
+    "commonWatchEventType": {
+      "type": "string",
+      "enum": [
+        "EVENT_UNKNOWN",
+        "ADDED",
+        "MODIFIED",
+        "DELETED"
+      ],
+      "default": "EVENT_UNKNOWN",
+      "description": "- EVENT_UNKNOWN: EVENT_UNKNOWN: unknown event type\n - ADDED: ADDED: object was created\n - MODIFIED: MODIFIED: object was updated\n - DELETED: DELETED: object was deleted",
+      "title": "WatchEventType: type of watch event"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "sgroupsV1AddressGroup": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: address group metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1AddressGroupSpec",
+          "title": "Spec: address group specification"
+        }
+      },
+      "title": "AddressGroup: represents address group resource"
+    },
+    "sgroupsV1Host": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: host metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/sgroupsV1HostSpec",
+          "title": "Spec: host specification"
+        }
+      },
+      "title": "Host: represents host resource"
+    },
+    "sgroupsV1HostBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: host binding metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1HostBindingSpec",
+          "title": "Spec: host binding specification"
+        }
+      },
+      "title": "HostBinding: represents host binding resource"
+    },
+    "sgroupsV1HostSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "IPs": {
+          "$ref": "#/definitions/commonIPs",
+          "title": "IPs: list of IP addresses associated with the host",
+          "readOnly": true
+        },
+        "metaInfo": {
+          "$ref": "#/definitions/SpecMetaInfo",
+          "title": "MetaInfo: host meta information",
+          "readOnly": true
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "sgroupsV1Namespace": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: namespace metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NamespaceSpec",
+          "title": "Spec: namespace specification"
+        }
+      },
+      "title": "Namespace: represents namespace resource"
+    },
+    "sgroupsV1Network": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkSpec",
+          "title": "Spec: network specification"
+        }
+      },
+      "title": "Network: represents network resource"
+    },
+    "sgroupsV1NetworkBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: network binding metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1NetworkBindingSpec",
+          "title": "Spec: network binding specification"
+        }
+      },
+      "title": "NetworkBinding: represents network binding resource"
+    },
+    "sgroupsV1Rule": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: rule metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1RuleSpec",
+          "title": "Spec: rule specification"
+        }
+      },
+      "title": "Rule: represents rule resource"
+    },
+    "sgroupsV1Service": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: service metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1ServiceSpec",
+          "title": "Spec: service specification"
+        }
+      },
+      "title": "Service: represents service resource with transport specifications"
+    },
+    "sgroupsV1ServiceBinding": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/commonMetadata",
+          "title": "Metadata: service binding metadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/v1ServiceBindingSpec",
+          "title": "Spec: service binding specification"
+        }
+      },
+      "title": "ServiceBinding: represents service binding resource"
+    },
+    "v1AddressGroupReqDelete": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AddressGroupReqDeleteAddressGroup"
+          },
+          "title": "AddressGroups: list of address groups to delete"
+        }
+      },
+      "title": "Delete: request to delete address groups",
+      "required": [
+        "addressGroups"
+      ]
+    },
+    "v1AddressGroupReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list address groups"
+    },
+    "v1AddressGroupReqUpsert": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1AddressGroup"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "Upsert: request to upsert address groups",
+      "required": [
+        "addressGroups"
+      ]
+    },
+    "v1AddressGroupReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch address groups"
+    },
+    "v1AddressGroupRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AddressGroupRespAddressGroupExt"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "List: response for list address groups"
+    },
+    "v1AddressGroupRespUpsert": {
+      "type": "object",
+      "properties": {
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1AddressGroup"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "Upsert: response for upsert address groups"
+    },
+    "v1AddressGroupRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "addressGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AddressGroupRespAddressGroupExt"
+          },
+          "title": "AddressGroups: list of address groups"
+        }
+      },
+      "title": "Watch: response for watch address groups"
+    },
+    "v1AddressGroupSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "defaultAction": {
+          "$ref": "#/definitions/commonAction",
+          "title": "DefaultAction: default action for the address group"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "Logs: enable logging"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "Trace: enable flow logging"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1HostBindingReqDelete": {
+      "type": "object",
+      "properties": {
+        "hostBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostBindingReqDeleteHostBinding"
+          },
+          "title": "HostBindings: list of host bindings to delete"
+        }
+      },
+      "title": "Delete: request to delete host bindings",
+      "required": [
+        "hostBindings"
+      ]
+    },
+    "v1HostBindingReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1HostBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list hosts"
+    },
+    "v1HostBindingReqSelectors": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/v1HostBindingReqSelectorsFieldSelector",
+          "title": "FieldSelector: field selector for host binding"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector for host binding"
+        }
+      },
+      "title": "Selectors: request to select host bindings"
+    },
+    "v1HostBindingReqSelectorsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "host": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Host: reference to the host"
+        }
+      },
+      "title": "FieldSelector: resource field selector for host binding"
+    },
+    "v1HostBindingReqUpsert": {
+      "type": "object",
+      "properties": {
+        "hostBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1HostBinding"
+          },
+          "title": "HostBindings: list of host bindings"
+        }
+      },
+      "title": "Upsert: request to upsert host bindings",
+      "required": [
+        "hostBindings"
+      ]
+    },
+    "v1HostBindingReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1HostBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch hosts"
+    },
+    "v1HostBindingRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "hostBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1HostBinding"
+          },
+          "title": "HostBindings: list of host bindings"
+        }
+      },
+      "title": "List: response for list of host bindings"
+    },
+    "v1HostBindingRespUpsert": {
+      "type": "object",
+      "properties": {
+        "hostBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1HostBinding"
+          },
+          "title": "HostBindings: list of host bindings"
+        }
+      },
+      "title": "Upsert: response for upsert host bindings"
+    },
+    "v1HostBindingRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "hostBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1HostBinding"
+          },
+          "title": "HostBindings: list of host bindings"
+        }
+      },
+      "title": "Watch: response for watch host bindings"
+    },
+    "v1HostBindingSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "host": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Host: reference to the host"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1HostReqDelete": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqDeleteHost"
+          },
+          "title": "Hosts: list of hosts to delete"
+        }
+      },
+      "title": "Delete: request to delete hosts",
+      "required": [
+        "hosts"
+      ]
+    },
+    "v1HostReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list hosts"
+    },
+    "v1HostReqUpdIPs": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqUpdIPsHost"
+          },
+          "title": "Hosts: list of hosts to update IPs"
+        }
+      },
+      "title": "UpdIPs: request to update IPs in hosts",
+      "required": [
+        "hosts"
+      ]
+    },
+    "v1HostReqUpdMetaInfo": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UpdMetaInfoHostInfo"
+          },
+          "title": "Hosts: list of hosts to update information"
+        }
+      },
+      "title": "UpdMetaInfo: request to update host meta information",
+      "required": [
+        "hosts"
+      ]
+    },
+    "v1HostReqUpsert": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Host"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "Upsert: request to upsert hosts",
+      "required": [
+        "hosts"
+      ]
+    },
+    "v1HostReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch hosts"
+    },
+    "v1HostRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostRespHostExt"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "List: response for list hosts"
+    },
+    "v1HostRespUpdIPs": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Host"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "UpdIPs: response for update IPs in hosts"
+    },
+    "v1HostRespUpdMetaInfo": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Host"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "UpdMetaInfo: response for update host meta information"
+    },
+    "v1HostRespUpsert": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Host"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "Upsert: response for upsert hosts"
+    },
+    "v1HostRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostRespHostExt"
+          },
+          "title": "Hosts: list of hosts"
+        }
+      },
+      "title": "Watch: response for watch hosts"
+    },
+    "v1NamespaceReqDelete": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqDeleteNamespace"
+          },
+          "title": "Namespaces: list of namespaces to delete"
+        }
+      },
+      "title": "Delete: request to delete namespaces",
+      "required": [
+        "namespaces"
+      ]
+    },
+    "v1NamespaceReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list namespaces"
+    },
+    "v1NamespaceReqUpsert": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "Namespaces: list of namespaces"
+        }
+      },
+      "title": "Upsert: request to upsert namespaces",
+      "required": [
+        "namespaces"
+      ]
+    },
+    "v1NamespaceReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NamespaceReqSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch namespaces"
+    },
+    "v1NamespaceRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "Namespaces: list of namespaces"
+        }
+      },
+      "title": "List: response for list namespaces"
+    },
+    "v1NamespaceRespUpsert": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "Namespaces: list of namespaces"
+        }
+      },
+      "title": "Upsert: response for upsert namespaces"
+    },
+    "v1NamespaceRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Namespace"
+          },
+          "title": "Namespaces: list of namespaces"
+        }
+      },
+      "title": "Watch: response for watch namespaces"
+    },
+    "v1NamespaceSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1NetworkBindingReqDelete": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkBindingReqDeleteNetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings to delete"
+        }
+      },
+      "title": "Delete: request to delete network bindings",
+      "required": [
+        "networkBindings"
+      ]
+    },
+    "v1NetworkBindingReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1NetworkBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list network bindings"
+    },
+    "v1NetworkBindingReqSelectors": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/v1NetworkBindingReqSelectorsFieldSelector",
+          "title": "FieldSelector: field selector for network binding"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector for network binding"
+        }
+      },
+      "title": "Selectors: request to select network bindings"
+    },
+    "v1NetworkBindingReqSelectorsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "network": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Network: reference to the network"
+        }
+      },
+      "title": "FieldSelector: resource field selector for network binding"
+    },
+    "v1NetworkBindingReqUpsert": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Upsert: request to upsert network bindings",
+      "required": [
+        "networkBindings"
+      ]
+    },
+    "v1NetworkBindingReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1NetworkBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch network bindings"
+    },
+    "v1NetworkBindingRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "List: response for list of network bindings"
+    },
+    "v1NetworkBindingRespUpsert": {
+      "type": "object",
+      "properties": {
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Upsert: response for upsert network bindings"
+    },
+    "v1NetworkBindingRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "networkBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1NetworkBinding"
+          },
+          "title": "NetworkBindings: list of network bindings"
+        }
+      },
+      "title": "Watch: response for watch network bindings"
+    },
+    "v1NetworkBindingSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "network": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Network: reference to the network"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1NetworkReqDelete": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkReqDeleteNetwork"
+          },
+          "title": "Networks: list of networks to delete"
+        }
+      },
+      "title": "Delete: request to delete networks",
+      "required": [
+        "networks"
+      ]
+    },
+    "v1NetworkReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list networks"
+    },
+    "v1NetworkReqUpsert": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Network"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Upsert: request to upsert networks",
+      "required": [
+        "networks"
+      ]
+    },
+    "v1NetworkReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch networks"
+    },
+    "v1NetworkRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkRespNetworkExt"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "List: response for list networks"
+    },
+    "v1NetworkRespUpsert": {
+      "type": "object",
+      "properties": {
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Network"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Upsert: response for upsert networks"
+    },
+    "v1NetworkRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/NetworkRespNetworkExt"
+          },
+          "title": "Networks: list of networks"
+        }
+      },
+      "title": "Watch: response for watch networks"
+    },
+    "v1NetworkSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "CIDR": {
+          "type": "string",
+          "title": "CIDR: network CIDR"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1RuleReqDelete": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/RuleReqDeleteRule"
+          },
+          "title": "Rules: list of rules to delete"
+        }
+      },
+      "title": "Delete: request to delete rules",
+      "required": [
+        "rules"
+      ]
+    },
+    "v1RuleReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1RuleReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list rules"
+    },
+    "v1RuleReqSelectors": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/v1RuleReqSelectorsFieldSelector",
+          "title": "SvcFieldSelector: field selector for rule"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector for rule"
+        }
+      },
+      "title": "Selectors: request to select rules"
+    },
+    "v1RuleReqSelectorsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: rule name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: rule namespace"
+        },
+        "traffic": {
+          "$ref": "#/definitions/SessionTraffic",
+          "title": "Traffic: traffic parameters"
+        },
+        "protocol": {
+          "$ref": "#/definitions/TransportProtocol",
+          "title": "Protocol: network transport protocol"
+        },
+        "endpoints": {
+          "$ref": "#/definitions/commonEndpoints",
+          "title": "Endpoints: local and remote endpoints"
+        }
+      },
+      "title": "FieldSelector: field selector for rule"
+    },
+    "v1RuleReqUpsert": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Rule"
+          },
+          "title": "Rules: list of rules"
+        }
+      },
+      "title": "Upsert: request to upsert rules",
+      "required": [
+        "rules"
+      ]
+    },
+    "v1RuleReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1RuleReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch rules"
+    },
+    "v1RuleRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Rule"
+          },
+          "title": "Rules: list of rules"
+        }
+      },
+      "title": "List: response for list of rules"
+    },
+    "v1RuleRespUpsert": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Rule"
+          },
+          "title": "Rules: list of rules"
+        }
+      },
+      "title": "Upsert: response for upsert rules"
+    },
+    "v1RuleRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Rule"
+          },
+          "title": "Rules: list of rules"
+        }
+      },
+      "title": "Watch: response for watch rules"
+    },
+    "v1RuleSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "action": {
+          "$ref": "#/definitions/commonAction",
+          "title": "Action: rule action"
+        },
+        "session": {
+          "$ref": "#/definitions/commonSession",
+          "title": "Session: session parameters"
+        },
+        "endpoints": {
+          "$ref": "#/definitions/commonEndpoints",
+          "title": "Endpoints: local and remote endpoints"
+        },
+        "transport": {
+          "$ref": "#/definitions/commonTransport",
+          "title": "Transport: network transport"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1ServiceBindingReqDelete": {
+      "type": "object",
+      "properties": {
+        "serviceBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ServiceBindingReqDeleteServiceBinding"
+          },
+          "title": "ServiceBindings: list of service bindings to delete"
+        }
+      },
+      "title": "Delete: request to delete service bindings",
+      "required": [
+        "serviceBindings"
+      ]
+    },
+    "v1ServiceBindingReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ServiceBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list service bindings"
+    },
+    "v1ServiceBindingReqSelectors": {
+      "type": "object",
+      "properties": {
+        "fieldSelector": {
+          "$ref": "#/definitions/v1ServiceBindingReqSelectorsFieldSelector",
+          "title": "FieldSelector: field selector for service binding"
+        },
+        "labelSelector": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "LabelSelector: label selector for service binding"
+        }
+      },
+      "title": "Selectors: request to select service bindings"
+    },
+    "v1ServiceBindingReqSelectorsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "service": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Service: reference to the service"
+        }
+      },
+      "title": "FieldSelector: resource field selector for service binding"
+    },
+    "v1ServiceBindingReqUpsert": {
+      "type": "object",
+      "properties": {
+        "serviceBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1ServiceBinding"
+          },
+          "title": "ServiceBindings: list of service bindings"
+        }
+      },
+      "title": "Upsert: request to upsert service bindings",
+      "required": [
+        "serviceBindings"
+      ]
+    },
+    "v1ServiceBindingReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ServiceBindingReqSelectors"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch service bindings"
+    },
+    "v1ServiceBindingRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "serviceBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1ServiceBinding"
+          },
+          "title": "ServiceBindings: list of service bindings"
+        }
+      },
+      "title": "List: response for list of service bindings"
+    },
+    "v1ServiceBindingRespUpsert": {
+      "type": "object",
+      "properties": {
+        "serviceBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1ServiceBinding"
+          },
+          "title": "ServiceBindings: list of service bindings"
+        }
+      },
+      "title": "Upsert: response for upsert service bindings"
+    },
+    "v1ServiceBindingRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "serviceBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1ServiceBinding"
+          },
+          "title": "ServiceBindings: list of service bindings"
+        }
+      },
+      "title": "Watch: response for watch service bindings"
+    },
+    "v1ServiceBindingSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "addressGroup": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "AddressGroup: reference to the address group"
+        },
+        "service": {
+          "$ref": "#/definitions/commonResourceIdentifier",
+          "title": "Service: reference to the service"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1ServiceReqDelete": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ServiceReqDeleteService"
+          },
+          "title": "Services: list of services to delete"
+        }
+      },
+      "title": "Delete: request to delete services",
+      "required": [
+        "services"
+      ]
+    },
+    "v1ServiceReqList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list services"
+    },
+    "v1ServiceReqUpsert": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Service"
+          },
+          "title": "Services: list of services"
+        }
+      },
+      "title": "Upsert: request to upsert services",
+      "required": [
+        "services"
+      ]
+    },
+    "v1ServiceReqWatch": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: resource version for watch"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch services"
+    },
+    "v1ServiceRespList": {
+      "type": "object",
+      "properties": {
+        "resourceVersion": {
+          "type": "string",
+          "title": "ResourceVersion: current global resource revision"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ServiceRespServiceExt"
+          },
+          "title": "Services: list of services"
+        }
+      },
+      "title": "List: response for list services"
+    },
+    "v1ServiceRespUpsert": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsV1Service"
+          },
+          "title": "Services: list of services"
+        }
+      },
+      "title": "Upsert: response for upsert services"
+    },
+    "v1ServiceRespWatch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonWatchEventType",
+          "title": "Type: watch event type"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ServiceRespServiceExt"
+          },
+          "title": "Services: list of services"
+        }
+      },
+      "title": "Watch: response for watch services"
+    },
+    "v1ServiceSpec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "title": "DisplayName: resource display name"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Comment: resource comment"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description: resource description"
+        },
+        "transports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonTransport"
+          },
+          "title": "Transports: transport protocol specifications"
+        }
+      },
+      "title": "Spec: resource specification"
+    },
+    "v1SyncStatusResp": {
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last succeeded updated DB timestamp"
+        }
+      },
+      "title": "SyncStatusResp: db status after last succeeded Sync"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentation",
+    "url": "https://h-bf.prorobotech.ru"
+  }
+}

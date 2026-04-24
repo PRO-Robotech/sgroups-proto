@@ -1,0 +1,547 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "sgroups/v1/queries.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "SGroups API"
+    version: "1.0"
+  }
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru"
+    description: "Documentation"
+  }
+  schemes: [HTTP]
+  consumes: "application/json"
+  produces: "application/json"
+};
+
+// SGroupsNamespaceAPI: SGroups namespaces API
+service SGroupsNamespaceAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Namespace Resource API"};
+
+  // Upsert: Create or update namespace(es)
+  rpc Upsert(NamespaceReq.Upsert) returns (NamespaceResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespaces/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete namespace(es)
+  rpc Delete(NamespaceReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespaces/delete"
+      body: "*"
+    };
+  }
+
+  // List: List namespace(es)
+  rpc List(NamespaceReq.List) returns (NamespaceResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespaces/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch namespace(es)
+  rpc Watch(NamespaceReq.Watch) returns (stream NamespaceResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch namespace(es)"
+      tags: "Namespace"
+    };
+    option (google.api.http) = {
+      post: "/v1/namespaces/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsAddressGroupsAPI: SGroups AddressGroups API
+service SGroupsAddressGroupsAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "AddressGroups Resource API"};
+
+  // Upsert: Create or update address group(s)
+  rpc Upsert(AddressGroupReq.Upsert) returns (AddressGroupResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/address-groups/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete address group(s)
+  rpc Delete(AddressGroupReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/address-groups/delete"
+      body: "*"
+    };
+  }
+
+  // List: List address group(s)
+  rpc List(AddressGroupReq.List) returns (AddressGroupResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/address-groups/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch address group(s)
+  rpc Watch(AddressGroupReq.Watch) returns (stream AddressGroupResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch address group(s)"
+      tags: "AddressGroup"
+    };
+    option (google.api.http) = {
+      post: "/v1/address-groups/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsNetworksAPI: SGroups Networks API
+service SGroupsNetworksAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Networks Resource API"};
+
+  // Upsert: Create or update network(s)
+  rpc Upsert(NetworkReq.Upsert) returns (NetworkResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update network(s)"
+      tags: "Network"
+    };
+    option (google.api.http) = {
+      post: "/v1/networks/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete network(s)
+  rpc Delete(NetworkReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete network(s)"
+      tags: "Network"
+    };
+    option (google.api.http) = {
+      post: "/v1/networks/delete"
+      body: "*"
+    };
+  }
+
+  // List: List network(s)
+  rpc List(NetworkReq.List) returns (NetworkResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List network(s)"
+      tags: "Network"
+    };
+    option (google.api.http) = {
+      post: "/v1/networks/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch network(s)
+  rpc Watch(NetworkReq.Watch) returns (stream NetworkResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch network(s)"
+      tags: "Network"
+    };
+    option (google.api.http) = {
+      post: "/v1/networks/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsHostsAPI: SGroups Hosts API
+service SGroupsHostsAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Hosts Resource API"};
+
+  // Upsert: Create or update host(s)
+  rpc Upsert(HostReq.Upsert) returns (HostResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete host(s)
+  rpc Delete(HostReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/delete"
+      body: "*"
+    };
+  }
+
+  // List: List host(s)
+  rpc List(HostReq.List) returns (HostResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch host(s)
+  rpc Watch(HostReq.Watch) returns (stream HostResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch host(s)"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/watch"
+      body: "*"
+    };
+  }
+
+  // UpdIPs: Update host(s) IPs
+  rpc UpdIPs(HostReq.UpdIPs) returns (HostResp.UpdIPs) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdIPs: Update host(s) IPs"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/upd-ips"
+      body: "*"
+    };
+  }
+
+  // UpdMetaInfo: Update host(s) meta information
+  rpc UpdMetaInfo(HostReq.UpdMetaInfo) returns (HostResp.UpdMetaInfo) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdMetaInfo: Update host(s) meta information"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/upd-metainfo"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsHostBindingAPI: SGroups Host Binding API
+service SGroupsHostBindingAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "HostBinding Resource API"};
+
+  // Upsert: Create or update host binding(s)
+  rpc Upsert(HostBindingReq.Upsert) returns (HostBindingResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete host binding(s)
+  rpc Delete(HostBindingReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/delete"
+      body: "*"
+    };
+  }
+
+  // List: List host binding(s)
+  rpc List(HostBindingReq.List) returns (HostBindingResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch host binding(s)
+  rpc Watch(HostBindingReq.Watch) returns (stream HostBindingResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch host binding(s)"
+      tags: "HostBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/host-bindings/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsNetworkBindingAPI: SGroups Network Binding API
+service SGroupsNetworkBindingAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "NetworkBinding Resource API"};
+
+  // Upsert: Create or update network binding(s)
+  rpc Upsert(NetworkBindingReq.Upsert) returns (NetworkBindingResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete network binding(s)
+  rpc Delete(NetworkBindingReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/delete"
+      body: "*"
+    };
+  }
+
+  // List: List network binding(s)
+  rpc List(NetworkBindingReq.List) returns (NetworkBindingResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch network binding(s)
+  rpc Watch(NetworkBindingReq.Watch) returns (stream NetworkBindingResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch network binding(s)"
+      tags: "NetworkBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/network-bindings/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsServicesAPI: SGroups Services API
+service SGroupsServicesAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Service Resource API"};
+
+  // Upsert: Create or update service(s)
+  rpc Upsert(ServiceReq.Upsert) returns (ServiceResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update service(s)"
+      tags: "Service"
+    };
+    option (google.api.http) = {
+      post: "/v1/services/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete service(s)
+  rpc Delete(ServiceReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete service(s)"
+      tags: "Service"
+    };
+    option (google.api.http) = {
+      post: "/v1/services/delete"
+      body: "*"
+    };
+  }
+
+  // List: List service(s)
+  rpc List(ServiceReq.List) returns (ServiceResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List service(s)"
+      tags: "Service"
+    };
+    option (google.api.http) = {
+      post: "/v1/services/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch service(s)
+  rpc Watch(ServiceReq.Watch) returns (stream ServiceResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch service(s)"
+      tags: "Service"
+    };
+    option (google.api.http) = {
+      post: "/v1/services/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsServiceBindingAPI: SGroups Service Binding API
+service SGroupsServiceBindingAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "ServiceBinding Resource API"};
+
+  // Upsert: Create or update service binding(s)
+  rpc Upsert(ServiceBindingReq.Upsert) returns (ServiceBindingResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update service binding(s)"
+      tags: "ServiceBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/service-bindings/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete service binding(s)
+  rpc Delete(ServiceBindingReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete service binding(s)"
+      tags: "ServiceBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/service-bindings/delete"
+      body: "*"
+    };
+  }
+
+  // List: List service binding(s)
+  rpc List(ServiceBindingReq.List) returns (ServiceBindingResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List service binding(s)"
+      tags: "ServiceBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/service-bindings/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch service binding(s)
+  rpc Watch(ServiceBindingReq.Watch) returns (stream ServiceBindingResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch service binding(s)"
+      tags: "ServiceBinding"
+    };
+    option (google.api.http) = {
+      post: "/v1/service-bindings/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsRulesAPI: SGroups Rules API
+service SGroupsRulesAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "SGroups Rules API"};
+
+  // Upsert: Create or update rules
+  rpc Upsert(RuleReq.Upsert) returns (RuleResp.Upsert) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Upsert: Create or update rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/upsert"
+      body: "*"
+    };
+  }
+
+  // Delete: Delete rules
+  rpc Delete(RuleReq.Delete) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Delete: Delete rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/delete"
+      body: "*"
+    };
+  }
+
+  // List: List rules
+  rpc List(RuleReq.List) returns (RuleResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: List rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/list"
+      body: "*"
+    };
+  }
+
+  // Watch: Watch rules
+  rpc Watch(RuleReq.Watch) returns (stream RuleResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Watch: Watch rules"
+      tags: "Rules"
+    };
+    option (google.api.http) = {
+      post: "/v1/rules/watch"
+      body: "*"
+    };
+  }
+}
+
+// SGroupsStatusAPI: SGroups Status API
+service SGroupsStatusAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "SGroups Status API"};
+
+  // List: gets last succeeded update DB status
+  rpc List(google.protobuf.Empty) returns (SyncStatusResp) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "List: gets last succeeded update DB status"
+      tags: "Status"
+    };
+    option (google.api.http) = {get: "/v1/status/list"};
+  }
+
+  // Watch: gets stream of update DB statuses
+  rpc Watch(google.protobuf.Empty) returns (stream SyncStatusResp) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "SyncStatuses: gets stream of update DB statuses"
+      tags: "Status"
+    };
+    option (google.api.http) = {get: "/v1/status/watch"};
+  }
+}

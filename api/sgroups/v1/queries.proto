@@ -1,0 +1,844 @@
+syntax = "proto3";
+
+package sgroups.v1;
+
+import "buf/validate/validate.proto";
+import "common/ip_transport.proto";
+import "common/resource.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+import "sgroups/v1/domains.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1;sgroupsv1";
+
+// NamespaceReq: namespace requests
+message NamespaceReq {
+  // Selector: resource selector
+  message Selector {
+    // FieldSelector: resource field selector
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+    }
+    // FieldSelector: field selector
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector
+    map<string, string> label_selector = 2;
+  }
+  // Upsert: request to upsert namespaces
+  message Upsert {
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete namespaces
+  message Delete {
+    // MetadataScope: namespace metadata for scoping
+    message MetadataScope {
+      // Uid: unique identifier
+      string uid = 1;
+      // Name: resource name
+      string name = 2;
+    }
+    // Namespace: namespace to delete
+    message Namespace {
+      // Metadata: metadata for scoping
+      MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || this.name != ''"
+          message: "either uid must be set, or name must be set"
+        }
+      }];
+    }
+    // Namespaces: list of namespaces to delete
+    repeated Namespace namespaces = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list namespaces
+  message List {
+    // Selectors: list of selectors
+    repeated Selector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch namespaces
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NamespaceResp: namespace responses
+message NamespaceResp {
+  // Upsert: response for upsert namespaces
+  message Upsert {
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 1;
+  }
+  // List: response for list namespaces
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 2;
+  }
+  // Watch: response for watch namespaces
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Namespaces: list of namespaces
+    repeated Namespace namespaces = 2;
+  }
+}
+
+// AddressGroupReq: address group requests
+message AddressGroupReq {
+  // Upsert: request to upsert address groups
+  message Upsert {
+    // AddressGroups: list of address groups
+    repeated AddressGroup address_groups = 1 [
+      json_name = "addressGroups",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete address groups
+  message Delete {
+    // AddressGroup: address group to delete
+    message AddressGroup {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // AddressGroups: list of address groups to delete
+    repeated AddressGroup address_groups = 1 [
+      json_name = "addressGroups",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list address groups
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch address groups
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// AddressGroupResp: address group responses
+message AddressGroupResp {
+  // AddressGroupExt: extended address group information
+  message AddressGroupExt {
+    // Metadata: address group metadata
+    common.Metadata metadata = 1;
+    // Spec: address group specification
+    AddressGroup.Spec spec = 2;
+    // Refs: list of resource references in the address group
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert address groups
+  message Upsert {
+    // AddressGroups: list of address groups
+    repeated AddressGroup address_groups = 1;
+  }
+  // List: response for list address groups
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // AddressGroups: list of address groups
+    repeated AddressGroupExt address_groups = 2;
+  }
+  // Watch: response for watch address groups
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // AddressGroups: list of address groups
+    repeated AddressGroupExt address_groups = 2;
+  }
+}
+
+// NetworkReq: network requests
+message NetworkReq {
+  // Upsert: request to upsert networks
+  message Upsert {
+    // Networks: list of networks
+    repeated Network networks = 1 [
+      json_name = "networks",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete networks
+  message Delete {
+    // Network: network to delete
+    message Network {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Networks: list of networks to delete
+    repeated Network networks = 1 [
+      json_name = "networks",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list networks
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch networks
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NetworkResp: network responses
+message NetworkResp {
+  // NetworkExt: extended network information
+  message NetworkExt {
+    // Metadata: network metadata
+    common.Metadata metadata = 1;
+    // Spec: network specification
+    Network.Spec spec = 2;
+    // Refs: list of resource references in the network
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert networks
+  message Upsert {
+    // Networks: list of networks
+    repeated Network networks = 1;
+  }
+  // List: response for list networks
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Networks: list of networks
+    repeated NetworkExt networks = 2;
+  }
+  // Watch: response for watch networks
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Networks: list of networks
+    repeated NetworkExt networks = 2;
+  }
+}
+
+// HostReq: host requests
+message HostReq {
+  // Upsert: request to upsert hosts
+  message Upsert {
+    // Hosts: list of hosts
+    repeated Host hosts = 1 [
+      json_name = "hosts",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete hosts
+  message Delete {
+    // Host: host to delete
+    message Host {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Hosts: list of hosts to delete
+    repeated Host hosts = 1 [
+      json_name = "hosts",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list hosts
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch hosts
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+
+  // UpdIPs: request to update IPs in hosts
+  message UpdIPs {
+    // Host: host to update IPs
+    message Host {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+      // Spec: host specification for IP update
+      message Spec {
+        // IPs: list of IPs to update in the host
+        common.IPs ips = 1 [
+          json_name = "IPs",
+          (google.api.field_behavior) = REQUIRED
+        ];
+      }
+      // Spec: host specification for IP update
+      Spec spec = 2 [(buf.validate.field) = {required: true}];
+    }
+    // Hosts: list of hosts to update IPs
+    repeated Host hosts = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // UpdMetaInfo: request to update host meta information
+  message UpdMetaInfo {
+    // HostInfo: host to update information
+    message HostInfo {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+      // Spec: host specification for information update
+      message Spec {
+        // MetaInfo: meta information to update in the host
+        Host.Spec.MetaInfo meta_info = 1;
+      }
+      // Spec: host specification for information update
+      Spec spec = 2 [(buf.validate.field) = {required: true}];
+    }
+    // Hosts: list of hosts to update information
+    repeated HostInfo hosts = 1 [
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+}
+
+// HostResp: host responses
+message HostResp {
+  // HostExt: extended host information
+  message HostExt {
+    // Metadata: host metadata
+    common.Metadata metadata = 1;
+    // Spec: host specification
+    Host.Spec spec = 2;
+    // Refs: list of resource references in the host
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert hosts
+  message Upsert {
+    // Hosts: list of hosts
+    repeated Host hosts = 1;
+  }
+  // List: response for list hosts
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Hosts: list of hosts
+    repeated HostExt hosts = 2;
+  }
+  // Watch: response for watch hosts
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Hosts: list of hosts
+    repeated HostExt hosts = 2;
+  }
+  // UpdIPs: response for update IPs in hosts
+  message UpdIPs {
+    // Hosts: list of hosts
+    repeated Host hosts = 1;
+  }
+  // UpdMetaInfo: response for update host meta information
+  message UpdMetaInfo {
+    // Hosts: list of hosts
+    repeated Host hosts = 1;
+  }
+}
+
+// HostBindingReq: host binding requests
+message HostBindingReq {
+  // Upsert: request to upsert host bindings
+  message Upsert {
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 1 [
+      json_name = "hostBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete host bindings
+  message Delete {
+    // HostBinding: host binding to delete
+    message HostBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // HostBindings: list of host bindings to delete
+    repeated HostBinding host_bindings = 1 [
+      json_name = "hostBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select host bindings
+  message Selectors {
+    // FieldSelector: resource field selector for host binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Host: reference to the host
+      common.ResourceIdentifier host = 4;
+    }
+    // FieldSelector: field selector for host binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for host binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list hosts
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch hosts
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// HostBindingResp: host binding responses
+message HostBindingResp {
+  // Upsert: response for upsert host bindings
+  message Upsert {
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 1;
+  }
+  // List: response for list of host bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 2;
+  }
+  // Watch: response for watch host bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // HostBindings: list of host bindings
+    repeated HostBinding host_bindings = 2;
+  }
+}
+
+// NetworkBindingReq: network binding requests
+message NetworkBindingReq {
+  // Upsert: request to upsert network bindings
+  message Upsert {
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 1 [
+      json_name = "networkBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete network bindings
+  message Delete {
+    // NetworkBinding: network binding to delete
+    message NetworkBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // NetworkBindings: list of network bindings to delete
+    repeated NetworkBinding network_bindings = 1 [
+      json_name = "networkBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select network bindings
+  message Selectors {
+    // FieldSelector: resource field selector for network binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Network: reference to the network
+      common.ResourceIdentifier network = 4;
+    }
+    // FieldSelector: field selector for network binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for network binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list network bindings
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch network bindings
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// NetworkBindingResp: network binding responses
+message NetworkBindingResp {
+  // Upsert: response for upsert network bindings
+  message Upsert {
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 1;
+  }
+  // List: response for list of network bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 2;
+  }
+  // Watch: response for watch network bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // NetworkBindings: list of network bindings
+    repeated NetworkBinding network_bindings = 2;
+  }
+}
+
+// ServiceReq: service requests
+message ServiceReq {
+  // Upsert: request to upsert services
+  message Upsert {
+    // Services: list of services
+    repeated Service services = 1 [
+      json_name = "services",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete services
+  message Delete {
+    // Service: service to delete
+    message Service {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Services: list of services to delete
+    repeated Service services = 1 [
+      json_name = "services",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // List: request to list services
+  message List {
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch services
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated common.ResSelector selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// ServiceResp: service responses
+message ServiceResp {
+  // ServiceExt: extended service information
+  message ServiceExt {
+    // Metadata: service metadata
+    common.Metadata metadata = 1;
+    // Spec: service specification
+    Service.Spec spec = 2;
+    // Refs: list of resource references in the service
+    repeated common.ResourceRef refs = 3;
+  }
+  // Upsert: response for upsert services
+  message Upsert {
+    // Services: list of services
+    repeated Service services = 1;
+  }
+  // List: response for list services
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Services: list of services
+    repeated ServiceExt services = 2;
+  }
+  // Watch: response for watch services
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Services: list of services
+    repeated ServiceExt services = 2;
+  }
+}
+
+// ServiceBindingReq: service binding requests
+message ServiceBindingReq {
+  // Upsert: request to upsert service bindings
+  message Upsert {
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 1 [
+      json_name = "serviceBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete service bindings
+  message Delete {
+    // ServiceBinding: service binding to delete
+    message ServiceBinding {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // ServiceBindings: list of service bindings to delete
+    repeated ServiceBinding service_bindings = 1 [
+      json_name = "serviceBindings",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+
+  // Selectors: request to select service bindings
+  message Selectors {
+    // FieldSelector: resource field selector for service binding
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // AddressGroup: reference to the address group
+      common.ResourceIdentifier address_group = 3;
+      // Service: reference to the service
+      common.ResourceIdentifier service = 4;
+    }
+    // FieldSelector: field selector for service binding
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for service binding
+    map<string, string> label_selector = 2;
+  }
+
+  // List: request to list service bindings
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch service bindings
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// ServiceBindingResp: service binding responses
+message ServiceBindingResp {
+  // Upsert: response for upsert service bindings
+  message Upsert {
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 1;
+  }
+  // List: response for list of service bindings
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 2;
+  }
+  // Watch: response for watch service bindings
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // ServiceBindings: list of service bindings
+    repeated ServiceBinding service_bindings = 2;
+  }
+}
+
+// RuleReq: rule requests
+message RuleReq {
+  // Upsert: request to upsert rules
+  message Upsert {
+    // Rules: list of rules
+    repeated Rule rules = 1 [
+      json_name = "rules",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Delete: request to delete rules
+  message Delete {
+    // Rule: rule to delete
+    message Rule {
+      // Metadata: metadata for scoping
+      common.MetadataScope metadata = 1 [(buf.validate.field) = {
+        required: true
+        cel: {
+          expression: "this.uid != '' || (this.name != '' && this.namespace != '')"
+          message: "either uid must be set, or both name and namespace must be set"
+        }
+      }];
+    }
+    // Rules: list of rules to delete
+    repeated Rule rules = 1 [
+      json_name = "rules",
+      (google.api.field_behavior) = REQUIRED,
+      (buf.validate.field).repeated.min_items = 1
+    ];
+  }
+  // Selectors: request to select rules
+  message Selectors {
+    // FieldSelector: field selector for rule
+    message FieldSelector {
+      // Name: rule name
+      string name = 1;
+      // Namespace: rule namespace
+      string namespace = 2;
+      // Traffic: traffic parameters
+      common.Session.Traffic traffic = 3;
+      // Protocol: network transport protocol
+      common.Transport.Protocol protocol = 4;
+      // Endpoints: local and remote endpoints
+      common.Endpoints endpoints = 5;
+    }
+    // SvcFieldSelector: field selector for rule
+    FieldSelector field_selector = 1;
+    // LabelSelector: label selector for rule
+    map<string, string> label_selector = 2;
+  }
+  // List: request to list rules
+  message List {
+    // Selectors: list of selectors
+    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+  }
+
+  // Watch: request to watch rules
+  message Watch {
+    // ResourceVersion: resource version for watch
+    string resource_version = 1;
+    // Selectors: list of selectors
+    repeated Selectors selectors = 2 [(buf.validate.field) = {required: true}];
+  }
+}
+
+// RuleResp: rule responses
+message RuleResp {
+  // Upsert: response for upsert rules
+  message Upsert {
+    // Rules: list of rules
+    repeated Rule rules = 1;
+  }
+  // List: response for list of rules
+  message List {
+    // ResourceVersion: current global resource revision
+    string resource_version = 1;
+    // Rules: list of rules
+    repeated Rule rules = 2;
+  }
+  // Watch: response for watch rules
+  message Watch {
+    // Type: watch event type
+    common.WatchEventType type = 1;
+    // Rules: list of rules
+    repeated Rule rules = 2;
+  }
+}
+
+// SyncStatusResp: db status after last succeeded Sync
+message SyncStatusResp {
+  // last succeeded updated DB timestamp
+  google.protobuf.Timestamp updated_at = 1;
+}

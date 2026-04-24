@@ -1,0 +1,39 @@
+
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - 'release/**'   # release/1-0-0
+      - 'release-*'    # release-1-0-0
+  pull_request:
+    branches:
+      - main
+      - dev
+      - 'release/**'   # release/1-0-0
+      - 'release-*'    # release-1-0-0
+
+  workflow_dispatch:
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - run: go version
+
+      - name: Run Linter
+        run: make proto-lint
+      - name: Run Format Checker
+        run: make proto-format-check
+      - name: Run Validate Proto
+        run: make proto-validate
+      - name: Run Tests
+        run: make test

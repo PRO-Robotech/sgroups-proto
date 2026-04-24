@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/common;common";
+
+// IpAddrFamily: IP Address family
+enum IpAddrFamily {
+  // undefined ip version
+  IPV_UNDEF = 0;
+  // IPv4
+  IPV4 = 1;
+  // IPv6
+  IPV6 = 2;
+}
+
+// Transport: represents supported network transports (L4)
+message Transport {
+  // Protocol: represents supported network protocols
+  enum Protocol {
+    // PROTOCOL_UNDEF: not specified
+    PROTOCOL_UNDEF = 0;
+    // TCP
+    TCP = 1;
+    // UDP
+    UDP = 2;
+    // ICMP
+    ICMP = 3;
+  }
+  // Entry: represents transport entry
+  message Entry {
+    // Description: description
+    string description = 1;
+    // Comment: comment
+    string comment = 2;
+    // Ports: represents TCP/UDP port or port range
+    string ports = 3;
+    // Types: ICMP message types
+    repeated uint32 types = 4;
+  }
+  // Protocol: network protocol
+  Protocol protocol = 1;
+  // IPv: IP address family
+  IpAddrFamily ipv = 2 [json_name = "IPv"];
+  // Entries: list of transport entries
+  repeated Entry entries = 3;
+}
+
+// Session: represents session parameters
+message Session {
+  // Ingress / Egress traffic dir
+  enum Traffic {
+    // TRAFFIC_UNDEF not specified
+    TRAFFIC_UNDEF = 0;
+    // Both ingress and egress
+    BOTH = 1;
+    // Ingress
+    INGRESS = 2;
+    // Egress
+    EGRESS = 3;
+  }
+  // Traffic: traffic direction
+  Traffic traffic = 1;
+}
+
+// IPs: represents list of IP addresses
+message IPs {
+  // Ipv4: list of IPv4 addresses
+  repeated string ipv4 = 1 [json_name = "IPv4"];
+  // Ipv6: list of IPv6 addresses
+  repeated string ipv6 = 2 [json_name = "IPv6"];
+}
