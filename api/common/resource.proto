@@ -123,3 +123,48 @@ enum WatchEventType {
   // DELETED: object was deleted
   DELETED = 3;
 }
+
+// Endpoints: represents endpoints
+message Endpoints {
+  // Type: endpoint type
+  enum Type {
+    // UNKNOWN: unknown type
+    UNKNOWN = 0;
+    // ADDRESS_GROUP: address group type
+    ADDRESS_GROUP = 1;
+    // SERVICE: service type
+    SERVICE = 2;
+    // FQDN: FQDN type
+    FQDN = 3;
+    // CIDR: CIDR type
+    CIDR = 4;
+  }
+  // Local: local endpoint
+  message Local {
+    // Name: endpoint name
+    string name = 1;
+    // Namespace: endpoint namespace
+    string namespace = 2;
+    // Type: endpoint type
+    Type type = 3;
+    // Labels: resource labels
+    map<string, string> labels = 4;
+  }
+  // Remote: remote endpoint
+  message Remote {
+    // Name: endpoint name
+    string name = 1;
+    // Namespace: endpoint namespace
+    string namespace = 2;
+    // Type: endpoint type
+    Type type = 3;
+    // Value: endpoint value
+    string value = 4;
+    // Labels: resource labels
+    map<string, string> labels = 5;
+  }
+  // Local: local endpoint
+  Local local = 1;
+  // Remote: remote endpoint
+  Remote remote = 2;
+}

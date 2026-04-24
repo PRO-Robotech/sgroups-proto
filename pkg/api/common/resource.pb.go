@@ -135,6 +135,67 @@ func (WatchEventType) EnumDescriptor() ([]byte, []int) {
 	return file_common_resource_proto_rawDescGZIP(), []int{1}
 }
 
+// Type: endpoint type
+type Endpoints_Type int32
+
+const (
+	// UNKNOWN: unknown type
+	Endpoints_UNKNOWN Endpoints_Type = 0
+	// ADDRESS_GROUP: address group type
+	Endpoints_ADDRESS_GROUP Endpoints_Type = 1
+	// SERVICE: service type
+	Endpoints_SERVICE Endpoints_Type = 2
+	// FQDN: FQDN type
+	Endpoints_FQDN Endpoints_Type = 3
+	// CIDR: CIDR type
+	Endpoints_CIDR Endpoints_Type = 4
+)
+
+// Enum value maps for Endpoints_Type.
+var (
+	Endpoints_Type_name = map[int32]string{
+		0: "UNKNOWN",
+		1: "ADDRESS_GROUP",
+		2: "SERVICE",
+		3: "FQDN",
+		4: "CIDR",
+	}
+	Endpoints_Type_value = map[string]int32{
+		"UNKNOWN":       0,
+		"ADDRESS_GROUP": 1,
+		"SERVICE":       2,
+		"FQDN":          3,
+		"CIDR":          4,
+	}
+)
+
+func (x Endpoints_Type) Enum() *Endpoints_Type {
+	p := new(Endpoints_Type)
+	*p = x
+	return p
+}
+
+func (x Endpoints_Type) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Endpoints_Type) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_resource_proto_enumTypes[2].Descriptor()
+}
+
+func (Endpoints_Type) Type() protoreflect.EnumType {
+	return &file_common_resource_proto_enumTypes[2]
+}
+
+func (x Endpoints_Type) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Endpoints_Type.Descriptor instead.
+func (Endpoints_Type) EnumDescriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{6, 0}
+}
+
 // Metadata: common resource metadata
 type Metadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -537,6 +598,216 @@ func (x *ResourceIdentifier) GetNamespace() string {
 	return ""
 }
 
+// Endpoints: represents endpoints
+type Endpoints struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Local: local endpoint
+	Local *Endpoints_Local `protobuf:"bytes,1,opt,name=local,proto3" json:"local,omitempty"`
+	// Remote: remote endpoint
+	Remote        *Endpoints_Remote `protobuf:"bytes,2,opt,name=remote,proto3" json:"remote,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Endpoints) Reset() {
+	*x = Endpoints{}
+	mi := &file_common_resource_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Endpoints) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Endpoints) ProtoMessage() {}
+
+func (x *Endpoints) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Endpoints.ProtoReflect.Descriptor instead.
+func (*Endpoints) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Endpoints) GetLocal() *Endpoints_Local {
+	if x != nil {
+		return x.Local
+	}
+	return nil
+}
+
+func (x *Endpoints) GetRemote() *Endpoints_Remote {
+	if x != nil {
+		return x.Remote
+	}
+	return nil
+}
+
+// Local: local endpoint
+type Endpoints_Local struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: endpoint name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: endpoint namespace
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// Type: endpoint type
+	Type Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
+	// Labels: resource labels
+	Labels        map[string]string `protobuf:"bytes,4,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Endpoints_Local) Reset() {
+	*x = Endpoints_Local{}
+	mi := &file_common_resource_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Endpoints_Local) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Endpoints_Local) ProtoMessage() {}
+
+func (x *Endpoints_Local) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Endpoints_Local.ProtoReflect.Descriptor instead.
+func (*Endpoints_Local) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{6, 0}
+}
+
+func (x *Endpoints_Local) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Endpoints_Local) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *Endpoints_Local) GetType() Endpoints_Type {
+	if x != nil {
+		return x.Type
+	}
+	return Endpoints_UNKNOWN
+}
+
+func (x *Endpoints_Local) GetLabels() map[string]string {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
+// Remote: remote endpoint
+type Endpoints_Remote struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name: endpoint name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Namespace: endpoint namespace
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// Type: endpoint type
+	Type Endpoints_Type `protobuf:"varint,3,opt,name=type,proto3,enum=common.Endpoints_Type" json:"type,omitempty"`
+	// Value: endpoint value
+	Value string `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	// Labels: resource labels
+	Labels        map[string]string `protobuf:"bytes,5,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Endpoints_Remote) Reset() {
+	*x = Endpoints_Remote{}
+	mi := &file_common_resource_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Endpoints_Remote) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Endpoints_Remote) ProtoMessage() {}
+
+func (x *Endpoints_Remote) ProtoReflect() protoreflect.Message {
+	mi := &file_common_resource_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Endpoints_Remote.ProtoReflect.Descriptor instead.
+func (*Endpoints_Remote) Descriptor() ([]byte, []int) {
+	return file_common_resource_proto_rawDescGZIP(), []int{6, 1}
+}
+
+func (x *Endpoints_Remote) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Endpoints_Remote) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *Endpoints_Remote) GetType() Endpoints_Type {
+	if x != nil {
+		return x.Type
+	}
+	return Endpoints_UNKNOWN
+}
+
+func (x *Endpoints_Remote) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *Endpoints_Remote) GetLabels() map[string]string {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
 var File_common_resource_proto protoreflect.FileDescriptor
 
 const file_common_resource_proto_rawDesc = "" +
@@ -576,7 +847,33 @@ const file_common_resource_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"F\n" +
 	"\x12ResourceIdentifier\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\tnamespace\x18\x02 \x01(\tR\tnamespace**\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\"\x8d\x05\n" +
+	"\tEndpoints\x12-\n" +
+	"\x05local\x18\x01 \x01(\v2\x17.common.Endpoints.LocalR\x05local\x120\n" +
+	"\x06remote\x18\x02 \x01(\v2\x18.common.Endpoints.RemoteR\x06remote\x1a\xdd\x01\n" +
+	"\x05Local\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12;\n" +
+	"\x06labels\x18\x04 \x03(\v2#.common.Endpoints.Local.LabelsEntryR\x06labels\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\xf5\x01\n" +
+	"\x06Remote\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
+	"\tnamespace\x18\x02 \x01(\tR\tnamespace\x12*\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x16.common.Endpoints.TypeR\x04type\x12\x14\n" +
+	"\x05value\x18\x04 \x01(\tR\x05value\x12<\n" +
+	"\x06labels\x18\x05 \x03(\v2$.common.Endpoints.Remote.LabelsEntryR\x06labels\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"G\n" +
+	"\x04Type\x12\v\n" +
+	"\aUNKNOWN\x10\x00\x12\x11\n" +
+	"\rADDRESS_GROUP\x10\x01\x12\v\n" +
+	"\aSERVICE\x10\x02\x12\b\n" +
+	"\x04FQDN\x10\x03\x12\b\n" +
+	"\x04CIDR\x10\x04**\n" +
 	"\x06Action\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\t\n" +
 	"\x05ALLOW\x10\x01\x12\b\n" +
@@ -599,34 +896,46 @@ func file_common_resource_proto_rawDescGZIP() []byte {
 	return file_common_resource_proto_rawDescData
 }
 
-var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_common_resource_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_common_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_common_resource_proto_goTypes = []any{
 	(Action)(0),                   // 0: common.Action
 	(WatchEventType)(0),           // 1: common.WatchEventType
-	(*Metadata)(nil),              // 2: common.Metadata
-	(*MetadataScope)(nil),         // 3: common.MetadataScope
-	(*ResourceRef)(nil),           // 4: common.ResourceRef
-	(*FieldSelector)(nil),         // 5: common.FieldSelector
-	(*ResSelector)(nil),           // 6: common.ResSelector
-	(*ResourceIdentifier)(nil),    // 7: common.ResourceIdentifier
-	nil,                           // 8: common.Metadata.LabelsEntry
-	nil,                           // 9: common.Metadata.AnnotationsEntry
-	nil,                           // 10: common.ResSelector.LabelSelectorEntry
-	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
+	(Endpoints_Type)(0),           // 2: common.Endpoints.Type
+	(*Metadata)(nil),              // 3: common.Metadata
+	(*MetadataScope)(nil),         // 4: common.MetadataScope
+	(*ResourceRef)(nil),           // 5: common.ResourceRef
+	(*FieldSelector)(nil),         // 6: common.FieldSelector
+	(*ResSelector)(nil),           // 7: common.ResSelector
+	(*ResourceIdentifier)(nil),    // 8: common.ResourceIdentifier
+	(*Endpoints)(nil),             // 9: common.Endpoints
+	nil,                           // 10: common.Metadata.LabelsEntry
+	nil,                           // 11: common.Metadata.AnnotationsEntry
+	nil,                           // 12: common.ResSelector.LabelSelectorEntry
+	(*Endpoints_Local)(nil),       // 13: common.Endpoints.Local
+	(*Endpoints_Remote)(nil),      // 14: common.Endpoints.Remote
+	nil,                           // 15: common.Endpoints.Local.LabelsEntry
+	nil,                           // 16: common.Endpoints.Remote.LabelsEntry
+	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
 }
 var file_common_resource_proto_depIdxs = []int32{
-	8,  // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
-	9,  // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
-	11, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
-	4,  // 3: common.FieldSelector.refs:type_name -> common.ResourceRef
-	5,  // 4: common.ResSelector.field_selector:type_name -> common.FieldSelector
-	10, // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	10, // 0: common.Metadata.labels:type_name -> common.Metadata.LabelsEntry
+	11, // 1: common.Metadata.annotations:type_name -> common.Metadata.AnnotationsEntry
+	17, // 2: common.Metadata.creation_timestamp:type_name -> google.protobuf.Timestamp
+	5,  // 3: common.FieldSelector.refs:type_name -> common.ResourceRef
+	6,  // 4: common.ResSelector.field_selector:type_name -> common.FieldSelector
+	12, // 5: common.ResSelector.label_selector:type_name -> common.ResSelector.LabelSelectorEntry
+	13, // 6: common.Endpoints.local:type_name -> common.Endpoints.Local
+	14, // 7: common.Endpoints.remote:type_name -> common.Endpoints.Remote
+	2,  // 8: common.Endpoints.Local.type:type_name -> common.Endpoints.Type
+	15, // 9: common.Endpoints.Local.labels:type_name -> common.Endpoints.Local.LabelsEntry
+	2,  // 10: common.Endpoints.Remote.type:type_name -> common.Endpoints.Type
+	16, // 11: common.Endpoints.Remote.labels:type_name -> common.Endpoints.Remote.LabelsEntry
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_common_resource_proto_init() }
@@ -639,8 +948,8 @@ func file_common_resource_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_resource_proto_rawDesc), len(file_common_resource_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   9,
+			NumEnums:      3,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
