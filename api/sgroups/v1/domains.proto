@@ -111,6 +111,28 @@ message Host {
       // KernelVersion: host kernel version
       string kernel_version = 6;
     }
+    // Endpoints: represents host endpoints
+    message Endpoints {
+      // Port: port with a logical name to identify what it serves.
+      message Port {
+        // Name: logical port name (e.g. "api", "metrics", "health").
+        string name = 1 [(buf.validate.field) = {
+          string: {max_len: 63}
+        }];
+        // Port: TCP/UDP port number.
+        uint32 port = 2 [(buf.validate.field) = {
+          uint32: {
+            gte: 1
+            lte: 65535
+          }
+        }];
+      }
+      // Address: endpoint address is reachable at. If empty, the server
+      // falls back to the peer address observed on the gRPC connection.
+      string address = 1;
+      // Ports: list of ports.
+      repeated Port ports = 2;
+    }
     // DisplayName: resource display name
     string display_name = 1 [(buf.validate.field) = {
       string: {max_len: 63}
@@ -127,6 +149,11 @@ message Host {
     ];
     // MetaInfo: host meta information
     MetaInfo meta_info = 5 [
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
+    ];
+    // Endpoints: endpoints published by the host
+    Endpoints endpoints = 6 [
       (google.api.field_behavior) = OUTPUT_ONLY,
       (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {read_only: true}
     ];

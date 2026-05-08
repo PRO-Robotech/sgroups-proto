@@ -321,6 +321,8 @@ message HostReq {
           json_name = "IPs",
           (google.api.field_behavior) = REQUIRED
         ];
+        // Endpoints: host endpoints
+        sgroups.v1.Host.Spec.Endpoints endpoints = 2;
       }
       // Spec: host specification for IP update
       Spec spec = 2 [(buf.validate.field) = {required: true}];

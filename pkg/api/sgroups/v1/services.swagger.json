@@ -1554,6 +1554,21 @@
       },
       "title": "Local: local endpoint"
     },
+    "EndpointsPort": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name: logical port name (e.g. \"api\", \"metrics\", \"health\")."
+        },
+        "port": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Port: TCP/UDP port number."
+        }
+      },
+      "description": "Port: port with a logical name to identify what it serves."
+    },
     "EndpointsRemote": {
       "type": "object",
       "properties": {
@@ -1623,6 +1638,10 @@
         "IPs": {
           "$ref": "#/definitions/commonIPs",
           "title": "IPs: list of IPs to update in the host"
+        },
+        "endpoints": {
+          "$ref": "#/definitions/HostSpecEndpoints",
+          "title": "Endpoints: host endpoints"
         }
       },
       "title": "Spec: host specification for IP update",
@@ -1651,6 +1670,24 @@
         }
       },
       "title": "HostExt: extended host information"
+    },
+    "HostSpecEndpoints": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Address: endpoint address is reachable at. If empty, the server\nfalls back to the peer address observed on the gRPC connection."
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/EndpointsPort"
+          },
+          "description": "Ports: list of ports."
+        }
+      },
+      "title": "Endpoints: represents host endpoints"
     },
     "NamespaceReqDeleteMetadataScope": {
       "type": "object",
@@ -2243,6 +2280,11 @@
         "metaInfo": {
           "$ref": "#/definitions/SpecMetaInfo",
           "title": "MetaInfo: host meta information",
+          "readOnly": true
+        },
+        "endpoints": {
+          "$ref": "#/definitions/HostSpecEndpoints",
+          "title": "Endpoints: endpoints published by the host",
           "readOnly": true
         }
       },
