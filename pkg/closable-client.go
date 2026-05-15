@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"sync"
 
+	agentv1 "github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1"
 	sgroupsv1 "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1"
 
 	"github.com/pkg/errors"
@@ -100,4 +101,7 @@ func init() {
 
 	(clientConstructor[sgroupsv1.SGroupsStatusAPIClient])(nil).
 		reg(sgroupsv1.NewSGroupsStatusAPIClient)
+
+	(clientConstructor[agentv1.AgentAPIClient])(nil).
+		reg(agentv1.NewAgentAPIClient)
 }

@@ -55,6 +55,7 @@ generate-api: | proto-deps ##generate API code
 	echo generating API in \"$$dest\" ... && \
 	$(BUF) generate api --template api/buf.gen.yaml \
 		--path api/common \
+		--path api/agent \
 		--path api/sgroups &&\
 	$(MAKE) go-deps && \
 	echo -=OK=- ;\

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package agent.v1;
+
+import "agent/v1/queries.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1;agentv1";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Agent API"
+    version: "1.0"
+  }
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru"
+    description: "Documentation"
+  }
+  schemes: [HTTP]
+  consumes: "application/json"
+  produces: "application/json"
+};
+
+// AgentAPI: defines the agent API service
+service AgentAPI {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {description: "Agent API"};
+
+  // ListSocketStatistics: list socket statistics
+  rpc ListSocketStatistics(SocketStatReq.List) returns (SocketStatResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {description: "ListSocketStatistics: List socket statistics"};
+    option (google.api.http) = {
+      post: "/v1/ss/list"
+      body: "*"
+    };
+  }
+
+  // WatchSocketStatistics: watch socket statistics
+  rpc WatchSocketStatistics(SocketStatReq.Watch) returns (stream SocketStatResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {description: "WatchSocketStatistics: Watch socket statistics"};
+    option (google.api.http) = {
+      post: "/v1/ss/watch"
+      body: "*"
+    };
+  }
+}

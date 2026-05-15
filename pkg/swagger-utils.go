@@ -6,6 +6,7 @@ import (
 	"io"
 	"reflect"
 
+	agentv1 "github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1"
 	sgroupsv1 "github.com/PRO-Robotech/sgroups-proto/pkg/api/sgroups/v1"
 
 	"github.com/go-openapi/spec"
@@ -100,6 +101,9 @@ func init() {
 
 		SwaggerUtil[sgroupsv1.SGroupsStatusAPIServer]{},
 		SwaggerUtil[sgroupsv1.SGroupsStatusAPIClient]{},
+
+		SwaggerUtil[agentv1.AgentAPIServer]{},
+		SwaggerUtil[agentv1.AgentAPIClient]{},
 	}
 
 	for _, api := range apis {
