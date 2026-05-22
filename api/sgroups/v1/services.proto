@@ -258,7 +258,7 @@ service SGroupsHostsAPI {
   }
 
   // ListSocketStatistics: list socket statistics
-  rpc ListSocketStatistics(HostReq.SocketStatistics.List) returns (HostReq.SocketStatistics.List) {
+  rpc ListSocketStatistics(HostReq.SocketStatistics.List) returns (HostResp.SocketStatistics.List) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "ListSocketStatistics: List socket statistics"
       tags: "Host"
@@ -270,7 +270,7 @@ service SGroupsHostsAPI {
   }
 
   // WatchSocketStatistics: watch socket statistics
-  rpc WatchSocketStatistics(HostReq.SocketStatistics.Watch) returns (stream HostReq.SocketStatistics.Watch) {
+  rpc WatchSocketStatistics(HostReq.SocketStatistics.Watch) returns (stream HostResp.SocketStatistics.Watch) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "WatchSocketStatistics: Watch socket statistics"
       tags: "Host"

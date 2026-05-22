@@ -426,7 +426,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1HostReqSocketStatisticsList"
+              "$ref": "#/definitions/v1HostRespSocketStatisticsList"
             }
           },
           "default": {
@@ -463,13 +463,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/v1HostReqSocketStatisticsWatch"
+                  "$ref": "#/definitions/v1HostRespSocketStatisticsWatch"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of v1HostReqSocketStatisticsWatch"
+              "title": "Stream result of v1HostRespSocketStatisticsWatch"
             }
           },
           "default": {
@@ -2967,6 +2967,34 @@
       },
       "title": "List: response for list hosts"
     },
+    "v1HostRespSocketStatisticsList": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SockStat"
+          },
+          "title": "Stats: list of socket statistics"
+        }
+      },
+      "title": "List: response for ListSocketStatistics"
+    },
+    "v1HostRespSocketStatisticsWatch": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SockStat"
+          },
+          "title": "Stats: list of socket statistics"
+        }
+      },
+      "title": "Watch: response for WatchSocketStatistics"
+    },
     "v1HostRespUpdIPs": {
       "type": "object",
       "properties": {
@@ -3479,6 +3507,34 @@
         }
       },
       "title": "Spec: resource specification"
+    },
+    "v1ProcessInfo": {
+      "type": "object",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Pid: process ID"
+        },
+        "comm": {
+          "type": "string",
+          "title": "Comm: process command name"
+        },
+        "cmdLine": {
+          "type": "string",
+          "title": "CmdLine: process command line"
+        },
+        "exe": {
+          "type": "string",
+          "title": "Exe: process executable path"
+        },
+        "fd": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Fd: process file descriptor associated with the socket"
+        }
+      },
+      "title": "ProcessInfo: represents process information"
     },
     "v1RuleReqDelete": {
       "type": "object",
@@ -3995,6 +4051,59 @@
         }
       },
       "title": "Spec: resource specification"
+    },
+    "v1SockStat": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "title": "Protocol: socket protocol"
+        },
+        "family": {
+          "$ref": "#/definitions/commonIpAddrFamily",
+          "title": "Family: socket address family"
+        },
+        "state": {
+          "$ref": "#/definitions/v1ConnState",
+          "title": "State: connection state"
+        },
+        "localAddr": {
+          "type": "string",
+          "title": "LocalAddr: local ip address"
+        },
+        "localPort": {
+          "type": "integer",
+          "format": "int32",
+          "title": "LocalPort: local port"
+        },
+        "remoteAddr": {
+          "type": "string",
+          "title": "RemoteAddr: remote ip address"
+        },
+        "remotePort": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RemotePort: remote port"
+        },
+        "ifname": {
+          "type": "string",
+          "title": "Ifname: interface name"
+        },
+        "inode": {
+          "type": "string",
+          "format": "int64",
+          "title": "Inode: socket inode number"
+        },
+        "processes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ProcessInfo"
+          },
+          "title": "Processes: associated processes"
+        }
+      },
+      "title": "SockStat: represents socket statistics"
     },
     "v1SockStatSelectors": {
       "type": "object",
