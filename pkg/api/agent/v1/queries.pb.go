@@ -8,7 +8,6 @@ package agentv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	common "github.com/PRO-Robotech/sgroups-proto/pkg/api/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -97,154 +96,18 @@ func (*SocketStatResp) Descriptor() ([]byte, []int) {
 	return file_agent_v1_queries_proto_rawDescGZIP(), []int{1}
 }
 
-// Selectors: request to select socket statistics
-type SocketStatReq_Selectors struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Protocol: socket protocol
-	Protocol string `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	// Family: socket address family
-	Family common.IpAddrFamily `protobuf:"varint,2,opt,name=family,proto3,enum=common.IpAddrFamily" json:"family,omitempty"`
-	// State: connection state
-	State ConnState `protobuf:"varint,3,opt,name=state,proto3,enum=agent.v1.ConnState" json:"state,omitempty"`
-	// LocalAddr: local ip address
-	LocalAddr string `protobuf:"bytes,4,opt,name=local_addr,json=localAddr,proto3" json:"local_addr,omitempty"`
-	// LocalPort: local port
-	LocalPort int32 `protobuf:"varint,5,opt,name=local_port,json=localPort,proto3" json:"local_port,omitempty"`
-	// RemoteAddr: remote ip address
-	RemoteAddr string `protobuf:"bytes,6,opt,name=remote_addr,json=remoteAddr,proto3" json:"remote_addr,omitempty"`
-	// RemotePort: remote port
-	RemotePort int32 `protobuf:"varint,7,opt,name=remote_port,json=remotePort,proto3" json:"remote_port,omitempty"`
-	// Ifname: interface name
-	Ifname string `protobuf:"bytes,8,opt,name=ifname,proto3" json:"ifname,omitempty"`
-	// Inode: socket inode number
-	Inode int64 `protobuf:"varint,9,opt,name=inode,proto3" json:"inode,omitempty"`
-	// Pid: process ID
-	Pid int32 `protobuf:"varint,10,opt,name=pid,proto3" json:"pid,omitempty"`
-	// Comm: process command name
-	Comm          string `protobuf:"bytes,11,opt,name=comm,proto3" json:"comm,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SocketStatReq_Selectors) Reset() {
-	*x = SocketStatReq_Selectors{}
-	mi := &file_agent_v1_queries_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SocketStatReq_Selectors) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SocketStatReq_Selectors) ProtoMessage() {}
-
-func (x *SocketStatReq_Selectors) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SocketStatReq_Selectors.ProtoReflect.Descriptor instead.
-func (*SocketStatReq_Selectors) Descriptor() ([]byte, []int) {
-	return file_agent_v1_queries_proto_rawDescGZIP(), []int{0, 0}
-}
-
-func (x *SocketStatReq_Selectors) GetProtocol() string {
-	if x != nil {
-		return x.Protocol
-	}
-	return ""
-}
-
-func (x *SocketStatReq_Selectors) GetFamily() common.IpAddrFamily {
-	if x != nil {
-		return x.Family
-	}
-	return common.IpAddrFamily(0)
-}
-
-func (x *SocketStatReq_Selectors) GetState() ConnState {
-	if x != nil {
-		return x.State
-	}
-	return ConnState_CONN_UNDEF
-}
-
-func (x *SocketStatReq_Selectors) GetLocalAddr() string {
-	if x != nil {
-		return x.LocalAddr
-	}
-	return ""
-}
-
-func (x *SocketStatReq_Selectors) GetLocalPort() int32 {
-	if x != nil {
-		return x.LocalPort
-	}
-	return 0
-}
-
-func (x *SocketStatReq_Selectors) GetRemoteAddr() string {
-	if x != nil {
-		return x.RemoteAddr
-	}
-	return ""
-}
-
-func (x *SocketStatReq_Selectors) GetRemotePort() int32 {
-	if x != nil {
-		return x.RemotePort
-	}
-	return 0
-}
-
-func (x *SocketStatReq_Selectors) GetIfname() string {
-	if x != nil {
-		return x.Ifname
-	}
-	return ""
-}
-
-func (x *SocketStatReq_Selectors) GetInode() int64 {
-	if x != nil {
-		return x.Inode
-	}
-	return 0
-}
-
-func (x *SocketStatReq_Selectors) GetPid() int32 {
-	if x != nil {
-		return x.Pid
-	}
-	return 0
-}
-
-func (x *SocketStatReq_Selectors) GetComm() string {
-	if x != nil {
-		return x.Comm
-	}
-	return ""
-}
-
 // List: request for listing socket statistics
 type SocketStatReq_List struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Selectors: list of selectors
-	Selectors     []*SocketStatReq_Selectors `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	Selectors     []*SockStat_Selectors `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SocketStatReq_List) Reset() {
 	*x = SocketStatReq_List{}
-	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	mi := &file_agent_v1_queries_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -256,7 +119,7 @@ func (x *SocketStatReq_List) String() string {
 func (*SocketStatReq_List) ProtoMessage() {}
 
 func (x *SocketStatReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	mi := &file_agent_v1_queries_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,10 +132,10 @@ func (x *SocketStatReq_List) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SocketStatReq_List.ProtoReflect.Descriptor instead.
 func (*SocketStatReq_List) Descriptor() ([]byte, []int) {
-	return file_agent_v1_queries_proto_rawDescGZIP(), []int{0, 1}
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *SocketStatReq_List) GetSelectors() []*SocketStatReq_Selectors {
+func (x *SocketStatReq_List) GetSelectors() []*SockStat_Selectors {
 	if x != nil {
 		return x.Selectors
 	}
@@ -283,14 +146,14 @@ func (x *SocketStatReq_List) GetSelectors() []*SocketStatReq_Selectors {
 type SocketStatReq_Watch struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Selectors: list of selectors
-	Selectors     []*SocketStatReq_Selectors `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	Selectors     []*SockStat_Selectors `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SocketStatReq_Watch) Reset() {
 	*x = SocketStatReq_Watch{}
-	mi := &file_agent_v1_queries_proto_msgTypes[4]
+	mi := &file_agent_v1_queries_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -302,7 +165,7 @@ func (x *SocketStatReq_Watch) String() string {
 func (*SocketStatReq_Watch) ProtoMessage() {}
 
 func (x *SocketStatReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[4]
+	mi := &file_agent_v1_queries_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -315,10 +178,10 @@ func (x *SocketStatReq_Watch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SocketStatReq_Watch.ProtoReflect.Descriptor instead.
 func (*SocketStatReq_Watch) Descriptor() ([]byte, []int) {
-	return file_agent_v1_queries_proto_rawDescGZIP(), []int{0, 2}
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{0, 1}
 }
 
-func (x *SocketStatReq_Watch) GetSelectors() []*SocketStatReq_Selectors {
+func (x *SocketStatReq_Watch) GetSelectors() []*SockStat_Selectors {
 	if x != nil {
 		return x.Selectors
 	}
@@ -336,7 +199,7 @@ type SocketStatResp_List struct {
 
 func (x *SocketStatResp_List) Reset() {
 	*x = SocketStatResp_List{}
-	mi := &file_agent_v1_queries_proto_msgTypes[5]
+	mi := &file_agent_v1_queries_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -348,7 +211,7 @@ func (x *SocketStatResp_List) String() string {
 func (*SocketStatResp_List) ProtoMessage() {}
 
 func (x *SocketStatResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[5]
+	mi := &file_agent_v1_queries_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -382,7 +245,7 @@ type SocketStatResp_Watch struct {
 
 func (x *SocketStatResp_Watch) Reset() {
 	*x = SocketStatResp_Watch{}
-	mi := &file_agent_v1_queries_proto_msgTypes[6]
+	mi := &file_agent_v1_queries_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -394,7 +257,7 @@ func (x *SocketStatResp_Watch) String() string {
 func (*SocketStatResp_Watch) ProtoMessage() {}
 
 func (x *SocketStatResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[6]
+	mi := &file_agent_v1_queries_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -421,29 +284,12 @@ var File_agent_v1_queries_proto protoreflect.FileDescriptor
 
 const file_agent_v1_queries_proto_rawDesc = "" +
 	"\n" +
-	"\x16agent/v1/queries.proto\x12\bagent.v1\x1a\x16agent/v1/domains.proto\x1a\x1bbuf/validate/validate.proto\x1a\x19common/ip_transport.proto\"\x89\x04\n" +
-	"\rSocketStatReq\x1a\xd4\x02\n" +
-	"\tSelectors\x12\x1a\n" +
-	"\bprotocol\x18\x01 \x01(\tR\bprotocol\x12,\n" +
-	"\x06family\x18\x02 \x01(\x0e2\x14.common.IpAddrFamilyR\x06family\x12)\n" +
-	"\x05state\x18\x03 \x01(\x0e2\x13.agent.v1.ConnStateR\x05state\x12\x1d\n" +
-	"\n" +
-	"local_addr\x18\x04 \x01(\tR\tlocalAddr\x12\x1d\n" +
-	"\n" +
-	"local_port\x18\x05 \x01(\x05R\tlocalPort\x12\x1f\n" +
-	"\vremote_addr\x18\x06 \x01(\tR\n" +
-	"remoteAddr\x12\x1f\n" +
-	"\vremote_port\x18\a \x01(\x05R\n" +
-	"remotePort\x12\x16\n" +
-	"\x06ifname\x18\b \x01(\tR\x06ifname\x12\x14\n" +
-	"\x05inode\x18\t \x01(\x03R\x05inode\x12\x10\n" +
-	"\x03pid\x18\n" +
-	" \x01(\x05R\x03pid\x12\x12\n" +
-	"\x04comm\x18\v \x01(\tR\x04comm\x1aO\n" +
-	"\x04List\x12G\n" +
-	"\tselectors\x18\x01 \x03(\v2!.agent.v1.SocketStatReq.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1aP\n" +
-	"\x05Watch\x12G\n" +
-	"\tselectors\x18\x01 \x03(\v2!.agent.v1.SocketStatReq.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\"u\n" +
+	"\x16agent/v1/queries.proto\x12\bagent.v1\x1a\x16agent/v1/domains.proto\x1a\x1bbuf/validate/validate.proto\"\xa8\x01\n" +
+	"\rSocketStatReq\x1aJ\n" +
+	"\x04List\x12B\n" +
+	"\tselectors\x18\x01 \x03(\v2\x1c.agent.v1.SockStat.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\x1aK\n" +
+	"\x05Watch\x12B\n" +
+	"\tselectors\x18\x01 \x03(\v2\x1c.agent.v1.SockStat.SelectorsB\x06\xbaH\x03\xc8\x01\x01R\tselectors\"u\n" +
 	"\x0eSocketStatResp\x1a0\n" +
 	"\x04List\x12(\n" +
 	"\x05stats\x18\x01 \x03(\v2\x12.agent.v1.SockStatR\x05stats\x1a1\n" +
@@ -462,31 +308,27 @@ func file_agent_v1_queries_proto_rawDescGZIP() []byte {
 	return file_agent_v1_queries_proto_rawDescData
 }
 
-var file_agent_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_agent_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_agent_v1_queries_proto_goTypes = []any{
-	(*SocketStatReq)(nil),           // 0: agent.v1.SocketStatReq
-	(*SocketStatResp)(nil),          // 1: agent.v1.SocketStatResp
-	(*SocketStatReq_Selectors)(nil), // 2: agent.v1.SocketStatReq.Selectors
-	(*SocketStatReq_List)(nil),      // 3: agent.v1.SocketStatReq.List
-	(*SocketStatReq_Watch)(nil),     // 4: agent.v1.SocketStatReq.Watch
-	(*SocketStatResp_List)(nil),     // 5: agent.v1.SocketStatResp.List
-	(*SocketStatResp_Watch)(nil),    // 6: agent.v1.SocketStatResp.Watch
-	(common.IpAddrFamily)(0),        // 7: common.IpAddrFamily
-	(ConnState)(0),                  // 8: agent.v1.ConnState
-	(*SockStat)(nil),                // 9: agent.v1.SockStat
+	(*SocketStatReq)(nil),        // 0: agent.v1.SocketStatReq
+	(*SocketStatResp)(nil),       // 1: agent.v1.SocketStatResp
+	(*SocketStatReq_List)(nil),   // 2: agent.v1.SocketStatReq.List
+	(*SocketStatReq_Watch)(nil),  // 3: agent.v1.SocketStatReq.Watch
+	(*SocketStatResp_List)(nil),  // 4: agent.v1.SocketStatResp.List
+	(*SocketStatResp_Watch)(nil), // 5: agent.v1.SocketStatResp.Watch
+	(*SockStat_Selectors)(nil),   // 6: agent.v1.SockStat.Selectors
+	(*SockStat)(nil),             // 7: agent.v1.SockStat
 }
 var file_agent_v1_queries_proto_depIdxs = []int32{
-	7, // 0: agent.v1.SocketStatReq.Selectors.family:type_name -> common.IpAddrFamily
-	8, // 1: agent.v1.SocketStatReq.Selectors.state:type_name -> agent.v1.ConnState
-	2, // 2: agent.v1.SocketStatReq.List.selectors:type_name -> agent.v1.SocketStatReq.Selectors
-	2, // 3: agent.v1.SocketStatReq.Watch.selectors:type_name -> agent.v1.SocketStatReq.Selectors
-	9, // 4: agent.v1.SocketStatResp.List.stats:type_name -> agent.v1.SockStat
-	9, // 5: agent.v1.SocketStatResp.Watch.stats:type_name -> agent.v1.SockStat
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	6, // 0: agent.v1.SocketStatReq.List.selectors:type_name -> agent.v1.SockStat.Selectors
+	6, // 1: agent.v1.SocketStatReq.Watch.selectors:type_name -> agent.v1.SockStat.Selectors
+	7, // 2: agent.v1.SocketStatResp.List.stats:type_name -> agent.v1.SockStat
+	7, // 3: agent.v1.SocketStatResp.Watch.stats:type_name -> agent.v1.SockStat
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_agent_v1_queries_proto_init() }
@@ -501,7 +343,7 @@ func file_agent_v1_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_v1_queries_proto_rawDesc), len(file_agent_v1_queries_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

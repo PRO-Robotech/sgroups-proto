@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package sgroups.v1;
 
+import "agent/v1/domains.proto";
 import "buf/validate/validate.proto";
 import "common/ip_transport.proto";
 import "common/resource.proto";
@@ -360,6 +361,29 @@ message HostReq {
       (buf.validate.field).repeated.min_items = 1
     ];
   }
+
+  // SocketStatistics: request to query socket statistics in hosts
+  message SocketStatistics {
+    // FieldSelector: resource field selector
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+      // Filters: socket statistics filters
+      repeated agent.v1.SockStat.Selectors filters = 3;
+    }
+    // List: request to list socket statistics
+    message List {
+      // Selectors: list of selectors
+      repeated FieldSelector selectors = 1 [(buf.validate.field) = {required: true}];
+    }
+    // Watch: request to watch socket statistics
+    message Watch {
+      // Selectors: list of selectors
+      repeated FieldSelector selectors = 1 [(buf.validate.field) = {required: true}];
+    }
+  }
 }
 
 // HostResp: host responses
@@ -401,6 +425,19 @@ message HostResp {
   message UpdMetaInfo {
     // Hosts: list of hosts
     repeated Host hosts = 1;
+  }
+  // SocketStatistics: response for socket statistics in hosts
+  message SocketStatistics {
+    // List: response for ListSocketStatistics
+    message List {
+      // Stats: list of socket statistics
+      repeated agent.v1.SockStat stats = 1;
+    }
+    // Watch: response for WatchSocketStatistics
+    message Watch {
+      // Stats: list of socket statistics
+      repeated agent.v1.SockStat stats = 1;
+    }
   }
 }
 

@@ -417,6 +417,83 @@
         ]
       }
     },
+    "/v1/hosts/ss/list": {
+      "post": {
+        "summary": "ListSocketStatistics: list socket statistics",
+        "description": "ListSocketStatistics: List socket statistics",
+        "operationId": "SGroupsHostsAPI_ListSocketStatistics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostReqSocketStatisticsList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqSocketStatisticsList"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/ss/watch": {
+      "post": {
+        "summary": "WatchSocketStatistics: watch socket statistics",
+        "description": "WatchSocketStatistics: Watch socket statistics",
+        "operationId": "SGroupsHostsAPI_WatchSocketStatistics",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1HostReqSocketStatisticsWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1HostReqSocketStatisticsWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqSocketStatisticsWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
     "/v1/hosts/upd-ips": {
       "post": {
         "summary": "UpdIPs: Update host(s) IPs",
@@ -1618,6 +1695,28 @@
       },
       "title": "Host: host to delete"
     },
+    "HostReqSocketStatisticsFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SockStatSelectors"
+          },
+          "title": "Filters: socket statistics filters"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
+    },
     "HostReqUpdIPsHost": {
       "type": "object",
       "properties": {
@@ -2520,6 +2619,27 @@
       },
       "title": "Spec: resource specification"
     },
+    "v1ConnState": {
+      "type": "string",
+      "enum": [
+        "CONN_UNDEF",
+        "ESTABLISHED",
+        "SYN_SENT",
+        "SYN_RECV",
+        "FIN_WAIT1",
+        "FIN_WAIT2",
+        "TIME_WAIT",
+        "CLOSE",
+        "CLOSE_WAIT",
+        "LAST_ACK",
+        "LISTEN",
+        "CLOSING",
+        "NEW_SYN_RECV"
+      ],
+      "default": "CONN_UNDEF",
+      "description": "- CONN_UNDEF: CONN_UNDEF: undefined connection state\n - ESTABLISHED: ESTABLISHED: connection is established\n - SYN_SENT: SYN_SENT: connection is in SYN_SENT state\n - SYN_RECV: SYN_RECV: connection is in SYN_RECV state\n - FIN_WAIT1: FIN_WAIT1: connection is in FIN_WAIT1 state\n - FIN_WAIT2: FIN_WAIT2: connection is in FIN_WAIT2 state\n - TIME_WAIT: TIME_WAIT: connection is in TIME_WAIT state\n - CLOSE: CLOSE: connection is closed\n - CLOSE_WAIT: CLOSE_WAIT: connection is in CLOSE_WAIT state\n - LAST_ACK: LAST_ACK: connection is in LAST_ACK state\n - LISTEN: LISTEN: connection is in LISTEN state\n - CLOSING: CLOSING: connection is in CLOSING state\n - NEW_SYN_RECV: NEW_SYN_RECV: connection is in NEW_SYN_RECV state",
+      "title": "ConnState: represents connection state"
+    },
     "v1HostBindingReqDelete": {
       "type": "object",
       "properties": {
@@ -2731,6 +2851,34 @@
         }
       },
       "title": "List: request to list hosts"
+    },
+    "v1HostReqSocketStatisticsList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqSocketStatisticsFieldSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list socket statistics"
+    },
+    "v1HostReqSocketStatisticsWatch": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqSocketStatisticsFieldSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch socket statistics"
     },
     "v1HostReqUpdIPs": {
       "type": "object",
@@ -3847,6 +3995,60 @@
         }
       },
       "title": "Spec: resource specification"
+    },
+    "v1SockStatSelectors": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "title": "Protocol: socket protocol"
+        },
+        "family": {
+          "$ref": "#/definitions/commonIpAddrFamily",
+          "title": "Family: socket address family"
+        },
+        "state": {
+          "$ref": "#/definitions/v1ConnState",
+          "title": "State: connection state"
+        },
+        "localAddr": {
+          "type": "string",
+          "title": "LocalAddr: local ip address"
+        },
+        "localPort": {
+          "type": "integer",
+          "format": "int32",
+          "title": "LocalPort: local port"
+        },
+        "remoteAddr": {
+          "type": "string",
+          "title": "RemoteAddr: remote ip address"
+        },
+        "remotePort": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RemotePort: remote port"
+        },
+        "ifname": {
+          "type": "string",
+          "title": "Ifname: interface name"
+        },
+        "inode": {
+          "type": "string",
+          "format": "int64",
+          "title": "Inode: socket inode number"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Pid: process ID"
+        },
+        "comm": {
+          "type": "string",
+          "title": "Comm: process command name"
+        }
+      },
+      "title": "Selectors: request to select socket statistics"
     },
     "v1SyncStatusResp": {
       "type": "object",

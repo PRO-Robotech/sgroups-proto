@@ -717,12 +717,14 @@ var SGroupsNetworksAPI_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SGroupsHostsAPI_Upsert_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/Upsert"
-	SGroupsHostsAPI_Delete_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/Delete"
-	SGroupsHostsAPI_List_FullMethodName        = "/sgroups.v1.SGroupsHostsAPI/List"
-	SGroupsHostsAPI_Watch_FullMethodName       = "/sgroups.v1.SGroupsHostsAPI/Watch"
-	SGroupsHostsAPI_UpdIPs_FullMethodName      = "/sgroups.v1.SGroupsHostsAPI/UpdIPs"
-	SGroupsHostsAPI_UpdMetaInfo_FullMethodName = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
+	SGroupsHostsAPI_Upsert_FullMethodName                = "/sgroups.v1.SGroupsHostsAPI/Upsert"
+	SGroupsHostsAPI_Delete_FullMethodName                = "/sgroups.v1.SGroupsHostsAPI/Delete"
+	SGroupsHostsAPI_List_FullMethodName                  = "/sgroups.v1.SGroupsHostsAPI/List"
+	SGroupsHostsAPI_Watch_FullMethodName                 = "/sgroups.v1.SGroupsHostsAPI/Watch"
+	SGroupsHostsAPI_UpdIPs_FullMethodName                = "/sgroups.v1.SGroupsHostsAPI/UpdIPs"
+	SGroupsHostsAPI_UpdMetaInfo_FullMethodName           = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
+	SGroupsHostsAPI_ListSocketStatistics_FullMethodName  = "/sgroups.v1.SGroupsHostsAPI/ListSocketStatistics"
+	SGroupsHostsAPI_WatchSocketStatistics_FullMethodName = "/sgroups.v1.SGroupsHostsAPI/WatchSocketStatistics"
 )
 
 // SGroupsHostsAPIClient is the client API for SGroupsHostsAPI service.
@@ -743,6 +745,10 @@ type SGroupsHostsAPIClient interface {
 	UpdIPs(ctx context.Context, in *HostReq_UpdIPs, opts ...grpc.CallOption) (*HostResp_UpdIPs, error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(ctx context.Context, in *HostReq_UpdMetaInfo, opts ...grpc.CallOption) (*HostResp_UpdMetaInfo, error)
+	// ListSocketStatistics: list socket statistics
+	ListSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_List, opts ...grpc.CallOption) (*HostReq_SocketStatistics_List, error)
+	// WatchSocketStatistics: watch socket statistics
+	WatchSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostReq_SocketStatistics_Watch], error)
 }
 
 type sGroupsHostsAPIClient struct {
@@ -822,6 +828,35 @@ func (c *sGroupsHostsAPIClient) UpdMetaInfo(ctx context.Context, in *HostReq_Upd
 	return out, nil
 }
 
+func (c *sGroupsHostsAPIClient) ListSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_List, opts ...grpc.CallOption) (*HostReq_SocketStatistics_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostReq_SocketStatistics_List)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_ListSocketStatistics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) WatchSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostReq_SocketStatistics_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsHostsAPI_ServiceDesc.Streams[1], SGroupsHostsAPI_WatchSocketStatistics_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[HostReq_SocketStatistics_Watch, HostReq_SocketStatistics_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchSocketStatisticsClient = grpc.ServerStreamingClient[HostReq_SocketStatistics_Watch]
+
 // SGroupsHostsAPIServer is the server API for SGroupsHostsAPI service.
 // All implementations must embed UnimplementedSGroupsHostsAPIServer
 // for forward compatibility.
@@ -840,6 +875,10 @@ type SGroupsHostsAPIServer interface {
 	UpdIPs(context.Context, *HostReq_UpdIPs) (*HostResp_UpdIPs, error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *HostReq_UpdMetaInfo) (*HostResp_UpdMetaInfo, error)
+	// ListSocketStatistics: list socket statistics
+	ListSocketStatistics(context.Context, *HostReq_SocketStatistics_List) (*HostReq_SocketStatistics_List, error)
+	// WatchSocketStatistics: watch socket statistics
+	WatchSocketStatistics(*HostReq_SocketStatistics_Watch, grpc.ServerStreamingServer[HostReq_SocketStatistics_Watch]) error
 	mustEmbedUnimplementedSGroupsHostsAPIServer()
 }
 
@@ -867,6 +906,12 @@ func (UnimplementedSGroupsHostsAPIServer) UpdIPs(context.Context, *HostReq_UpdIP
 }
 func (UnimplementedSGroupsHostsAPIServer) UpdMetaInfo(context.Context, *HostReq_UpdMetaInfo) (*HostResp_UpdMetaInfo, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdMetaInfo not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) ListSocketStatistics(context.Context, *HostReq_SocketStatistics_List) (*HostReq_SocketStatistics_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSocketStatistics not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) WatchSocketStatistics(*HostReq_SocketStatistics_Watch, grpc.ServerStreamingServer[HostReq_SocketStatistics_Watch]) error {
+	return status.Error(codes.Unimplemented, "method WatchSocketStatistics not implemented")
 }
 func (UnimplementedSGroupsHostsAPIServer) mustEmbedUnimplementedSGroupsHostsAPIServer() {}
 func (UnimplementedSGroupsHostsAPIServer) testEmbeddedByValue()                         {}
@@ -990,6 +1035,35 @@ func _SGroupsHostsAPI_UpdMetaInfo_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SGroupsHostsAPI_ListSocketStatistics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_SocketStatistics_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).ListSocketStatistics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_ListSocketStatistics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).ListSocketStatistics(ctx, req.(*HostReq_SocketStatistics_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_WatchSocketStatistics_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(HostReq_SocketStatistics_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsHostsAPIServer).WatchSocketStatistics(m, &grpc.GenericServerStream[HostReq_SocketStatistics_Watch, HostReq_SocketStatistics_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchSocketStatisticsServer = grpc.ServerStreamingServer[HostReq_SocketStatistics_Watch]
+
 // SGroupsHostsAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsHostsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1017,11 +1091,20 @@ var SGroupsHostsAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "UpdMetaInfo",
 			Handler:    _SGroupsHostsAPI_UpdMetaInfo_Handler,
 		},
+		{
+			MethodName: "ListSocketStatistics",
+			Handler:    _SGroupsHostsAPI_ListSocketStatistics_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Watch",
 			Handler:       _SGroupsHostsAPI_Watch_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "WatchSocketStatistics",
+			Handler:       _SGroupsHostsAPI_WatchSocketStatistics_Handler,
 			ServerStreams: true,
 		},
 	},

@@ -324,6 +324,142 @@ func (x *SockStat) GetProcesses() []*ProcessInfo {
 	return nil
 }
 
+// Selectors: request to select socket statistics
+type SockStat_Selectors struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Protocol: socket protocol
+	Protocol string `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
+	// Family: socket address family
+	Family common.IpAddrFamily `protobuf:"varint,2,opt,name=family,proto3,enum=common.IpAddrFamily" json:"family,omitempty"`
+	// State: connection state
+	State ConnState `protobuf:"varint,3,opt,name=state,proto3,enum=agent.v1.ConnState" json:"state,omitempty"`
+	// LocalAddr: local ip address
+	LocalAddr string `protobuf:"bytes,4,opt,name=local_addr,json=localAddr,proto3" json:"local_addr,omitempty"`
+	// LocalPort: local port
+	LocalPort int32 `protobuf:"varint,5,opt,name=local_port,json=localPort,proto3" json:"local_port,omitempty"`
+	// RemoteAddr: remote ip address
+	RemoteAddr string `protobuf:"bytes,6,opt,name=remote_addr,json=remoteAddr,proto3" json:"remote_addr,omitempty"`
+	// RemotePort: remote port
+	RemotePort int32 `protobuf:"varint,7,opt,name=remote_port,json=remotePort,proto3" json:"remote_port,omitempty"`
+	// Ifname: interface name
+	Ifname string `protobuf:"bytes,8,opt,name=ifname,proto3" json:"ifname,omitempty"`
+	// Inode: socket inode number
+	Inode int64 `protobuf:"varint,9,opt,name=inode,proto3" json:"inode,omitempty"`
+	// Pid: process ID
+	Pid int32 `protobuf:"varint,10,opt,name=pid,proto3" json:"pid,omitempty"`
+	// Comm: process command name
+	Comm          string `protobuf:"bytes,11,opt,name=comm,proto3" json:"comm,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SockStat_Selectors) Reset() {
+	*x = SockStat_Selectors{}
+	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SockStat_Selectors) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SockStat_Selectors) ProtoMessage() {}
+
+func (x *SockStat_Selectors) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SockStat_Selectors.ProtoReflect.Descriptor instead.
+func (*SockStat_Selectors) Descriptor() ([]byte, []int) {
+	return file_agent_v1_domains_proto_rawDescGZIP(), []int{1, 0}
+}
+
+func (x *SockStat_Selectors) GetProtocol() string {
+	if x != nil {
+		return x.Protocol
+	}
+	return ""
+}
+
+func (x *SockStat_Selectors) GetFamily() common.IpAddrFamily {
+	if x != nil {
+		return x.Family
+	}
+	return common.IpAddrFamily(0)
+}
+
+func (x *SockStat_Selectors) GetState() ConnState {
+	if x != nil {
+		return x.State
+	}
+	return ConnState_CONN_UNDEF
+}
+
+func (x *SockStat_Selectors) GetLocalAddr() string {
+	if x != nil {
+		return x.LocalAddr
+	}
+	return ""
+}
+
+func (x *SockStat_Selectors) GetLocalPort() int32 {
+	if x != nil {
+		return x.LocalPort
+	}
+	return 0
+}
+
+func (x *SockStat_Selectors) GetRemoteAddr() string {
+	if x != nil {
+		return x.RemoteAddr
+	}
+	return ""
+}
+
+func (x *SockStat_Selectors) GetRemotePort() int32 {
+	if x != nil {
+		return x.RemotePort
+	}
+	return 0
+}
+
+func (x *SockStat_Selectors) GetIfname() string {
+	if x != nil {
+		return x.Ifname
+	}
+	return ""
+}
+
+func (x *SockStat_Selectors) GetInode() int64 {
+	if x != nil {
+		return x.Inode
+	}
+	return 0
+}
+
+func (x *SockStat_Selectors) GetPid() int32 {
+	if x != nil {
+		return x.Pid
+	}
+	return 0
+}
+
+func (x *SockStat_Selectors) GetComm() string {
+	if x != nil {
+		return x.Comm
+	}
+	return ""
+}
+
 var File_agent_v1_domains_proto protoreflect.FileDescriptor
 
 const file_agent_v1_domains_proto_rawDesc = "" +
@@ -334,7 +470,7 @@ const file_agent_v1_domains_proto_rawDesc = "" +
 	"\x04comm\x18\x02 \x01(\tR\x04comm\x12\x19\n" +
 	"\bcmd_line\x18\x03 \x01(\tR\acmdLine\x12\x10\n" +
 	"\x03exe\x18\x04 \x01(\tR\x03exe\x12\x0e\n" +
-	"\x02fd\x18\x05 \x01(\x05R\x02fd\"\xe2\x02\n" +
+	"\x02fd\x18\x05 \x01(\x05R\x02fd\"\xb9\x05\n" +
 	"\bSockStat\x12\x1a\n" +
 	"\bprotocol\x18\x01 \x01(\tR\bprotocol\x12,\n" +
 	"\x06family\x18\x02 \x01(\x0e2\x14.common.IpAddrFamilyR\x06family\x12)\n" +
@@ -350,7 +486,24 @@ const file_agent_v1_domains_proto_rawDesc = "" +
 	"\x06ifname\x18\b \x01(\tR\x06ifname\x12\x14\n" +
 	"\x05inode\x18\t \x01(\x03R\x05inode\x123\n" +
 	"\tprocesses\x18\n" +
-	" \x03(\v2\x15.agent.v1.ProcessInfoR\tprocesses*\xc9\x01\n" +
+	" \x03(\v2\x15.agent.v1.ProcessInfoR\tprocesses\x1a\xd4\x02\n" +
+	"\tSelectors\x12\x1a\n" +
+	"\bprotocol\x18\x01 \x01(\tR\bprotocol\x12,\n" +
+	"\x06family\x18\x02 \x01(\x0e2\x14.common.IpAddrFamilyR\x06family\x12)\n" +
+	"\x05state\x18\x03 \x01(\x0e2\x13.agent.v1.ConnStateR\x05state\x12\x1d\n" +
+	"\n" +
+	"local_addr\x18\x04 \x01(\tR\tlocalAddr\x12\x1d\n" +
+	"\n" +
+	"local_port\x18\x05 \x01(\x05R\tlocalPort\x12\x1f\n" +
+	"\vremote_addr\x18\x06 \x01(\tR\n" +
+	"remoteAddr\x12\x1f\n" +
+	"\vremote_port\x18\a \x01(\x05R\n" +
+	"remotePort\x12\x16\n" +
+	"\x06ifname\x18\b \x01(\tR\x06ifname\x12\x14\n" +
+	"\x05inode\x18\t \x01(\x03R\x05inode\x12\x10\n" +
+	"\x03pid\x18\n" +
+	" \x01(\x05R\x03pid\x12\x12\n" +
+	"\x04comm\x18\v \x01(\tR\x04comm*\xc9\x01\n" +
 	"\tConnState\x12\x0e\n" +
 	"\n" +
 	"CONN_UNDEF\x10\x00\x12\x0f\n" +
@@ -383,22 +536,25 @@ func file_agent_v1_domains_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_v1_domains_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_agent_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_agent_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_agent_v1_domains_proto_goTypes = []any{
-	(ConnState)(0),           // 0: agent.v1.ConnState
-	(*ProcessInfo)(nil),      // 1: agent.v1.ProcessInfo
-	(*SockStat)(nil),         // 2: agent.v1.SockStat
-	(common.IpAddrFamily)(0), // 3: common.IpAddrFamily
+	(ConnState)(0),             // 0: agent.v1.ConnState
+	(*ProcessInfo)(nil),        // 1: agent.v1.ProcessInfo
+	(*SockStat)(nil),           // 2: agent.v1.SockStat
+	(*SockStat_Selectors)(nil), // 3: agent.v1.SockStat.Selectors
+	(common.IpAddrFamily)(0),   // 4: common.IpAddrFamily
 }
 var file_agent_v1_domains_proto_depIdxs = []int32{
-	3, // 0: agent.v1.SockStat.family:type_name -> common.IpAddrFamily
+	4, // 0: agent.v1.SockStat.family:type_name -> common.IpAddrFamily
 	0, // 1: agent.v1.SockStat.state:type_name -> agent.v1.ConnState
 	1, // 2: agent.v1.SockStat.processes:type_name -> agent.v1.ProcessInfo
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 3: agent.v1.SockStat.Selectors.family:type_name -> common.IpAddrFamily
+	0, // 4: agent.v1.SockStat.Selectors.state:type_name -> agent.v1.ConnState
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_agent_v1_domains_proto_init() }
@@ -412,7 +568,7 @@ func file_agent_v1_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_v1_domains_proto_rawDesc), len(file_agent_v1_domains_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

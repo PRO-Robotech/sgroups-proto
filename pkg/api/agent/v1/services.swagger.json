@@ -99,7 +99,7 @@
     }
   },
   "definitions": {
-    "SocketStatReqSelectors": {
+    "SockStatSelectors": {
       "type": "object",
       "properties": {
         "protocol": {
@@ -301,7 +301,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/SocketStatReqSelectors"
+            "$ref": "#/definitions/SockStatSelectors"
           },
           "title": "Selectors: list of selectors"
         }
@@ -315,7 +315,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/SocketStatReqSelectors"
+            "$ref": "#/definitions/SockStatSelectors"
           },
           "title": "Selectors: list of selectors"
         }

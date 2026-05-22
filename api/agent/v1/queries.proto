@@ -4,46 +4,20 @@ package agent.v1;
 
 import "agent/v1/domains.proto";
 import "buf/validate/validate.proto";
-import "common/ip_transport.proto";
 
 option go_package = "github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1;agentv1";
 
 // SocketStatReq: request for socket statistics
 message SocketStatReq {
-  // Selectors: request to select socket statistics
-  message Selectors {
-    // Protocol: socket protocol
-    string protocol = 1;
-    // Family: socket address family
-    common.IpAddrFamily family = 2;
-    // State: connection state
-    ConnState state = 3;
-    // LocalAddr: local ip address
-    string local_addr = 4;
-    // LocalPort: local port
-    int32 local_port = 5;
-    // RemoteAddr: remote ip address
-    string remote_addr = 6;
-    // RemotePort: remote port
-    int32 remote_port = 7;
-    // Ifname: interface name
-    string ifname = 8;
-    // Inode: socket inode number
-    int64 inode = 9;
-    // Pid: process ID
-    int32 pid = 10;
-    // Comm: process command name
-    string comm = 11;
-  }
   // List: request for listing socket statistics
   message List {
     // Selectors: list of selectors
-    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+    repeated SockStat.Selectors selectors = 1 [(buf.validate.field) = {required: true}];
   }
   // Watch: request for watching socket statistics
   message Watch {
     // Selectors: list of selectors
-    repeated Selectors selectors = 1 [(buf.validate.field) = {required: true}];
+    repeated SockStat.Selectors selectors = 1 [(buf.validate.field) = {required: true}];
   }
 }
 

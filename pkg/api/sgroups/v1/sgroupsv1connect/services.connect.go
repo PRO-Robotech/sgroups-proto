@@ -100,6 +100,12 @@ const (
 	// SGroupsHostsAPIUpdMetaInfoProcedure is the fully-qualified name of the SGroupsHostsAPI's
 	// UpdMetaInfo RPC.
 	SGroupsHostsAPIUpdMetaInfoProcedure = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
+	// SGroupsHostsAPIListSocketStatisticsProcedure is the fully-qualified name of the SGroupsHostsAPI's
+	// ListSocketStatistics RPC.
+	SGroupsHostsAPIListSocketStatisticsProcedure = "/sgroups.v1.SGroupsHostsAPI/ListSocketStatistics"
+	// SGroupsHostsAPIWatchSocketStatisticsProcedure is the fully-qualified name of the
+	// SGroupsHostsAPI's WatchSocketStatistics RPC.
+	SGroupsHostsAPIWatchSocketStatisticsProcedure = "/sgroups.v1.SGroupsHostsAPI/WatchSocketStatistics"
 	// SGroupsHostBindingAPIUpsertProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
 	// Upsert RPC.
 	SGroupsHostBindingAPIUpsertProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Upsert"
@@ -644,6 +650,10 @@ type SGroupsHostsAPIClient interface {
 	UpdIPs(context.Context, *connect.Request[v1.HostReq_UpdIPs]) (*connect.Response[v1.HostResp_UpdIPs], error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error)
+	// ListSocketStatistics: list socket statistics
+	ListSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostReq_SocketStatistics_List], error)
+	// WatchSocketStatistics: watch socket statistics
+	WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch]) (*connect.ServerStreamForClient[v1.HostReq_SocketStatistics_Watch], error)
 }
 
 // NewSGroupsHostsAPIClient constructs a client for the sgroups.v1.SGroupsHostsAPI service. By
@@ -693,17 +703,31 @@ func NewSGroupsHostsAPIClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(sGroupsHostsAPIMethods.ByName("UpdMetaInfo")),
 			connect.WithClientOptions(opts...),
 		),
+		listSocketStatistics: connect.NewClient[v1.HostReq_SocketStatistics_List, v1.HostReq_SocketStatistics_List](
+			httpClient,
+			baseURL+SGroupsHostsAPIListSocketStatisticsProcedure,
+			connect.WithSchema(sGroupsHostsAPIMethods.ByName("ListSocketStatistics")),
+			connect.WithClientOptions(opts...),
+		),
+		watchSocketStatistics: connect.NewClient[v1.HostReq_SocketStatistics_Watch, v1.HostReq_SocketStatistics_Watch](
+			httpClient,
+			baseURL+SGroupsHostsAPIWatchSocketStatisticsProcedure,
+			connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchSocketStatistics")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // sGroupsHostsAPIClient implements SGroupsHostsAPIClient.
 type sGroupsHostsAPIClient struct {
-	upsert      *connect.Client[v1.HostReq_Upsert, v1.HostResp_Upsert]
-	delete      *connect.Client[v1.HostReq_Delete, emptypb.Empty]
-	list        *connect.Client[v1.HostReq_List, v1.HostResp_List]
-	watch       *connect.Client[v1.HostReq_Watch, v1.HostResp_Watch]
-	updIPs      *connect.Client[v1.HostReq_UpdIPs, v1.HostResp_UpdIPs]
-	updMetaInfo *connect.Client[v1.HostReq_UpdMetaInfo, v1.HostResp_UpdMetaInfo]
+	upsert                *connect.Client[v1.HostReq_Upsert, v1.HostResp_Upsert]
+	delete                *connect.Client[v1.HostReq_Delete, emptypb.Empty]
+	list                  *connect.Client[v1.HostReq_List, v1.HostResp_List]
+	watch                 *connect.Client[v1.HostReq_Watch, v1.HostResp_Watch]
+	updIPs                *connect.Client[v1.HostReq_UpdIPs, v1.HostResp_UpdIPs]
+	updMetaInfo           *connect.Client[v1.HostReq_UpdMetaInfo, v1.HostResp_UpdMetaInfo]
+	listSocketStatistics  *connect.Client[v1.HostReq_SocketStatistics_List, v1.HostReq_SocketStatistics_List]
+	watchSocketStatistics *connect.Client[v1.HostReq_SocketStatistics_Watch, v1.HostReq_SocketStatistics_Watch]
 }
 
 // Upsert calls sgroups.v1.SGroupsHostsAPI.Upsert.
@@ -736,6 +760,16 @@ func (c *sGroupsHostsAPIClient) UpdMetaInfo(ctx context.Context, req *connect.Re
 	return c.updMetaInfo.CallUnary(ctx, req)
 }
 
+// ListSocketStatistics calls sgroups.v1.SGroupsHostsAPI.ListSocketStatistics.
+func (c *sGroupsHostsAPIClient) ListSocketStatistics(ctx context.Context, req *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostReq_SocketStatistics_List], error) {
+	return c.listSocketStatistics.CallUnary(ctx, req)
+}
+
+// WatchSocketStatistics calls sgroups.v1.SGroupsHostsAPI.WatchSocketStatistics.
+func (c *sGroupsHostsAPIClient) WatchSocketStatistics(ctx context.Context, req *connect.Request[v1.HostReq_SocketStatistics_Watch]) (*connect.ServerStreamForClient[v1.HostReq_SocketStatistics_Watch], error) {
+	return c.watchSocketStatistics.CallServerStream(ctx, req)
+}
+
 // SGroupsHostsAPIHandler is an implementation of the sgroups.v1.SGroupsHostsAPI service.
 type SGroupsHostsAPIHandler interface {
 	// Upsert: Create or update host(s)
@@ -750,6 +784,10 @@ type SGroupsHostsAPIHandler interface {
 	UpdIPs(context.Context, *connect.Request[v1.HostReq_UpdIPs]) (*connect.Response[v1.HostResp_UpdIPs], error)
 	// UpdMetaInfo: Update host(s) meta information
 	UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error)
+	// ListSocketStatistics: list socket statistics
+	ListSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostReq_SocketStatistics_List], error)
+	// WatchSocketStatistics: watch socket statistics
+	WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch], *connect.ServerStream[v1.HostReq_SocketStatistics_Watch]) error
 }
 
 // NewSGroupsHostsAPIHandler builds an HTTP handler from the service implementation. It returns the
@@ -795,6 +833,18 @@ func NewSGroupsHostsAPIHandler(svc SGroupsHostsAPIHandler, opts ...connect.Handl
 		connect.WithSchema(sGroupsHostsAPIMethods.ByName("UpdMetaInfo")),
 		connect.WithHandlerOptions(opts...),
 	)
+	sGroupsHostsAPIListSocketStatisticsHandler := connect.NewUnaryHandler(
+		SGroupsHostsAPIListSocketStatisticsProcedure,
+		svc.ListSocketStatistics,
+		connect.WithSchema(sGroupsHostsAPIMethods.ByName("ListSocketStatistics")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsHostsAPIWatchSocketStatisticsHandler := connect.NewServerStreamHandler(
+		SGroupsHostsAPIWatchSocketStatisticsProcedure,
+		svc.WatchSocketStatistics,
+		connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchSocketStatistics")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/sgroups.v1.SGroupsHostsAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SGroupsHostsAPIUpsertProcedure:
@@ -809,6 +859,10 @@ func NewSGroupsHostsAPIHandler(svc SGroupsHostsAPIHandler, opts ...connect.Handl
 			sGroupsHostsAPIUpdIPsHandler.ServeHTTP(w, r)
 		case SGroupsHostsAPIUpdMetaInfoProcedure:
 			sGroupsHostsAPIUpdMetaInfoHandler.ServeHTTP(w, r)
+		case SGroupsHostsAPIListSocketStatisticsProcedure:
+			sGroupsHostsAPIListSocketStatisticsHandler.ServeHTTP(w, r)
+		case SGroupsHostsAPIWatchSocketStatisticsProcedure:
+			sGroupsHostsAPIWatchSocketStatisticsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -840,6 +894,14 @@ func (UnimplementedSGroupsHostsAPIHandler) UpdIPs(context.Context, *connect.Requ
 
 func (UnimplementedSGroupsHostsAPIHandler) UpdMetaInfo(context.Context, *connect.Request[v1.HostReq_UpdMetaInfo]) (*connect.Response[v1.HostResp_UpdMetaInfo], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.UpdMetaInfo is not implemented"))
+}
+
+func (UnimplementedSGroupsHostsAPIHandler) ListSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostReq_SocketStatistics_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.ListSocketStatistics is not implemented"))
+}
+
+func (UnimplementedSGroupsHostsAPIHandler) WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch], *connect.ServerStream[v1.HostReq_SocketStatistics_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.WatchSocketStatistics is not implemented"))
 }
 
 // SGroupsHostBindingAPIClient is a client for the sgroups.v1.SGroupsHostBindingAPI service.
