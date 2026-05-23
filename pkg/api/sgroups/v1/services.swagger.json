@@ -1770,6 +1770,28 @@
       },
       "title": "HostExt: extended host information"
     },
+    "HostRespSocketStatisticsHost": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: host name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: host namespace"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SockStat"
+          },
+          "title": "Stats: list of socket statistics for the host"
+        }
+      },
+      "title": "Host: host with socket statistics"
+    },
     "HostSpecEndpoints": {
       "type": "object",
       "properties": {
@@ -2970,13 +2992,13 @@
     "v1HostRespSocketStatisticsList": {
       "type": "object",
       "properties": {
-        "stats": {
+        "hosts": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1SockStat"
+            "$ref": "#/definitions/HostRespSocketStatisticsHost"
           },
-          "title": "Stats: list of socket statistics"
+          "title": "Hosts: list of hosts with socket statistics"
         }
       },
       "title": "List: response for ListSocketStatistics"
@@ -2984,13 +3006,13 @@
     "v1HostRespSocketStatisticsWatch": {
       "type": "object",
       "properties": {
-        "stats": {
+        "hosts": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1SockStat"
+            "$ref": "#/definitions/HostRespSocketStatisticsHost"
           },
-          "title": "Stats: list of socket statistics"
+          "title": "Hosts: list of hosts with socket statistics"
         }
       },
       "title": "Watch: response for WatchSocketStatistics"

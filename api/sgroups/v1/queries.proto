@@ -428,15 +428,24 @@ message HostResp {
   }
   // SocketStatistics: response for socket statistics in hosts
   message SocketStatistics {
+    // Host: host with socket statistics
+    message Host {
+      // Name: host name
+      string name = 1;
+      // Namespace: host namespace
+      string namespace = 2;
+      // Stats: list of socket statistics for the host
+      repeated agent.v1.SockStat stats = 3;
+    }
     // List: response for ListSocketStatistics
     message List {
-      // Stats: list of socket statistics
-      repeated agent.v1.SockStat stats = 1;
+      // Hosts: list of hosts with socket statistics
+      repeated Host hosts = 1;
     }
     // Watch: response for WatchSocketStatistics
     message Watch {
-      // Stats: list of socket statistics
-      repeated agent.v1.SockStat stats = 1;
+      // Hosts: list of hosts with socket statistics
+      repeated Host hosts = 1;
     }
   }
 }
