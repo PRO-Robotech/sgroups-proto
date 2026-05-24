@@ -96,6 +96,80 @@ func (*SocketStatResp) Descriptor() ([]byte, []int) {
 	return file_agent_v1_queries_proto_rawDescGZIP(), []int{1}
 }
 
+// NftablesReq: request for nftables information
+type NftablesReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesReq) Reset() {
+	*x = NftablesReq{}
+	mi := &file_agent_v1_queries_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesReq) ProtoMessage() {}
+
+func (x *NftablesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesReq.ProtoReflect.Descriptor instead.
+func (*NftablesReq) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{2}
+}
+
+// NftablesResp: response for nftables information requests
+type NftablesResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesResp) Reset() {
+	*x = NftablesResp{}
+	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesResp) ProtoMessage() {}
+
+func (x *NftablesResp) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesResp.ProtoReflect.Descriptor instead.
+func (*NftablesResp) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{3}
+}
+
 // List: request for listing socket statistics
 type SocketStatReq_List struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -107,7 +181,7 @@ type SocketStatReq_List struct {
 
 func (x *SocketStatReq_List) Reset() {
 	*x = SocketStatReq_List{}
-	mi := &file_agent_v1_queries_proto_msgTypes[2]
+	mi := &file_agent_v1_queries_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119,7 +193,7 @@ func (x *SocketStatReq_List) String() string {
 func (*SocketStatReq_List) ProtoMessage() {}
 
 func (x *SocketStatReq_List) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[2]
+	mi := &file_agent_v1_queries_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +227,7 @@ type SocketStatReq_Watch struct {
 
 func (x *SocketStatReq_Watch) Reset() {
 	*x = SocketStatReq_Watch{}
-	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	mi := &file_agent_v1_queries_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -165,7 +239,7 @@ func (x *SocketStatReq_Watch) String() string {
 func (*SocketStatReq_Watch) ProtoMessage() {}
 
 func (x *SocketStatReq_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[3]
+	mi := &file_agent_v1_queries_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -199,7 +273,7 @@ type SocketStatResp_List struct {
 
 func (x *SocketStatResp_List) Reset() {
 	*x = SocketStatResp_List{}
-	mi := &file_agent_v1_queries_proto_msgTypes[4]
+	mi := &file_agent_v1_queries_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -211,7 +285,7 @@ func (x *SocketStatResp_List) String() string {
 func (*SocketStatResp_List) ProtoMessage() {}
 
 func (x *SocketStatResp_List) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[4]
+	mi := &file_agent_v1_queries_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +319,7 @@ type SocketStatResp_Watch struct {
 
 func (x *SocketStatResp_Watch) Reset() {
 	*x = SocketStatResp_Watch{}
-	mi := &file_agent_v1_queries_proto_msgTypes[5]
+	mi := &file_agent_v1_queries_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -257,7 +331,7 @@ func (x *SocketStatResp_Watch) String() string {
 func (*SocketStatResp_Watch) ProtoMessage() {}
 
 func (x *SocketStatResp_Watch) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_queries_proto_msgTypes[5]
+	mi := &file_agent_v1_queries_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -280,6 +354,172 @@ func (x *SocketStatResp_Watch) GetStats() []*SockStat {
 	return nil
 }
 
+// List: request for listing nftables information
+type NftablesReq_List struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesReq_List) Reset() {
+	*x = NftablesReq_List{}
+	mi := &file_agent_v1_queries_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesReq_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesReq_List) ProtoMessage() {}
+
+func (x *NftablesReq_List) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesReq_List.ProtoReflect.Descriptor instead.
+func (*NftablesReq_List) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{2, 0}
+}
+
+// Watch: request for watching nftables information
+type NftablesReq_Watch struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesReq_Watch) Reset() {
+	*x = NftablesReq_Watch{}
+	mi := &file_agent_v1_queries_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesReq_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesReq_Watch) ProtoMessage() {}
+
+func (x *NftablesReq_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesReq_Watch.ProtoReflect.Descriptor instead.
+func (*NftablesReq_Watch) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{2, 1}
+}
+
+// List: response for ListNftables
+type NftablesResp_List struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Nftables: list of nftables information
+	Nftables      []*Nftables `protobuf:"bytes,1,rep,name=nftables,proto3" json:"nftables,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesResp_List) Reset() {
+	*x = NftablesResp_List{}
+	mi := &file_agent_v1_queries_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesResp_List) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesResp_List) ProtoMessage() {}
+
+func (x *NftablesResp_List) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesResp_List.ProtoReflect.Descriptor instead.
+func (*NftablesResp_List) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *NftablesResp_List) GetNftables() []*Nftables {
+	if x != nil {
+		return x.Nftables
+	}
+	return nil
+}
+
+// Watch: response for WatchNftables
+type NftablesResp_Watch struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Nftables: list of nftables information
+	Nftables      []*Nftables `protobuf:"bytes,1,rep,name=nftables,proto3" json:"nftables,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NftablesResp_Watch) Reset() {
+	*x = NftablesResp_Watch{}
+	mi := &file_agent_v1_queries_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NftablesResp_Watch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NftablesResp_Watch) ProtoMessage() {}
+
+func (x *NftablesResp_Watch) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_queries_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NftablesResp_Watch.ProtoReflect.Descriptor instead.
+func (*NftablesResp_Watch) Descriptor() ([]byte, []int) {
+	return file_agent_v1_queries_proto_rawDescGZIP(), []int{3, 1}
+}
+
+func (x *NftablesResp_Watch) GetNftables() []*Nftables {
+	if x != nil {
+		return x.Nftables
+	}
+	return nil
+}
+
 var File_agent_v1_queries_proto protoreflect.FileDescriptor
 
 const file_agent_v1_queries_proto_rawDesc = "" +
@@ -294,7 +534,15 @@ const file_agent_v1_queries_proto_rawDesc = "" +
 	"\x04List\x12(\n" +
 	"\x05stats\x18\x01 \x03(\v2\x12.agent.v1.SockStatR\x05stats\x1a1\n" +
 	"\x05Watch\x12(\n" +
-	"\x05stats\x18\x01 \x03(\v2\x12.agent.v1.SockStatR\x05statsB@Z>github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1;agentv1b\x06proto3"
+	"\x05stats\x18\x01 \x03(\v2\x12.agent.v1.SockStatR\x05stats\"\x1e\n" +
+	"\vNftablesReq\x1a\x06\n" +
+	"\x04List\x1a\a\n" +
+	"\x05Watch\"\x7f\n" +
+	"\fNftablesResp\x1a6\n" +
+	"\x04List\x12.\n" +
+	"\bnftables\x18\x01 \x03(\v2\x12.agent.v1.NftablesR\bnftables\x1a7\n" +
+	"\x05Watch\x12.\n" +
+	"\bnftables\x18\x01 \x03(\v2\x12.agent.v1.NftablesR\bnftablesB@Z>github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1;agentv1b\x06proto3"
 
 var (
 	file_agent_v1_queries_proto_rawDescOnce sync.Once
@@ -308,27 +556,36 @@ func file_agent_v1_queries_proto_rawDescGZIP() []byte {
 	return file_agent_v1_queries_proto_rawDescData
 }
 
-var file_agent_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_agent_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_agent_v1_queries_proto_goTypes = []any{
 	(*SocketStatReq)(nil),        // 0: agent.v1.SocketStatReq
 	(*SocketStatResp)(nil),       // 1: agent.v1.SocketStatResp
-	(*SocketStatReq_List)(nil),   // 2: agent.v1.SocketStatReq.List
-	(*SocketStatReq_Watch)(nil),  // 3: agent.v1.SocketStatReq.Watch
-	(*SocketStatResp_List)(nil),  // 4: agent.v1.SocketStatResp.List
-	(*SocketStatResp_Watch)(nil), // 5: agent.v1.SocketStatResp.Watch
-	(*SockStat_Selectors)(nil),   // 6: agent.v1.SockStat.Selectors
-	(*SockStat)(nil),             // 7: agent.v1.SockStat
+	(*NftablesReq)(nil),          // 2: agent.v1.NftablesReq
+	(*NftablesResp)(nil),         // 3: agent.v1.NftablesResp
+	(*SocketStatReq_List)(nil),   // 4: agent.v1.SocketStatReq.List
+	(*SocketStatReq_Watch)(nil),  // 5: agent.v1.SocketStatReq.Watch
+	(*SocketStatResp_List)(nil),  // 6: agent.v1.SocketStatResp.List
+	(*SocketStatResp_Watch)(nil), // 7: agent.v1.SocketStatResp.Watch
+	(*NftablesReq_List)(nil),     // 8: agent.v1.NftablesReq.List
+	(*NftablesReq_Watch)(nil),    // 9: agent.v1.NftablesReq.Watch
+	(*NftablesResp_List)(nil),    // 10: agent.v1.NftablesResp.List
+	(*NftablesResp_Watch)(nil),   // 11: agent.v1.NftablesResp.Watch
+	(*SockStat_Selectors)(nil),   // 12: agent.v1.SockStat.Selectors
+	(*SockStat)(nil),             // 13: agent.v1.SockStat
+	(*Nftables)(nil),             // 14: agent.v1.Nftables
 }
 var file_agent_v1_queries_proto_depIdxs = []int32{
-	6, // 0: agent.v1.SocketStatReq.List.selectors:type_name -> agent.v1.SockStat.Selectors
-	6, // 1: agent.v1.SocketStatReq.Watch.selectors:type_name -> agent.v1.SockStat.Selectors
-	7, // 2: agent.v1.SocketStatResp.List.stats:type_name -> agent.v1.SockStat
-	7, // 3: agent.v1.SocketStatResp.Watch.stats:type_name -> agent.v1.SockStat
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	12, // 0: agent.v1.SocketStatReq.List.selectors:type_name -> agent.v1.SockStat.Selectors
+	12, // 1: agent.v1.SocketStatReq.Watch.selectors:type_name -> agent.v1.SockStat.Selectors
+	13, // 2: agent.v1.SocketStatResp.List.stats:type_name -> agent.v1.SockStat
+	13, // 3: agent.v1.SocketStatResp.Watch.stats:type_name -> agent.v1.SockStat
+	14, // 4: agent.v1.NftablesResp.List.nftables:type_name -> agent.v1.Nftables
+	14, // 5: agent.v1.NftablesResp.Watch.nftables:type_name -> agent.v1.Nftables
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_agent_v1_queries_proto_init() }
@@ -343,7 +600,7 @@ func file_agent_v1_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_v1_queries_proto_rawDesc), len(file_agent_v1_queries_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

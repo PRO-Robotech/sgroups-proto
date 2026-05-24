@@ -42,4 +42,22 @@ service AgentAPI {
       body: "*"
     };
   }
+
+  // ListNftables: list nftables information
+  rpc ListNftables(NftablesReq.List) returns (NftablesResp.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {description: "ListNftables: List nftables information"};
+    option (google.api.http) = {
+      post: "/v1/nft/list"
+      body: "*"
+    };
+  }
+
+  // WatchNftables: watch nftables information
+  rpc WatchNftables(NftablesReq.Watch) returns (stream NftablesResp.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {description: "WatchNftables: Watch nftables information"};
+    option (google.api.http) = {
+      post: "/v1/nft/watch"
+      body: "*"
+    };
+  }
 }

@@ -98,3 +98,11 @@ message SockStat {
   // Processes: associated processes
   repeated ProcessInfo processes = 10;
 }
+
+// Nftables: represents nftables information
+message Nftables {
+  // Text: nftables information in text format
+  string text = 1;
+  // Json: nftables information in json format
+  string json = 2;
+}

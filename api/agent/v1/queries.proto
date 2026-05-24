@@ -34,3 +34,25 @@ message SocketStatResp {
     repeated SockStat stats = 1;
   }
 }
+
+// NftablesReq: request for nftables information
+message NftablesReq {
+  // List: request for listing nftables information
+  message List {}
+  // Watch: request for watching nftables information
+  message Watch {}
+}
+
+// NftablesResp: response for nftables information requests
+message NftablesResp {
+  // List: response for ListNftables
+  message List {
+    // Nftables: list of nftables information
+    repeated Nftables nftables = 1;
+  }
+  // Watch: response for WatchNftables
+  message Watch {
+    // Nftables: list of nftables information
+    repeated Nftables nftables = 1;
+  }
+}

@@ -324,6 +324,61 @@ func (x *SockStat) GetProcesses() []*ProcessInfo {
 	return nil
 }
 
+// Nftables: represents nftables information
+type Nftables struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Text: nftables information in text format
+	Text string `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
+	// Json: nftables information in json format
+	Json          string `protobuf:"bytes,2,opt,name=json,proto3" json:"json,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Nftables) Reset() {
+	*x = Nftables{}
+	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Nftables) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Nftables) ProtoMessage() {}
+
+func (x *Nftables) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Nftables.ProtoReflect.Descriptor instead.
+func (*Nftables) Descriptor() ([]byte, []int) {
+	return file_agent_v1_domains_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Nftables) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+func (x *Nftables) GetJson() string {
+	if x != nil {
+		return x.Json
+	}
+	return ""
+}
+
 // Selectors: request to select socket statistics
 type SockStat_Selectors struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -355,7 +410,7 @@ type SockStat_Selectors struct {
 
 func (x *SockStat_Selectors) Reset() {
 	*x = SockStat_Selectors{}
-	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	mi := &file_agent_v1_domains_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -367,7 +422,7 @@ func (x *SockStat_Selectors) String() string {
 func (*SockStat_Selectors) ProtoMessage() {}
 
 func (x *SockStat_Selectors) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_v1_domains_proto_msgTypes[2]
+	mi := &file_agent_v1_domains_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -503,7 +558,10 @@ const file_agent_v1_domains_proto_rawDesc = "" +
 	"\x05inode\x18\t \x01(\x03R\x05inode\x12\x10\n" +
 	"\x03pid\x18\n" +
 	" \x01(\x05R\x03pid\x12\x12\n" +
-	"\x04comm\x18\v \x01(\tR\x04comm*\xc9\x01\n" +
+	"\x04comm\x18\v \x01(\tR\x04comm\"2\n" +
+	"\bNftables\x12\x12\n" +
+	"\x04text\x18\x01 \x01(\tR\x04text\x12\x12\n" +
+	"\x04json\x18\x02 \x01(\tR\x04json*\xc9\x01\n" +
 	"\tConnState\x12\x0e\n" +
 	"\n" +
 	"CONN_UNDEF\x10\x00\x12\x0f\n" +
@@ -536,19 +594,20 @@ func file_agent_v1_domains_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_v1_domains_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_agent_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_agent_v1_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_agent_v1_domains_proto_goTypes = []any{
 	(ConnState)(0),             // 0: agent.v1.ConnState
 	(*ProcessInfo)(nil),        // 1: agent.v1.ProcessInfo
 	(*SockStat)(nil),           // 2: agent.v1.SockStat
-	(*SockStat_Selectors)(nil), // 3: agent.v1.SockStat.Selectors
-	(common.IpAddrFamily)(0),   // 4: common.IpAddrFamily
+	(*Nftables)(nil),           // 3: agent.v1.Nftables
+	(*SockStat_Selectors)(nil), // 4: agent.v1.SockStat.Selectors
+	(common.IpAddrFamily)(0),   // 5: common.IpAddrFamily
 }
 var file_agent_v1_domains_proto_depIdxs = []int32{
-	4, // 0: agent.v1.SockStat.family:type_name -> common.IpAddrFamily
+	5, // 0: agent.v1.SockStat.family:type_name -> common.IpAddrFamily
 	0, // 1: agent.v1.SockStat.state:type_name -> agent.v1.ConnState
 	1, // 2: agent.v1.SockStat.processes:type_name -> agent.v1.ProcessInfo
-	4, // 3: agent.v1.SockStat.Selectors.family:type_name -> common.IpAddrFamily
+	5, // 3: agent.v1.SockStat.Selectors.family:type_name -> common.IpAddrFamily
 	0, // 4: agent.v1.SockStat.Selectors.state:type_name -> agent.v1.ConnState
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
@@ -568,7 +627,7 @@ func file_agent_v1_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_v1_domains_proto_rawDesc), len(file_agent_v1_domains_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

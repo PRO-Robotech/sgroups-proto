@@ -21,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	AgentAPI_ListSocketStatistics_FullMethodName  = "/agent.v1.AgentAPI/ListSocketStatistics"
 	AgentAPI_WatchSocketStatistics_FullMethodName = "/agent.v1.AgentAPI/WatchSocketStatistics"
+	AgentAPI_ListNftables_FullMethodName          = "/agent.v1.AgentAPI/ListNftables"
+	AgentAPI_WatchNftables_FullMethodName         = "/agent.v1.AgentAPI/WatchNftables"
 )
 
 // AgentAPIClient is the client API for AgentAPI service.
@@ -33,6 +35,10 @@ type AgentAPIClient interface {
 	ListSocketStatistics(ctx context.Context, in *SocketStatReq_List, opts ...grpc.CallOption) (*SocketStatResp_List, error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(ctx context.Context, in *SocketStatReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SocketStatResp_Watch], error)
+	// ListNftables: list nftables information
+	ListNftables(ctx context.Context, in *NftablesReq_List, opts ...grpc.CallOption) (*NftablesResp_List, error)
+	// WatchNftables: watch nftables information
+	WatchNftables(ctx context.Context, in *NftablesReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NftablesResp_Watch], error)
 }
 
 type agentAPIClient struct {
@@ -72,6 +78,35 @@ func (c *agentAPIClient) WatchSocketStatistics(ctx context.Context, in *SocketSt
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type AgentAPI_WatchSocketStatisticsClient = grpc.ServerStreamingClient[SocketStatResp_Watch]
 
+func (c *agentAPIClient) ListNftables(ctx context.Context, in *NftablesReq_List, opts ...grpc.CallOption) (*NftablesResp_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NftablesResp_List)
+	err := c.cc.Invoke(ctx, AgentAPI_ListNftables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentAPIClient) WatchNftables(ctx context.Context, in *NftablesReq_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[NftablesResp_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &AgentAPI_ServiceDesc.Streams[1], AgentAPI_WatchNftables_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[NftablesReq_Watch, NftablesResp_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentAPI_WatchNftablesClient = grpc.ServerStreamingClient[NftablesResp_Watch]
+
 // AgentAPIServer is the server API for AgentAPI service.
 // All implementations must embed UnimplementedAgentAPIServer
 // for forward compatibility.
@@ -82,6 +117,10 @@ type AgentAPIServer interface {
 	ListSocketStatistics(context.Context, *SocketStatReq_List) (*SocketStatResp_List, error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(*SocketStatReq_Watch, grpc.ServerStreamingServer[SocketStatResp_Watch]) error
+	// ListNftables: list nftables information
+	ListNftables(context.Context, *NftablesReq_List) (*NftablesResp_List, error)
+	// WatchNftables: watch nftables information
+	WatchNftables(*NftablesReq_Watch, grpc.ServerStreamingServer[NftablesResp_Watch]) error
 	mustEmbedUnimplementedAgentAPIServer()
 }
 
@@ -97,6 +136,12 @@ func (UnimplementedAgentAPIServer) ListSocketStatistics(context.Context, *Socket
 }
 func (UnimplementedAgentAPIServer) WatchSocketStatistics(*SocketStatReq_Watch, grpc.ServerStreamingServer[SocketStatResp_Watch]) error {
 	return status.Error(codes.Unimplemented, "method WatchSocketStatistics not implemented")
+}
+func (UnimplementedAgentAPIServer) ListNftables(context.Context, *NftablesReq_List) (*NftablesResp_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListNftables not implemented")
+}
+func (UnimplementedAgentAPIServer) WatchNftables(*NftablesReq_Watch, grpc.ServerStreamingServer[NftablesResp_Watch]) error {
+	return status.Error(codes.Unimplemented, "method WatchNftables not implemented")
 }
 func (UnimplementedAgentAPIServer) mustEmbedUnimplementedAgentAPIServer() {}
 func (UnimplementedAgentAPIServer) testEmbeddedByValue()                  {}
@@ -148,6 +193,35 @@ func _AgentAPI_WatchSocketStatistics_Handler(srv interface{}, stream grpc.Server
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type AgentAPI_WatchSocketStatisticsServer = grpc.ServerStreamingServer[SocketStatResp_Watch]
 
+func _AgentAPI_ListNftables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NftablesReq_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentAPIServer).ListNftables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentAPI_ListNftables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentAPIServer).ListNftables(ctx, req.(*NftablesReq_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentAPI_WatchNftables_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(NftablesReq_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AgentAPIServer).WatchNftables(m, &grpc.GenericServerStream[NftablesReq_Watch, NftablesResp_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentAPI_WatchNftablesServer = grpc.ServerStreamingServer[NftablesResp_Watch]
+
 // AgentAPI_ServiceDesc is the grpc.ServiceDesc for AgentAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -159,11 +233,20 @@ var AgentAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ListSocketStatistics",
 			Handler:    _AgentAPI_ListSocketStatistics_Handler,
 		},
+		{
+			MethodName: "ListNftables",
+			Handler:    _AgentAPI_ListNftables_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "WatchSocketStatistics",
 			Handler:       _AgentAPI_WatchSocketStatistics_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "WatchNftables",
+			Handler:       _AgentAPI_WatchNftables_Handler,
 			ServerStreams: true,
 		},
 	},

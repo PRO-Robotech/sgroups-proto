@@ -39,6 +39,10 @@ const (
 	// AgentAPIWatchSocketStatisticsProcedure is the fully-qualified name of the AgentAPI's
 	// WatchSocketStatistics RPC.
 	AgentAPIWatchSocketStatisticsProcedure = "/agent.v1.AgentAPI/WatchSocketStatistics"
+	// AgentAPIListNftablesProcedure is the fully-qualified name of the AgentAPI's ListNftables RPC.
+	AgentAPIListNftablesProcedure = "/agent.v1.AgentAPI/ListNftables"
+	// AgentAPIWatchNftablesProcedure is the fully-qualified name of the AgentAPI's WatchNftables RPC.
+	AgentAPIWatchNftablesProcedure = "/agent.v1.AgentAPI/WatchNftables"
 )
 
 // AgentAPIClient is a client for the agent.v1.AgentAPI service.
@@ -47,6 +51,10 @@ type AgentAPIClient interface {
 	ListSocketStatistics(context.Context, *connect.Request[v1.SocketStatReq_List]) (*connect.Response[v1.SocketStatResp_List], error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(context.Context, *connect.Request[v1.SocketStatReq_Watch]) (*connect.ServerStreamForClient[v1.SocketStatResp_Watch], error)
+	// ListNftables: list nftables information
+	ListNftables(context.Context, *connect.Request[v1.NftablesReq_List]) (*connect.Response[v1.NftablesResp_List], error)
+	// WatchNftables: watch nftables information
+	WatchNftables(context.Context, *connect.Request[v1.NftablesReq_Watch]) (*connect.ServerStreamForClient[v1.NftablesResp_Watch], error)
 }
 
 // NewAgentAPIClient constructs a client for the agent.v1.AgentAPI service. By default, it uses the
@@ -72,6 +80,18 @@ func NewAgentAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...co
 			connect.WithSchema(agentAPIMethods.ByName("WatchSocketStatistics")),
 			connect.WithClientOptions(opts...),
 		),
+		listNftables: connect.NewClient[v1.NftablesReq_List, v1.NftablesResp_List](
+			httpClient,
+			baseURL+AgentAPIListNftablesProcedure,
+			connect.WithSchema(agentAPIMethods.ByName("ListNftables")),
+			connect.WithClientOptions(opts...),
+		),
+		watchNftables: connect.NewClient[v1.NftablesReq_Watch, v1.NftablesResp_Watch](
+			httpClient,
+			baseURL+AgentAPIWatchNftablesProcedure,
+			connect.WithSchema(agentAPIMethods.ByName("WatchNftables")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -79,6 +99,8 @@ func NewAgentAPIClient(httpClient connect.HTTPClient, baseURL string, opts ...co
 type agentAPIClient struct {
 	listSocketStatistics  *connect.Client[v1.SocketStatReq_List, v1.SocketStatResp_List]
 	watchSocketStatistics *connect.Client[v1.SocketStatReq_Watch, v1.SocketStatResp_Watch]
+	listNftables          *connect.Client[v1.NftablesReq_List, v1.NftablesResp_List]
+	watchNftables         *connect.Client[v1.NftablesReq_Watch, v1.NftablesResp_Watch]
 }
 
 // ListSocketStatistics calls agent.v1.AgentAPI.ListSocketStatistics.
@@ -91,12 +113,26 @@ func (c *agentAPIClient) WatchSocketStatistics(ctx context.Context, req *connect
 	return c.watchSocketStatistics.CallServerStream(ctx, req)
 }
 
+// ListNftables calls agent.v1.AgentAPI.ListNftables.
+func (c *agentAPIClient) ListNftables(ctx context.Context, req *connect.Request[v1.NftablesReq_List]) (*connect.Response[v1.NftablesResp_List], error) {
+	return c.listNftables.CallUnary(ctx, req)
+}
+
+// WatchNftables calls agent.v1.AgentAPI.WatchNftables.
+func (c *agentAPIClient) WatchNftables(ctx context.Context, req *connect.Request[v1.NftablesReq_Watch]) (*connect.ServerStreamForClient[v1.NftablesResp_Watch], error) {
+	return c.watchNftables.CallServerStream(ctx, req)
+}
+
 // AgentAPIHandler is an implementation of the agent.v1.AgentAPI service.
 type AgentAPIHandler interface {
 	// ListSocketStatistics: list socket statistics
 	ListSocketStatistics(context.Context, *connect.Request[v1.SocketStatReq_List]) (*connect.Response[v1.SocketStatResp_List], error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(context.Context, *connect.Request[v1.SocketStatReq_Watch], *connect.ServerStream[v1.SocketStatResp_Watch]) error
+	// ListNftables: list nftables information
+	ListNftables(context.Context, *connect.Request[v1.NftablesReq_List]) (*connect.Response[v1.NftablesResp_List], error)
+	// WatchNftables: watch nftables information
+	WatchNftables(context.Context, *connect.Request[v1.NftablesReq_Watch], *connect.ServerStream[v1.NftablesResp_Watch]) error
 }
 
 // NewAgentAPIHandler builds an HTTP handler from the service implementation. It returns the path on
@@ -118,12 +154,28 @@ func NewAgentAPIHandler(svc AgentAPIHandler, opts ...connect.HandlerOption) (str
 		connect.WithSchema(agentAPIMethods.ByName("WatchSocketStatistics")),
 		connect.WithHandlerOptions(opts...),
 	)
+	agentAPIListNftablesHandler := connect.NewUnaryHandler(
+		AgentAPIListNftablesProcedure,
+		svc.ListNftables,
+		connect.WithSchema(agentAPIMethods.ByName("ListNftables")),
+		connect.WithHandlerOptions(opts...),
+	)
+	agentAPIWatchNftablesHandler := connect.NewServerStreamHandler(
+		AgentAPIWatchNftablesProcedure,
+		svc.WatchNftables,
+		connect.WithSchema(agentAPIMethods.ByName("WatchNftables")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/agent.v1.AgentAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case AgentAPIListSocketStatisticsProcedure:
 			agentAPIListSocketStatisticsHandler.ServeHTTP(w, r)
 		case AgentAPIWatchSocketStatisticsProcedure:
 			agentAPIWatchSocketStatisticsHandler.ServeHTTP(w, r)
+		case AgentAPIListNftablesProcedure:
+			agentAPIListNftablesHandler.ServeHTTP(w, r)
+		case AgentAPIWatchNftablesProcedure:
+			agentAPIWatchNftablesHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -139,4 +191,12 @@ func (UnimplementedAgentAPIHandler) ListSocketStatistics(context.Context, *conne
 
 func (UnimplementedAgentAPIHandler) WatchSocketStatistics(context.Context, *connect.Request[v1.SocketStatReq_Watch], *connect.ServerStream[v1.SocketStatResp_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("agent.v1.AgentAPI.WatchSocketStatistics is not implemented"))
+}
+
+func (UnimplementedAgentAPIHandler) ListNftables(context.Context, *connect.Request[v1.NftablesReq_List]) (*connect.Response[v1.NftablesResp_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("agent.v1.AgentAPI.ListNftables is not implemented"))
+}
+
+func (UnimplementedAgentAPIHandler) WatchNftables(context.Context, *connect.Request[v1.NftablesReq_Watch], *connect.ServerStream[v1.NftablesResp_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("agent.v1.AgentAPI.WatchNftables is not implemented"))
 }

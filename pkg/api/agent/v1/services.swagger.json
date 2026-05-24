@@ -20,6 +20,83 @@
     "application/json"
   ],
   "paths": {
+    "/v1/nft/list": {
+      "post": {
+        "summary": "ListNftables: list nftables information",
+        "description": "ListNftables: List nftables information",
+        "operationId": "AgentAPI_ListNftables",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NftablesRespList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NftablesReqList"
+            }
+          }
+        ],
+        "tags": [
+          "AgentAPI"
+        ]
+      }
+    },
+    "/v1/nft/watch": {
+      "post": {
+        "summary": "WatchNftables: watch nftables information",
+        "description": "WatchNftables: Watch nftables information",
+        "operationId": "AgentAPI_WatchNftables",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NftablesRespWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NftablesRespWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NftablesReqWatch"
+            }
+          }
+        ],
+        "tags": [
+          "AgentAPI"
+        ]
+      }
+    },
     "/v1/ss/list": {
       "post": {
         "summary": "ListSocketStatistics: list socket statistics",
@@ -212,6 +289,56 @@
       "default": "CONN_UNDEF",
       "description": "- CONN_UNDEF: CONN_UNDEF: undefined connection state\n - ESTABLISHED: ESTABLISHED: connection is established\n - SYN_SENT: SYN_SENT: connection is in SYN_SENT state\n - SYN_RECV: SYN_RECV: connection is in SYN_RECV state\n - FIN_WAIT1: FIN_WAIT1: connection is in FIN_WAIT1 state\n - FIN_WAIT2: FIN_WAIT2: connection is in FIN_WAIT2 state\n - TIME_WAIT: TIME_WAIT: connection is in TIME_WAIT state\n - CLOSE: CLOSE: connection is closed\n - CLOSE_WAIT: CLOSE_WAIT: connection is in CLOSE_WAIT state\n - LAST_ACK: LAST_ACK: connection is in LAST_ACK state\n - LISTEN: LISTEN: connection is in LISTEN state\n - CLOSING: CLOSING: connection is in CLOSING state\n - NEW_SYN_RECV: NEW_SYN_RECV: connection is in NEW_SYN_RECV state",
       "title": "ConnState: represents connection state"
+    },
+    "v1Nftables": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text: nftables information in text format"
+        },
+        "json": {
+          "type": "string",
+          "title": "Json: nftables information in json format"
+        }
+      },
+      "title": "Nftables: represents nftables information"
+    },
+    "v1NftablesReqList": {
+      "type": "object",
+      "title": "List: request for listing nftables information"
+    },
+    "v1NftablesReqWatch": {
+      "type": "object",
+      "title": "Watch: request for watching nftables information"
+    },
+    "v1NftablesRespList": {
+      "type": "object",
+      "properties": {
+        "nftables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Nftables"
+          },
+          "title": "Nftables: list of nftables information"
+        }
+      },
+      "title": "List: response for ListNftables"
+    },
+    "v1NftablesRespWatch": {
+      "type": "object",
+      "properties": {
+        "nftables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Nftables"
+          },
+          "title": "Nftables: list of nftables information"
+        }
+      },
+      "title": "Watch: response for WatchNftables"
     },
     "v1ProcessInfo": {
       "type": "object",

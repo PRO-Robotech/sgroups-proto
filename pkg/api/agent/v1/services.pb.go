@@ -26,26 +26,36 @@ var File_agent_v1_services_proto protoreflect.FileDescriptor
 
 const file_agent_v1_services_proto_rawDesc = "" +
 	"\n" +
-	"\x17agent/v1/services.proto\x12\bagent.v1\x1a\x16agent/v1/queries.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xe0\x02\n" +
+	"\x17agent/v1/services.proto\x12\bagent.v1\x1a\x16agent/v1/queries.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x86\x05\n" +
 	"\bAgentAPI\x12\x9c\x01\n" +
 	"\x14ListSocketStatistics\x12\x1c.agent.v1.SocketStatReq.List\x1a\x1d.agent.v1.SocketStatResp.List\"G\x92A.\x1a,ListSocketStatistics: List socket statistics\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/v1/ss/list\x12\xa4\x01\n" +
-	"\x15WatchSocketStatistics\x12\x1d.agent.v1.SocketStatReq.Watch\x1a\x1e.agent.v1.SocketStatResp.Watch\"J\x92A0\x1a.WatchSocketStatistics: Watch socket statistics\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ss/watch0\x01\x1a\x0e\x92A\v\x12\tAgent APIB\xaa\x01\x92Ag\x12\x10\n" +
+	"\x15WatchSocketStatistics\x12\x1d.agent.v1.SocketStatReq.Watch\x1a\x1e.agent.v1.SocketStatResp.Watch\"J\x92A0\x1a.WatchSocketStatistics: Watch socket statistics\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/ss/watch0\x01\x12\x8c\x01\n" +
+	"\fListNftables\x12\x1a.agent.v1.NftablesReq.List\x1a\x1b.agent.v1.NftablesResp.List\"C\x92A)\x1a'ListNftables: List nftables information\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/nft/list\x12\x94\x01\n" +
+	"\rWatchNftables\x12\x1b.agent.v1.NftablesReq.Watch\x1a\x1c.agent.v1.NftablesResp.Watch\"F\x92A+\x1a)WatchNftables: Watch nftables information\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/nft/watch0\x01\x1a\x0e\x92A\v\x12\tAgent APIB\xaa\x01\x92Ag\x12\x10\n" +
 	"\tAgent API2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
 	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ>github.com/PRO-Robotech/sgroups-proto/pkg/api/agent/v1;agentv1b\x06proto3"
 
 var file_agent_v1_services_proto_goTypes = []any{
 	(*SocketStatReq_List)(nil),   // 0: agent.v1.SocketStatReq.List
 	(*SocketStatReq_Watch)(nil),  // 1: agent.v1.SocketStatReq.Watch
-	(*SocketStatResp_List)(nil),  // 2: agent.v1.SocketStatResp.List
-	(*SocketStatResp_Watch)(nil), // 3: agent.v1.SocketStatResp.Watch
+	(*NftablesReq_List)(nil),     // 2: agent.v1.NftablesReq.List
+	(*NftablesReq_Watch)(nil),    // 3: agent.v1.NftablesReq.Watch
+	(*SocketStatResp_List)(nil),  // 4: agent.v1.SocketStatResp.List
+	(*SocketStatResp_Watch)(nil), // 5: agent.v1.SocketStatResp.Watch
+	(*NftablesResp_List)(nil),    // 6: agent.v1.NftablesResp.List
+	(*NftablesResp_Watch)(nil),   // 7: agent.v1.NftablesResp.Watch
 }
 var file_agent_v1_services_proto_depIdxs = []int32{
 	0, // 0: agent.v1.AgentAPI.ListSocketStatistics:input_type -> agent.v1.SocketStatReq.List
 	1, // 1: agent.v1.AgentAPI.WatchSocketStatistics:input_type -> agent.v1.SocketStatReq.Watch
-	2, // 2: agent.v1.AgentAPI.ListSocketStatistics:output_type -> agent.v1.SocketStatResp.List
-	3, // 3: agent.v1.AgentAPI.WatchSocketStatistics:output_type -> agent.v1.SocketStatResp.Watch
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	2, // 2: agent.v1.AgentAPI.ListNftables:input_type -> agent.v1.NftablesReq.List
+	3, // 3: agent.v1.AgentAPI.WatchNftables:input_type -> agent.v1.NftablesReq.Watch
+	4, // 4: agent.v1.AgentAPI.ListSocketStatistics:output_type -> agent.v1.SocketStatResp.List
+	5, // 5: agent.v1.AgentAPI.WatchSocketStatistics:output_type -> agent.v1.SocketStatResp.Watch
+	6, // 6: agent.v1.AgentAPI.ListNftables:output_type -> agent.v1.NftablesResp.List
+	7, // 7: agent.v1.AgentAPI.WatchNftables:output_type -> agent.v1.NftablesResp.Watch
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
