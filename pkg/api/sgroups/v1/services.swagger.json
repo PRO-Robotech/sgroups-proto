@@ -417,6 +417,83 @@
         ]
       }
     },
+    "/v1/hosts/nft/list": {
+      "post": {
+        "summary": "ListNft: list nftables information",
+        "description": "ListNft: List nftables information",
+        "operationId": "SGroupsHostsAPI_ListNft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HostRespNftList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqNftList"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
+    "/v1/hosts/nft/watch": {
+      "post": {
+        "summary": "WatchNft: watch nftables information",
+        "description": "WatchNft: Watch nftables information",
+        "operationId": "SGroupsHostsAPI_WatchNft",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1HostRespNftWatch"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1HostRespNftWatch"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HostReqNftWatch"
+            }
+          }
+        ],
+        "tags": [
+          "Host"
+        ]
+      }
+    },
     "/v1/hosts/ss/list": {
       "post": {
         "summary": "ListSocketStatistics: list socket statistics",
@@ -1695,6 +1772,20 @@
       },
       "title": "Host: host to delete"
     },
+    "HostReqNftFieldSelector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: resource name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: resource namespace"
+        }
+      },
+      "title": "FieldSelector: resource field selector"
+    },
     "HostReqSocketStatisticsFieldSelector": {
       "type": "object",
       "properties": {
@@ -1769,6 +1860,28 @@
         }
       },
       "title": "HostExt: extended host information"
+    },
+    "HostRespNftHost": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name: host name"
+        },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace: host namespace"
+        },
+        "nft": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Nftables"
+          },
+          "title": "Nft: list of nftables information for the host"
+        }
+      },
+      "title": "Host: host with nftables information"
     },
     "HostRespSocketStatisticsHost": {
       "type": "object",
@@ -2874,6 +2987,34 @@
       },
       "title": "List: request to list hosts"
     },
+    "v1HostReqNftList": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqNftFieldSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "List: request to list nftables information"
+    },
+    "v1HostReqNftWatch": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostReqNftFieldSelector"
+          },
+          "title": "Selectors: list of selectors"
+        }
+      },
+      "title": "Watch: request to watch nftables information"
+    },
     "v1HostReqSocketStatisticsList": {
       "type": "object",
       "properties": {
@@ -2988,6 +3129,34 @@
         }
       },
       "title": "List: response for list hosts"
+    },
+    "v1HostRespNftList": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostRespNftHost"
+          },
+          "title": "Hosts: list of hosts with nftables information"
+        }
+      },
+      "title": "List: response for ListNft"
+    },
+    "v1HostRespNftWatch": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/HostRespNftHost"
+          },
+          "title": "Hosts: list of hosts with nftables information"
+        }
+      },
+      "title": "Watch: response for WatchNft"
     },
     "v1HostRespSocketStatisticsList": {
       "type": "object",
@@ -3529,6 +3698,20 @@
         }
       },
       "title": "Spec: resource specification"
+    },
+    "v1Nftables": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text: nftables information in text format"
+        },
+        "json": {
+          "type": "string",
+          "title": "Json: nftables information in json format"
+        }
+      },
+      "title": "Nftables: represents nftables information"
     },
     "v1ProcessInfo": {
       "type": "object",

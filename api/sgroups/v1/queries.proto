@@ -384,6 +384,26 @@ message HostReq {
       repeated FieldSelector selectors = 1 [(buf.validate.field) = {required: true}];
     }
   }
+  // Nft: request to query nftables information in hosts
+  message Nft {
+    // FieldSelector: resource field selector
+    message FieldSelector {
+      // Name: resource name
+      string name = 1;
+      // Namespace: resource namespace
+      string namespace = 2;
+    }
+    // List: request to list nftables information
+    message List {
+      // Selectors: list of selectors
+      repeated FieldSelector selectors = 1 [(buf.validate.field) = {required: true}];
+    }
+    // Watch: request to watch nftables information
+    message Watch {
+      // Selectors: list of selectors
+      repeated FieldSelector selectors = 1 [(buf.validate.field) = {required: true}];
+    }
+  }
 }
 
 // HostResp: host responses
@@ -445,6 +465,28 @@ message HostResp {
     // Watch: response for WatchSocketStatistics
     message Watch {
       // Hosts: list of hosts with socket statistics
+      repeated Host hosts = 1;
+    }
+  }
+  // Nft: response for nftables information in hosts
+  message Nft {
+    // Host: host with nftables information
+    message Host {
+      // Name: host name
+      string name = 1;
+      // Namespace: host namespace
+      string namespace = 2;
+      // Nft: list of nftables information for the host
+      repeated agent.v1.Nftables nft = 3;
+    }
+    // List: response for ListNft
+    message List {
+      // Hosts: list of hosts with nftables information
+      repeated Host hosts = 1;
+    }
+    // Watch: response for WatchNft
+    message Watch {
+      // Hosts: list of hosts with nftables information
       repeated Host hosts = 1;
     }
   }

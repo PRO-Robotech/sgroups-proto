@@ -280,6 +280,30 @@ service SGroupsHostsAPI {
       body: "*"
     };
   }
+
+  // ListNft: list nftables information
+  rpc ListNft(HostReq.Nft.List) returns (HostResp.Nft.List) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "ListNft: List nftables information"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/nft/list"
+      body: "*"
+    };
+  }
+
+  // WatchNft: watch nftables information
+  rpc WatchNft(HostReq.Nft.Watch) returns (stream HostResp.Nft.Watch) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "WatchNft: Watch nftables information"
+      tags: "Host"
+    };
+    option (google.api.http) = {
+      post: "/v1/hosts/nft/watch"
+      body: "*"
+    };
+  }
 }
 
 // SGroupsHostBindingAPI: SGroups Host Binding API

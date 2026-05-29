@@ -106,6 +106,11 @@ const (
 	// SGroupsHostsAPIWatchSocketStatisticsProcedure is the fully-qualified name of the
 	// SGroupsHostsAPI's WatchSocketStatistics RPC.
 	SGroupsHostsAPIWatchSocketStatisticsProcedure = "/sgroups.v1.SGroupsHostsAPI/WatchSocketStatistics"
+	// SGroupsHostsAPIListNftProcedure is the fully-qualified name of the SGroupsHostsAPI's ListNft RPC.
+	SGroupsHostsAPIListNftProcedure = "/sgroups.v1.SGroupsHostsAPI/ListNft"
+	// SGroupsHostsAPIWatchNftProcedure is the fully-qualified name of the SGroupsHostsAPI's WatchNft
+	// RPC.
+	SGroupsHostsAPIWatchNftProcedure = "/sgroups.v1.SGroupsHostsAPI/WatchNft"
 	// SGroupsHostBindingAPIUpsertProcedure is the fully-qualified name of the SGroupsHostBindingAPI's
 	// Upsert RPC.
 	SGroupsHostBindingAPIUpsertProcedure = "/sgroups.v1.SGroupsHostBindingAPI/Upsert"
@@ -654,6 +659,10 @@ type SGroupsHostsAPIClient interface {
 	ListSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostResp_SocketStatistics_List], error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch]) (*connect.ServerStreamForClient[v1.HostResp_SocketStatistics_Watch], error)
+	// ListNft: list nftables information
+	ListNft(context.Context, *connect.Request[v1.HostReq_Nft_List]) (*connect.Response[v1.HostResp_Nft_List], error)
+	// WatchNft: watch nftables information
+	WatchNft(context.Context, *connect.Request[v1.HostReq_Nft_Watch]) (*connect.ServerStreamForClient[v1.HostResp_Nft_Watch], error)
 }
 
 // NewSGroupsHostsAPIClient constructs a client for the sgroups.v1.SGroupsHostsAPI service. By
@@ -715,6 +724,18 @@ func NewSGroupsHostsAPIClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchSocketStatistics")),
 			connect.WithClientOptions(opts...),
 		),
+		listNft: connect.NewClient[v1.HostReq_Nft_List, v1.HostResp_Nft_List](
+			httpClient,
+			baseURL+SGroupsHostsAPIListNftProcedure,
+			connect.WithSchema(sGroupsHostsAPIMethods.ByName("ListNft")),
+			connect.WithClientOptions(opts...),
+		),
+		watchNft: connect.NewClient[v1.HostReq_Nft_Watch, v1.HostResp_Nft_Watch](
+			httpClient,
+			baseURL+SGroupsHostsAPIWatchNftProcedure,
+			connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchNft")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -728,6 +749,8 @@ type sGroupsHostsAPIClient struct {
 	updMetaInfo           *connect.Client[v1.HostReq_UpdMetaInfo, v1.HostResp_UpdMetaInfo]
 	listSocketStatistics  *connect.Client[v1.HostReq_SocketStatistics_List, v1.HostResp_SocketStatistics_List]
 	watchSocketStatistics *connect.Client[v1.HostReq_SocketStatistics_Watch, v1.HostResp_SocketStatistics_Watch]
+	listNft               *connect.Client[v1.HostReq_Nft_List, v1.HostResp_Nft_List]
+	watchNft              *connect.Client[v1.HostReq_Nft_Watch, v1.HostResp_Nft_Watch]
 }
 
 // Upsert calls sgroups.v1.SGroupsHostsAPI.Upsert.
@@ -770,6 +793,16 @@ func (c *sGroupsHostsAPIClient) WatchSocketStatistics(ctx context.Context, req *
 	return c.watchSocketStatistics.CallServerStream(ctx, req)
 }
 
+// ListNft calls sgroups.v1.SGroupsHostsAPI.ListNft.
+func (c *sGroupsHostsAPIClient) ListNft(ctx context.Context, req *connect.Request[v1.HostReq_Nft_List]) (*connect.Response[v1.HostResp_Nft_List], error) {
+	return c.listNft.CallUnary(ctx, req)
+}
+
+// WatchNft calls sgroups.v1.SGroupsHostsAPI.WatchNft.
+func (c *sGroupsHostsAPIClient) WatchNft(ctx context.Context, req *connect.Request[v1.HostReq_Nft_Watch]) (*connect.ServerStreamForClient[v1.HostResp_Nft_Watch], error) {
+	return c.watchNft.CallServerStream(ctx, req)
+}
+
 // SGroupsHostsAPIHandler is an implementation of the sgroups.v1.SGroupsHostsAPI service.
 type SGroupsHostsAPIHandler interface {
 	// Upsert: Create or update host(s)
@@ -788,6 +821,10 @@ type SGroupsHostsAPIHandler interface {
 	ListSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_List]) (*connect.Response[v1.HostResp_SocketStatistics_List], error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch], *connect.ServerStream[v1.HostResp_SocketStatistics_Watch]) error
+	// ListNft: list nftables information
+	ListNft(context.Context, *connect.Request[v1.HostReq_Nft_List]) (*connect.Response[v1.HostResp_Nft_List], error)
+	// WatchNft: watch nftables information
+	WatchNft(context.Context, *connect.Request[v1.HostReq_Nft_Watch], *connect.ServerStream[v1.HostResp_Nft_Watch]) error
 }
 
 // NewSGroupsHostsAPIHandler builds an HTTP handler from the service implementation. It returns the
@@ -845,6 +882,18 @@ func NewSGroupsHostsAPIHandler(svc SGroupsHostsAPIHandler, opts ...connect.Handl
 		connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchSocketStatistics")),
 		connect.WithHandlerOptions(opts...),
 	)
+	sGroupsHostsAPIListNftHandler := connect.NewUnaryHandler(
+		SGroupsHostsAPIListNftProcedure,
+		svc.ListNft,
+		connect.WithSchema(sGroupsHostsAPIMethods.ByName("ListNft")),
+		connect.WithHandlerOptions(opts...),
+	)
+	sGroupsHostsAPIWatchNftHandler := connect.NewServerStreamHandler(
+		SGroupsHostsAPIWatchNftProcedure,
+		svc.WatchNft,
+		connect.WithSchema(sGroupsHostsAPIMethods.ByName("WatchNft")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/sgroups.v1.SGroupsHostsAPI/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SGroupsHostsAPIUpsertProcedure:
@@ -863,6 +912,10 @@ func NewSGroupsHostsAPIHandler(svc SGroupsHostsAPIHandler, opts ...connect.Handl
 			sGroupsHostsAPIListSocketStatisticsHandler.ServeHTTP(w, r)
 		case SGroupsHostsAPIWatchSocketStatisticsProcedure:
 			sGroupsHostsAPIWatchSocketStatisticsHandler.ServeHTTP(w, r)
+		case SGroupsHostsAPIListNftProcedure:
+			sGroupsHostsAPIListNftHandler.ServeHTTP(w, r)
+		case SGroupsHostsAPIWatchNftProcedure:
+			sGroupsHostsAPIWatchNftHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -902,6 +955,14 @@ func (UnimplementedSGroupsHostsAPIHandler) ListSocketStatistics(context.Context,
 
 func (UnimplementedSGroupsHostsAPIHandler) WatchSocketStatistics(context.Context, *connect.Request[v1.HostReq_SocketStatistics_Watch], *connect.ServerStream[v1.HostResp_SocketStatistics_Watch]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.WatchSocketStatistics is not implemented"))
+}
+
+func (UnimplementedSGroupsHostsAPIHandler) ListNft(context.Context, *connect.Request[v1.HostReq_Nft_List]) (*connect.Response[v1.HostResp_Nft_List], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.ListNft is not implemented"))
+}
+
+func (UnimplementedSGroupsHostsAPIHandler) WatchNft(context.Context, *connect.Request[v1.HostReq_Nft_Watch], *connect.ServerStream[v1.HostResp_Nft_Watch]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("sgroups.v1.SGroupsHostsAPI.WatchNft is not implemented"))
 }
 
 // SGroupsHostBindingAPIClient is a client for the sgroups.v1.SGroupsHostBindingAPI service.

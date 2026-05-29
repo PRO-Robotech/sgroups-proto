@@ -725,6 +725,8 @@ const (
 	SGroupsHostsAPI_UpdMetaInfo_FullMethodName           = "/sgroups.v1.SGroupsHostsAPI/UpdMetaInfo"
 	SGroupsHostsAPI_ListSocketStatistics_FullMethodName  = "/sgroups.v1.SGroupsHostsAPI/ListSocketStatistics"
 	SGroupsHostsAPI_WatchSocketStatistics_FullMethodName = "/sgroups.v1.SGroupsHostsAPI/WatchSocketStatistics"
+	SGroupsHostsAPI_ListNft_FullMethodName               = "/sgroups.v1.SGroupsHostsAPI/ListNft"
+	SGroupsHostsAPI_WatchNft_FullMethodName              = "/sgroups.v1.SGroupsHostsAPI/WatchNft"
 )
 
 // SGroupsHostsAPIClient is the client API for SGroupsHostsAPI service.
@@ -749,6 +751,10 @@ type SGroupsHostsAPIClient interface {
 	ListSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_List, opts ...grpc.CallOption) (*HostResp_SocketStatistics_List, error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(ctx context.Context, in *HostReq_SocketStatistics_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_SocketStatistics_Watch], error)
+	// ListNft: list nftables information
+	ListNft(ctx context.Context, in *HostReq_Nft_List, opts ...grpc.CallOption) (*HostResp_Nft_List, error)
+	// WatchNft: watch nftables information
+	WatchNft(ctx context.Context, in *HostReq_Nft_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_Nft_Watch], error)
 }
 
 type sGroupsHostsAPIClient struct {
@@ -857,6 +863,35 @@ func (c *sGroupsHostsAPIClient) WatchSocketStatistics(ctx context.Context, in *H
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type SGroupsHostsAPI_WatchSocketStatisticsClient = grpc.ServerStreamingClient[HostResp_SocketStatistics_Watch]
 
+func (c *sGroupsHostsAPIClient) ListNft(ctx context.Context, in *HostReq_Nft_List, opts ...grpc.CallOption) (*HostResp_Nft_List, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HostResp_Nft_List)
+	err := c.cc.Invoke(ctx, SGroupsHostsAPI_ListNft_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sGroupsHostsAPIClient) WatchNft(ctx context.Context, in *HostReq_Nft_Watch, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HostResp_Nft_Watch], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &SGroupsHostsAPI_ServiceDesc.Streams[2], SGroupsHostsAPI_WatchNft_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[HostReq_Nft_Watch, HostResp_Nft_Watch]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchNftClient = grpc.ServerStreamingClient[HostResp_Nft_Watch]
+
 // SGroupsHostsAPIServer is the server API for SGroupsHostsAPI service.
 // All implementations must embed UnimplementedSGroupsHostsAPIServer
 // for forward compatibility.
@@ -879,6 +914,10 @@ type SGroupsHostsAPIServer interface {
 	ListSocketStatistics(context.Context, *HostReq_SocketStatistics_List) (*HostResp_SocketStatistics_List, error)
 	// WatchSocketStatistics: watch socket statistics
 	WatchSocketStatistics(*HostReq_SocketStatistics_Watch, grpc.ServerStreamingServer[HostResp_SocketStatistics_Watch]) error
+	// ListNft: list nftables information
+	ListNft(context.Context, *HostReq_Nft_List) (*HostResp_Nft_List, error)
+	// WatchNft: watch nftables information
+	WatchNft(*HostReq_Nft_Watch, grpc.ServerStreamingServer[HostResp_Nft_Watch]) error
 	mustEmbedUnimplementedSGroupsHostsAPIServer()
 }
 
@@ -912,6 +951,12 @@ func (UnimplementedSGroupsHostsAPIServer) ListSocketStatistics(context.Context, 
 }
 func (UnimplementedSGroupsHostsAPIServer) WatchSocketStatistics(*HostReq_SocketStatistics_Watch, grpc.ServerStreamingServer[HostResp_SocketStatistics_Watch]) error {
 	return status.Error(codes.Unimplemented, "method WatchSocketStatistics not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) ListNft(context.Context, *HostReq_Nft_List) (*HostResp_Nft_List, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListNft not implemented")
+}
+func (UnimplementedSGroupsHostsAPIServer) WatchNft(*HostReq_Nft_Watch, grpc.ServerStreamingServer[HostResp_Nft_Watch]) error {
+	return status.Error(codes.Unimplemented, "method WatchNft not implemented")
 }
 func (UnimplementedSGroupsHostsAPIServer) mustEmbedUnimplementedSGroupsHostsAPIServer() {}
 func (UnimplementedSGroupsHostsAPIServer) testEmbeddedByValue()                         {}
@@ -1064,6 +1109,35 @@ func _SGroupsHostsAPI_WatchSocketStatistics_Handler(srv interface{}, stream grpc
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type SGroupsHostsAPI_WatchSocketStatisticsServer = grpc.ServerStreamingServer[HostResp_SocketStatistics_Watch]
 
+func _SGroupsHostsAPI_ListNft_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostReq_Nft_List)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SGroupsHostsAPIServer).ListNft(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SGroupsHostsAPI_ListNft_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SGroupsHostsAPIServer).ListNft(ctx, req.(*HostReq_Nft_List))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SGroupsHostsAPI_WatchNft_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(HostReq_Nft_Watch)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SGroupsHostsAPIServer).WatchNft(m, &grpc.GenericServerStream[HostReq_Nft_Watch, HostResp_Nft_Watch]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type SGroupsHostsAPI_WatchNftServer = grpc.ServerStreamingServer[HostResp_Nft_Watch]
+
 // SGroupsHostsAPI_ServiceDesc is the grpc.ServiceDesc for SGroupsHostsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1095,6 +1169,10 @@ var SGroupsHostsAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ListSocketStatistics",
 			Handler:    _SGroupsHostsAPI_ListSocketStatistics_Handler,
 		},
+		{
+			MethodName: "ListNft",
+			Handler:    _SGroupsHostsAPI_ListNft_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -1105,6 +1183,11 @@ var SGroupsHostsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "WatchSocketStatistics",
 			Handler:       _SGroupsHostsAPI_WatchSocketStatistics_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "WatchNft",
+			Handler:       _SGroupsHostsAPI_WatchNft_Handler,
 			ServerStreams: true,
 		},
 	},
